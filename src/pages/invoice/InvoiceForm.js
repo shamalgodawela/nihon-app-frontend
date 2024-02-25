@@ -60,7 +60,7 @@ const InvoiceForm = () => {
   
       if (productField === 'productCode') {
         try {
-          const response = await axios.get(`http://localhost:5000/api/products/${value}`);
+          const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/${value}`);
           const product = response.data;
   
           if (product.category === updatedProducts[index].category) {
@@ -183,7 +183,7 @@ const InvoiceForm = () => {
     // Fetch last invoice number and order number
     const fetchLastNumbers = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/lastInvoiceNumber');
+        const response = await axios.get('https://nihon-inventory.onrender.com/api/lastInvoiceNumber');
         const { lastInvoiceNumber, lastOrderNumber } = response.data;
   
         setLastNumbers({
@@ -223,7 +223,7 @@ const InvoiceForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/add-invoice', formData);
+      const response = await axios.post('https://nihon-inventory.onrender.com/api/add-invoice', formData);
       console.log('Invoice added successfully', response.data);
 
       // Optionally, reset the form or navigate to another page on success
@@ -259,7 +259,7 @@ const InvoiceForm = () => {
     e.preventDefault(); // Prevent default button click behavior
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/customers/${formData.code}`);
+      const response = await axios.get(`https://nihon-inventory.onrender.com/api/customers/${formData.code}`);
       const customer = response.data;
       setFormData({
         ...formData,
@@ -285,7 +285,7 @@ const InvoiceForm = () => {
     const productCode = formData.products[index].productCode;
   
     try {
-      const response = await axios.get(`http://localhost:5000/api/products/category/${productCode}`);
+      const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
       const product = response.data;
   
       // Update the product details in the form data state for the corresponding product index
