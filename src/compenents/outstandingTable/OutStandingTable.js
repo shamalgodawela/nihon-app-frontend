@@ -13,7 +13,7 @@ const OutStandingTable = () => {
     useEffect(() => {
         const fetchInvoices = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/get-all-invoices`);
+                const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-all-invoices`);
                 setInvoices(response.data);
                 setLoading(false);
             } catch (error) {
@@ -50,7 +50,7 @@ const OutStandingTable = () => {
         const statuses = {};
         for (const invoiceNumber of invoiceNumbers) {
             try {
-                const response = await axios.get(`http://localhost:5000/api/get-last-outstanding/${invoiceNumber}`);
+                const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-last-outstanding/${invoiceNumber}`);
                 const lastOutstanding = response.data.outstanding;
                 statuses[invoiceNumber] = lastOutstanding === 0 ? 'Paid' : 'Unpaid';
             } catch (error) {
