@@ -1,0 +1,26 @@
+/* customer-details.css */
+
+.customer-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .customer-details h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .customer-details p {
+    margin-bottom: 10px;
+  }
+  
+  .chart-container {
+    margin-top: 30px;
+  }
+  
