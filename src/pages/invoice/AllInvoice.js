@@ -12,7 +12,7 @@ const AllInvoice = () => {
 
   const fetchInvoices = async () => {
     try {
-      const response = await axios.get('https://nihon-inventory.onrender.com/api/get-all-invoices');
+      const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-all-invoices`);
       setInvoices(response.data);
     } catch (error) {
       console.error('Failed to fetch invoices', error.message);
