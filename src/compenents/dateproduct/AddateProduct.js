@@ -25,7 +25,7 @@ const AddateProduct = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/api/dateProducts', {
+            const response = await fetch('https://nihon-inventory.onrender.com/api/dateProducts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ const handleGetProductDetails = async () => {
     const productCode = formData.category; // Assuming productCode is the same as category
   
     try {
-        const response = await axios.get(`http://localhost:5000/api/products/category/${productCode}`);
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
         const product = response.data;
   
         // Update the product details in the form data state
