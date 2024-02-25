@@ -88,7 +88,7 @@ const CalOutstanding = () => {
 
     const handleSave = async () => {
         try {
-            await axios.post('https://nihon-inventory.onrender.com/api/create', { invoiceNumber: invoice.invoiceNumber, date, amount, outstanding });
+            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber, date, amount, outstanding });
             // Display success message
             toast.success('Data added successfully!');
         } catch (error) {
