@@ -33,7 +33,7 @@ const CustomerDetails = () => {
 
     const fetchMonthlyTotalInvoices = async () => {
       try {
-        const response = await axios.get('https://nihon-inventory.onrender.com/api/monthly-total-invoice/${code}`);
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/monthly-total-invoice/${code}`);
         setMonthlyTotalInvoices(response.data);
       } catch (error) {
         console.error('Error fetching monthly total invoices:', error);
