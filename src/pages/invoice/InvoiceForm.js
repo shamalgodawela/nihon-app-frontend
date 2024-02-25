@@ -183,7 +183,7 @@ const InvoiceForm = () => {
     // Fetch last invoice number and order number
     const fetchLastNumbers = async () => {
       try {
-        const response = await axios.get('https://nihon-inventory.onrender.com/api/lastInvoiceNumber');
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastInvoiceNumber`);
         const { lastInvoiceNumber, lastOrderNumber } = response.data;
   
         setLastNumbers({
@@ -223,7 +223,7 @@ const InvoiceForm = () => {
     }
 
     try {
-      const response = await axios.post('https://nihon-inventory.onrender.com/api/add-invoice', formData);
+      const response = await axios.post(`https://nihon-inventory.onrender.com/api/add-invoice`, formData);
       console.log('Invoice added successfully', response.data);
 
       // Optionally, reset the form or navigate to another page on success
