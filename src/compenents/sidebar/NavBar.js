@@ -68,8 +68,10 @@ function NavBar() {
         </ul>
       </nav>
       
-      <RefreshButton />
-      <button id='btnnav' onClick={logout} className='--btn --btn-danger' >Logout</button>
+      <div className="buttons-container">
+        <RefreshButton />
+        <button id='btnnav' onClick={logout} className='--btn --btn-danger'>Logout</button>
+      </div>
     </IconContext.Provider>
     
     </div>
