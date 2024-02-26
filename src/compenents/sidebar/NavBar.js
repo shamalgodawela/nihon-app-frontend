@@ -11,6 +11,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 function NavBar() {
+
+  const RefreshButton = () => {
+    const handleRefresh = () => {
+      window.location.reload();
+    };
+
+    return (
+      <button onClick={handleRefresh} className="refresh-button">Refresh</button>
+    );
+  };
+
   const dispatch=useDispatch()
   const navigate=useNavigate()
   const name=useSelector(selectName)
@@ -26,17 +37,13 @@ function NavBar() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+  
 
   return (
     <div>
       
-       
-        
-    
     <IconContext.Provider value={{ color: '#fff' }}>
       <div className='navbar'>
-      
-        
         <Link to='#' className='menu-bars'>
           <FaIcons.FaBars onClick={showSidebar} />
         </Link>
@@ -59,13 +66,11 @@ function NavBar() {
             );
           })}
         </ul>
-        
       </nav>
       
+      <RefreshButton />
       <button id='btnnav' onClick={logout} className='--btn --btn-danger' >Logout</button>
-      
     </IconContext.Provider>
-    
     
     </div>
   );
