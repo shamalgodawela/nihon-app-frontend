@@ -21,7 +21,7 @@ const CalOutstanding = () => {
     useEffect(() => {
         const fetchInvoice = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/get-invoice/${id}`);
+                const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-invoice/${id}`);
                 setInvoice(response.data);
             } catch (error) {
                 console.error(`Failed to fetch invoice with id ${id}`, error.message);
@@ -61,7 +61,7 @@ const CalOutstanding = () => {
     const handleCalculate = async () => {
         try {
             // Fetch the last outstanding value for the current invoice number
-            const response = await axios.get(`http://localhost:5000/api/get-last-outstanding/${invoice.invoiceNumber}`);
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-last-outstanding/${invoice.invoiceNumber}`);
             const lastOutstanding = response.data.outstanding;
     
             console.log('Last Outstanding:', lastOutstanding);
@@ -88,7 +88,7 @@ const CalOutstanding = () => {
 
     const handleSave = async () => {
         try {
-            await axios.post('http://localhost:5000/api/create', { invoiceNumber: invoice.invoiceNumber, date, amount, outstanding });
+            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber, date, amount, outstanding });
             // Display success message
             toast.success('Data added successfully!');
         } catch (error) {
@@ -100,7 +100,7 @@ const CalOutstanding = () => {
 
     const handleFetchAllOutstandingDetails = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/get-all-outstanding/${invoice.invoiceNumber}`);
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-all-outstanding/${invoice.invoiceNumber}`);
             const data = response.data;
             if (data.length === 0) {
                 toast.error('Customer did not pay yet')          
