@@ -69,11 +69,11 @@ function NavBar() {
       </nav>
       
       <div className="buttons-container">
-        <RefreshButton />
+        
         <button id='btnnav' onClick={logout} className='--btn --btn-danger'>Logout</button>
       </div>
-    </IconContext.Provider>
-    
+    </IconContext.Provider><br/><br/>
+    <RefreshButton />
     </div>
   );
 }
