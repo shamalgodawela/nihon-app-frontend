@@ -1,9 +1,11 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
-import { MdSwitchAccount } from "react-icons/md";
+import { FaProductHunt } from "react-icons/fa";
+import { FaBorderAll } from "react-icons/fa";
 import { FaFileInvoice } from "react-icons/fa";
+import { MdPayments } from "react-icons/md";
+import { BsDatabaseFillGear } from "react-icons/bs";
+
 
 export const SidebarData = [
   <div>
@@ -19,27 +21,34 @@ export const SidebarData = [
   {
     title: 'Products summery',
     path: '/dateproductDetails',
-    icon: <FaIcons.FaCartPlus />,
+    icon: <FaProductHunt />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Manage Orders',
+    path: '/all-invoices',
+    icon: <FaBorderAll />,
     cName: 'nav-text'
   },
   {
     title: 'Manage invoices',
     path: '/all-invoices',
-    icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Manage Custormers',
-    path: '/getAllCustomer',
-    icon: <IoIcons.IoIosPaper />,
+    icon: <FaFileInvoice />,
     cName: 'nav-text'
   },
   {
     title: 'Manage Outstanding',
     path: '/AllOutstanding',
-    icon: <MdSwitchAccount />,
+    icon: <MdPayments />,
     cName: 'nav-text'
   },
+  {
+    title: 'Manage Custormers',
+    path: '/getAllCustomer',
+    icon: <BsDatabaseFillGear />,
+    cName: 'nav-text'
+  },
+  
  
 
   
