@@ -62,6 +62,8 @@ const ProductdateList = () => {
   } = tableInstance;
 
   return (
+    <div>
+      <button type="button" class="btn btn-outline-primary" disabled><a href="/dateproduct" >Add Product</a></button>
     <table {...getTableProps()} style={{ border: 'solid 1px blue', borderCollapse: 'collapse', width: '100%' }}>
       <thead>
         {headerGroups.map(headerGroup => (
@@ -91,6 +93,7 @@ const ProductdateList = () => {
         })}
       </tbody>
     </table>
+    </div>
   );
 };
 

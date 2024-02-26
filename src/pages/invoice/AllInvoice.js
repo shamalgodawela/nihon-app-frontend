@@ -31,8 +31,10 @@ const AllInvoice = () => {
 
   return (
     <body className='invoice-body'>
+      
     <div>
-      <NavBar/>
+      <NavBar/><br/><br/>
+      <button type="button" class="btn btn-outline-primary" disabled><a href="/add-invoice" >Add Invoice</a></button>
       
    
       <div className="all-invoice">

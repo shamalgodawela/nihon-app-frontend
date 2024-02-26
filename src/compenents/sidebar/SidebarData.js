@@ -17,55 +17,30 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Add Products summery',
+    title: 'Products summery',
     path: '/dateproductDetails',
     icon: <FaIcons.FaCartPlus />,
     cName: 'nav-text'
   },
   {
-    title: 'Product Registration',
-    path: '/add-products',
-    icon: <FaIcons.FaCartPlus />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Add Products',
-    path: '/dateproduct',
-    icon: <FaIcons.FaCartPlus />,
-    cName: 'nav-text'
-  },
- 
-  {
-    title: 'Add Invoice',
-    path: '/add-invoice',
-    icon:<FaFileInvoice />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'All invoices',
+    title: 'Manage invoices',
     path: '/all-invoices',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
   {
-    title: 'Customer Registration',
-    path: '/customerReg',
-    icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Customer database',
+    title: 'Manage Custormers',
     path: '/getAllCustomer',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text'
   },
   {
-    title: 'Calculate Outstanding',
+    title: 'Manage Outstanding',
     path: '/AllOutstanding',
     icon: <MdSwitchAccount />,
     cName: 'nav-text'
   },
-  
+ 
 
   
 ];

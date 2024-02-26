@@ -41,9 +41,12 @@ const CustomerList = () => {
   return (
     <div className='bd2'>
       <NavBar/>
+      
+      
       <section>
         <h2 className='h2getcus'>Customer Database</h2>
         {/* Search input field */}
+        <button type="button" class="btn btn-outline-primary" disabled><a href="/customerReg" >Customer Registration</a></button><br/><br/>
         <input
           type="text"
           placeholder="Search by name or code"
