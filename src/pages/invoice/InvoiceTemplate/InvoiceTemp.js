@@ -85,9 +85,12 @@ export default function InvoiceTemp() {
 
   return (
     <div>
+      <a href="/all-invoices">Go Back</a><br/>
       <ReactToPrint
+      
         trigger={() => (
           <a href="#">Print this out!</a>
+          
         )}
         content={() => containerRef.current}
         documentTitle=" "
