@@ -442,7 +442,7 @@ const InvoiceForm = () => {
               value={formData.invoiceDate}
               onChange={(e) => handleChange(e)}
               required
-              readOnly
+             
             />
           </div>
           <h4></h4>
