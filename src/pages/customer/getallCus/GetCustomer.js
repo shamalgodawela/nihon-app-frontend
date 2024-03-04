@@ -76,8 +76,9 @@ const CustomerList = () => {
         <div className="tbl-content">
           <table cellPadding="0" cellSpacing="0">
             <tbody>
-              {filteredCustomers.map(customer => (
+              {filteredCustomers.map((customer, index) => (
                 <tr key={customer._id}>
+                  <td>{index + 1}</td>
                   <td>{customer.name}</td>
                   <td>{customer.code}</td>
                   <td>{customer.companyName}</td>

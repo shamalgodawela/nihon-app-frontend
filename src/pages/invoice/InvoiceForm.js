@@ -193,14 +193,13 @@ const InvoiceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
+  
     try {
       const response = await axios.post(`http://localhost:5000/api/add-invoice`, formData);
       console.log('Invoice added successfully', response.data);
-
+  
       // Optionally, reset the form or navigate to another page on success
-
+  
       // Show success toast
       toast.success('Invoice added successfully', {
         position: 'top-right',
@@ -211,22 +210,38 @@ const InvoiceForm = () => {
         draggable: true,
         progress: undefined,
       });
+      
+      navigate("/all-invoices");
     } catch (error) {
       console.error('Failed to add invoice', error.message);
-      // Handle error, show a user-friendly message, or redirect to an error page
-      // Show error toast
-      toast.error('Product Not Found', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+  
+      // Check if the error response indicates that the invoice number already exists
+      if (error.response && error.response.status === 400 && error.response.data.error === 'Invoice number already exists') {
+        // Show toast for existing invoice number
+        toast.error('Invoice number already exists', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        // Show generic error toast
+        toast.error('Failed to add invoice', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
-    navigate("/all-invoices")
   };
+  
 
   const handleGetDetails = async (e) => {
     e.preventDefault(); // Prevent default button click behavior
