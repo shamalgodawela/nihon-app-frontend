@@ -142,7 +142,7 @@ const AddOrder = ({ onAddOrder }) => {
 </div>
 <div className="form-row">
   <label className="form-label">Invoice Date:</label>
-  <input type="date" className="form-input" name="invoiceDate" value={orderData.invoiceDate} onChange={(e) => setOrderData({ ...orderData, invoiceDate: e.target.value })} />
+  <input type="date" className="form-input" name="invoiceDate" value={orderData.invoiceDate} onChange={(e) => setOrderData({ ...orderData, invoiceDate: e.target.value })} readOnly />
 </div>
 
 <div className="form-row">
