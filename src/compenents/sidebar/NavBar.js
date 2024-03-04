@@ -9,6 +9,7 @@ import { logoutUser } from '../../services/authService'
 import { SET_LOGIN, selectName } from '../../redux/features/auth/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { LuRefreshCw } from "react-icons/lu";
 
 function NavBar() {
 
@@ -18,7 +19,7 @@ function NavBar() {
     };
 
     return (
-      <button onClick={handleRefresh} className="refresh-button">Refresh</button>
+      <button onClick={handleRefresh} className="refresh-button"><LuRefreshCw /></button>
     );
   };
 

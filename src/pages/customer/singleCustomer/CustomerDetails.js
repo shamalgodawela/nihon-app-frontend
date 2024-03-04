@@ -104,12 +104,12 @@ const CustomerDetails = () => {
       <p>Name: {customer.name}</p>
       <p>Code: {customer.code}</p>
       <p>Company Name: {customer.companyName}</p>
-      <p>Contact: {customer.contact}</p>
+      <p>2nd Owner: {customer.contact}</p>
       <p>Address: {customer.address}</p>
       <p>City: {customer.city}</p>
       <p>Phone: {customer.phone}</p>
       <p>Email: {customer.email}</p>
-      <p>Fax: {customer.fax}</p>
+      <p>2nd Phone: {customer.fax}</p>
       <p>Total sales:${totalInvoiceValue}</p>
       <div className="chart-container">
         <h3>Monthly Total sales</h3>

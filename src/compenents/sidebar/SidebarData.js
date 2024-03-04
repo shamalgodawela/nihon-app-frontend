@@ -26,7 +26,7 @@ export const SidebarData = [
   },
   {
     title: 'Manage Orders',
-    path: '/all-invoices',
+    path: '/allorder',
     icon: <FaBorderAll />,
     cName: 'nav-text'
   },

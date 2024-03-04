@@ -29,6 +29,15 @@ import AllOutStanding from "./pages/outstandingPage/AllOutStanding";
 import CalOutstanding from "./pages/outstandingPage/CalOutstanding";
 import Dateproduct from "./pages/addProduct/Dateproduct";
 import ProductdateDetails from "./pages/products/productDetails/ProductdateDetails";
+import AddOrderdetails from "./pages/Order/addorder/AddOrderdetails";
+import Allorder from "./pages/Order/ALLorder/Allorder";
+import OrderDetails from "./compenents/HandleOrder/allorder/OrderDetails";
+import SingleOrder from "./compenents/HandleOrder/SingleOrder";
+import ViewallOrder from "./pages/orderAdmin/dashboard/ViewallOrder";
+import Oneorder from "./pages/orderAdmin/dashboard/Oneorder";
+import LoginForm from "./pages/orderAdmin/login/LoginForm";
+import Sample from "./pages/invoice/InvoiceTemplate/Sample";
+
 
 
 
@@ -73,6 +82,7 @@ function App() {
     <Route path="/add-invoice" element={<InvoiceForm/>}/>
     <Route path="/all-invoices" element={<AllInvoice/>} />
     <Route path="/invoice-temp/:id" element={<InvoiceTemp/>} />
+    <Route path="/invoice-temp" element={<Sample/>} />
     <Route path="/customerReg" element={<CustomerReg/>} />
     <Route path="/getAllCustomer" element={<GetCustomer/>} />
     <Route path="/Mdetails" element={<Mdetails/>} />
@@ -81,6 +91,14 @@ function App() {
     <Route path="/caloutStanding/:id" element={<CalOutstanding/>} />
     <Route path="/dateproduct" element={<Dateproduct/>} />
     <Route path="/dateproductDetails" element={<ProductdateDetails/>} />
+    <Route path="/addorder" element={<AddOrderdetails/>} />
+    <Route path="/allorder" element={<Allorder/>} />
+    <Route path="/orders/:id" element={<SingleOrder/>} />
+
+    <Route path="/Adminallorder" element={<ViewallOrder/>} />
+    <Route path="/adminorder/:id" element={<Oneorder/>} />
+    <Route path="/adminlogin" element={<LoginForm/>} />
+    
    
    
 

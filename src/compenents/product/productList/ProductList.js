@@ -16,6 +16,7 @@ import { deleteProduct, getProducts } from '../../../redux/features/product/prod
 
 
 
+
 const ProductList = ({ products, isLoading }) => {
   const [search, setSearch] = useState("");
   const filteredProducts = useSelector(selectFilteredProducts);
@@ -78,7 +79,12 @@ const ProductList = ({ products, isLoading }) => {
       useEffect(() => {
         dispatch(FILTER_PRODUCTS({ products, search }));
       }, [products, search, dispatch]);
-    
+      
+      const formatNumbers = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      };
+
+
       return (
         <div className="product-list">
           <hr />
@@ -124,13 +130,15 @@ const ProductList = ({ products, isLoading }) => {
                           <td>{shortenText(name, 16)}</td>
                           <td>{category}</td>
                           <td>
-                            {"$"}
-                            {price}
+                          {"Rs:"}
+                          {typeof price === 'string' ? formatNumbers(parseFloat(price).toFixed(2)) : formatNumbers(price.toFixed(2))}
                           </td>
+
+
                           <td>{quantity}</td>
                           <td>
-                            {"$"}
-                            {price * quantity}
+                          {"Rs:"}
+                          {typeof price === 'string' ? formatNumbers(parseFloat(price * quantity).toFixed(2)) : formatNumbers((price * quantity).toFixed(2))}
                           </td>
                           <td className="icons">
                         <span>

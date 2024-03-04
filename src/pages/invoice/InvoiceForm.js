@@ -60,7 +60,7 @@ const InvoiceForm = () => {
   
       if (productField === 'productCode') {
         try {
-          const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/${value}`);
+          const response = await axios.get(`http://localhost:5000/api/products/${value}`);
           const product = response.data;
   
           if (product.category === updatedProducts[index].category) {
@@ -181,22 +181,7 @@ const InvoiceForm = () => {
     });
   
     // Fetch last invoice number and order number
-    const fetchLastNumbers = async () => {
-      try {
-        const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastInvoiceNumber`);
-        const { lastInvoiceNumber, lastOrderNumber } = response.data;
-  
-        setLastNumbers({
-          lastInvoiceNumber: lastInvoiceNumber,
-          lastOrderNumber: lastOrderNumber,
-        });
-      } catch (error) {
-        console.error('Failed to fetch last numbers', error.message);
-        // Handle error
-      }
-    };
-  
-    fetchLastNumbers(); // Fetch last numbers on component mount
+    // Fetch last numbers on component mount
   
     setCalculatedValues({
       unitPrice: totalUnitPrice,
@@ -209,21 +194,9 @@ const InvoiceForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!customerDetailsFetched) {
-      toast.error('Please fetch customer details before submitting the form', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      return;
-    }
 
     try {
-      const response = await axios.post(`https://nihon-inventory.onrender.com/api/add-invoice`, formData);
+      const response = await axios.post(`http://localhost:5000/api/add-invoice`, formData);
       console.log('Invoice added successfully', response.data);
 
       // Optionally, reset the form or navigate to another page on success
@@ -257,20 +230,67 @@ const InvoiceForm = () => {
 
   const handleGetDetails = async (e) => {
     e.preventDefault(); // Prevent default button click behavior
-
+  
     try {
-      const response = await axios.get(`https://nihon-inventory.onrender.com/api/customers/${formData.code}`);
-      const customer = response.data;
-      setFormData({
-        ...formData,
-        customer: customer.name,
-        address: customer.address,
-        contact: customer.contact,
-      });
-      setCustomerDetailsFetched(true);
+      const response = await axios.get(`http://localhost:5000/api/orders/${formData.orderNumber}`);
+      const orderData = response.data;
+      
+      // Check if the order status is "Approved"
+      if (orderData.status === "Approved") {
+        // Set the fetched order details in the form data state
+        setFormData({
+          ...formData,
+          invoiceNumber: orderData.invoiceNumber,
+          customer: orderData.customer,
+          code: orderData.code,
+          address: orderData.address,
+          contact: orderData.contact,
+          invoiceDate: orderData.invoiceDate,
+          orderNumber: orderData.orderNumber,
+          orderDate: orderData.orderDate,
+          exe: orderData.exe,
+          ModeofPayment: orderData.ModeofPayment,
+          TermsofPayment: orderData.TermsofPayment,
+          Duedate: orderData.Duedate,
+          Tax: orderData.Tax,
+          GatePassNo: orderData.GatePassNo,
+          VehicleNo: orderData.VehicleNo,
+          products: orderData.products.map(product => ({
+            productCode: product.productCode,
+            productName: product.productName,
+            quantity: product.quantity,
+            labelPrice: product.labelPrice,
+            discount: product.discount,
+            unitPrice: product.unitPrice,
+            invoiceTotal: product.invoiceTotal,
+          })),
+        });
+  
+        // Show success toast
+        toast.success('Order details fetched successfully', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        // Show toast message if order status is not "Approved"
+        toast.error('Order was canceled by admin', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     } catch (error) {
-      console.error('Failed to fetch customer details', error.message);
-      toast.error('Customer not found', {
+      console.error('Failed to fetch order details', error.message);
+      toast.error('Order not found', {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
@@ -281,48 +301,7 @@ const InvoiceForm = () => {
       });
     }
   };
-  const handleGetProductDetails = async (index) => {
-    const productCode = formData.products[index].productCode;
   
-    try {
-      const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
-      const product = response.data;
-  
-      // Update the product details in the form data state for the corresponding product index
-      setFormData((prevFormData) => {
-        const updatedProducts = [...prevFormData.products];
-        updatedProducts[index] = {
-          ...updatedProducts[index],
-          productName: product.name,
-          labelPrice: product.price,
-        };
-        return { ...prevFormData, products: updatedProducts };
-      });
-  
-      // Show success toast
-      toast.success('Product details fetched successfully', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } catch (error) {
-      console.error('Failed to fetch product details', error.message);
-      // Show error toast
-      toast.error('Failed to fetch product details', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
   
   return (
     <div>
@@ -330,6 +309,18 @@ const InvoiceForm = () => {
       <br/>
       <div className="invoice-form">
         <h2>Add Invoice</h2>
+        <div>
+  <label>Order Number:</label>
+  <input
+    type="text"
+    name="orderNumber"
+    value={formData.orderNumber}
+    onChange={(e) => handleChange(e)}
+    required
+  />
+  <button onClick={handleGetDetails}>Get Order Details</button>
+</div>
+
         <form onSubmit={handleSubmit}>
           {formData.products.map((product, index) => (
             <div key={index}>
@@ -340,8 +331,10 @@ const InvoiceForm = () => {
       name={`products[${index}].productCode`}
       value={product.productCode}
       onChange={(e) => handleChange(e, index)}
+      required
+      readOnly
     />
-    <button onClick={() => handleGetProductDetails(index)}>Get Details</button> {/* Pass index */}
+    
   </div>
               <h3>Product {index + 1}</h3>
               <div>
@@ -351,6 +344,8 @@ const InvoiceForm = () => {
                   name={`products[${index}].productCode`}
                   value={product.productCode}
                   onChange={(e) => handleChange(e, index)}
+                  required
+                  readOnly
                 />
               </div>
               <div>
@@ -360,6 +355,8 @@ const InvoiceForm = () => {
                   name={`products[${index}].productName`}
                   value={product.productName}
                   onChange={(e) => handleChange(e, index)}
+                  required
+                  readOnly
                 />
               </div>
               <div>
@@ -369,6 +366,8 @@ const InvoiceForm = () => {
                   name={`products[${index}].quantity`}
                   value={product.quantity}
                   onChange={(e) => handleChange(e, index)}
+                  required
+                  readOnly
                 />
               </div>
               <div>
@@ -378,6 +377,8 @@ const InvoiceForm = () => {
                   name={`products[${index}].labelPrice`}
                   value={product.labelPrice}
                   onChange={(e) => handleChange(e, index)}
+                  required
+                  readOnly
                 />
               </div>
               <div>
@@ -387,6 +388,8 @@ const InvoiceForm = () => {
                   name={`products[${index}].discount`}
                   value={product.discount}
                   onChange={(e) => handleChange(e, index)}
+                  readOnly
+
                 />
               </div>
               <div>
@@ -397,9 +400,7 @@ const InvoiceForm = () => {
                 <label>Invoice Total:</label>
                 <span>{product.invoiceTotal}</span>
               </div>
-              <button type="button" onClick={() => removeProduct(index)}>
-                Remove Product
-              </button>
+              
             </div>
           ))}
           <button type="button" onClick={addProduct}>
@@ -412,19 +413,23 @@ const InvoiceForm = () => {
           name="code"
           value={formData.code}
           onChange={handleChange}
+          required
+          readOnly
         />
-        <button onClick={handleGetDetails}>Get Details</button>
+        
       </div>
       
 
           <div>
-          <p>Last Invoice Number: {lastNumbers.lastInvoiceNumber}</p>
+          
             <label>Invoice Number:</label>
             <input
               type="text"
               name="invoiceNumber"
               value={formData.invoiceNumber}
               onChange={(e) => handleChange(e)}
+              required
+              readOnly
             />
             
              
@@ -436,6 +441,8 @@ const InvoiceForm = () => {
               name="invoiceDate"
               value={formData.invoiceDate}
               onChange={(e) => handleChange(e)}
+              required
+              readOnly
             />
           </div>
           <h4></h4>
@@ -447,6 +454,8 @@ const InvoiceForm = () => {
               name="customer"
               value={formData.customer}
               onChange={(e) => handleChange(e)}
+              required
+              readOnly
             />
           </div>
           <div>
@@ -456,6 +465,8 @@ const InvoiceForm = () => {
               name="code"
               value={formData.code}
               onChange={(e) => handleChange(e)}
+              required
+              readOnly
             />
           </div>
           <div>
@@ -465,6 +476,8 @@ const InvoiceForm = () => {
               name="address"
               value={formData.address}
               onChange={(e) => handleChange(e)}
+              required
+              readOnly
             />
           </div>
           <div>
@@ -474,18 +487,20 @@ const InvoiceForm = () => {
               name="address"
               value={formData.contact}
               onChange={(e) => handleChange(e)}
+              readOnly
             />
           </div>
          
           <div>
             <h3>Order details</h3>
-            <p>Last order Number:{lastNumbers.lastOrderNumber}</p>
             <label>Order Number:</label>
             <input
               type="text"
               name="orderNumber"
               value={formData.orderNumber}
               onChange={(e) => handleChange(e)}
+              required
+              readOnly
             />
             
           </div>
@@ -496,6 +511,8 @@ const InvoiceForm = () => {
               name="orderDate"
               value={formData.orderDate}
               onChange={(e) => handleChange(e)}
+              required
+              readOnly
             />
           </div>
           <div>
@@ -505,6 +522,8 @@ const InvoiceForm = () => {
               name="exe"
               value={formData.exe}
               onChange={(e) => handleChange(e)}
+              required
+              readOnly
             />
           </div>
           <h3>Payment details</h3>
@@ -514,6 +533,7 @@ const InvoiceForm = () => {
               name="ModeofPayment"
               value={formData.ModeofPayment}
               onChange={(e) => handleChange(e)}
+              required
               >
                <option value="">Select mode of payment</option>
                <option value="Cash">Cash</option>
@@ -527,6 +547,7 @@ const InvoiceForm = () => {
               name="TermsofPayment"
               value={formData.TermsofPayment}
               onChange={(e) => handleChange(e)}
+              required
             />
           </div>
           <div>
