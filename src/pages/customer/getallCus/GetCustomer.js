@@ -59,6 +59,7 @@ const CustomerList = () => {
           <table cellPadding="0" cellSpacing="0">
             <thead>
               <tr>
+                <th>Index</th>
                 <th>Name</th>
                 <th>Code</th>
                 <th>Company Name</th>
