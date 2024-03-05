@@ -10,6 +10,9 @@ const Menu = () => {
         <Link to="/Adminallorder" className="nav-link2">Home</Link>
       </li>
       <li className="nav-item2">
+        <Link to="/AllOutstanding" className="nav-link2">Manage Outstanding</Link>
+      </li>
+      <li className="nav-item2">
         <Link to="/" className="nav-link2">Logout</Link>
       </li>
       

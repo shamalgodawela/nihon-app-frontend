@@ -36,12 +36,7 @@ export const SidebarData = [
     icon: <FaFileInvoice />,
     cName: 'nav-text'
   },
-  {
-    title: 'Manage Outstanding',
-    path: '/AllOutstanding',
-    icon: <MdPayments />,
-    cName: 'nav-text'
-  },
+
   {
     title: 'Manage Custormers',
     path: '/getAllCustomer',
