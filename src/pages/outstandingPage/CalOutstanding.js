@@ -15,6 +15,7 @@ const CalOutstanding = () => {
     const [date, setDate] = useState('');
     const [backName, setBackname]=useState('');
     const [depositedate, setdepositedate]=useState('');
+    const [CHnumber, setCHnumber]=useState('');
     const [savedDetails, setSavedDetails] = useState(null); // To store saved details
     const [invoiceNumber, setInvoiceNumber] = useState(''); // To store invoice number for fetching details
 
@@ -88,7 +89,7 @@ const CalOutstanding = () => {
 
     const handleSave = async () => {
         try {
-            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber, date,backName,depositedate, amount, outstanding });
+            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber, date,backName,depositedate,CHnumber, amount, outstanding });
             // Display success message
             toast.success('Data added successfully!');
         } catch (error) {
@@ -111,7 +112,7 @@ const CalOutstanding = () => {
             }
             
         } catch (error) {
-            toast.error('Failed to fetch all outstanding details')
+            toast.error('Customer did not pay yet')
             console.error('Failed to fetch all outstanding details:', error.message);
             // Handle error
         }
@@ -169,10 +170,11 @@ const CalOutstanding = () => {
         <br/><br/><hr/> <br/><br/>
         <h1 className="h1-out">Add Outstanding</h1>
 
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        <input type="text" placeholder="Bank Name" value={backName} onChange={(e)=> setBackname(e.target.value)} />
-        <input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
-        <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
+        <p>Date:</p><input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <p>Back Name:</p><input type="text" placeholder="Bank Name" value={backName} onChange={(e)=> setBackname(e.target.value)} />
+        <p>Deposited date:</p><input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
+        <p>Cheque Number:</p><input type="text" placeholder="Chaeque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
+        <p></p><input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
         <button onClick={handleCalculate}>Calculate</button>
         <div>Outstanding: ${outstanding}</div>
         <button onClick={handleSave}>Save</button> <br/><br/><hr/> <br/><br/>
