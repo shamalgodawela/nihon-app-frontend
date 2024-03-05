@@ -192,6 +192,7 @@ const CalOutstanding = () => {
                             <th>Date</th>
                             <th>Amount</th>
                             <th>Outstanding</th>
+                            <th>Cheque Number</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -200,6 +201,7 @@ const CalOutstanding = () => {
                                 <td>{detail.date}</td>
                                 <td>${detail.amount}</td>
                                 <td>${detail.outstanding}</td>
+                                <td>${detail.CHnumber}</td>
                             </tr>
                         ))}
                     </tbody>
