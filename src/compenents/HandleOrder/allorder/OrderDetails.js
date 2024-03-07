@@ -20,6 +20,11 @@ const OrderDetails = () => {
       const data = await response.json();
       console.log('Fetched orders:', data);
       setOrders(data);
+      
+      // Log status values for debugging
+      const statusValues = data.map(order => order.status);
+      console.log('Status values:', statusValues);
+      
       // Filter orders based on status
       const pending = data.filter(order => order.status.toLowerCase() === 'pending');
       const approved = data.filter(order => order.status.toLowerCase() === 'approved');
@@ -27,6 +32,7 @@ const OrderDetails = () => {
       console.log('Pending orders:', pending);
       console.log('Approved orders:', approved);
       console.log('Canceled orders:', canceled);
+      
       setPendingOrders(pending);
       setApprovedOrders(approved);
       setCanceledOrders(canceled);
@@ -34,6 +40,7 @@ const OrderDetails = () => {
       console.error('Error fetching orders:', error);
     }
   };
+  
   
   const renderTable = (orderList) => (
     <table>
