@@ -66,7 +66,7 @@ const AddOrder = ({ onAddOrder }) => {
             // Optionally, you can perform additional actions upon successful addition of the order
         } catch (error) {
             console.error('Error adding invoice:', error);
-            toast.error('Error adding invoice:')
+            toast.error('Order Number was already used:')
             // Optionally, handle error states such as displaying an error message to the user
         }
     };
