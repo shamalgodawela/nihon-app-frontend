@@ -1,0 +1,26 @@
+
+.tordert {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+
+.thorder {
+    background-color: #f2f2f2;
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+ 
+.tdorder {
+    border: 1px solid #dddddd;
+    padding: 8px;
+  }
+  
+  .h3order{
+    color: black;
+    text-align: center;
+    
+  } 
