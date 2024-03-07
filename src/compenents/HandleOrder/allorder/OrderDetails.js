@@ -16,13 +16,17 @@ const OrderDetails = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('https://nihon-inventory.onrender.com/api/allorders'); // Update the URL with your backend endpoint
+      const response = await fetch('https://nihon-inventory.onrender.com/api/allorders');
       const data = await response.json();
+      console.log('Fetched orders:', data);
       setOrders(data);
       // Filter orders based on status
       const pending = data.filter(order => order.status === 'pending');
       const approved = data.filter(order => order.status === 'approved');
       const canceled = data.filter(order => order.status === 'canceled');
+      console.log('Pending orders:', pending);
+      console.log('Approved orders:', approved);
+      console.log('Canceled orders:', canceled);
       setPendingOrders(pending);
       setApprovedOrders(approved);
       setCanceledOrders(canceled);
