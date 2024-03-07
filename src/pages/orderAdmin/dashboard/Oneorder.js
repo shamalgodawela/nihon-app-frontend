@@ -14,7 +14,7 @@ const Oneorder = () => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/orders/${id}`);
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${id}`);
         const orderData = response.data;
         // Initialize updatedOrder with the fetched order data, ensuring nested objects are properly initialized
         const updatedOrderData = {
@@ -81,7 +81,7 @@ const handleInputChange = (e) => {
   const handleUpdateOrder = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/orders/${id}`, updatedOrder);
+      await axios.put(`https://nihon-inventory.onrender.com/api/orders/${id}`, updatedOrder);
       // Assuming successful update, setOrder to updatedOrder to reflect changes
       setOrder(updatedOrder);
       toast.success('Order details updated successfully')
