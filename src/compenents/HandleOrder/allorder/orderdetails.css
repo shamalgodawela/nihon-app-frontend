@@ -1,12 +1,12 @@
-/* 
-table {
+
+.tordert {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
   }
   
 
-  th {
+.thorder {
     background-color: #f2f2f2;
     border: 1px solid #dddddd;
     padding: 8px;
@@ -14,17 +14,13 @@ table {
   }
   
  
-  td {
+.tdorder {
     border: 1px solid #dddddd;
     padding: 8px;
   }
   
-
-  tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
   .h3order{
     color: black;
     text-align: center;
     
-  } */
+  } 
