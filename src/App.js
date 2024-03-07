@@ -37,6 +37,7 @@ import ViewallOrder from "./pages/orderAdmin/dashboard/ViewallOrder";
 import Oneorder from "./pages/orderAdmin/dashboard/Oneorder";
 import LoginForm from "./pages/orderAdmin/login/LoginForm";
 import Sample from "./pages/invoice/InvoiceTemplate/Sample";
+import AddOfficeInventory from "./compenents/officeInventory/AddOfficeInventory";
 
 
 
@@ -98,6 +99,7 @@ function App() {
     <Route path="/Adminallorder" element={<ViewallOrder/>} />
     <Route path="/adminorder/:id" element={<Oneorder/>} />
     <Route path="/adminlogin" element={<LoginForm/>} />
+    <Route path="/additems" element={<AddOfficeInventory/>} />
     
    
    

@@ -45,7 +45,7 @@ export const SidebarData = [
   },
   {
   title: 'Office Inventory',
-  path: '',
+  path: '/additems',
   icon: <PiOfficeChairFill />,
   cName: 'nav-text'
 },
