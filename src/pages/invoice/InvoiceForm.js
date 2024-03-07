@@ -60,7 +60,7 @@ const InvoiceForm = () => {
   
       if (productField === 'productCode') {
         try {
-          const response = await axios.get(`http://localhost:5000/api/products/${value}`);
+          const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/${value}`);
           const product = response.data;
   
           if (product.category === updatedProducts[index].category) {
@@ -195,7 +195,7 @@ const InvoiceForm = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post(`http://localhost:5000/api/add-invoice`, formData);
+      const response = await axios.post(`https://nihon-inventory.onrender.com/api/add-invoice`, formData);
       console.log('Invoice added successfully', response.data);
   
       // Optionally, reset the form or navigate to another page on success
@@ -247,7 +247,7 @@ const InvoiceForm = () => {
     e.preventDefault(); // Prevent default button click behavior
   
     try {
-      const response = await axios.get(`http://localhost:5000/api/orders/${formData.orderNumber}`);
+      const response = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${formData.orderNumber}`);
       const orderData = response.data;
       
       // Check if the order status is "Approved"
