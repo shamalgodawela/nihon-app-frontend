@@ -21,9 +21,9 @@ const OrderDetails = () => {
       console.log('Fetched orders:', data);
       setOrders(data);
       // Filter orders based on status
-      const pending = data.filter(order => order.status === 'pending');
-      const approved = data.filter(order => order.status === 'approved');
-      const canceled = data.filter(order => order.status === 'canceled');
+      const pending = data.filter(order => order.status.toLowerCase() === 'pending');
+      const approved = data.filter(order => order.status.toLowerCase() === 'approved');
+      const canceled = data.filter(order => order.status.toLowerCase() === 'canceled');
       console.log('Pending orders:', pending);
       console.log('Approved orders:', approved);
       console.log('Canceled orders:', canceled);
@@ -34,7 +34,7 @@ const OrderDetails = () => {
       console.error('Error fetching orders:', error);
     }
   };
-
+  
   const renderTable = (orderList) => (
     <table>
       <thead>
