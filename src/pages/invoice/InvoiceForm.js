@@ -552,7 +552,7 @@ const InvoiceForm = () => {
               >
                <option value="">Select mode of payment</option>
                <option value="Cash">Cash</option>
-               <option value="Check">Check</option>
+               <option value="Cheque">Cheque</option>
               </select>
           </div>
           <div>
