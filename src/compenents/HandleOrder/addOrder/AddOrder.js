@@ -43,7 +43,7 @@ const AddOrder = ({ onAddOrder }) => {
     const handleGetProductDetails = async (index) => {
         const productCode = orderData.products[index].productCode;
         try {
-            const response = await axios.get(`http://localhost:5000/api/products/category/${productCode}`);
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
             const { name, price } = response.data; // Assuming the response contains name and price
             const products = [...orderData.products];
             products[index].productName = name;
@@ -60,7 +60,7 @@ const AddOrder = ({ onAddOrder }) => {
         e.preventDefault();
         try {
             // Send POST request to backend API to add the order
-            const response = await axios.post(`http://localhost:5000/api/orders`, orderData);
+            const response = await axios.post(`https://nihon-inventory.onrender.com/api/orders`, orderData);
             console.log('Invoice added successfully', response.data);
             toast.success('Invoice added successfully');
             // Optionally, you can perform additional actions upon successful addition of the order
@@ -72,7 +72,7 @@ const AddOrder = ({ onAddOrder }) => {
     const handleGetCustomerDetails = async () => {
         const customerCode = orderData.code;
         try {
-            const response = await axios.get(`http://localhost:5000/api/customers/${customerCode}`);
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/customers/${customerCode}`);
             const { name, address, phone } = response.data; // Assuming the response contains name, address, and contact
             setOrderData({ ...orderData, customer: name, address, contact:phone });
         } catch (error) {
