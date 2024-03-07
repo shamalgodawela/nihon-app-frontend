@@ -43,7 +43,7 @@ const AddOrder = ({ onAddOrder }) => {
     const handleGetProductDetails = async (index) => {
         const productCode = orderData.products[index].productCode;
         try {
-            const response = await axios.get(`http://localhost:5000/api/products/category/${productCode}`);
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
             const { name, price } = response.data; // Assuming the response contains name and price
             const products = [...orderData.products];
             products[index].productName = name;
