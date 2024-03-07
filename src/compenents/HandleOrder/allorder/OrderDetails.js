@@ -13,7 +13,7 @@ const OrderDetails = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/allorders'); // Update the URL with your backend endpoint
+      const response = await fetch(`https://nihon-inventory.onrender.com/api/allorders`); // Update the URL with your backend endpoint
       const data = await response.json();
       setOrders(data);
     } catch (error) {
