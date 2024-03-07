@@ -29,7 +29,6 @@ const CustomerList = () => {
 
   // Filter customers based on search query
   const filteredCustomers = customers.filter(customer =>
-    customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     customer.code.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -49,7 +48,7 @@ const CustomerList = () => {
         <button type="button" class="btn btn-outline-primary" disabled><a href="/customerReg" >Customer Registration</a></button><br/><br/>
         <input
           type="text"
-          placeholder="Search by name or code"
+          placeholder="Search by code"
           value={searchQuery}
           onChange={handleSearchChange}
           style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
@@ -67,7 +66,6 @@ const CustomerList = () => {
                 <th>Address</th>
                 <th>City</th>
                 <th>Phone</th>
-                <th>Email</th>
                 <th>Fax</th>
                 <th>Action</th> {/* Add Action column */}
               </tr>
@@ -87,7 +85,6 @@ const CustomerList = () => {
                   <td>{customer.address}</td>
                   <td>{customer.city}</td>
                   <td>{customer.phone}</td>
-                  <td>{customer.email}</td>
                   <td>{customer.fax}</td>
                   <td>
                     {/* Action icons */}

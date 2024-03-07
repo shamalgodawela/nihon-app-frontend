@@ -3,8 +3,8 @@ import * as AiIcons from 'react-icons/ai';
 import { FaProductHunt } from "react-icons/fa";
 import { FaBorderAll } from "react-icons/fa";
 import { FaFileInvoice } from "react-icons/fa";
-import { MdPayments } from "react-icons/md";
 import { BsDatabaseFillGear } from "react-icons/bs";
+import { PiOfficeChairFill } from "react-icons/pi";
 
 
 export const SidebarData = [
@@ -43,6 +43,13 @@ export const SidebarData = [
     icon: <BsDatabaseFillGear />,
     cName: 'nav-text'
   },
+  {
+  title: 'Office Inventory',
+  path: '',
+  icon: <PiOfficeChairFill />,
+  cName: 'nav-text'
+},
+
   
  
 
