@@ -31,13 +31,13 @@ import Dateproduct from "./pages/addProduct/Dateproduct";
 import ProductdateDetails from "./pages/products/productDetails/ProductdateDetails";
 import AddOrderdetails from "./pages/Order/addorder/AddOrderdetails";
 import Allorder from "./pages/Order/ALLorder/Allorder";
-import OrderDetails from "./compenents/HandleOrder/allorder/OrderDetails";
 import SingleOrder from "./compenents/HandleOrder/SingleOrder";
 import ViewallOrder from "./pages/orderAdmin/dashboard/ViewallOrder";
 import Oneorder from "./pages/orderAdmin/dashboard/Oneorder";
 import LoginForm from "./pages/orderAdmin/login/LoginForm";
 import Sample from "./pages/invoice/InvoiceTemplate/Sample";
-import AddOfficeInventory from "./compenents/officeInventory/AddOfficeInventory";
+import Additeams from "./pages/officeInvrntory/Additeams";
+import Getalloffice from "./pages/officeInvrntory/Getalloffice";
 
 
 
@@ -99,7 +99,8 @@ function App() {
     <Route path="/Adminallorder" element={<ViewallOrder/>} />
     <Route path="/adminorder/:id" element={<Oneorder/>} />
     <Route path="/adminlogin" element={<LoginForm/>} />
-    <Route path="/additems" element={<AddOfficeInventory/>} />
+    <Route path="/additems" element={<Additeams/>} />
+    <Route path="/getallinven" element={<Getalloffice/>} />
     
    
    

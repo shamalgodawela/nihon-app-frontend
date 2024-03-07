@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './AddOfficeInventory.css';
 
 const AddOfficeInventory = () => {
   const [formData, setFormData] = useState({
-    code: '',
+    codeNumber: '',
     model: '',
     type: '',
     dateOfPurchase: '',
@@ -14,34 +16,20 @@ const AddOfficeInventory = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send formData to backend API to add Office Inventory details
-      const response = await fetch(`https://nihon-inventory.onrender.com/api/addoffice`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        // Show success toast upon successful addition
-        toast.success('Office Inventory details added successfully', {
-          position: toast.POSITION.TOP_CENTER
-        });
-
-        // Clear form data
+      const response = await axios.post('https://nihon-inventory.onrender.com/api/addoffice', formData);
+      if (response.status === 201) {
+        toast.success('Office Inventory details added successfully');
         setFormData({
-          code: '',
+          codeNumber: '',
           model: '',
           type: '',
           dateOfPurchase: '',
@@ -59,41 +47,34 @@ const AddOfficeInventory = () => {
   };
 
   return (
-    <div>
-    <h2>Add Office Inventory</h2>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Code:
-        <input type="text" name="code" value={formData.code} onChange={handleChange} />
-      </label>
-      <label>
-        Model:
-        <input type="text" name="model" value={formData.model} onChange={handleChange} />
-      </label>
-      <label>
-        Type:
-        <input type="text" name="type" value={formData.type} onChange={handleChange} />
-      </label>
-      <label>
-        Date of Purchase:
-        <input type="date" name="dateOfPurchase" value={formData.dateOfPurchase} onChange={handleChange} />
-      </label>
-      <label>
-        Value:
-        <input type="number" name="value" value={formData.value} onChange={handleChange} />
-      </label>
-      <label>
-        Warranty Period:
-        <input type="text" name="warrantyPeriod" value={formData.warrantyPeriod} onChange={handleChange} />
-      </label>
-      <label>
-        Used By:
-        <input type="text" name="usedBy" value={formData.usedBy} onChange={handleChange} />
-      </label>
-      <button type="submit">Add Inventory</button>
-    </form>
-    <ToastContainer />
-  </div>
+    <div className="office-form-container"> {/* Apply the CSS class */}
+      <h2>Add Office Inventory</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="codeNumber">Code Number:</label>
+        <input type="text" id="codeNumber" name="codeNumber" value={formData.codeNumber} onChange={handleChange} required />
+
+        <label htmlFor="model">Model:</label>
+        <input type="text" id="model" name="model" value={formData.model} onChange={handleChange} required />
+
+        <label htmlFor="type">Type:</label>
+        <input type="text" id="type" name="type" value={formData.type} onChange={handleChange} required />
+
+        <label htmlFor="dateOfPurchase">Date of Purchase:</label>
+        <input type="date" id="dateOfPurchase" name="dateOfPurchase" value={formData.dateOfPurchase} onChange={handleChange} required />
+
+        <label htmlFor="value">Value:</label>
+        <input type="number" id="value" name="value" value={formData.value} onChange={handleChange} required />
+
+        <label htmlFor="warrantyPeriod">Warranty Period:</label>
+        <input type="text" id="warrantyPeriod" name="warrantyPeriod" value={formData.warrantyPeriod} onChange={handleChange} required />
+
+        <label htmlFor="usedBy">Used By:</label>
+        <input type="text" id="usedBy" name="usedBy" value={formData.usedBy} onChange={handleChange} required />
+
+        <button type="submit">Add Inventory</button>
+      </form>
+      <ToastContainer position="top-center" />
+    </div>
   );
 };
 
