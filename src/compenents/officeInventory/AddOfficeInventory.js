@@ -25,7 +25,7 @@ const AddOfficeInventory = () => {
     e.preventDefault();
     try {
       // Send formData to backend API to add Office Inventory details
-      const response = await fetch(`https://nihon-inventory.onrender.com/addoffice`, {
+      const response = await fetch(`https://nihon-inventory.onrender.com/api/addoffice`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
