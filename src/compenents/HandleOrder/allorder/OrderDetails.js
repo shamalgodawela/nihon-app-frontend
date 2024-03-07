@@ -16,7 +16,7 @@ const OrderDetails = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch(`https://nihon-inventory.onrender.com/api/allorders`); // Update the URL with your backend endpoint
+      const response = await fetch('https://nihon-inventory.onrender.com/api/allorders'); // Update the URL with your backend endpoint
       const data = await response.json();
       setOrders(data);
       // Filter orders based on status
@@ -67,18 +67,24 @@ const OrderDetails = () => {
   return (
     <div>
       <h3 className="h3order">All Order Details</h3>
-      <div>
-        <h4>Pending Orders</h4>
-        {renderTable(pendingOrders)}
-      </div>
-      <div>
-        <h4>Approved Orders</h4>
-        {renderTable(approvedOrders)}
-      </div>
-      <div>
-        <h4>Canceled Orders</h4>
-        {renderTable(canceledOrders)}
-      </div>
+      {pendingOrders.length > 0 && (
+        <div>
+          <h4>Pending Orders</h4>
+          {renderTable(pendingOrders)}
+        </div>
+      )}
+      {approvedOrders.length > 0 && (
+        <div>
+          <h4>Approved Orders</h4>
+          {renderTable(approvedOrders)}
+        </div>
+      )}
+      {canceledOrders.length > 0 && (
+        <div>
+          <h4>Canceled Orders</h4>
+          {renderTable(canceledOrders)}
+        </div>
+      )}
     </div>
   );
 };
