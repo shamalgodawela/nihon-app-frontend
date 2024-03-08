@@ -55,6 +55,7 @@ const InvoiceForm = () => {
   
     // Handle invoice number field directly
     if (name === 'invoiceNumber') {
+      // Handle invoiceNumber field
       setFormData({
         ...formData,
         invoiceNumber: value,
