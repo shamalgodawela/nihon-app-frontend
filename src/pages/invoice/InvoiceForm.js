@@ -53,7 +53,14 @@ const InvoiceForm = () => {
   const handleChange = async (e, index) => {
     const { name, value } = e.target;
   
-    if (name.startsWith('products')) {
+    // Handle invoice number field directly
+    if (name === 'invoiceNumber') {
+      setFormData({
+        ...formData,
+        invoiceNumber: value,
+      });
+    } else if (name.startsWith('products')) {
+      // Handle product fields
       const [field, productField] = name.split('.');
       const updatedProducts = [...formData.products];
       updatedProducts[index] = { ...updatedProducts[index], [productField]: value };
@@ -105,7 +112,8 @@ const InvoiceForm = () => {
           products: updatedProducts,
         });
       }
-    }  else if (name === 'TermsofPayment') {
+    } else if (name === 'TermsofPayment') {
+      // Handle TermsofPayment field
       const termOfPaymentDays = parseInt(value, 10);
       if (!isNaN(termOfPaymentDays) && termOfPaymentDays > 0) {
         const today = new Date();
@@ -128,7 +136,8 @@ const InvoiceForm = () => {
         console.error('Invalid terms of payment');
         // Handle error
       }
-    }else {
+    } else {
+      // Handle other fields
       setFormData({
         ...formData,
         [name]: value,
