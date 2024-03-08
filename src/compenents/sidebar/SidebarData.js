@@ -5,6 +5,7 @@ import { FaBorderAll } from "react-icons/fa";
 import { FaFileInvoice } from "react-icons/fa";
 import { BsDatabaseFillGear } from "react-icons/bs";
 import { PiOfficeChairFill } from "react-icons/pi";
+import { SiHomeassistantcommunitystore } from "react-icons/si";
 
 
 export const SidebarData = [
@@ -47,6 +48,12 @@ export const SidebarData = [
   title: 'Office Inventory',
   path: '/getallinven',
   icon: <PiOfficeChairFill />,
+  cName: 'nav-text'
+},
+{
+  title: 'Stores Inventory',
+  path: '/getallinven',
+  icon: <SiHomeassistantcommunitystore />,
   cName: 'nav-text'
 },
 
