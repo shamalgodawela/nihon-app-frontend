@@ -74,8 +74,8 @@ const AddOrder = ({ onAddOrder }) => {
         const customerCode = orderData.code;
         try {
             const response = await axios.get(`https://nihon-inventory.onrender.com/api/customers/${customerCode}`);
-            const { name, address, phone } = response.data; // Assuming the response contains name, address, and contact
-            setOrderData({ ...orderData, customer: name, address, contact:phone });
+            const { companyName, address, phone } = response.data; // Assuming the response contains name, address, and contact
+            setOrderData({ ...orderData, customer: companyName, address, contact:phone });
         } catch (error) {
             console.error('Error fetching customer details:', error);
             toast.error('Error fetching customer details');
@@ -131,7 +131,7 @@ const AddOrder = ({ onAddOrder }) => {
 </div>
 <div className="form-row">
   <label className="form-label">Customer:</label>
-  <input type="text" className="form-input" name="customer" value={orderData.customer} onChange={(e) => setOrderData({ ...orderData, customer: e.target.value })} />
+  <input type="text" className="form-input" name="customer" value={orderData.companyName} onChange={(e) => setOrderData({ ...orderData, customer: e.target.value })} />
 </div>
 <div className="form-row">
   <label className="form-label">Address:</label>
