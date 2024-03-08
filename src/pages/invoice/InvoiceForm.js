@@ -214,6 +214,7 @@ const InvoiceForm = () => {
       navigate("/all-invoices");
     } catch (error) {
       console.error('Failed to add invoice', error.message);
+      toast.error('Failed to add invoice')
   
       // Check if the error response indicates that the invoice number already exists
       if (error.response && error.response.status === 400 && error.response.data.error === 'Invoice number already exists') {
