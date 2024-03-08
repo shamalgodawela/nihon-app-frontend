@@ -120,10 +120,10 @@ const AddOrder = ({ onAddOrder }) => {
   <label className="form-label">Order Date:</label>
   <input type="date" className="form-input" name="orderDate" value={orderData.orderDate} onChange={(e) => setOrderData({ ...orderData, orderDate: e.target.value })} />
 </div>
-        {/* <div className="form-row">
+        <div className="form-row">
   <label className="form-label">Invoice Number:</label>
   <input type="text" className="form-input" name="invoiceNumber" value={orderData.invoiceNumber} onChange={(e) => setOrderData({ ...orderData, invoiceNumber: e.target.value })} readOnly/>
-</div> */}
+</div>
 <div className="form-row">
   <label className="form-label">Customer Code:</label>
   <input type="text" className="form-input" name="code" value={orderData.code} onChange={(e) => setOrderData({ ...orderData, code: e.target.value })} />

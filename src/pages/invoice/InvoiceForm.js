@@ -53,15 +53,7 @@ const InvoiceForm = () => {
   const handleChange = async (e, index) => {
     const { name, value } = e.target;
   
-    // Handle invoice number field directly
-    if (name === 'invoiceNumber') {
-      // Handle invoiceNumber field
-      setFormData({
-        ...formData,
-        invoiceNumber: value,
-      });
-    } else if (name.startsWith('products')) {
-      // Handle product fields
+    if (name.startsWith('products')) {
       const [field, productField] = name.split('.');
       const updatedProducts = [...formData.products];
       updatedProducts[index] = { ...updatedProducts[index], [productField]: value };
@@ -113,8 +105,7 @@ const InvoiceForm = () => {
           products: updatedProducts,
         });
       }
-    } else if (name === 'TermsofPayment') {
-      // Handle TermsofPayment field
+    }  else if (name === 'TermsofPayment') {
       const termOfPaymentDays = parseInt(value, 10);
       if (!isNaN(termOfPaymentDays) && termOfPaymentDays > 0) {
         const today = new Date();
@@ -137,8 +128,7 @@ const InvoiceForm = () => {
         console.error('Invalid terms of payment');
         // Handle error
       }
-    } else {
-      // Handle other fields
+    }else {
       setFormData({
         ...formData,
         [name]: value,
@@ -224,7 +214,6 @@ const InvoiceForm = () => {
       navigate("/all-invoices");
     } catch (error) {
       console.error('Failed to add invoice', error.message);
-      toast.error('Failed to add invoice')
   
       // Check if the error response indicates that the invoice number already exists
       if (error.response && error.response.status === 400 && error.response.data.error === 'Invoice number already exists') {
@@ -455,7 +444,7 @@ const InvoiceForm = () => {
               value={formData.invoiceNumber}
               onChange={(e) => handleChange(e)}
               required
-              
+              readOnly
             />
             
              
