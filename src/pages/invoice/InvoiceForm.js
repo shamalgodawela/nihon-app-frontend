@@ -256,6 +256,7 @@ const InvoiceForm = () => {
         // Set the fetched order details in the form data state
         setFormData({
           ...formData,
+          invoiceNumber: orderData.invoiceNumber,
           customer: orderData.customer,
           code: orderData.code,
           address: orderData.address,
