@@ -445,7 +445,7 @@ const InvoiceForm = () => {
               value={formData.invoiceNumber}
               onChange={(e) => handleChange(e)}
               required
-              readOnly
+              
             />
             
              
