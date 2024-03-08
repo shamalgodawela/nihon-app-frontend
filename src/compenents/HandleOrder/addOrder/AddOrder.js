@@ -122,7 +122,7 @@ const AddOrder = ({ onAddOrder }) => {
 </div>
         <div className="form-row">
   <label className="form-label">Invoice Number:</label>
-  <input type="text" className="form-input" name="invoiceNumber" value={orderData.invoiceNumber} onChange={(e) => setOrderData({ ...orderData, invoiceNumber: e.target.value })} readOnly/>
+  <input type="text" className="form-input" name="invoiceNumber" value={orderData.invoiceNumber} onChange={(e) => setOrderData({ ...orderData, invoiceNumber: e.target.value })}/>
 </div>
 <div className="form-row">
   <label className="form-label">Customer Code:</label>
