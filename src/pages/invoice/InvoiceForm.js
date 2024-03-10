@@ -39,10 +39,7 @@ const InvoiceForm = () => {
     GatePassNo: '',
     VehicleNo:'',
   });
-  const [lastNumbers, setLastNumbers] = useState({
-    lastInvoiceNumber: '',
-    lastOrderNumber: '',
-  });
+  
   const [calculatedValues, setCalculatedValues] = useState({
     unitPrice: 0,
     invoiceTotal: 0,
