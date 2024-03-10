@@ -105,12 +105,12 @@ const InvoiceForm = () => {
           products: updatedProducts,
         });
       }
-    }  else if (name === 'TermsofPayment') {
+    } else if (name === 'TermsofPayment') {
       const termOfPaymentDays = parseInt(value, 10);
       if (!isNaN(termOfPaymentDays) && termOfPaymentDays > 0) {
         const today = new Date();
         const dueDate = new Date(today.setDate(today.getDate() + termOfPaymentDays));
-        
+  
         if (!isNaN(dueDate.getTime())) {
           // Date is valid, update the form data
           setFormData({
@@ -128,13 +128,19 @@ const InvoiceForm = () => {
         console.error('Invalid terms of payment');
         // Handle error
       }
-    }else {
+    } else if (name === 'invoiceNumber') { // Modification starts here
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    } else { // Modification ends here
       setFormData({
         ...formData,
         [name]: value,
       });
     }
   };
+  
   
   
   const addProduct = () => {
