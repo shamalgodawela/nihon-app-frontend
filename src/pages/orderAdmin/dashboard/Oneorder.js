@@ -135,7 +135,7 @@ const handleProductInputChange = (e, index) => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label className="order-details-label">Invoice Number:</label>
                 <input
                   type="text"
@@ -143,7 +143,7 @@ const handleProductInputChange = (e, index) => {
                   value={updatedOrder.invoiceNumber}
                   onChange={handleInputChange}
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label className="order-details-label">Customer:</label>
                 <input
@@ -180,7 +180,7 @@ const handleProductInputChange = (e, index) => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label className="order-details-label">Invoice Date:</label>
                 <input
                   type="date"
@@ -188,7 +188,7 @@ const handleProductInputChange = (e, index) => {
                   value={updatedOrder.invoiceDate}
                   onChange={handleInputChange}
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label className="order-details-label">Order Date:</label>
                 <input
