@@ -20,11 +20,12 @@ const OrderDetails = () => {
   const fetchOrders = async () => {
     try {
       setIsLoading(true); // Set loading to true when fetching starts
-      const queryParams = new URLSearchParams({
-        period: selectedPeriod,
-        status: selectedStatus,
-        exe: selectedExe
-      });
+
+      // Construct query parameters
+      const queryParams = new URLSearchParams();
+      if (selectedPeriod) queryParams.append('period', selectedPeriod);
+      if (selectedStatus) queryParams.append('status', selectedStatus);
+      if (selectedExe) queryParams.append('exe', selectedExe);
 
       const response = await fetch(`https://nihon-inventory.onrender.com/api/allorders?${queryParams}`); // Update the URL with your backend endpoint
       const data = await response.json();
@@ -63,8 +64,8 @@ const OrderDetails = () => {
         <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
           <option value="">All</option>
           <option value="Approved">Approved</option>
-          <option value="Canceled">canceled</option>
-          <option value="Pending">pending</option>
+          <option value="Canceled">Canceled</option>
+          <option value="Pending">Pending</option>
         </select>
         <label>Exe:</label>
         <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
