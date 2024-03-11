@@ -78,12 +78,15 @@ const CalOutstanding = () => {
                 newOutstanding = totalWithTax - amount;
                 console.log('New Outstanding (from total):', newOutstanding);
             }
+    
+            // Set the new outstanding value
             setOutstanding(newOutstanding);
         } catch (error) {
             console.error('Failed to calculate outstanding:', error.message);
             // Handle error
         }
     };
+    
     
     
     
