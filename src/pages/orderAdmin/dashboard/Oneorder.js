@@ -207,7 +207,7 @@ const Oneorder = () => {
                   >
                     <option value="">Select Approved or Cancel</option>
                     <option value="Approved">Approved</option>
-                    <option value="Cancel">Cancel</option>
+                    <option value="Canceled">canceled</option>
                   </select>
                 </div>
                 <h3 className="order-details-product-header">Products</h3>

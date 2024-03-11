@@ -63,8 +63,8 @@ const OrderDetails = () => {
         <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
           <option value="">All</option>
           <option value="Approved">Approved</option>
-          <option value="Approved">canceled</option>
-          <option value="Approved">pending</option>
+          <option value="Canceled">canceled</option>
+          <option value="Pending">pending</option>
         </select>
         <label>Exe:</label>
         <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
