@@ -83,8 +83,9 @@ const Oneorder = () => {
       await axios.put(`https://nihon-inventory.onrender.com/api/orders/${id}`, updatedOrder);
       // Assuming successful update, setOrder to updatedOrder to reflect changes
       setOrder(updatedOrder);
-      toast.success('Order details updated successfully');
-      console.log('Order details updated successfully');
+
+      toast.success('updated successfully');
+      
     } catch (error) {
       console.error('Error updating order details:', error);
     }
