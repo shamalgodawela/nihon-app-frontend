@@ -72,14 +72,15 @@ const CalOutstanding = () => {
                 // Calculate the new outstanding value based on the last outstanding value
                 newOutstanding = lastOutstanding - amount;
                 console.log('New Outstanding (from last outstanding):', newOutstanding);
-            } 
+            } else {
+                // If there is no last outstanding value, calculate it based on the total amount
+                const totalWithTax = calculateTaxtot();
+                newOutstanding = totalWithTax - amount;
+                console.log('New Outstanding (from total):', newOutstanding);
+            }
             setOutstanding(newOutstanding);
         } catch (error) {
-            const total = calculateTaxtot();
-            const newOutstanding = total - amount;
-            setOutstanding(newOutstanding);
-            return;
-            
+            console.error('Failed to calculate outstanding:', error.message);
             // Handle error
         }
     };
