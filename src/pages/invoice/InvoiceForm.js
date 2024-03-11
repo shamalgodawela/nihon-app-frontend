@@ -7,6 +7,7 @@ import "./invoice.css"
 import Footer from '../../compenents/footer/Footer';
 import NavBar from '../../compenents/sidebar/NavBar';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../compenents/loader/Loader';
 
 const InvoiceForm = () => {
   const navigate = useNavigate();
@@ -249,7 +250,7 @@ const InvoiceForm = () => {
       });
     }
   };
-  
+  const [isLoading, setIsLoading] = useState(false); // State for loading indicator
 
   const handleGetDetails = async (e) => {
     e.preventDefault(); // Prevent default button click behavior
@@ -331,6 +332,7 @@ const InvoiceForm = () => {
       <NavBar/>
       <br/>
       <div className="invoice-form">
+      {isLoading && <Loader />} {/* Show loader if isLoading is true */}
         <h2>Add Invoice</h2>
         <div>
   <label>Order Number:</label>
