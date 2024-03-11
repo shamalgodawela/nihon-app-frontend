@@ -1,8 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './menu.css'
+import { LuRefreshCw } from 'react-icons/lu';
 
 const Menu = () => {
+  const RefreshButton = () => {
+    const handleRefresh = () => {
+      window.location.reload();
+    };
+
+    return (
+      <button onClick={handleRefresh} className="refresh-button"><LuRefreshCw /></button>
+    );
+  };
   return (
     <nav className="navbar2">
     <ul className="nav-menu2">
