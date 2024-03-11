@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './orderdetails.css';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from '../../../redux/features/product/productSlice';
+import Loader from '../../loader/Loader';
+
 
 const OrderDetails = () => {
   const [orders, setOrders] = useState([]);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     // Fetch order details from backend API
@@ -23,6 +28,8 @@ const OrderDetails = () => {
 
   return (
     <div>
+      {isLoading && <Loader/>}
+      
       <h3 className="h3order">All Order Details</h3>
       <table className='tordert'>
         <thead>
