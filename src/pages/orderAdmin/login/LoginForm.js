@@ -51,6 +51,7 @@ const LoginForm = () => {
       <label>Password:</label>
       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       <button type="submit">Login</button>
+      <a href='/' className='a-login'>Home</a><br/>
     </form>
     <ToastContainer /> {/* Toast container */}
   </div>

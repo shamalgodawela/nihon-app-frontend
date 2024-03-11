@@ -96,7 +96,7 @@ const Login = () => {
   
   <a href='forgot' className='a-login'>Forgot Password</a><br/>
   <a href='/' className='a-login'>Home</a><br/>
-  {/* { <a href='/register' className='a-login'>Register</a> } */}
+
     </div>
      
 
