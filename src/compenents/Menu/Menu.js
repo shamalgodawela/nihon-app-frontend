@@ -14,6 +14,7 @@ const Menu = () => {
     );
   };
   return (
+    <div>
     <nav className="navbar2">
     <ul className="nav-menu2">
       <li className="nav-item2">
@@ -27,9 +28,11 @@ const Menu = () => {
       </li>
       
     </ul>
-    <RefreshButton />
+    
     
   </nav>
+  <RefreshButton />
+  </div>
   );
 };
 
