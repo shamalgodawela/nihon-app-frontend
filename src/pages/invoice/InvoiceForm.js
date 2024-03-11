@@ -198,6 +198,25 @@ const InvoiceForm = () => {
     e.preventDefault();
   
     try {
+      // Check if the orderNumber already exists in the database
+      const orderCheckResponse = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${formData.orderNumber}`);
+      const orderExists = orderCheckResponse.data.exists;
+  
+      if (orderExists) {
+        // Show toast for existing order number
+        toast.error('Order number already exists', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        return; // Exit the function early
+      }
+  
+      // If order number does not exist, proceed with adding the invoice
       const response = await axios.post(`https://nihon-inventory.onrender.com/api/add-invoice`, formData);
       console.log('Invoice added successfully', response.data);
   
@@ -213,35 +232,21 @@ const InvoiceForm = () => {
         draggable: true,
         progress: undefined,
       });
-      
+  
       navigate("/all-invoices");
     } catch (error) {
       console.error('Failed to add invoice', error.message);
   
-      // Check if the error response indicates that the invoice number already exists
-      if (error.response && error.response.status === 400 && error.response.data.error === 'Invoice number already exists') {
-        // Show toast for existing invoice number
-        toast.error('Invoice number already exists', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else {
-        // Show generic error toast
-        toast.error('Failed to add invoice', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
+      // Show generic error toast
+      toast.error('Failed to add invoice', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   
