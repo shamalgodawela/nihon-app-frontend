@@ -77,43 +77,44 @@ const OrderDetails = () => {
         </select>
       </div>
       
-      {isLoading ? ( // Show loading spinner if isLoading is true
-        <SpinnerImg />
-      ) : (
-        <table className='tordert'>
-          <thead>
-            <tr>
-              <th className='thorder'>Order Number</th>
-              <th className='thorder'>Customer</th>
-              <th className='thorder'>Customer Code</th>
-              <th className='thorder'>Order Date</th>
-              <th className='thorder'>Exe</th>
-              <th className='thorder'>Status</th>
-              <th className='thorder'>Action</th>
-              {/* Add more table headers as needed */}
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order._id}>
-                <td className='tdorder'>{order.orderNumber}</td>
-                <td className='tdorder'>{order.customer}</td>
-                <td className='tdorder'>{order.code}</td>
-                {/* Add more table cells for other order details */}
-                <td className='tdorder'>{order.orderDate}</td>
-                <td className='tdorder'>{order.exe}</td>
-                <td className='tdorder'>{order.status}</td>
-                <td className='tdorder'>
-                  <Link to={`/orders/${order.orderNumber}`}>
-                    <AiOutlineEye size={20} color={"purple"} />
-                  </Link>
-                </td>
-                {/* Add more table cells as needed */}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      {isLoading ? (
+  <SpinnerImg />
+) : (
+  <table className='tordert'>
+    <thead>
+      <tr>
+        <th className='thorder'>Order Number</th>
+        <th className='thorder'>Customer</th>
+        <th className='thorder'>Customer Code</th>
+        <th className='thorder'>Order Date</th>
+        <th className='thorder'>Exe</th>
+        <th className='thorder'>Status</th>
+        <th className='thorder'>Action</th>
+        {/* Add more table headers as needed */}
+      </tr>
+    </thead>
+    <tbody>
+      {Array.isArray(orders) && orders.map((order) => (
+        <tr key={order._id}>
+          <td className='tdorder'>{order.orderNumber}</td>
+          <td className='tdorder'>{order.customer}</td>
+          <td className='tdorder'>{order.code}</td>
+          {/* Add more table cells for other order details */}
+          <td className='tdorder'>{order.orderDate}</td>
+          <td className='tdorder'>{order.exe}</td>
+          <td className='tdorder'>{order.status}</td>
+          <td className='tdorder'>
+            <Link to={`/orders/${order.orderNumber}`}>
+              <AiOutlineEye size={20} color={"purple"} />
+            </Link>
+          </td>
+          {/* Add more table cells as needed */}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)}
+
     </div>
   );
 };
