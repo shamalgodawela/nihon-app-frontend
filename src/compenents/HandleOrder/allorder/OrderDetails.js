@@ -36,6 +36,14 @@ const OrderDetails = () => {
     }
   };
 
+  const dateRanges = [
+    { label: 'Today', value: 'today' },
+    { label: 'This Week', value: 'thisWeek' },
+    { label: 'This Month', value: 'thisMonth' },
+    { label: 'Last 7 Days', value: 'last7Days' },
+    { label: 'Last 30 Days', value: 'last30Days' },
+  ];
+
   return (
     <div>
       <h3 className="h3order">All Order Details</h3>
@@ -45,17 +53,26 @@ const OrderDetails = () => {
         <label>Time Period:</label>
         <select value={selectedPeriod} onChange={(e) => setSelectedPeriod(e.target.value)}>
           <option value="">All</option>
-          {/* Add options for time period */}
+          {dateRanges.map((range) => (
+            <option key={range.value} value={range.value}>
+              {range.label}
+            </option>
+          ))}
         </select>
         <label>Status:</label>
         <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
           <option value="">All</option>
-          {/* Add options for status */}
+          <option value="Approved">Approved</option>
+          <option value="Approved">canceled</option>
+          <option value="Approved">pending</option>
         </select>
         <label>Exe:</label>
         <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
           <option value="">All</option>
-          {/* Add options for exe */}
+          <option value="Mr.Ahamed">Mr.Ahamed</option> 
+          <option value="Mr.Dasun">Mr.Dasun</option> 
+          <option value="Mr.Chameera">Mr.Chameera</option> 
+          <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
         </select>
       </div>
       
