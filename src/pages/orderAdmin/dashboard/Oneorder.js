@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import './oneorder.css'
+import './oneorder.css';
 import Menu from '../../../compenents/Menu/Menu';
 import Footer from '../../../compenents/footer/Footer';
 
@@ -10,6 +10,7 @@ const Oneorder = () => {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
   const [updatedOrder, setUpdatedOrder] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -26,13 +27,14 @@ const Oneorder = () => {
             productName: product.productName || '',
             labelPrice: product.labelPrice || '',
             quantity: product.quantity || '',
-            discount: product.discount || '',
+            discount: product.discount || 0, // Set default value of discount to 0
             unitPrice: product.unitPrice || '',
             invoiceTotal: product.invoiceTotal || '',
           }))
         };
         setOrder(orderData);
         setUpdatedOrder(updatedOrderData);
+        setIsLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         console.error('Error fetching order details:', error);
       }
@@ -41,10 +43,8 @@ const Oneorder = () => {
     fetchOrderDetails();
   }, [id]);
   
-
   // Handle form input changes
-  // Handle form input changes
-const handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     let updatedData;
   
@@ -76,7 +76,6 @@ const handleInputChange = (e) => {
     setUpdatedOrder(updatedData);
   };
   
-
   // Handle form submission to update order details
   const handleUpdateOrder = async (e) => {
     e.preventDefault();
@@ -84,15 +83,15 @@ const handleInputChange = (e) => {
       await axios.put(`https://nihon-inventory.onrender.com/api/orders/${id}`, updatedOrder);
       // Assuming successful update, setOrder to updatedOrder to reflect changes
       setOrder(updatedOrder);
-      toast.success('Order details updated successfully')
+      toast.success('Order details updated successfully');
       console.log('Order details updated successfully');
     } catch (error) {
       console.error('Error updating order details:', error);
     }
   };
+  
   // Handle form input changes for product details
-// Handle form input changes for product details
-const handleProductInputChange = (e, index) => {
+  const handleProductInputChange = (e, index) => {
     const { name, value } = e.target;
     const updatedProducts = [...updatedOrder.products];
     updatedProducts[index] = { ...updatedProducts[index], [name]: value };
@@ -114,199 +113,187 @@ const handleProductInputChange = (e, index) => {
       products: updatedProducts,
     });
   };
-  
-  
 
   return (
     <div>
       <Menu/>
-    <div className="container">
-      <div className="order-details-container">
-        <h2 className="order-details-header">Order Details</h2>
-        {order ? (
-          <div>
-            <form onSubmit={handleUpdateOrder}>
-              <div className="form-group">
-                <label className="order-details-label">Order Number:</label>
-                <input
-                  type="text"
-                  name="orderNumber"
-                  value={updatedOrder.orderNumber}
-                  onChange={handleInputChange}
-                />
-              </div>
-              {/* <div className="form-group">
-                <label className="order-details-label">Invoice Number:</label>
-                <input
-                  type="text"
-                  name="invoiceNumber"
-                  value={updatedOrder.invoiceNumber}
-                  onChange={handleInputChange}
-                />
-              </div> */}
-              <div className="form-group">
-                <label className="order-details-label">Customer:</label>
-                <input
-                  type="text"
-                  name="customer"
-                  value={updatedOrder.customer}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label className="order-details-label">Code:</label>
-                <input
-                  type="text"
-                  name="code"
-                  value={updatedOrder.code}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label className="order-details-label">Address:</label>
-                <input
-                  type="text"
-                  name="address"
-                  value={updatedOrder.address}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label className="order-details-label">Contact:</label>
-                <input
-                  type="text"
-                  name="contact"
-                  value={updatedOrder.contact}
-                  onChange={handleInputChange}
-                />
-              </div>
-              {/* <div className="form-group">
-                <label className="order-details-label">Invoice Date:</label>
-                <input
-                  type="date"
-                  name="invoiceDate"
-                  value={updatedOrder.invoiceDate}
-                  onChange={handleInputChange}
-                />
-              </div> */}
-              <div className="form-group">
-                <label className="order-details-label">Order Date:</label>
-                <input
-                  type="date"
-                  name="orderDate"
-                  value={updatedOrder.orderDate}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label className="order-details-label">Exe:</label>
-                <input
-                  type="text"
-                  name="exe"
-                  value={updatedOrder.exe}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label className="order-details-label">Status:</label>
-                <select
-                  name="status"
-                  value={updatedOrder.status}
-                  onChange={handleInputChange}
-                >
-                  <option value="">Select Approved or Cancel</option>
-                  <option value="Approved">Approved</option>
-                  <option value="Cancel">Cancel</option>
-                </select>
-              </div>
-              <h3 className="order-details-product-header">Products</h3>
-              <table className="order-details-product-table">
-                <thead>
-                  <tr>
-                    <th>Product Code</th>
-                    <th>Product Name</th>
-                    <th>Label Price</th>
-                    <th>Quantity</th>
-                    <th>Discount</th>
-                    <th>Unit Price</th>
-                    <th>Invoice Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {order.products.map((product, index) => (
-                    <tr key={index} className="order-details-product-item">
-                      <td>
-                        <input
-                          type="text"
-                          name="productCode"
-                          value={updatedOrder.products[index].productCode}
-                          onChange={(e) => handleProductInputChange(e, index)}
-                          readOnly // Pass index to handleProductInputChange
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          name="productName"
-                          value={updatedOrder.products[index].productName}
-                          onChange={(e) => handleProductInputChange(e, index)}
-                          readOnly // Pass index to handleProductInputChange
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          name="labelPrice"
-                          value={updatedOrder.products[index].labelPrice}
-                          onChange={(e) => handleProductInputChange(e, index)} 
-                          readOnly// Pass index to handleProductInputChange
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          name="quantity"
-                          value={updatedOrder.products[index].quantity}
-                          onChange={(e) => handleProductInputChange(e, index)} // Pass index to handleProductInputChange
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          name="discount"
-                          value={updatedOrder.products[index].discount}
-                          onChange={(e) => handleProductInputChange(e, index)} // Pass index to handleProductInputChange
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          name="unitPrice"
-                          value={updatedOrder.products[index].unitPrice}
-                          readOnly // Disable editing for unit price since it's auto-calculated
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          name="invoiceTotal"
-                          value={updatedOrder.products[index].invoiceTotal}
-                          readOnly // Disable editing for invoice total since it's auto-calculated
-                        />
-                      </td>
+      <div className="container">
+        <div className="order-details-container">
+          <h2 className="order-details-header">Order Details</h2>
+          {isLoading ? (
+            <p>Loading order details...</p>
+          ) : (
+            <div>
+              <form onSubmit={handleUpdateOrder}>
+                <div className="form-group">
+                  <label className="order-details-label">Order Number:</label>
+                  <input
+                    type="text"
+                    name="orderNumber"
+                    value={updatedOrder.orderNumber}
+                    onChange={handleInputChange}
+                    readOnly
+                  />
+                </div>
+                {/* Form inputs */}
+                <div className="form-group">
+                  <label className="order-details-label">Customer:</label>
+                  <input
+                    type="text"
+                    name="customer"
+                    value={updatedOrder.customer}
+                    onChange={handleInputChange}
+                    readOnly
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="order-details-label">Code:</label>
+                  <input
+                    type="text"
+                    name="code"
+                    value={updatedOrder.code}
+                    onChange={handleInputChange}
+                    readOnly
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="order-details-label">Address:</label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={updatedOrder.address}
+                    onChange={handleInputChange}
+                    readOnly
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="order-details-label">Contact:</label>
+                  <input
+                    type="text"
+                    name="contact"
+                    value={updatedOrder.contact}
+                    onChange={handleInputChange}
+                    readOnly
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="order-details-label">Order Date:</label>
+                  <input
+                    type="date"
+                    name="orderDate"
+                    value={updatedOrder.orderDate}
+                    onChange={handleInputChange}
+                    readOnly
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="order-details-label">Exe:</label>
+                  <input
+                    type="text"
+                    name="exe"
+                    value={updatedOrder.exe}
+                    onChange={handleInputChange}
+                    readOnly
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="order-details-label">Status:</label>
+                  <select
+                    name="status"
+                    value={updatedOrder.status}
+                    onChange={handleInputChange}
+                  >
+                    <option value="">Select Approved or Cancel</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Cancel">Cancel</option>
+                  </select>
+                </div>
+                <h3 className="order-details-product-header">Products</h3>
+                <table className="order-details-product-table">
+                  <thead>
+                    <tr>
+                      <th>Product Code</th>
+                      <th>Product Name</th>
+                      <th>Label Price</th>
+                      <th>Quantity</th>
+                      <th>Discount</th>
+                      <th>Unit Price</th>
+                      <th>Invoice Total</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              <button type="submit">Update Order</button>
-            </form>
-          </div>
-        ) : (
-          <p>Loading order details...</p>
-        )}
+                  </thead>
+                  <tbody>
+                    {order.products.map((product, index) => (
+                      <tr key={index} className="order-details-product-item">
+                        <td>
+                          <input
+                            type="text"
+                            name="productCode"
+                            value={updatedOrder.products[index].productCode}
+                            onChange={(e) => handleProductInputChange(e, index)}
+                            readOnly
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="productName"
+                            value={updatedOrder.products[index].productName}
+                            onChange={(e) => handleProductInputChange(e, index)}
+                            readOnly
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="labelPrice"
+                            value={updatedOrder.products[index].labelPrice}
+                            onChange={(e) => handleProductInputChange(e, index)}
+                            readOnly
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="quantity"
+                            value={updatedOrder.products[index].quantity}
+                            onChange={(e) => handleProductInputChange(e, index)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="discount"
+                            value={updatedOrder.products[index].discount}
+                            onChange={(e) => handleProductInputChange(e, index)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="unitPrice"
+                            value={updatedOrder.products[index].unitPrice}
+                            readOnly
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="invoiceTotal"
+                            value={updatedOrder.products[index].invoiceTotal}
+                            readOnly
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <button type="submit">Update Order</button>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-    <Footer/>
+      <Footer/>
     </div>
   );
 };
