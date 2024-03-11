@@ -258,9 +258,30 @@ const InvoiceForm = () => {
     try {
       const response = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${formData.orderNumber}`);
       const orderData = response.data;
-      
-      // Check if the order status is "Approved"
-      if (orderData.status === "Approved") {
+  
+      if (orderData.status === "pending") {
+        // Show toast message for pending orders
+        toast.warning('Order is pending', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else if (orderData.status === "Canceled") {
+        // Show toast message for canceled orders
+        toast.error('Order was canceled by admin', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else if (orderData.status === "Approved") {
         // Set the fetched order details in the form data state
         setFormData({
           ...formData,
@@ -300,17 +321,6 @@ const InvoiceForm = () => {
           draggable: true,
           progress: undefined,
         });
-      } else {
-        // Show toast message if order status is not "Approved"
-        toast.error('Order was canceled by admin', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
       }
     } catch (error) {
       console.error('Failed to fetch order details', error.message);
@@ -325,6 +335,7 @@ const InvoiceForm = () => {
       });
     }
   };
+  
   
   
   return (
