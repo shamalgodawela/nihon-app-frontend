@@ -8,19 +8,24 @@ import './getcustomer.css';
 import NavBar from '../../../compenents/sidebar/NavBar';
 import Footer from '../../../compenents/footer/Footer';
 import { Link } from 'react-router-dom';
+import { SpinnerImg } from '../../loader/Loader'; // Import loading spinner
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true); // State for loading indicator
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
+        setIsLoading(true); // Set loading to true when fetching starts
         const response = await axios.get('https://nihon-inventory.onrender.com/api/customers');
         setCustomers(response.data);
+        setIsLoading(false); // Set loading to false when fetching completes
       } catch (error) {
         console.error('Error fetching customers:', error);
         toast.error('Failed to fetch customers');
+        setIsLoading(false); // Set loading to false in case of error
       }
     };
 
@@ -40,19 +45,16 @@ const CustomerList = () => {
   return (
     <div className='bd2'>
       <NavBar/>
-      
-      
       <section>
         <h2 className='h2getcus'>Customer Database</h2>
         {/* Search input field */}
-        <button type="button" class="btn btn-outline-primary" disabled><a href="/customerReg" >Customer Registration</a></button><br/><br/>
+        <button type="button" className="btn btn-outline-primary" disabled><a href="/customerReg" >Customer Registration</a></button><br/><br/>
         <input
           type="text"
           placeholder="Search by code"
           value={searchQuery}
           onChange={handleSearchChange}
           style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
-
         />
         <div className="tbl-header">
           <table cellPadding="0" cellSpacing="0">
@@ -72,34 +74,36 @@ const CustomerList = () => {
             </thead>
           </table>
         </div>
-        <div className="tbl-content">
-          <table cellPadding="0" cellSpacing="0">
-            <tbody>
-              {filteredCustomers.map((customer, index) => (
-                <tr key={customer._id}>
-                  <td>{index + 1}</td>
-                  <td>{customer.name}</td>
-                  <td>{customer.code}</td>
-                  <td>{customer.companyName}</td>
-                  <td>{customer.contact}</td>
-                  <td>{customer.address}</td>
-                  <td>{customer.city}</td>
-                  <td>{customer.phone}</td>
-                  <td>{customer.fax}</td>
-                  <td>
-                    {/* Action icons */}
-                    <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="action-icon" /></Link>
-                    <FontAwesomeIcon icon={faEdit} className="action-icon" />
-                    
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {isLoading ? ( // Show loading spinner if isLoading is true
+          <SpinnerImg />
+        ) : (
+          <div className="tbl-content">
+            <table cellPadding="0" cellSpacing="0">
+              <tbody>
+                {filteredCustomers.map((customer, index) => (
+                  <tr key={customer._id}>
+                    <td>{index + 1}</td>
+                    <td>{customer.name}</td>
+                    <td>{customer.code}</td>
+                    <td>{customer.companyName}</td>
+                    <td>{customer.contact}</td>
+                    <td>{customer.address}</td>
+                    <td>{customer.city}</td>
+                    <td>{customer.phone}</td>
+                    <td>{customer.fax}</td>
+                    <td>
+                      {/* Action icons */}
+                      <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="action-icon" /></Link>
+                      <FontAwesomeIcon icon={faEdit} className="action-icon" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
         <ToastContainer />
       </section>
-     
     </div>
   );
 }
