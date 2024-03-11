@@ -62,7 +62,7 @@ const AddOrder = ({ onAddOrder }) => {
             // Send POST request to backend API to add the order
             const response = await axios.post(`https://nihon-inventory.onrender.com/api/orders`, orderData);
             console.log('Invoice added successfully', response.data);
-            toast.success('Invoice added successfully');
+            toast.success('Order is added sucessfully');
             // Optionally, you can perform additional actions upon successful addition of the order
         } catch (error) {
             console.error('Error adding invoice:', error);
