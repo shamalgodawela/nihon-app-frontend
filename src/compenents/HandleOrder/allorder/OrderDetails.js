@@ -40,6 +40,7 @@ const OrderDetails = () => {
               <th className='thorder'>Customer</th>
               <th className='thorder'>Customer Code</th>
               <th className='thorder'>Order Date</th>
+              <th className='thorder'>Exe</th>
               <th className='thorder'>Status</th>
               <th className='thorder'>Action</th>
               {/* Add more table headers as needed */}
@@ -53,6 +54,7 @@ const OrderDetails = () => {
                 <td className='tdorder'>{order.code}</td>
                 {/* Add more table cells for other order details */}
                 <td className='tdorder'>{order.orderDate}</td>
+                <td className='tdorder'>{order.exe}</td>
                 <td className='tdorder'>{order.status}</td>
                 <td className='tdorder'>
                   <Link to={`/orders/${order.orderNumber}`}>
