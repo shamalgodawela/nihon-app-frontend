@@ -84,7 +84,8 @@ const Oneorder = () => {
       // Assuming successful update, setOrder to updatedOrder to reflect changes
       setOrder(updatedOrder);
 
-      toast.success('updated successfully');
+      alert('Order details updated successfully');
+
       
     } catch (error) {
       console.error('Error updating order details:', error);
