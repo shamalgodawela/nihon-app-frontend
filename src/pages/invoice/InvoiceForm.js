@@ -199,7 +199,7 @@ const InvoiceForm = () => {
   
     try {
       // Check if the orderNumber already exists in the database
-      const orderCheckResponse = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${formData.orderNumber}`);
+      const orderCheckResponse = await axios.get(`https://nihon-inventory.onrender.com/api/check/${formData.orderNumber}`);
       const orderExists = orderCheckResponse.data.exists;
   
       if (orderExists) {
