@@ -65,7 +65,7 @@ const OrderDetails = () => {
           <option value="">All</option>
           <option value="Approved">Approved</option>
           <option value="Canceled">Canceled</option>
-          <option value="Pending">Pending</option>
+          <option value="pending">pending</option>
         </select>
         <label>Exe:</label>
         <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
