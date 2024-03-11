@@ -27,7 +27,7 @@ const OrderDetails = () => {
       if (selectedStatus) queryParams.append('status', selectedStatus);
       if (selectedExe) queryParams.append('exe', selectedExe);
 
-      const response = await fetch(`https://nihon-inventory.onrender.com/api/allorders?${queryParams}`); // Update the URL with your backend endpoint
+      const response = await fetch(`https://nihon-inventory.onrender.com/api/allor?${queryParams}`); // Update the URL with your backend endpoint
       const data = await response.json();
       setOrders(data);
       setIsLoading(false); // Set loading to false when fetching completes
