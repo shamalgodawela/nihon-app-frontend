@@ -3,6 +3,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import NavBar from '../../../compenents/sidebar/NavBar';
 import Footer from '../../../compenents/footer/Footer';
+import { SpinnerImg } from '../../../compenents/loader/Loader';
  // Import Loader component
 
 const ViewallOrder = () => {
