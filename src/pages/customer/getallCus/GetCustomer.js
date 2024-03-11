@@ -6,9 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import Font
 import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'; // Import required icons
 import './getcustomer.css';
 import NavBar from '../../../compenents/sidebar/NavBar';
-import Footer from '../../../compenents/footer/Footer';
 import { Link } from 'react-router-dom';
-import { SpinnerImg } from '../../loader/Loader'; // Import loading spinner
+import { SpinnerImg } from '../../../compenents/loader/Loader'; // Import loading spinner
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
