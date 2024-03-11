@@ -30,7 +30,6 @@ const OrderDetails = () => {
             <th className='thorder'>Order Number</th>
             <th className='thorder'>Customer</th>
             <th className='thorder'>Customer Code</th>
-            <th className='thorder'>Invoice Number</th>
             <th className='thorder'>Order Date</th>
             <th className='thorder'>Status</th>
             <th className='thorder'>Action</th>
@@ -43,7 +42,6 @@ const OrderDetails = () => {
               <td className='tdorder'>{order.orderNumber}</td>
               <td className='tdorder'>{order.customer}</td>
               <td className='tdorder'>{order.code}</td>
-              <td className='tdorder'>{order.invoiceNumber}</td>
               {/* Add more table cells for other order details */}
               <td className='tdorder'>{order.orderDate}</td>
               <td className='tdorder'>{order.status}</td>
