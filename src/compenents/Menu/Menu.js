@@ -27,6 +27,7 @@ const Menu = () => {
       </li>
       
     </ul>
+    <RefreshButton />
     
   </nav>
   );
