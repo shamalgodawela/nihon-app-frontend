@@ -40,7 +40,7 @@ const OfficeInventoryTable = () => {
               <th>Model</th>
               <th>Type</th>
               <th>Date of Purchase</th>
-              <th>Value</th>
+              <th>Value:</th>
               <th>Warranty Period</th>
               <th>Used By</th>
             </tr>
