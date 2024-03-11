@@ -148,7 +148,14 @@ const AddOrder = ({ onAddOrder }) => {
 
 <div className="form-row">
   <label className="form-label">Exe:</label>
-  <input type="text" className="form-input" name="exe" value={orderData.exe} onChange={(e) => setOrderData({ ...orderData, exe: e.target.value })} />
+  <select className="form-input" name="exe" value={orderData.exe} onChange={(e) => setOrderData({ ...orderData, exe: e.target.value })} >
+    <option value="">Select EXE:</option> 
+    <option value="Mr.Ahamed">Mr.Ahamed</option> 
+    <option value="Mr.Dasun">Mr.Dasun</option> 
+    <option value="Mr.Chameera">Mr.Chameera</option> 
+    <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
+  </select>
+                                                                                                                                                                
 </div>
 <h1 className='h1order'>Product details</h1>
             {/* Render product input fields */}
