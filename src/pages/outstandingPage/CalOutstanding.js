@@ -154,19 +154,19 @@ const CalOutstanding = () => {
                         <td>{product.productCode}</td>
                         <td>{product.productName}</td>
                         <td>{product.quantity}</td>
-                        <td>${product.labelPrice}</td>
+                        <td>RS/={product.labelPrice}</td>
                         <td>{product.discount}</td>
-                        <td>${product.unitPrice}</td>
-                        <td>${product.invoiceTotal}</td>
+                        <td>RS/={product.unitPrice}</td>
+                        <td>RS/={product.invoiceTotal}</td>
                     </tr>
                 ))}
             </tbody>
         </table>
        
 
-        <div className="info-item-td text-end text-bold" id="second">SubTotal: ${calculateTotal()}</div>
+        <div className="info-item-td text-end text-bold" id="second">SubTotal: RS/={calculateTotal()}</div>
         <div className="info-item-td text-end text-bold" id="second">Tax: %{invoice.Tax}</div>
-        <div className="info-item-td text-end text-bold" id="second">Total: ${calculateTaxtot()}</div>
+        <div className="info-item-td text-end text-bold" id="second">Total: RS/={calculateTaxtot()}</div>
         <br/><br/><hr/> <br/><br/>
         <h1 className="h1-out">Add Outstanding</h1>
 
@@ -200,10 +200,10 @@ const CalOutstanding = () => {
                         {savedDetails.map((detail, index) => (
                             <tr key={index}>
                                 <td>{detail.date}</td>
-                                <td>${detail.amount}</td>
-                                <td>${detail.backName}</td>
-                                <td>${detail.outstanding}</td>
-                                <td>${detail.CHnumber}</td>
+                                <td>RS/={detail.amount}</td>
+                                <td>{detail.backName}</td>
+                                <td>RS/={detail.outstanding}</td>
+                                <td>{detail.CHnumber}</td>
                             </tr>
                         ))}
                     </tbody>
