@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import './CalOutstanding.css'; 
-import NavBar from "../../compenents/sidebar/NavBar";
 import Footer from "../../compenents/footer/Footer";
+import Menu from "../../compenents/Menu/Menu";
 
 const CalOutstanding = () => {
     const containerRef = useRef(null);
@@ -126,7 +126,7 @@ const CalOutstanding = () => {
 
     return (
         <div>
-            <NavBar/>
+            <Menu/>
         <div className="cal-outstanding-container">
         <h4 className="h1-out">Invoice code: {invoice.invoiceNumber}</h4>
         <h4 className="h1-out">Customer:{invoice.customer}</h4>
