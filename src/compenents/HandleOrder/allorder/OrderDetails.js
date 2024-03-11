@@ -8,16 +8,25 @@ import { useSelector } from 'react-redux';
 const OrderDetails = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // State for loading indicator
+  const [selectedPeriod, setSelectedPeriod] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
+  const [selectedExe, setSelectedExe] = useState('');
 
   useEffect(() => {
     // Fetch order details from backend API
     fetchOrders();
-  }, []);
+  }, [selectedPeriod, selectedStatus, selectedExe]);
 
   const fetchOrders = async () => {
     try {
       setIsLoading(true); // Set loading to true when fetching starts
-      const response = await fetch('https://nihon-inventory.onrender.com/api/allorders'); // Update the URL with your backend endpoint
+      const queryParams = new URLSearchParams({
+        period: selectedPeriod,
+        status: selectedStatus,
+        exe: selectedExe
+      });
+
+      const response = await fetch(`https://nihon-inventory.onrender.com/api/allorders?${queryParams}`); // Update the URL with your backend endpoint
       const data = await response.json();
       setOrders(data);
       setIsLoading(false); // Set loading to false when fetching completes
@@ -30,6 +39,26 @@ const OrderDetails = () => {
   return (
     <div>
       <h3 className="h3order">All Order Details</h3>
+      
+      {/* Search form */}
+      <div className="search-form">
+        <label>Time Period:</label>
+        <select value={selectedPeriod} onChange={(e) => setSelectedPeriod(e.target.value)}>
+          <option value="">All</option>
+          {/* Add options for time period */}
+        </select>
+        <label>Status:</label>
+        <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
+          <option value="">All</option>
+          {/* Add options for status */}
+        </select>
+        <label>Exe:</label>
+        <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
+          <option value="">All</option>
+          {/* Add options for exe */}
+        </select>
+      </div>
+      
       {isLoading ? ( // Show loading spinner if isLoading is true
         <SpinnerImg />
       ) : (
@@ -72,4 +101,3 @@ const OrderDetails = () => {
 };
 
 export default OrderDetails;
-
