@@ -30,6 +30,41 @@ const OutStandingTable = () => {
         fetchInvoices();
     }, []);
 
+    useEffect(() => {
+        const fetchAndUpdateStatuses = async () => {
+            try {
+                const invoiceNumbers = invoices.map((invoice) => invoice.invoiceNumber);
+                const statuses = await fetchOutstandingStatuses(invoiceNumbers);
+                const updatedInvoices = invoices.map((invoice) => {
+                    const status = statuses[invoice.invoiceNumber] || 'Unpaid';
+                    return { ...invoice, status };
+                });
+                setInvoices(updatedInvoices);
+            } catch (error) {
+                console.error('Failed to fetch outstanding statuses', error.message);
+            }
+        };
+
+        if (!loading && !error) {
+            fetchAndUpdateStatuses();
+        }
+    }, [invoices, loading, error]);
+
+    const fetchOutstandingStatuses = async (invoiceNumbers) => {
+        const statuses = {};
+        for (const invoiceNumber of invoiceNumbers) {
+            try {
+                const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-last-outstanding/${invoiceNumber}`);
+                const lastOutstanding = response.data.outstanding;
+                statuses[invoiceNumber] = lastOutstanding === 0 ? 'Paid' : 'Unpaid';
+            } catch (error) {
+                console.error('Failed to fetch last outstanding value', error.message);
+                statuses[invoiceNumber] = 'Unpaid';
+            }
+        }
+        return statuses;
+    };
+
     const handleSearch = async () => {
         try {
             setLoading(true);
