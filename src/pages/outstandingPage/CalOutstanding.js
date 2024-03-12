@@ -196,10 +196,7 @@ const CalOutstanding = () => {
     <hr/>
     <button className="fetch-button" onClick={handleFetchAllOutstandingDetails}>Fetch All Outstanding Details</button>
 </div>
- <br/><br/><hr/> <br/><br/>
-
-        {/* Button to fetch all outstanding details */}
-        <button onClick={handleFetchAllOutstandingDetails}>Fetch All Outstanding Details</button>
+ <br/><br/><hr/> <br/>
 
         {/* Display saved details */}
         {savedDetails && (
