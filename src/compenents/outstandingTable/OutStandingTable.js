@@ -11,7 +11,6 @@ const OutStandingTable = () => {
     const [error, setError] = useState(null);
     const [searchParams, setSearchParams] = useState({
         exe: '', // Only search by exe
-        status: '', // Search by status (Paid or Unpaid)
     });
 
     useEffect(() => {
@@ -44,14 +43,9 @@ const OutStandingTable = () => {
     };
 
     const handleChangeSearchParams = (key, value) => {
-        setSearchParams(prevSearchParams => ({
-            ...prevSearchParams,
-            [key]: value
-        }));
+        setSearchParams({ [key]: value }); // Update searchParams directly
     };
-    
 
-    // Fetch and update statuses based on the search result
     const fetchAndUpdateStatuses = async (invoices) => {
         try {
             const invoiceNumbers = invoices.map((invoice) => invoice.invoiceNumber);
@@ -66,7 +60,6 @@ const OutStandingTable = () => {
         }
     };
 
-    // Fetch statuses for given invoice numbers
     const fetchOutstandingStatuses = async (invoiceNumbers) => {
         const statuses = {};
         for (const invoiceNumber of invoiceNumbers) {
@@ -75,7 +68,8 @@ const OutStandingTable = () => {
                 const lastOutstanding = response.data.outstanding;
                 statuses[invoiceNumber] = lastOutstanding === 0 ? 'Paid' : 'Unpaid';
             } catch (error) {
-                statuses[invoiceNumber] = 'Unpaid'; // Set status to Unpaid in case of error
+                // console.error('Failed to fetch last outstanding value', error.message);
+                statuses[invoiceNumber] = 'Unpaid';
             }
         }
         return statuses;
@@ -104,14 +98,6 @@ const OutStandingTable = () => {
                     value={searchParams.exe}
                     onChange={(e) => handleChangeSearchParams('exe', e.target.value)}
                 />
-                <select
-                    value={searchParams.status}
-                    onChange={(e) => handleChangeSearchParams('status', e.target.value)}
-                >
-                    <option value="">All</option>
-                    <option value="Paid">Paid</option>
-                    <option value="Unpaid">Unpaid</option>
-                </select>
                 <button onClick={handleSearch}>Search</button>
             </div>
             <div className="all-invoice">
