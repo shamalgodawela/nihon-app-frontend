@@ -10,9 +10,7 @@ const OutStandingTable = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchParams, setSearchParams] = useState({
-        invoiceNumber: '',
-        customer: '',
-        exe: '', // Adding exe to the search parameters for sesrch
+        exe: '', // Only search by exe
     });
 
     useEffect(() => {
@@ -31,25 +29,36 @@ const OutStandingTable = () => {
         fetchInvoices();
     }, []);
 
-    useEffect(() => {
-        const fetchAndUpdateStatuses = async () => {
-            try {
-                const invoiceNumbers = invoices.map((invoice) => invoice.invoiceNumber);
-                const statuses = await fetchOutstandingStatuses(invoiceNumbers);
-                const updatedInvoices = invoices.map((invoice) => {
-                    const status = statuses[invoice.invoiceNumber] || 'Unpaid';
-                    return { ...invoice, status };
-                });
-                setInvoices(updatedInvoices);
-            } catch (error) {
-                console.error('Failed to fetch outstanding statuses', error.message);
-            }
-        };
-
-        if (!loading && !error) {
-            fetchAndUpdateStatuses();
+    const handleSearch = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-outstanding`, { params: searchParams });
+            setInvoices(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Failed to perform search', error.message);
+            setError('Failed to perform search');
+            setLoading(false);
         }
-    }, [invoices, loading, error]);
+    };
+
+    const handleChangeSearchParams = (key, value) => {
+        setSearchParams({ [key]: value }); // Update searchParams directly
+    };
+
+    const fetchAndUpdateStatuses = async (invoices) => {
+        try {
+            const invoiceNumbers = invoices.map((invoice) => invoice.invoiceNumber);
+            const statuses = await fetchOutstandingStatuses(invoiceNumbers);
+            const updatedInvoices = invoices.map((invoice) => {
+                const status = statuses[invoice.invoiceNumber] || 'Unpaid';
+                return { ...invoice, status };
+            });
+            setInvoices(updatedInvoices);
+        } catch (error) {
+            console.error('Failed to fetch outstanding statuses', error.message);
+        }
+    };
 
     const fetchOutstandingStatuses = async (invoiceNumbers) => {
         const statuses = {};
@@ -66,22 +75,11 @@ const OutStandingTable = () => {
         return statuses;
     };
 
-    const handleSearch = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-outstanding`, { params: searchParams });
-            setInvoices(response.data);
-            setLoading(false);
-        } catch (error) {
-            console.error('Failed to perform search', error.message);
-            setError('Failed to perform search');
-            setLoading(false);
+    useEffect(() => {
+        if (!loading && !error) {
+            fetchAndUpdateStatuses(invoices);
         }
-    };
-
-    const handleChangeSearchParams = (key, value) => {
-        setSearchParams({ ...searchParams, [key]: value });
-    };
+    }, [invoices, loading, error]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -94,18 +92,6 @@ const OutStandingTable = () => {
     return (
         <div className='invoice-body'>
             <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Search by Invoice Number"
-                    value={searchParams.invoiceNumber}
-                    onChange={(e) => handleChangeSearchParams('invoiceNumber', e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Search by Customer"
-                    value={searchParams.customer}
-                    onChange={(e) => handleChangeSearchParams('customer', e.target.value)}
-                />
                 <input
                     type="text"
                     placeholder="Search by Exe"
