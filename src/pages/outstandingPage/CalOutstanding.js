@@ -168,16 +168,35 @@ const CalOutstanding = () => {
         <div className="info-item-td text-end text-bold" id="second">Tax: %{invoice.Tax}</div>
         <div className="info-item-td text-end text-bold" id="second">Total: RS/={calculateTaxtot()}</div>
         <br/><br/><hr/> <br/><br/>
-        <h1 className="h1-out">Add Outstanding</h1>
-
-        <p>Date:</p><input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        <p>Back Name:</p><input type="text" placeholder="Bank Name" value={backName} onChange={(e)=> setBackname(e.target.value)} />
-        <p>Deposited date:</p><input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
-        <p>Cheque Number:</p><input type="text" placeholder="Chaeque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
-        <p></p><input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
-        <button onClick={handleCalculate}>Calculate</button>
-        <div>Outstanding: ${outstanding}</div>
-        <button onClick={handleSave}>Save</button> <br/><br/><hr/> <br/><br/>
+        <div className="add-outstanding-container">
+    <h1 className="h1-out">Add Outstanding</h1>
+    <div className="input-container">
+        <label>Date:</label>
+        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+    </div>
+    <div className="input-container">
+        <label>Bank Name:</label>
+        <input type="text" placeholder="Bank Name" value={backName} onChange={(e)=> setBackname(e.target.value)} />
+    </div>
+    <div className="input-container">
+        <label>Deposited Date:</label>
+        <input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
+    </div>
+    <div className="input-container">
+        <label>Cheque Number:</label>
+        <input type="text" placeholder="Cheque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
+    </div>
+    <div className="input-container">
+        <label>Amount:</label>
+        <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
+    </div>
+    <button className="calculate-button" onClick={handleCalculate}>Calculate</button>
+    <div className="outstanding">Outstanding: ${outstanding}</div>
+    <button className="save-button" onClick={handleSave}>Save</button>
+    <hr/>
+    <button className="fetch-button" onClick={handleFetchAllOutstandingDetails}>Fetch All Outstanding Details</button>
+</div>
+ <br/><br/><hr/> <br/><br/>
 
         {/* Button to fetch all outstanding details */}
         <button onClick={handleFetchAllOutstandingDetails}>Fetch All Outstanding Details</button>
