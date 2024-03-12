@@ -14,10 +14,15 @@ const CalOutstanding = () => {
     const [outstanding, setOutstanding] = useState(0);
     const [date, setDate] = useState('');
     const [backName, setBackname]=useState('');
-    const [depositedate, setdepositedate]=useState('');
+    const [depositedate, setDepositedate]=useState('');
     const [CHnumber, setCHnumber]=useState('');
     const [savedDetails, setSavedDetails] = useState(null); // To store saved details
-    const [invoiceNumber, setInvoiceNumber] = useState(''); // To store invoice number for fetching details
+    const [searchParams, setSearchParams] = useState({
+        invoiceNumber: '',
+        exe: '',
+        customer: '',
+        status: ''
+    });
 
     useEffect(() => {
         const fetchInvoice = async () => {
@@ -84,41 +89,47 @@ const CalOutstanding = () => {
         }
     };
     
-    
-    
-
     const handleSave = async () => {
         try {
-            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber, date,backName,depositedate,CHnumber, amount, outstanding });
+            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber, date, backName, depositedate, CHnumber, amount, outstanding });
             // Display success message
             toast.success('Data added successfully!');
         } catch (error) {
-            toast.error('faild to add details...')
+            toast.error('Failed to add details...')
             // Handle error
         }
     };
     
-
     const handleFetchAllOutstandingDetails = async () => {
         try {
             const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-all-outstanding/${invoice.invoiceNumber}`);
             const data = response.data;
             if (data.length === 0) {
                 toast.error('Customer did not pay yet')          
-            }
-            else{
+            } else {
                 setSavedDetails(data);
-
             }
-            
         } catch (error) {
-            toast.error('Customer did not pay yet')
+            toast.error('Failed to fetch all outstanding details')
             console.error('Failed to fetch all outstanding details:', error.message);
             // Handle error
         }
     };
     
+    const handleSearch = async () => {
+        try {
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-outstanding`, { params: searchParams });
+            // Handle search results
+        } catch (error) {
+            toast.error('Failed to perform search')
+            console.error('Failed to perform search:', error.message);
+            // Handle error
+        }
+    };
     
+    const handleChangeSearchParams = (key, value) => {
+        setSearchParams({ ...searchParams, [key]: value });
+    };
 
     if (!invoice) {
         return <div>Loading...</div>;
@@ -127,108 +138,95 @@ const CalOutstanding = () => {
     return (
         <div>
             <Menu/>
-        <div className="cal-outstanding-container">
-        <h4 className="h1-out">Invoice code: {invoice.invoiceNumber}</h4>
-        <h4 className="h1-out">Customer:{invoice.customer}</h4>
-        <h4 className="h1-out">Invoice Date:{invoice.invoiceDate}</h4>
-        <h4 className="h1-out">EXE: {invoice.exe}</h4>
-        
-        <br/><hr/><br/>
-
-        <h2 className="h1-out">Product Details</h2>
-        <table>
-            <thead>
-                <tr>
-                    <td className="text-bold">Product Code</td>
-                    <td className="text-bold">Description</td>
-                    <td className="text-bold">Quantity</td>
-                    <td className="text-bold">Label Price</td>
-                    <td className="text-bold">Discount</td>
-                    <td className="text-bold">Unit Price</td>
-                    <td className="text-bold">Invoice Total</td>
-                </tr>
-            </thead>
-            <tbody>
-                {invoice.products.map((product, index) => (
-                    <tr key={index}>
-                        <td>{product.productCode}</td>
-                        <td>{product.productName}</td>
-                        <td>{product.quantity}</td>
-                        <td>RS/={product.labelPrice}</td>
-                        <td>{product.discount}</td>
-                        <td>RS/={product.unitPrice}</td>
-                        <td>RS/={product.invoiceTotal}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-       
-
-        <div className="info-item-td text-end text-bold" id="second">SubTotal: RS/={calculateTotal()}</div>
-        <div className="info-item-td text-end text-bold" id="second">Tax: %{invoice.Tax}</div>
-        <div className="info-item-td text-end text-bold" id="second">Total: RS/={calculateTaxtot()}</div>
-        <br/><br/><hr/> <br/><br/>
-        <div className="add-outstanding-container">
-    <h1 className="h1-out">Add Outstanding</h1>
-    <div className="input-container">
-        <label>Date:</label>
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-    </div>
-    <div className="input-container">
-        <label>Bank Name:</label>
-        <input type="text" placeholder="Bank Name" value={backName} onChange={(e)=> setBackname(e.target.value)} />
-    </div>
-    <div className="input-container">
-        <label>Deposited Date:</label>
-        <input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
-    </div>
-    <div className="input-container">
-        <label>Cheque Number/Reference Number:</label>
-        <input type="text" placeholder="Cheque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
-    </div>
-    <div className="input-container">
-        <label>Amount:</label>
-        <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
-    </div>
-    <button className="calculate-button" onClick={handleCalculate}>Calculate</button>
-    <div className="outstanding">Outstanding: ${outstanding}</div>
-    <button className="save-button" onClick={handleSave}>Save</button>
-    <hr/>
-    <button className="fetch-button" onClick={handleFetchAllOutstandingDetails}>Fetch All Outstanding Details</button>
-</div>
- <br/><br/><hr/> <br/>
-
-        {/* Display saved details */}
-        {savedDetails && (
-            <div>
-                <h2 className="h1-out">All Outstanding Details:</h2>
+            <div className="cal-outstanding-container">
+                <h4 className="h1-out">Invoice code: {invoice.invoiceNumber}</h4>
+                <h4 className="h1-out">Customer: {invoice.customer}</h4>
+                <h4 className="h1-out">Invoice Date: {invoice.invoiceDate}</h4>
+                <h4 className="h1-out">EXE: {invoice.exe}</h4>
+                <br/><hr/><br/>
+                <h2 className="h1-out">Product Details</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Bank Name</th>
-                            <th>Outstanding</th>
-                            <th>Cheque Number/Reference Number</th>
+                            <td className="text-bold">Product Code</td>
+                            <td className="text-bold">Description</td>
+                            <td className="text-bold">Quantity</td>
+                            <td className="text-bold">Label Price</td>
+                            <td className="text-bold">Discount</td>
+                            <td className="text-bold">Unit Price</td>
+                            <td className="text-bold">Invoice Total</td>
                         </tr>
                     </thead>
                     <tbody>
-                        {savedDetails.map((detail, index) => (
+                        {invoice.products.map((product, index) => (
                             <tr key={index}>
-                                <td>{detail.date}</td>
-                                <td>RS/={detail.amount}</td>
-                                <td>{detail.backName}</td>
-                                <td>RS/={detail.outstanding}</td>
-                                <td>{detail.CHnumber}</td>
+                                <td>{product.productCode}</td>
+                                <td>{product.productName}</td>
+                                <td>{product.quantity}</td>
+                                <td>RS/={product.labelPrice}</td>
+                                <td>{product.discount}</td>
+                                <td>RS/={product.unitPrice}</td>
+                                <td>RS/={product.invoiceTotal}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                <div className="info-item-td text-end text-bold" id="second">SubTotal: RS/={calculateTotal()}</div>
+                <div className="info-item-td text-end text-bold" id="second">Tax: %{invoice.Tax}</div>
+                <div className="info-item-td text-end text-bold" id="second">Total: RS/={calculateTaxtot()}</div>
+                <br/><br/><hr/> <br/><br/>
+                <div className="add-outstanding-container">
+                    <h1 className="h1-out">Search</h1>
+                    <div className="input-container">
+                        <label>Invoice Number:</label>
+                        <input type="text" value={searchParams.invoiceNumber} onChange={(e) => handleChangeSearchParams('invoiceNumber', e.target.value)} />
+                    </div>
+                    <div className="input-container">
+                        <label>EXE:</label>
+                        <input type="text" value={searchParams.exe} onChange={(e) => handleChangeSearchParams('exe', e.target.value)} />
+                    </div>
+                    <div className="input-container">
+                        <label>Customer:</label>
+                        <input type="text" value={searchParams.customer} onChange={(e) => handleChangeSearchParams('customer', e.target.value)} />
+                    </div>
+                    <div className="input-container">
+                        <label>Status:</label>
+                        <input type="text" value={searchParams.status} onChange={(e) => handleChangeSearchParams('status', e.target.value)} />
+                    </div>
+                    <button className="search-button" onClick={handleSearch}>Search</button>
+                </div>
+                <br/><br/><hr/> <br/>
+                {/* Display saved details */}
+                {savedDetails && (
+                    <div>
+                        <h2 className="h1-out">All Outstanding Details:</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Bank Name</th>
+                                    <th>Outstanding</th>
+                                    <th>Cheque Number/Reference Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {savedDetails.map((detail, index) => (
+                                    <tr key={index}>
+                                        <td>{detail.date}</td>
+                                        <td>RS/={detail.amount}</td>
+                                        <td>{detail.backName}</td>
+                                        <td>RS/={detail.outstanding}</td>
+                                        <td>{detail.CHnumber}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
             </div>
-        )}
-    </div>
-    <Footer/>
-    </div>
+            <Footer/>
+        </div>
     );
 }
 
