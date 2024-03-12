@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const UpdateCustomerForm = ({ customerId }) => {
+  const { customerId } = useParams();
   const [customer, setCustomer] = useState({});
   const [formData, setFormData] = useState({
     name: '',

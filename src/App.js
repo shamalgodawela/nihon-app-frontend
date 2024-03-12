@@ -102,7 +102,8 @@ function App() {
     <Route path="/adminlogin" element={<LoginForm/>} />
     <Route path="/additems" element={<Additeams/>} />
     <Route path="/getallinven" element={<Getalloffice/>} />
-    <Route path="/customer/update/:customerid" element={<UpdateCustomerForm/>} />
+    <Route path="/customer/update/:customerId" element={<UpdateCustomerForm />} />
+
 
     
     
