@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-const UpdateCustomerForm = ({ customerId }) => {
+const UpdateCustomerForm = () => {
   const { customerId } = useParams();
   const [customer, setCustomer] = useState({});
   const [formData, setFormData] = useState({
