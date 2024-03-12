@@ -15,7 +15,7 @@ const CustomerDetails = () => {
   useEffect(() => {
     const fetchCustomer = async () => {
       try {
-        const response = await axios.get(`https://nihon-inventory.onrender.com/api/customers/${code}`);
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/customersn/${code}`);
         setCustomer(response.data);
       } catch (error) {
         console.error('Error fetching customer details:', error);

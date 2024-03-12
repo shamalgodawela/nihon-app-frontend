@@ -95,7 +95,7 @@ const CustomerList = () => {
                     <td>
                       {/* Action icons */}
                       <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="action-icon" /></Link>
-                       <Link to={`/customer/${customer._id}`}><FontAwesomeIcon icon={faEdit} className="action-icon" /></Link>
+                       <Link to={`/customer/update/${customer._id}`}><FontAwesomeIcon icon={faEdit} className="action-icon" /></Link>
                     </td>
                   </tr>
                 ))}
