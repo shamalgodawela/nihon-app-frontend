@@ -12,6 +12,7 @@ const OutStandingTable = () => {
     const [searchParams, setSearchParams] = useState({
         invoiceNumber: '',
         customer: '',
+        exe: '', // Adding exe to the search parameters for sesrch
     });
 
     useEffect(() => {
@@ -104,6 +105,12 @@ const OutStandingTable = () => {
                     placeholder="Search by Customer"
                     value={searchParams.customer}
                     onChange={(e) => handleChangeSearchParams('customer', e.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="Search by Exe"
+                    value={searchParams.exe}
+                    onChange={(e) => handleChangeSearchParams('exe', e.target.value)}
                 />
                 <button onClick={handleSearch}>Search</button>
             </div>
