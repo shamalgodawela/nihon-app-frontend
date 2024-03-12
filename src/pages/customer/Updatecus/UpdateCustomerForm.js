@@ -20,7 +20,7 @@ const UpdateCustomerForm = ({ customerId }) => {
   useEffect(() => {
     const fetchCustomer = async () => {
       try {
-        const response = await axios.get(`https://nihon-inventory.onrender.com/api/customersup/${customerId}`);
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/customersn/${customerId}`);
         setCustomer(response.data);
         setFormData(response.data);
         setLoading(false);
