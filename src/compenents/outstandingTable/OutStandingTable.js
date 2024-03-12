@@ -68,7 +68,7 @@ const OutStandingTable = () => {
                 const lastOutstanding = response.data.outstanding;
                 statuses[invoiceNumber] = lastOutstanding === 0 ? 'Paid' : 'Unpaid';
             } catch (error) {
-                console.error('Failed to fetch last outstanding value', error.message);
+                // console.error('Failed to fetch last outstanding value', error.message);
                 statuses[invoiceNumber] = 'Unpaid';
             }
         }
