@@ -250,6 +250,7 @@ const InvoiceForm = () => {
       });
     }
   };
+  
   const [isLoading, setIsLoading] = useState(false); // State for loading indicator
 
   const handleGetDetails = async (e) => {
