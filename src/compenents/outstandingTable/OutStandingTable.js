@@ -44,8 +44,12 @@ const OutStandingTable = () => {
     };
 
     const handleChangeSearchParams = (key, value) => {
-        setSearchParams({ ...searchParams, [key]: value });
+        setSearchParams(prevSearchParams => ({
+            ...prevSearchParams,
+            [key]: value
+        }));
     };
+    
 
     // Fetch and update statuses based on the search result
     const fetchAndUpdateStatuses = async (invoices) => {
