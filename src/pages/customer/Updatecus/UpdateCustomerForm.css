@@ -34,4 +34,8 @@
   button:hover {
     background-color: #0056b3;
   }
-  
+  .updatecus{
+    text-align:center;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+  }

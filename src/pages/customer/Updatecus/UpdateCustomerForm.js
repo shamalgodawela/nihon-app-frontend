@@ -64,6 +64,7 @@ const UpdateCustomerForm = () => {
   return (
     <div>
       <NavBar/>
+      <h1 className='updatecus'>Update Customer Details</h1>
       <form onSubmit={handleSubmit} className="update-customer-form">
       <div className="form-group">
         <label htmlFor="name">Name:</label>
