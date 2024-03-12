@@ -41,7 +41,7 @@ const UpdateCustomerForm = ({ customerId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://nihon-inventory.onrender.com/api/customers/${customerId}`, formData);
+      await axios.patch(`https://nihon-inventory.onrender.com/api/customersup/${customerId}`, formData);
       alert('Customer details updated successfully');
     } catch (error) {
       console.error('Failed to update customer details', error.message);
