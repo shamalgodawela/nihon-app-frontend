@@ -38,6 +38,7 @@ import LoginForm from "./pages/orderAdmin/login/LoginForm";
 import Sample from "./pages/invoice/InvoiceTemplate/Sample";
 import Additeams from "./pages/officeInvrntory/Additeams";
 import Getalloffice from "./pages/officeInvrntory/Getalloffice";
+import UpdateCustomerForm from "./pages/customer/Updatecus/UpdateCustomerForm";
 
 
 
@@ -101,6 +102,8 @@ function App() {
     <Route path="/adminlogin" element={<LoginForm/>} />
     <Route path="/additems" element={<Additeams/>} />
     <Route path="/getallinven" element={<Getalloffice/>} />
+    <Route path="/customer/update/:customerCode" element={<UpdateCustomerForm/>} />
+
     
    
    
