@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Footer from '../../../compenents/footer/Footer';
+import NavBar from '../../../compenents/sidebar/NavBar';
 
 const UpdateCustomerForm = () => {
   const { customerId } = useParams();
@@ -60,45 +62,50 @@ const UpdateCustomerForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Name:</label>
-        <input type="text" name="name" value={formData.name} onChange={handleChange} />
+    <div>
+      <NavBar/>
+      <form onSubmit={handleSubmit} className="update-customer-form">
+      <div className="form-group">
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
       </div>
-      <div>
-        <label>Code:</label>
-        <input type="text" name="code" value={formData.code} onChange={handleChange} />
+      <div className="form-group">
+        <label htmlFor="code">Code:</label>
+        <input type="text" id="code" name="code" value={formData.code} onChange={handleChange} />
       </div>
-      <div>
-        <label>Company Name:</label>
-        <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} />
+      <div className="form-group">
+        <label htmlFor="companyName">Company Name:</label>
+        <input type="text" id="companyName" name="companyName" value={formData.companyName} onChange={handleChange} />
       </div>
-      <div>
-        <label>Contact:</label>
-        <input type="text" name="contact" value={formData.contact} onChange={handleChange} />
+      <div className="form-group">
+        <label htmlFor="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" value={formData.contact} onChange={handleChange} />
       </div>
-      <div>
-        <label>Address:</label>
-        <input type="text" name="address" value={formData.address} onChange={handleChange} />
+      <div className="form-group">
+        <label htmlFor="address">Address:</label>
+        <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} />
       </div>
-      <div>
-        <label>City:</label>
-        <input type="text" name="city" value={formData.city} onChange={handleChange} />
+      <div className="form-group">
+        <label htmlFor="city">City:</label>
+        <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} />
       </div>
-      <div>
-        <label>Phone:</label>
-        <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
+      <div className="form-group">
+        <label htmlFor="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
       </div>
-      <div>
-        <label>Email:</label>
-        <input type="text" name="email" value={formData.email} onChange={handleChange} />
+      <div className="form-group">
+        <label htmlFor="email">Email:</label>
+        <input type="text" id="email" name="email" value={formData.email} onChange={handleChange} />
       </div>
-      <div>
-        <label>Fax:</label>
-        <input type="text" name="fax" value={formData.fax} onChange={handleChange} />
+      <div className="form-group">
+        <label htmlFor="fax">Fax:</label>
+        <input type="text" id="fax" name="fax" value={formData.fax} onChange={handleChange} />
       </div>
       <button type="submit">Update Customer</button>
     </form>
+   
+    <Footer/>
+    </div>
   );
 };
 
