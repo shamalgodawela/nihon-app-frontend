@@ -1,15 +1,16 @@
 import React from 'react'
+import './Dropdown.css'
 
 const Dropdown = () => {
   return (
-    <div>
-        <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <div className="custom-dropdown-container">
+      <button className="custom-btn custom-dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Centered dropdown
       </button>
-      <ul className="dropdown-menu">
-        <li><a className="dropdown-item" href="/addbulkproduct">Add Bulk Product</a></li>
-        <li><a className="dropdown-item" href="#">Action two</a></li>
-        <li><a className="dropdown-item" href="#">Action three</a></li>
+      <ul className="custom-dropdown-menu">
+        <li><a className="custom-dropdown-item" href="/addbulkproduct">Add Bulk Product</a></li>
+        <li><a className="custom-dropdown-item" href="#">Action two</a></li>
+        <li><a className="custom-dropdown-item" href="#">Action three</a></li>
       </ul>
     </div>
   )
