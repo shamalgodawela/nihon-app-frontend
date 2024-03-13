@@ -37,6 +37,11 @@ const AddbulkProduct = () => {
     });
     setShowProductFields(true);
   };
+  const handleRemoveProduct = (index) => {
+    const updatedProducts = [...productData.products];
+    updatedProducts.splice(index, 1);
+    setProductData({ ...productData, products: updatedProducts });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,6 +121,7 @@ const AddbulkProduct = () => {
                     required
                   />
                 </label>
+                {index > 0 && <button type="button" onClick={() => handleRemoveProduct(index)}>Remove Product</button>}
               </div>
             ))}
             <button type="button" onClick={handleAddProduct}>Add More Product</button>
