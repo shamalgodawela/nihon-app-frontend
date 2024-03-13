@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './addbulk.css'
+import { toast } from 'react-toastify';
 
 const AddbulkProduct = () => {
   const [productData, setProductData] = useState({
@@ -21,8 +22,8 @@ const AddbulkProduct = () => {
     e.preventDefault();
     try {
       // Send a POST request to the backend to add the product
-      await axios.post('https://your-backend-url/api/products', productData);
-      alert('Product added successfully!');
+      await axios.post('https://nihon-inventory.onrender.com/api/addbulkproduct', productData);
+      toast.success('Product added successfully!');
       // Clear the form fields after successful submission
       setProductData({
         bulkCode: '',
@@ -31,7 +32,7 @@ const AddbulkProduct = () => {
       });
     } catch (error) {
       console.error('Error adding product:', error);
-      alert('Failed to add product');
+      toast.error('Failed to add product');
     }
   };
 
