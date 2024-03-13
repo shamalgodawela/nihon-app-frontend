@@ -7,7 +7,7 @@ const Dropdown = () => {
         Centered dropdown
       </button>
       <ul className="dropdown-menu">
-        <li><a className="dropdown-item" href="/addbulkproduc">Add Bulk Product</a></li>
+        <li><a className="dropdown-item" href="/addbulkproduct">Add Bulk Product</a></li>
         <li><a className="dropdown-item" href="#">Action two</a></li>
         <li><a className="dropdown-item" href="#">Action three</a></li>
       </ul>
