@@ -6,6 +6,7 @@ import { FaFileInvoice } from "react-icons/fa";
 import { BsDatabaseFillGear } from "react-icons/bs";
 import { PiOfficeChairFill } from "react-icons/pi";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
+import { GiMaterialsScience } from "react-icons/gi";
 
 
 export const SidebarData = [
@@ -42,6 +43,12 @@ export const SidebarData = [
     title: 'Manage Custormers',
     path: '/getAllCustomer',
     icon: <BsDatabaseFillGear />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Stores Raw Materials Details',
+    path: '',
+    icon: <GiMaterialsScience />,
     cName: 'nav-text'
   },
   {
