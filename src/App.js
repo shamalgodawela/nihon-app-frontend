@@ -40,7 +40,7 @@ import Additeams from "./pages/officeInvrntory/Additeams";
 import Getalloffice from "./pages/officeInvrntory/Getalloffice";
 import UpdateCustomerForm from "./pages/customer/Updatecus/UpdateCustomerForm";
 import Alldetails from "./pages/rawMaterials/Alldetails";
-import AddbulkProduct from "./compenents/bulkproduct/addproduct/AddbulkProduct";
+import Addbulk from "./pages/rawMaterials/Addbulk";
 
 
 
@@ -107,7 +107,7 @@ function App() {
     <Route path="/getallinven" element={<Getalloffice/>} />
     <Route path="/customer/update/:customerId" element={<UpdateCustomerForm />} />
     <Route path="allbulkproduct" element={<Alldetails/>} />
-    <Route path="/addbulkproduct" element={<AddbulkProduct/>} />
+    <Route path="/addbulkproduct" element={<Addbulk/>} />
     
 
 
