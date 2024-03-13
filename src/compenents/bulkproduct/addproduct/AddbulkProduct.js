@@ -4,39 +4,57 @@ import './addbulk.css';
 import { toast } from 'react-toastify';
 
 const AddbulkProduct = () => {
-  const [products, setProducts] = useState([
-    {
-      productCode: '',
-      productName: '',
-      quantity: '',
-      weight: ''
-    }
-  ]);
-  const [showAdditionalFields, setShowAdditionalFields] = useState(false);
+  const [productData, setProductData] = useState({
+    bulkCode: '',
+    quantity: '',
+    weight: '',
+    products: [{ productCode: '', productName: '' }]
+  });
+  const [showProductFields, setShowProductFields] = useState(false);
 
-  const handleChange = (index, e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    const updatedProducts = [...products];
+    setProductData({
+      ...productData,
+      [name]: value
+    });
+  };
+
+  const handleProductChange = (index, e) => {
+    const { name, value } = e.target;
+    const updatedProducts = [...productData.products];
     updatedProducts[index] = { ...updatedProducts[index], [name]: value };
-    setProducts(updatedProducts);
+    setProductData({
+      ...productData,
+      products: updatedProducts
+    });
   };
 
   const handleAddProduct = () => {
-    setProducts([...products, { productCode: '', productName: '', quantity: '', weight: '' }]);
-    setShowAdditionalFields(false); // Hide additional fields after adding a product
+    setProductData({
+      ...productData,
+      products: [...productData.products, { productCode: '', productName: '' }]
+    });
+    setShowProductFields(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Send a POST request to the backend to add the product
-      await axios.post('https://nihon-inventory.onrender.com/api/addbulkproduct', { products });
-      toast.success('Products added successfully!');
+      await axios.post('https://nihon-inventory.onrender.com/api/addbulkproduct', productData);
+      toast.success('Product added successfully!');
       // Clear the form fields after successful submission
-      setProducts([{ productCode: '', productName: '', quantity: '', weight: '' }]);
+      setProductData({
+        bulkCode: '',
+        quantity: '',
+        weight: '',
+        products: [{ productCode: '', productName: '' }]
+      });
+      setShowProductFields(false);
     } catch (error) {
-      console.error('Error adding products:', error);
-      toast.error('Failed to add products');
+      console.error('Error adding product:', error);
+      toast.error('Failed to add product');
     }
   };
 
@@ -44,56 +62,67 @@ const AddbulkProduct = () => {
     <div className="add-product-form">
       <h2>Add Product</h2>
       <form onSubmit={handleSubmit}>
-        {products.map((product, index) => (
-          <div key={index}>
-            <label>
-              Product Code:
-              <input
-                type="text"
-                name="productCode"
-                value={product.productCode}
-                onChange={(e) => handleChange(index, e)}
-                required
-              />
-            </label>
-            <label>
-              Product Name:
-              <input
-                type="text"
-                name="productName"
-                value={product.productName}
-                onChange={(e) => handleChange(index, e)}
-                required
-              />
-            </label>
-            {showAdditionalFields && (
-              <>
+        <label>
+          Bulk Code:
+          <input
+            type="text"
+            name="bulkCode"
+            value={productData.bulkCode}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Quantity:
+          <input
+            type="number"
+            name="quantity"
+            value={productData.quantity}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Weight:
+          <input
+            type="number"
+            name="weight"
+            value={productData.weight}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        {showProductFields && (
+          <>
+            {productData.products.map((product, index) => (
+              <div key={index}>
                 <label>
-                  Quantity:
+                  Product Code:
                   <input
-                    type="number"
-                    name="quantity"
-                    value={product.quantity}
-                    onChange={(e) => handleChange(index, e)}
+                    type="text"
+                    name="productCode"
+                    value={product.productCode}
+                    onChange={(e) => handleProductChange(index, e)}
                     required
                   />
                 </label>
                 <label>
-                  Weight:
+                  Product Name:
                   <input
-                    type="number"
-                    name="weight"
-                    value={product.weight}
-                    onChange={(e) => handleChange(index, e)}
+                    type="text"
+                    name="productName"
+                    value={product.productName}
+                    onChange={(e) => handleProductChange(index, e)}
                     required
                   />
                 </label>
-              </>
-            )}
-          </div>
-        ))}
-        {!showAdditionalFields && (
-          <button type="button" onClick={() => setShowAdditionalFields(true)}>Add More Product</button>
+              </div>
+            ))}
+            <button type="button" onClick={handleAddProduct}>Add More Product</button>
+          </>
+        )}
+        {!showProductFields && (
+          <button type="button" onClick={() => setShowProductFields(true)}>Add More Product</button>
         )}
         <button type="submit">Add Products</button>
       </form>
