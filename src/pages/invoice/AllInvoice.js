@@ -54,33 +54,38 @@ const AllInvoice = () => {
     <body className='invoice-body'>
       <div>
         <NavBar/><br/><br/>
-        <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search by Invoice Number or Customer"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <input
-            type="date"
-            placeholder="Start Date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-          <input
-            type="date"
-            placeholder="End Date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Search by Exe"
-            value={exe}
-            onChange={(e) => setExe(e.target.value)}
-          />
-          <button onClick={searchInvoices}>Search</button>
-        </div>
+        <div className="search-container" style={{ display: 'flex', marginBottom: '20px' }}>
+  <input
+    type="text"
+    placeholder="Search by Invoice Number or Customer"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    style={{ marginRight: '10px', padding: '5px' }}
+  />
+  <input
+    type="date"
+    placeholder="Start Date"
+    value={startDate}
+    onChange={(e) => setStartDate(e.target.value)}
+    style={{ marginRight: '10px', padding: '5px' }}
+  />
+  <input
+    type="date"
+    placeholder="End Date"
+    value={endDate}
+    onChange={(e) => setEndDate(e.target.value)}
+    style={{ marginRight: '10px', padding: '5px' }}
+  />
+  <input
+    type="text"
+    placeholder="Search by Exe"
+    value={exe}
+    onChange={(e) => setExe(e.target.value)}
+    style={{ marginRight: '10px', padding: '5px' }}
+  />
+  <button onClick={searchInvoices} style={{ padding: '5px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>Search</button>
+</div>
+
         <button type="button" class="btn btn-outline-primary" disabled><a href="/add-invoice" >Add Invoice</a></button>
         <div className="all-invoice">
           {isLoading ? <Loader /> : ( // Show loader if isLoading is true, otherwise render the invoice table
