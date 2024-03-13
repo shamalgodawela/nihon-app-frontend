@@ -44,6 +44,7 @@ const AllInvoice = () => {
                     <th>Customer Code</th>
                     <th>Customer Address</th>
                     <th>Invoice Date</th>
+                    <th>Exe</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -55,6 +56,7 @@ const AllInvoice = () => {
                       <td>{invoice.code}</td>
                       <td>{invoice.address}</td>
                       <td>{invoice.invoiceDate}</td>
+                      <td>{invoice.exe}</td>
                       <td>
                         <Link to={`/invoice-temp/${invoice._id}`}>
                           <AiOutlineEye size={20} color={"purple"} />
