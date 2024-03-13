@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './addbulk.css'
 
 const AddbulkProduct = () => {
   const [productData, setProductData] = useState({
@@ -35,42 +36,43 @@ const AddbulkProduct = () => {
   };
 
   return (
-    <div>
-      <h2>Add Product</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Bulk Code:
-          <input
-            type="text"
-            name="bulkCode"
-            value={productData.bulkCode}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Quantity:
-          <input
-            type="number"
-            name="quantity"
-            value={productData.quantity}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Weight:
-          <input
-            type="number"
-            name="weight"
-            value={productData.weight}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <button type="submit">Add Product</button>
-      </form>
-    </div>
+    <div className="add-product-form">
+  <h2>Add Product</h2>
+  <form onSubmit={handleSubmit}>
+    <label>
+      Bulk Code:
+      <input
+        type="text"
+        name="bulkCode"
+        value={productData.bulkCode}
+        onChange={handleChange}
+        required
+      />
+    </label>
+    <label>
+      Quantity:
+      <input
+        type="number"
+        name="quantity"
+        value={productData.quantity}
+        onChange={handleChange}
+        required
+      />
+    </label>
+    <label>
+      Weight:
+      <input
+        type="number"
+        name="weight"
+        value={productData.weight}
+        onChange={handleChange}
+        required
+      />
+    </label>
+    <button type="submit">Add Product</button>
+  </form>
+</div>
+
   );
 };
 
