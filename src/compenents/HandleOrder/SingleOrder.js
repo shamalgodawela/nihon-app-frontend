@@ -11,7 +11,7 @@ const SingleOrder = () => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get(`https://nihon-inventory.onrender.com/orders/${id}`);
+        const response = await axios.get(`https://nihon-inventory.onrender.com/orders/${orderNumber}`);
         setOrder(response.data);
       } catch (error) {
         console.error('Error fetching order details:', error);
