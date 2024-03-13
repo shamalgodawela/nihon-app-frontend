@@ -5,6 +5,7 @@ import './single.css'
 import Footer from '../footer/Footer';
 import NavBar from '../sidebar/NavBar';
 const SingleOrder = () => {
+  const { orderNumber } = useParams();
     const { id } = useParams();
   const [order, setOrder] = useState(null);
 
