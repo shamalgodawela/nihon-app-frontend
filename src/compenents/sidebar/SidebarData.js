@@ -47,7 +47,7 @@ export const SidebarData = [
   },
   {
     title: 'Stores Raw Materials Details',
-    path: '',
+    path: '/allbulkproduct',
     icon: <GiMaterialsScience />,
     cName: 'nav-text'
   },

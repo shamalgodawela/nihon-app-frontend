@@ -39,6 +39,8 @@ import Sample from "./pages/invoice/InvoiceTemplate/Sample";
 import Additeams from "./pages/officeInvrntory/Additeams";
 import Getalloffice from "./pages/officeInvrntory/Getalloffice";
 import UpdateCustomerForm from "./pages/customer/Updatecus/UpdateCustomerForm";
+import Alldetails from "./pages/rawMaterials/Alldetails";
+
 
 
 
@@ -103,6 +105,8 @@ function App() {
     <Route path="/additems" element={<Additeams/>} />
     <Route path="/getallinven" element={<Getalloffice/>} />
     <Route path="/customer/update/:customerId" element={<UpdateCustomerForm />} />
+    <Route path="allbulkproduct" element={<Alldetails/>} />
+    
 
 
     
