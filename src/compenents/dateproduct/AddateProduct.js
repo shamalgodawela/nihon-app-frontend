@@ -4,7 +4,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const AddateProduct = () => {
-    
     const [formData, setFormData] = useState({
         GpnDate: '',
         GpnNumber: '',
@@ -14,6 +13,8 @@ const AddateProduct = () => {
         numberOfUnits: '',
         packsize: ''
     });
+
+    const [showProductDetails, setShowProductDetails] = useState(false);
 
     const handleChange = (e) => {
         setFormData({
@@ -48,47 +49,60 @@ const AddateProduct = () => {
         }
     };
 
-    
+    const handleGetProductDetails = async () => {
+        const productCode = formData.category; // Assuming productCode is the same as category
 
-const handleGetProductDetails = async () => {
-    const productCode = formData.category; // Assuming productCode is the same as category
-  
-    try {
-        const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
-        const product = response.data;
-  
-        // Update the product details in the form data state
+        try {
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
+            const product = response.data;
+
+            // Update the product details in the form data state
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                productName: product.name,
+                unitPrice: product.price,
+            }));
+
+            // Show success toast
+            toast.success('Product details fetched successfully', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            // Show product details fields
+            setShowProductDetails(true);
+        } catch (error) {
+            console.error('Failed to fetch product details', error.message);
+            // Show error toast
+            toast.error('Product not found', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
+
+    const handleRemoveProduct = () => {
+        // Reset the product details fields
         setFormData((prevFormData) => ({
             ...prevFormData,
-            productName: product.name,
-            unitPrice: product.price,
+            productName: '',
+            category: '',
+            unitPrice: '',
         }));
-  
-        // Show success toast
-        toast.success('Product details fetched successfully', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-    } catch (error) {
-        console.error('Failed to fetch product details', error.message);
-        // Show error toast
-        toast.error('Product not found', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-    }
-};
 
+        // Hide the product details fields
+        setShowProductDetails(false);
+    };
 
     return (
         <div className="add-product-container">
@@ -110,20 +124,23 @@ const handleGetProductDetails = async () => {
                     <button onClick={handleGetProductDetails}>Get Product Details</button>
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="productName">Product Name:</label>
-                    <input type="text" id="productName" name="productName" value={formData.productName} onChange={handleChange} required />
-                </div>
+                {showProductDetails && (
+                    <>
+                        <div className="form-group">
+                            <label htmlFor="productName">Product Name:</label>
+                            <input type="text" id="productName" name="productName" value={formData.productName} onChange={handleChange} required />
+                        </div>
 
-                
+                        <div className="form-group">
+                            <label htmlFor="unitPrice">Unit Price:</label>
+                            <input type="number" id="unitPrice" name="unitPrice" value={formData.unitPrice} onChange={handleChange} required />
+                        </div>
+                    </>
+                )}
+
                 <div className="form-group">
                     <label htmlFor="packsize">Pack Size:</label>
                     <input type="text" id="packsize" name="packsize" value={formData.packsize} onChange={handleChange} required />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="unitPrice">Unit Price:</label>
-                    <input type="number" id="unitPrice" name="unitPrice" value={formData.unitPrice} onChange={handleChange} required />
                 </div>
 
                 <div className="form-group">
@@ -132,6 +149,9 @@ const handleGetProductDetails = async () => {
                 </div>
 
                 <button className="submit-button" type="submit">Add Product</button>
+                {showProductDetails && (
+                    <button className="remove-product-button" onClick={handleRemoveProduct}>Remove Product</button>
+                )}
             </form>
         </div>
     );
