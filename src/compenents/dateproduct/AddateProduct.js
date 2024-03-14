@@ -4,7 +4,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const AddateProduct = () => {
-    
     const [formData, setFormData] = useState({
         GpnDate: '',
         GpnNumber: '',
@@ -48,47 +47,41 @@ const AddateProduct = () => {
         }
     };
 
-    
+    const handleGetProductDetails = async () => {
+        const productCode = formData.category;
 
-const handleGetProductDetails = async () => {
-    const productCode = formData.category; // Assuming productCode is the same as category
-  
-    try {
-        const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
-        const product = response.data;
-  
-        // Update the product details in the form data state
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            productName: product.name,
-            unitPrice: product.price,
-        }));
-  
-        // Show success toast
-        toast.success('Product details fetched successfully', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-    } catch (error) {
-        console.error('Failed to fetch product details', error.message);
-        // Show error toast
-        toast.error('Product not found', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-    }
-};
+        try {
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/category/${productCode}`);
+            const product = response.data;
 
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                productName: product.name,
+                unitPrice: product.price,
+            }));
+
+            toast.success('Product details fetched successfully', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } catch (error) {
+            console.error('Failed to fetch product details', error.message);
+            toast.error('Product not found', {
+                position: 'top-right',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    };
 
     return (
         <div className="add-product-container">
@@ -115,7 +108,6 @@ const handleGetProductDetails = async () => {
                     <input type="text" id="productName" name="productName" value={formData.productName} onChange={handleChange} required />
                 </div>
 
-                
                 <div className="form-group">
                     <label htmlFor="packsize">Pack Size:</label>
                     <input type="text" id="packsize" name="packsize" value={formData.packsize} onChange={handleChange} required />
