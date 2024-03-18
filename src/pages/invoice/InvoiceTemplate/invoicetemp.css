@@ -3,37 +3,33 @@
     body * {
         display: none;
     }
-    
+
     /* Show only the invoice table and its contents */
-    .invoice-container,
-    .table-container,
-    .invoice-body,
-    .invoice-body-bottom,
-    .invoice-body-info-item,
-    .invoice-body-info-item.border-bottom,
-    .invoice-body-info-item.border-bottom .info-container,
-    .info-container .info-item,
-    .info-item-td.text-end.text-bold,
-    .table-row,
-    .table-cell,
-    .table-cell1,
-    .table-cell-pay,
-    .table-cell-final,
     table,
     thead,
     tbody,
     tr,
     th,
     td {
-        display: block !important;
+        display: table !important;
         visibility: visible !important;
     }
-    
-    /* Adjust styles to fit printed page */
+
+    /* Optionally adjust styles to fit printed page */
+    table {
+        width: 100% !important;
+    }
+
+    /* Hide any unnecessary headers or footers */
     .image, .textheader {
         display: none !important; /* Hide header elements */
     }
-    
+
+    /* Adjust padding, margins, and other styles as necessary */
+    .invoice-wrapper {
+        margin: 0; /* Adjust margin to fit the table properly */
+    }
+
     /* Optionally add more CSS adjustments here to fit your specific needs */
 }
 
