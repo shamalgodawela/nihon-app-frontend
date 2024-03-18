@@ -32,7 +32,7 @@ const AllProducts = () => {
           <tr>
             <th>Bulk Code</th>
             <th>Quantity</th>
-            <th>Weight</th>
+            <th>Weight/volum</th>
             
             
             
