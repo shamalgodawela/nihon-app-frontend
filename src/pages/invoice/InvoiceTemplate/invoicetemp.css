@@ -18,6 +18,7 @@
     /* Optionally adjust styles to fit printed page */
     table {
         width: 100% !important;
+        margin: 0 auto !important;
     }
 
     /* Hide any unnecessary headers or footers */
