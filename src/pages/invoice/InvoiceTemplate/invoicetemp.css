@@ -1,43 +1,42 @@
-/* Add this CSS at the end to apply styles only for printing */
 @media print {
-    .image,
-    .textheader,
+    /* Hide all elements except the table and its contents */
+    body * {
+        display: none;
+    }
+    
+    /* Show only the invoice table and its contents */
     .invoice-container,
     .table-container,
+    .invoice-body,
+    .invoice-body-bottom,
+    .invoice-body-info-item,
+    .invoice-body-info-item.border-bottom,
+    .invoice-body-info-item.border-bottom .info-container,
+    .info-container .info-item,
+    .info-item-td.text-end.text-bold,
+    .table-row,
+    .table-cell,
+    .table-cell1,
     .table-cell-pay,
     .table-cell-final,
-    .invoice-btns {
-      display: none;
+    table,
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+        display: block !important;
+        visibility: visible !important;
     }
-  
-    .invoice-wrapper {
-      padding-top: 0;
-      padding-bottom: 0;
-      min-height: auto;
-      background-color: white; /* Set the background color for printing */
+    
+    /* Adjust styles to fit printed page */
+    .image, .textheader {
+        display: none !important; /* Hide header elements */
     }
-  
-    .invoice {
-      border: none;
-      padding: 0;
-      margin: 0;
-    }
-  
-    .invoice-body-info-item .info-item-td {
-      background-color: white; /* Set the background color for printing */
-    }
-  
-    #print-area {
-      border: none;
-      padding: 0;
-      max-width: none;
-      margin: 0;
-    }
-  }
-  
+    
+    /* Optionally add more CSS adjustments here to fit your specific needs */
+}
 
-
-*,
 *::after,
 *::before{
     padding: 0;
