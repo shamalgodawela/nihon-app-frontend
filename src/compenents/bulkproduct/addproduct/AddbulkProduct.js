@@ -8,7 +8,9 @@ const AddbulkProduct = () => {
     bulkCode: '',
     quantity: '',
     weight: '',
-    products: [{ productCode: '', productName: '' }]
+    weightsh:'',
+    
+    products: [{ productCode: '', weight: '', totweight: '' }]
   });
   const [showProductFields, setShowProductFields] = useState(false);
 
@@ -33,10 +35,11 @@ const AddbulkProduct = () => {
   const handleAddProduct = () => {
     setProductData({
       ...productData,
-      products: [...productData.products, { productCode: '', productName: '' }]
+      products: [...productData.products, { productCode: '', weight: '', totweight: '' }]
     });
     setShowProductFields(true);
   };
+  
   const handleRemoveProduct = (index) => {
     const updatedProducts = [...productData.products];
     updatedProducts.splice(index, 1);
@@ -54,7 +57,9 @@ const AddbulkProduct = () => {
         bulkCode: '',
         quantity: '',
         weight: '',
-        products: [{ productCode: '', productName: '' }]
+        weightsh:'',
+        
+        products: [{ productCode: '', weight: '', totweight: '' }]
       });
       setShowProductFields(false);
     } catch (error) {
@@ -87,8 +92,19 @@ const AddbulkProduct = () => {
             required
           />
         </label>
+        
         <label>
-          Weight:
+          weight:
+          <input
+            type="text"
+            name="weightsh"
+            value={productData.weightsh}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Weight Size:
           <input
             type="number"
             name="weight"
@@ -97,6 +113,7 @@ const AddbulkProduct = () => {
             required
           />
         </label>
+        
         {showProductFields && (
           <>
             {productData.products.map((product, index) => (
@@ -111,16 +128,7 @@ const AddbulkProduct = () => {
                     required
                   />
                 </label>
-                <label>
-                  Product Name:
-                  <input
-                    type="text"
-                    name="productName"
-                    value={product.productName}
-                    onChange={(e) => handleProductChange(index, e)}
-                    required
-                  />
-                </label>
+                
                 {index > 0 && <button type="button" onClick={() => handleRemoveProduct(index)}>Remove Product</button>}
               </div>
             ))}

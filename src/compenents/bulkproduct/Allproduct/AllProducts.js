@@ -27,23 +27,26 @@ const AllProducts = () => {
     {isLoading ? (
       <p>Loading...</p>
     ) : (
-      <table className="product-table"> {/* Apply CSS class to the table */}
+      <table className="product-table"> 
         <thead>
           <tr>
             <th>Bulk Code</th>
             <th>Quantity</th>
             <th>Weight</th>
-            <th>Total Weight</th>
+            
+            
+            
           </tr>
         </thead>
         <tbody>
           {products.map(product => (
             <tr key={product._id}>
               <td>{product.bulkCode}</td>
-              <td>{product.quantity}</td>
-              <td>{product.weight}</td>
-              <td>{product.totweight}</td>
-              {/* Add more table cells if needed */}
+              <td>{parseFloat(product.quantity).toFixed(1)}</td>
+              <td>{product.weightsh}</td>
+             
+           
+             
             </tr>
           ))}
         </tbody>
