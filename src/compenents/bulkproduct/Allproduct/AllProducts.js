@@ -42,7 +42,7 @@ const AllProducts = () => {
           {products.map(product => (
             <tr key={product._id}>
               <td>{product.bulkCode}</td>
-              <td>{parseFloat(product.quantity).toFixed(1)}</td>
+              <td>{parseFloat(product.quantity).toFixed(2)}</td>
               <td>{product.weightsh}</td>
              
            
