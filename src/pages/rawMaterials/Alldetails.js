@@ -7,7 +7,7 @@ import Dropdown from '../../compenents/dropdowwn/Dropdown'
 const Alldetails = () => {
   return (
     <div>
-        <NavBar/><br/><br/>
+        <NavBar/>&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>
         <Dropdown/><br/><br/>
         <AllProducts/>
         <br/><br/>
