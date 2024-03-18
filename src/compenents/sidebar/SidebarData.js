@@ -46,7 +46,7 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Stores Raw Materials Details',
+    title: 'Bulk Products Details',
     path: '/allbulkproduct',
     icon: <GiMaterialsScience />,
     cName: 'nav-text'
