@@ -1,9 +1,5 @@
 @media print {
-    /* Hide all elements except the table and its contents */
-    body * {
-        display: none;
-    }
-
+   
     /* Show only the invoice table and its contents */
     table,
     thead,
