@@ -84,6 +84,7 @@ export default function InvoiceTemp() {
   const allRows = [...filledRows, ...emptyRows];
 
   return (
+    <body>
     <div>
       <a href="/all-invoices">Go Back</a><br/>
       <ReactToPrint
@@ -234,5 +235,6 @@ export default function InvoiceTemp() {
         </div>
       </div>
     </div>
+    </body>
   );
 }
