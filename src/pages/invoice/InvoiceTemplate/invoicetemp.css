@@ -1,3 +1,42 @@
+/* Add this CSS at the end to apply styles only for printing */
+@media print {
+    .image,
+    .textheader,
+    .invoice-container,
+    .table-container,
+    .table-cell-pay,
+    .table-cell-final,
+    .invoice-btns {
+      display: none;
+    }
+  
+    .invoice-wrapper {
+      padding-top: 0;
+      padding-bottom: 0;
+      min-height: auto;
+      background-color: white; /* Set the background color for printing */
+    }
+  
+    .invoice {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    .invoice-body-info-item .info-item-td {
+      background-color: white; /* Set the background color for printing */
+    }
+  
+    #print-area {
+      border: none;
+      padding: 0;
+      max-width: none;
+      margin: 0;
+    }
+  }
+  
+
+
 *,
 *::after,
 *::before{
