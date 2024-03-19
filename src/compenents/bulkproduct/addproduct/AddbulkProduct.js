@@ -9,6 +9,7 @@ const AddbulkProduct = () => {
     quantity: '',
     weight: '',
     weightsh:'',
+    name:'',
     
     products: [{ productCode: '', weight: '', totweight: '' }]
   });
@@ -58,6 +59,7 @@ const AddbulkProduct = () => {
         quantity: '',
         weight: '',
         weightsh:'',
+        name:'',
         
         products: [{ productCode: '', weight: '', totweight: '' }]
       });
@@ -78,6 +80,16 @@ const AddbulkProduct = () => {
             type="text"
             name="bulkCode"
             value={productData.bulkCode}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Bulk Name:
+          <input
+            type="text"
+            name="name"
+            value={productData.name}
             onChange={handleChange}
             required
           />

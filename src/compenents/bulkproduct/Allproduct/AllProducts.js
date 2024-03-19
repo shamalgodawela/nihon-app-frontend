@@ -31,6 +31,7 @@ const AllProducts = () => {
         <thead>
           <tr>
             <th>Bulk Code</th>
+            <th>Bulk Name</th>
             <th>Quantity</th>
             <th>Weight/volum</th>
             
@@ -42,6 +43,7 @@ const AllProducts = () => {
           {products.map(product => (
             <tr key={product._id}>
               <td>{product.bulkCode}</td>
+              <td>{product.name}</td>
               <td>{parseFloat(product.quantity).toFixed(2)}</td>
               <td>{product.weightsh}</td>
              
