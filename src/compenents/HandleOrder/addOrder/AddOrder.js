@@ -38,9 +38,31 @@ const AddOrder = ({ onAddOrder }) => {
             }
         }
     };
+    const fetchLastOrderNumberNCP = async () => {
+      if (orderData.exe === 'Mr.Chameera') {
+          try {
+              const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastorder/ncp`);
+              setLastOrderNumber(response.data.lastOrderNumber);
+          } catch (error) {
+              console.error('Error fetching last order number:', error);
+          }
+      }
+  };
+  const fetchLastOrderNumberUPC = async () => {
+    if (orderData.exe === 'Mr.Sanjeewa') {
+        try {
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastorder/upc`);
+            setLastOrderNumber(response.data.lastOrderNumber);
+        } catch (error) {
+            console.error('Error fetching last order number:', error);
+        }
+    }
+};
 
       fetchLastOrderNumber();
       fetchLastOrderNumberSU();
+      fetchLastOrderNumberNCP();
+      fetchLastOrderNumberUPC();
   }, [orderData.exe]);
    
 
@@ -152,12 +174,7 @@ const AddOrder = ({ onAddOrder }) => {
     <option value="Mr.Chameera">Mr.Chameera</option> 
     <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
   </select>
-                                                                                                                                                                
-</div>
-  <label className="form-label">Order Number:</label>
-  <input type="text" className="form-input" name="orderNumber" value={orderData.orderNumber} onChange={(e) => setOrderData({ ...orderData, orderNumber: e.target.value })} />
-</div>
-{orderData.exe === 'Mr.Ahamed' && (
+  {orderData.exe === 'Mr.Ahamed' && (
                 <div className="form-row">
                     <p className="last-order-number">
                         Last Order Number (Starting with EA): {lastOrderNumber}
@@ -167,10 +184,30 @@ const AddOrder = ({ onAddOrder }) => {
 {orderData.exe === 'Mr.Dasun' && (
                 <div className="form-row">
                     <p className="last-order-number">
-                        Last Order Number (Starting with EA): {lastOrderNumber}
+                        Last Order Number (Starting with SU): {lastOrderNumber}
                     </p>
                 </div>
             )}
+{orderData.exe === 'Mr.Chameera' && (
+                <div className="form-row">
+                    <p className="last-order-number">
+                        Last Order Number (Starting with NCP): {lastOrderNumber}
+                    </p>
+                </div>
+            )}
+{orderData.exe === 'Mr.Sanjeewa' && (
+                <div className="form-row">
+                    <p className="last-order-number">
+                        Last Order Number (Starting with UPC): {lastOrderNumber}
+                    </p>
+                </div>
+            )}
+                                                                                                                                                                
+</div>
+  <label className="form-label">Order Number:</label>
+  <input type="text" className="form-input" name="orderNumber" value={orderData.orderNumber} onChange={(e) => setOrderData({ ...orderData, orderNumber: e.target.value })} />
+</div>
+
 <div className="form-row">
   <label className="form-label">Order Date:</label>
   <input type="date" className="form-input" name="orderDate" value={orderData.orderDate} onChange={(e) => setOrderData({ ...orderData, orderDate: e.target.value })} />
