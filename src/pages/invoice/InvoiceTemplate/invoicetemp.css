@@ -1,35 +1,3 @@
-@media print {
-   
-    /* Show only the invoice table and its contents */
-    table,
-    thead,
-    tbody,
-    tr,
-    th,
-    td {
-        display: table !important;
-        visibility: visible !important;
-    }
-
-    /* Optionally adjust styles to fit printed page */
-    table {
-        width: 100% !important;
-        margin: 0 auto !important;
-    }
-
-    /* Hide any unnecessary headers or footers */
-    .image, .textheader {
-        display: none !important; /* Hide header elements */
-    }
-
-    /* Adjust padding, margins, and other styles as necessary */
-    .invoice-wrapper {
-        margin: 0; /* Adjust margin to fit the table properly */
-    }
-
-    /* Optionally add more CSS adjustments here to fit your specific needs */
-}
-
 *::after,
 *::before{
     padding: 0;
