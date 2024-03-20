@@ -21,7 +21,7 @@ const AddOrder = ({ onAddOrder }) => {
       const fetchLastOrderNumber = async () => {
           if (orderData.exe === 'Mr.Ahamed') {
               try {
-                  const response = await axios.get('your_endpoint_to_fetch_last_order_number_starting_with_EA');
+                  const response = await axios.get(`https://nihon-inventory.onrender.com/lastorder/ea`);
                   setLastOrderNumber(response.data.lastOrderNumber);
               } catch (error) {
                   console.error('Error fetching last order number:', error);
