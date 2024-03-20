@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import './addorder.css'
 const AddOrder = ({ onAddOrder }) => {
@@ -15,14 +15,14 @@ const AddOrder = ({ onAddOrder }) => {
         exe: '',
         products: [{ productCode: '', productName: '', quantity: '', labelPrice: '', discount: '', unitPrice: '', invoiceTotal: '' }]
     });
+    const [lastOrderNumber, setLastOrderNumber] = useState('');
 
     useEffect(() => {
       const fetchLastOrderNumber = async () => {
           if (orderData.exe === 'Mr.Ahamed') {
               try {
-                  const response = await axios.get(`https://nihon-inventory.onrender.com/lastorder/ea`);
-                  const lastOrderNumber = response.data;
-                  setOrderData({ ...orderData, orderNumber: lastOrderNumber });
+                  const response = await axios.get('your_endpoint_to_fetch_last_order_number_starting_with_EA');
+                  setLastOrderNumber(response.data.lastOrderNumber);
               } catch (error) {
                   console.error('Error fetching last order number:', error);
               }
@@ -34,6 +34,8 @@ const AddOrder = ({ onAddOrder }) => {
    
 
     const handleChange = (e, index) => {
+      
+      
         const { name, value } = e.target;
         const products = [...orderData.products];
         products[index][name] = value;
