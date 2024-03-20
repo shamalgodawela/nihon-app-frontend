@@ -111,8 +111,20 @@ const AddOrder = ({ onAddOrder }) => {
     return (
         <div className="form-container">
         <form onSubmit={handleSubmit}>
+
             <div className="form-row">
                 <h1 className='h1order'>Order details</h1>
+                <div className="form-row">
+  <label className="form-label">Exe:</label>
+  <select className="form-input" name="exe" value={orderData.exe} onChange={(e) => setOrderData({ ...orderData, exe: e.target.value })} >
+    <option value="">Select EXE:</option> 
+    <option value="Mr.Ahamed">Mr.Ahamed</option> 
+    <option value="Mr.Dasun">Mr.Dasun</option> 
+    <option value="Mr.Chameera">Mr.Chameera</option> 
+    <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
+  </select>
+                                                                                                                                                                
+</div>
   <label className="form-label">Order Number:</label>
   <input type="text" className="form-input" name="orderNumber" value={orderData.orderNumber} onChange={(e) => setOrderData({ ...orderData, orderNumber: e.target.value })} />
 </div>
@@ -120,10 +132,6 @@ const AddOrder = ({ onAddOrder }) => {
   <label className="form-label">Order Date:</label>
   <input type="date" className="form-input" name="orderDate" value={orderData.orderDate} onChange={(e) => setOrderData({ ...orderData, orderDate: e.target.value })} />
 </div>
-        {/* <div className="form-row">
-  <label className="form-label">Invoice Number:</label>
-  <input type="text" className="form-input" name="invoiceNumber" value={orderData.invoiceNumber} onChange={(e) => setOrderData({ ...orderData, invoiceNumber: e.target.value })}/>
-</div> */}
 <div className="form-row">
   <label className="form-label">Customer Code:</label>
   <input type="text" className="form-input" name="code" value={orderData.code} onChange={(e) => setOrderData({ ...orderData, code: e.target.value })} />
@@ -141,22 +149,7 @@ const AddOrder = ({ onAddOrder }) => {
   <label className="form-label">Contact:</label>
   <input type="text" className="form-input" name="contact" value={orderData.contact} onChange={(e) => setOrderData({ ...orderData, contact: e.target.value })} />
 </div>
-{/* <div className="form-row">
-  <label className="form-label">Invoice Date:</label>
-  <input type="date" className="form-input" name="invoiceDate" value={orderData.invoiceDate} onChange={(e) => setOrderData({ ...orderData, invoiceDate: e.target.value })} readOnly />
-</div> */}
 
-<div className="form-row">
-  <label className="form-label">Exe:</label>
-  <select className="form-input" name="exe" value={orderData.exe} onChange={(e) => setOrderData({ ...orderData, exe: e.target.value })} >
-    <option value="">Select EXE:</option> 
-    <option value="Mr.Ahamed">Mr.Ahamed</option> 
-    <option value="Mr.Dasun">Mr.Dasun</option> 
-    <option value="Mr.Chameera">Mr.Chameera</option> 
-    <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
-  </select>
-                                                                                                                                                                
-</div>
 <h1 className='h1order'>Product details</h1>
             {/* Render product input fields */}
             <div className="product-container">
