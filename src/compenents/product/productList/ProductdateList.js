@@ -91,7 +91,7 @@ const ProductdateList = () => {
                 <tr {...row.getRowProps()} style={{ background: row.index % 2 === 0 ? '#fff' : '#f1f1f1' }}>
                   {row.cells.map(cell => {
                     return (
-                      <td {...cell.getCellProps()} style={{ padding: '8px', border: 'solid 1px gray' }}>
+                      <td {...cell.getCellProps()} style={{ padding: '8px', border: 'solid 1px gray' }}>RS:
                         {cell.render('Cell')}
                       </td>
                     );
