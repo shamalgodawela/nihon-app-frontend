@@ -28,8 +28,19 @@ const AddOrder = ({ onAddOrder }) => {
               }
           }
       };
+      const fetchLastOrderNumberSU = async () => {
+        if (orderData.exe === 'Mr.Dasun') {
+            try {
+                const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastorder/su`);
+                setLastOrderNumber(response.data.lastOrderNumber);
+            } catch (error) {
+                console.error('Error fetching last order number:', error);
+            }
+        }
+    };
 
       fetchLastOrderNumber();
+      fetchLastOrderNumberSU();
   }, [orderData.exe]);
    
 
@@ -147,6 +158,13 @@ const AddOrder = ({ onAddOrder }) => {
   <input type="text" className="form-input" name="orderNumber" value={orderData.orderNumber} onChange={(e) => setOrderData({ ...orderData, orderNumber: e.target.value })} />
 </div>
 {orderData.exe === 'Mr.Ahamed' && (
+                <div className="form-row">
+                    <p className="last-order-number">
+                        Last Order Number (Starting with EA): {lastOrderNumber}
+                    </p>
+                </div>
+            )}
+{orderData.exe === 'Mr.Dasun' && (
                 <div className="form-row">
                     <p className="last-order-number">
                         Last Order Number (Starting with EA): {lastOrderNumber}
