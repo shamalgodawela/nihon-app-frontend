@@ -40,6 +40,24 @@ const InvoiceForm = () => {
     GatePassNo: '',
     VehicleNo:'',
   });
+
+
+
+  const [lastInvoiceNumber, setLastInvoiceNumber] = useState('');
+
+  // Fetch last invoice number on component mount
+  useEffect(() => {
+    const fetchLastInvoiceNumber = async () => {
+      try {
+        const response = await axios.get('https://nihon-inventory.onrender.com/api/lastInvoiceNumber');
+        setLastInvoiceNumber(response.data.lastInvoiceNumber);
+      } catch (error) {
+        console.error('Failed to fetch last invoice number:', error.message);
+      }
+    };
+
+    fetchLastInvoiceNumber();
+  }, []);
   
   const [calculatedValues, setCalculatedValues] = useState({
     unitPrice: 0,
@@ -455,6 +473,7 @@ const InvoiceForm = () => {
         />
         
       </div>
+      <p>Last Invoice Number: {lastInvoiceNumber}</p>
       
 
           <div>
