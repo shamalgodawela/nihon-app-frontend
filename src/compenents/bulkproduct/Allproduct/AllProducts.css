@@ -10,16 +10,16 @@
   }
   
   .product-table th {
-    background-color: #f2f2f2;
+    background-color: #545454;
     text-align: left;
   }
   
   .product-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #c9c7c7;
   }
   
   .product-table tr:hover {
-    background-color: #e9e9e9;
+    background-color: #c8c6c6;
   }
 .bulkh{
     text-align: center;

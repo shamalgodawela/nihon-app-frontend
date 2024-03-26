@@ -21,6 +21,8 @@ const AllProducts = () => {
     fetchProducts();
   }, []);
 
+  
+
   return (
     <div>
     <h2 className='bulkh'>Bulk Products</h2>
@@ -32,8 +34,9 @@ const AllProducts = () => {
           <tr>
             <th>Bulk Code</th>
             <th>Bulk Name</th>
-            <th>Quantity</th>
-            <th>Weight/volum</th>
+            <th>Number of Quantities</th>
+            <th>Unit Weight/volume</th>
+            <th>Total Weight(kg)/volume(L)</th>
             
             
             
@@ -46,6 +49,10 @@ const AllProducts = () => {
               <td>{product.name}</td>
               <td>{parseFloat(product.quantity).toFixed(2)}</td>
               <td>{product.weightsh}</td>
+              <td>{parseFloat(product.weightsh) * product.quantity}</td>
+
+
+             
              
            
              
