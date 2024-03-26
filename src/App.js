@@ -41,6 +41,7 @@ import Getalloffice from "./pages/officeInvrntory/Getalloffice";
 import UpdateCustomerForm from "./pages/customer/Updatecus/UpdateCustomerForm";
 import Alldetails from "./pages/rawMaterials/Alldetails";
 import Addbulk from "./pages/rawMaterials/Addbulk";
+import AddReturnDetails from "./pages/returnNotes/AddReturnDetails";
 
 
 
@@ -108,6 +109,7 @@ function App() {
     <Route path="/customer/update/:customerId" element={<UpdateCustomerForm />} />
     <Route path="allbulkproduct" element={<Alldetails/>} />
     <Route path="/addbulkproduct" element={<Addbulk/>} />
+    <Route path="/addreturn" element={<AddReturnDetails/>} />
     
 
 
