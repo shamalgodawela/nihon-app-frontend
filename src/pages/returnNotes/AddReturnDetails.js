@@ -53,33 +53,41 @@ const AddReturnDetails = () => {
                     <input type="text" id="invoiceNumber" name="invoiceNumber" value={returnData.invoiceNumber} onChange={handleChange} />
                 </div>
                 {returnData.products.map((product, index) => (
-                    <div key={index}>
-                        <label htmlFor={`productCode${index}`}>Product Code:</label>
-                        <input type="text" id={`productCode${index}`} name={`productCode${index}`} value={product.productCode} onChange={(e) => handleProductChange(e, index)} />
-                        <label htmlFor={`quantity${index}`}>Quantity:</label>
-                        <input type="number" id={`quantity${index}`} name={`quantity${index}`} value={product.quantity} onChange={(e) => handleProductChange(e, index)} />
-                        <label htmlFor={`unitPrice${index}`}>Unit Price:</label>
-                        <input type="number" id={`unitPrice${index}`} name={`unitPrice${index}`} value={product.unitPrice} onChange={(e) => handleProductChange(e, index)} />
-                        <label htmlFor={`returntotal${index}`}>Return Total:</label>
-                        <input type="number" id={`returntotal${index}`} name={`returntotal${index}`} value={product.returntotal} onChange={(e) => handleProductChange(e, index)} />
-                    </div>
-                ))}
-                <div>
-                    <label htmlFor="customer">Customer:</label>
-                    <input type="text" id="customer" name="customer" value={returnData.customer} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="reason">Reason:</label>
-                    <textarea id="reason" name="reason" value={returnData.reason} onChange={handleChange}></textarea>
-                </div>
-                <div>
-                    <label htmlFor="date">Date:</label>
-                    <input type="date" id="date" name="date" value={returnData.date} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="remarks">Remarks:</label>
-                    <textarea id="remarks" name="remarks" value={returnData.remarks} onChange={handleChange}></textarea>
-                </div>
+    <div key={index}>
+        <label htmlFor={`productCode${index}`}>Product Code:</label>
+        <input type="text" id={`productCode${index}`} name={`productCode${index}`} value={product.productCode} onChange={(e) => handleProductChange(e, index)} />
+        
+        <label htmlFor={`quantity${index}`}>Quantity:</label>
+        <input type="number" id={`quantity${index}`} name={`quantity${index}`} value={product.quantity} onChange={(e) => handleProductChange(e, index)} />
+        
+        <label htmlFor={`unitPrice${index}`}>Unit Price:</label>
+        <input type="number" id={`unitPrice${index}`} name={`unitPrice${index}`} value={product.unitPrice} onChange={(e) => handleProductChange(e, index)} />
+        
+        <label htmlFor={`returntotal${index}`}>Return Total:</label>
+        <input type="number" id={`returntotal${index}`} name={`returntotal${index}`} value={product.returntotal} onChange={(e) => handleProductChange(e, index)} />
+    </div>
+))}
+
+<div>
+    <label htmlFor="customer">Customer:</label>
+    <input type="text" id="customer" name="customer" value={returnData.customer} onChange={handleChange} />
+</div>
+
+<div>
+    <label htmlFor="reason">Reason:</label>
+    <textarea id="reason" name="reason" value={returnData.reason} onChange={handleChange}></textarea>
+</div>
+
+<div>
+    <label htmlFor="date">Date:</label>
+    <input type="date" id="date" name="date" value={returnData.date} onChange={handleChange} />
+</div>
+
+<div>
+    <label htmlFor="remarks">Remarks:</label>
+    <textarea id="remarks" name="remarks" value={returnData.remarks} onChange={handleChange}></textarea>
+</div>
+
                 <button type="submit">Add Return Details</button>
             </form>
         </div>

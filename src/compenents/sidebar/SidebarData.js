@@ -62,17 +62,5 @@ export const SidebarData = [
   path: '/getallinven',
   icon: <SiHomeassistantcommunitystore />,
   cName: 'nav-text'
-},
-{
-  title: 'return',
-  path: '/addreturn',
-  icon: <SiHomeassistantcommunitystore />,
-  cName: 'nav-text'
-},
-
-
-  
- 
-
-  
+},  
 ];
