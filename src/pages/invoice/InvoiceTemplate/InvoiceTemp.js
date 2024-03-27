@@ -142,7 +142,7 @@ export default function InvoiceTemp() {
             <div className="table-container">
               <div className="table-row">
                 <div className="table-cell"><span class="label">Mode of Payment:</span>{invoice.ModeofPayment}</div>
-                <div className="table-cell"><span class="label">Terms of Payment:</span>{invoice.TermsofPayment}</div>
+                <div className="table-cell"><span class="label">Terms of Payment:</span>{invoice.TermsofPayment} days</div>
                 <div className="table-cell with-space"><span class="label">Due date:</span>{invoice.Duedate}</div>
               </div>
             </div>
