@@ -61,7 +61,8 @@ ul li{
 .ordt{
     margin-right:2.1cm;
     font-weight: bold;
-    color: #000000;margin-top: 0.5cm;
+    color: #000000;
+    margin-top: 0.9cm;
     
 }
 #tdtext{
@@ -72,13 +73,13 @@ ul li{
    
 }
 #ordate{
-    margin-right:2.1cm;
+    margin-right:1.8cm;
    
     
 
 }
 #orexe{
-    margin-right:2.1cm;
+    margin-right:1.9cm;
     margin-top: 0.2cm;
 }
 #orinvoice{
@@ -87,7 +88,7 @@ ul li{
 
 }
 #oridate{
-    margin-right:2.1cm;
+    margin-right:1.8cm;
     margin-top: 0.2cm;
 
 }
