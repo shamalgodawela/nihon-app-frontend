@@ -45,36 +45,40 @@ ul li{
     
 }
 .licus{
-    margin-top:0.5cm;
+    margin-top:0.2cm;
 }
 .text-boldorder{
     visibility:hidden;
 }
 .ordt{
-    margin-top:0.7cm;
+    margin-right:2.1cm;
+    
 }
 #tdtext{
     visibility: hidden;
 }
 #ornumber {
-    margin-right:0.6cm;
+    margin-right:2.1cm;
    
 }
 #ordate{
-    margin-right:0.6cm;
+    margin-right:2.1cm;
+   
     
 
 }
 #orexe{
-    margin-right:0.6cm;
-
+    margin-right:2.1cm;
+    margin-top: 0.2cm;
 }
 #orinvoice{
-    margin-right:0.6cm;
+    margin-right:2.1cm;
+    
 
 }
 #oridate{
-    margin-right:0.6cm;
+    margin-right:2.1cm;
+    margin-top: 0.2cm;
 
 }
 .label {
