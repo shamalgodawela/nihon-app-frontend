@@ -84,7 +84,7 @@ ul li{
 }
 #orinvoice{
     margin-right:2.1cm;
-    margin-top: 0.8cm;
+    margin-top: 0.6cm;
     
 
 }
@@ -161,7 +161,7 @@ body{
     width: 100%;
 }
 .invoice-body table td, .invoice-body table th{
-    padding: 12px;
+    padding: 7px;
 }
 .invoice-body table tr{
     border-bottom:1px solid transparent;
