@@ -46,12 +46,22 @@ ul li{
 }
 .licus{
     margin-top:0.2cm;
+    font-weight: bold;
+    color: #000000;
+}
+.cusd{
+    font-weight: bold;
+    color: #000000;
+    
+
 }
 .text-boldorder{
     visibility:hidden;
 }
 .ordt{
     margin-right:2.1cm;
+    font-weight: bold;
+    color: #000000;
     
 }
 #tdtext{
@@ -83,6 +93,7 @@ ul li{
 }
 .label {
     visibility: hidden;
+    font-weight:bold;
 }
 .table-cell{
     visibility: hidden;
@@ -90,6 +101,7 @@ ul li{
 .table-cell-final{
     visibility:hidden;
 }
+
 
 
 
@@ -255,6 +267,10 @@ body{
   width: 400px; /* Adjust the width as needed */
   margin-bottom: 0px;
 }
+.info-item-tot{
+    margin-right: 1.5cm;
+}
+
 
 .subject {
   margin: 0; /* Reset margin for the paragraph */

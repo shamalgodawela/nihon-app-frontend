@@ -121,19 +121,19 @@ export default function InvoiceTemp() {
                   <ul>
                     <li class='text-bold1'>Customer Details</li>
                     <li className="licus"><span class="label">Code:</span>{invoice.code}</li>
-                    <li><span class="label">Name:</span>{invoice.customer}</li>
-                    <li><span class="label">Address:</span>{invoice.address}</li>
-                    <li><span class="label">contact:</span>{invoice.contact}</li>
+                    <li className='cusd'><span class="label">Name:</span>{invoice.customer}</li>
+                    <li className='cusd'><span class="label">Address:</span>{invoice.address}</li>
+                    <li className='cusd'><span class="label">contact:</span>{invoice.contact}</li>
                   </ul>
                 </div>
                 <div class="invoice-head-bottom-right">
                   <ul class="text-end">
                     <li class='text-boldorder'>Order Details</li>
-                    <li id='ornumber'><span class="label">Order Number:</span>{invoice.orderNumber}</li>
-                    <li id='ordate'><span class="label">Date:</span>{invoice.orderDate}</li>
-                    <li id='orexe'><span  class="label">Exe:</span>{invoice.exe}</li>
-                    <li className="ordt" id='orinvoice'><span class="label">Invoice No:</span>{invoice.invoiceNumber}</li>
-                    <li id='oridate'><span class="label">Date:</span>{invoice.invoiceDate}</li>
+                    <li className='cusd' id='ornumber'><span class="label">Order Number:</span>{invoice.orderNumber}</li>
+                    <li className='cusd' id='ordate'><span class="label">Date:</span>{invoice.orderDate}</li>
+                    <li className='cusd' id='orexe'><span  class="label">Exe:</span>{invoice.exe}</li>
+                    <li  className="ordt" id='orinvoice'><span class="label">Invoice No:</span>{invoice.invoiceNumber}</li>
+                    <li className='cusd' id='oridate'><span class="label">Date:</span>{invoice.invoiceDate}</li>
                   </ul>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Goods issued by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second"><span class="label" >Total</span>RS{calculateTaxtot()}</div>
+                      <div className="info-item-tot" id="second"><span class="label" >Total</span>RS{calculateTaxtot()}</div>
                     </div>
                   </div>
                 </div>
