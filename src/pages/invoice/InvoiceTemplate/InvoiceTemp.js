@@ -64,10 +64,10 @@ export default function InvoiceTemp() {
       <td>{product.productCode}</td>
       <td>{product.productName}</td>
       <td>{product.quantity}</td>
-      <td>${product.labelPrice}</td>
+      <td>RS{product.labelPrice.toFixed(2)}</td>
       <td>{product.discount}</td>
-      <td>${product.unitPrice}</td>
-      <td>${product.invoiceTotal}</td>
+      <td>RS{product.unitPrice.toFixed(2)}</td>
+      <td>RS{product.invoiceTotal.toFixed(2)}</td>
     </tr>
   ));
   const emptyRows = Array.from({ length: emptyRowsCount }, (_, index) => (
@@ -170,7 +170,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Invoiced by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>RS{calculateTotal()}</div>
+                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>RS{calculateTotal().toFixed(2)}</div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item border-bottom">
