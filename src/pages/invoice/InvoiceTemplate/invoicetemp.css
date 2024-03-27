@@ -1,3 +1,6 @@
+
+
+
 *::after,
 *::before{
     padding: 0;
@@ -18,7 +21,9 @@ ul li{
     margin: 2px 0;
 }
 
-/* text colors */
+.subject{
+    visibility:hidden;
+}
 .text-dark{
     color: var(--dark-color);
 }
@@ -34,17 +39,65 @@ ul li{
 .text-start{
     text-align: left;
 }
-.text-bold{
+.text-bold1 {
     font-weight: 700;
+    visibility: hidden;
+    
 }
-/* hr line */
+.licus{
+    margin-top:0.5cm;
+}
+.text-boldorder{
+    visibility:hidden;
+}
+.ordt{
+    margin-top:0.7cm;
+}
+#tdtext{
+    visibility: hidden;
+}
+#ornumber {
+    margin-right:0.6cm;
+   
+}
+#ordate{
+    margin-right:0.6cm;
+    
+
+}
+#orexe{
+    margin-right:0.6cm;
+
+}
+#orinvoice{
+    margin-right:0.6cm;
+
+}
+#oridate{
+    margin-right:0.6cm;
+
+}
+.label {
+    visibility: hidden;
+}
+.table-cell{
+    visibility: hidden;
+}
+.table-cell-final{
+    visibility:hidden;
+}
+
+
+
+
+
 .hr{
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
 }
 /* border-bottom */
 .border-bottom{
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom:1px solid transparent;
 }
 
 body{
@@ -64,7 +117,7 @@ body{
     margin-left: auto;
     background-color: var(--white-color);
     padding: 70px;
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid transparent;
     border-radius: 5px;
     min-height: 920px;
 }
@@ -80,7 +133,7 @@ body{
     padding: 16px 0;
 }
 .invoice-body{
-    border: 1px solid rgb(0, 0, 0);
+    border:1px solid transparent;
     border-radius: 4px;
     overflow: hidden;
 }
@@ -93,7 +146,7 @@ body{
     padding: 12px;
 }
 .invoice-body table tr{
-    border-bottom: 1px solid rgb(0, 0, 0);
+    border-bottom:1px solid transparent;
 }
 .invoice-body table thead{
     background-color: rgba(0, 0, 0, 0.02);
@@ -121,7 +174,7 @@ body{
     padding: 3px 9px;
     color: var(--dark-color);
     font-family: inherit;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border:1px solid transparent;
     cursor: pointer;
 }
 
@@ -150,29 +203,31 @@ body{
 
 .table-cell {
  
-  padding: 8px; /* Adjust padding as needed */
-  border: 1px solid #000000; /* Optional: Add borders for better visualization */
-  width: 500px; /* Adjust the width as needed */
+  padding: 8px; 
+  border: 1px solid transparent;
+  width: 500px; 
 }
 .table-cell1 {
  
-    padding: 8px; /* Adjust padding as needed */
-    border: 1px solid #00000080; /* Optional: Add borders for better visualization */
-    width: 400px; /* Adjust the width as needed */
+    padding: 8px;
+    border:1px solid transparent;
+
+    width: 400px; 
     height: 40px;
   }
 .table-cell-pay{
   flex: 1;
   padding: 5px; /* Adjust padding as needed */
-  border: 1px solid #000000; /* Optional: Add borders for better visualization */
+  border:1px solid transparent;
   margin-bottom: 0px;
   text-align: center;
+  visibility: hidden;
 
 }
 .table-cell-final{
   flex: 1;
   padding: 5px; /* Adjust padding as needed */
-  border: 1px solid #000000; /* Optional: Add borders for better visualization */
+  border:1px solid transparent;
   margin-bottom: 0px;
   text-align: center;
   background-color: black;
@@ -192,7 +247,7 @@ body{
   justify-content: space-between;
   align-items:normal; /* Align items at the baseline for proper vertical alignment */
   
-  border: 1px solid #000000; /* Optional: Add borders for better visualization */
+  border:1px solid transparent;
   width: 400px; /* Adjust the width as needed */
   margin-bottom: 0px;
 }
@@ -210,15 +265,18 @@ body{
 .textheader{
   text-align: center;
   color: #000000;
+  visibility: hidden;
   
   font-weight: bold;
 }
 .image{
     margin-top: -3%;
+    visibility: hidden;
+    
 }
 #print-area{
-    border: 1px solid #000000; /* Border style */
-    padding: 20px; /* Padding to create space between content and border */
+    border:1px solid transparent;
+    
     max-width: auto; /* Maximum width for the invoice */
     margin: 0 auto; /* Center the invoice horizontally */
     

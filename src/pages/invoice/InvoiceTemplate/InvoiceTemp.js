@@ -83,6 +83,8 @@ export default function InvoiceTemp() {
   ));
   const allRows = [...filledRows, ...emptyRows];
 
+  
+
   return (
     <body>
     <div>
@@ -114,42 +116,34 @@ export default function InvoiceTemp() {
                 <div class="invoice-head-top-left text-start"></div>
                 <div class="invoice-head-top-right text-end"></div>
               </div>
-              <div class="hr"></div>
-              <div class="invoice-head-middle">
-                <div class="invoice-head-middle-left text-start">
-                  <p><span class="text-bold">Date:</span>:{invoice.invoiceDate}</p>
-                </div>
-                <div class="invoice-head-middle-right text-end">
-                  <p><span class="text-bold">Invoice No:</span>{invoice.invoiceNumber}</p>
-                </div>
-              </div>
-              <div class="hr"></div>
               <div class="invoice-head-bottom">
                 <div class="invoice-head-bottom-left">
                   <ul>
-                    <li class='text-bold'>Customer Details</li>
-                    <li>Code:{invoice.code}</li>
-                    <li>Name:{invoice.customer}</li>
-                    <li>Address:{invoice.address}</li>
-                    <li>contact:{invoice.contact}</li>
+                    <li class='text-bold1'>Customer Details</li>
+                    <li className="licus"><span class="label">Code:</span>{invoice.code}</li>
+                    <li><span class="label">Name:</span>{invoice.customer}</li>
+                    <li><span class="label">Address:</span>{invoice.address}</li>
+                    <li><span class="label">contact:</span>{invoice.contact}</li>
                   </ul>
                 </div>
                 <div class="invoice-head-bottom-right">
                   <ul class="text-end">
-                    <li class='text-bold'>Order Details</li>
-                    <li>Order Number:{invoice.orderNumber}</li>
-                    <li>Date:{invoice.orderDate}</li>
-                    <li>Exe:{invoice.exe}</li>
+                    <li class='text-boldorder'>Order Details</li>
+                    <li id='ornumber'><span class="label">Order Number:</span>{invoice.orderNumber}</li>
+                    <li id='ordate'><span class="label">Date:</span>{invoice.orderDate}</li>
+                    <li id='orexe'><span  class="label">Exe:</span>{invoice.exe}</li>
+                    <li className="ordt" id='orinvoice'><span class="label">Invoice No:</span>{invoice.invoiceNumber}</li>
+                    <li id='oridate'><span class="label">Date:</span>{invoice.invoiceDate}</li>
                   </ul>
                 </div>
               </div>
             </div>
-            <h4 className="table-cell-pay">Payment Details</h4>
+            <h4 className="table-cell-pay"><span class="label">Payment Details</span></h4>
             <div className="table-container">
               <div className="table-row">
-                <div className="table-cell">Mode of Payment:{invoice.ModeofPayment}</div>
-                <div className="table-cell">Terms of Payment:{invoice.TermsofPayment}</div>
-                <div className="table-cell with-space">Due date:{invoice.Duedate}</div>
+                <div className="table-cell"><span class="label">Mode of Payment:</span>{invoice.ModeofPayment}</div>
+                <div className="table-cell"><span class="label">Terms of Payment:</span>{invoice.TermsofPayment}</div>
+                <div className="table-cell with-space"><span class="label">Due date:</span>{invoice.Duedate}</div>
               </div>
             </div>
             <div class="overflow-view">
@@ -157,13 +151,13 @@ export default function InvoiceTemp() {
                 <table>
                   <thead>
                     <tr>
-                      <td className="text-bold">Product Code</td>
-                      <td className="text-bold">Description</td>
-                      <td className="text-bold">Quantity</td>
-                      <td className="text-bold">Label Price</td>
-                      <td className="text-bold">Discount</td>
-                      <td className="text-bold">Unit Price</td>
-                      <td className="text-bold">Invoice Total</td>
+                      <td className="text-bold" id='tdtext'>Product Code</td>
+                      <td className="text-bold" id='tdtext'>Description</td>
+                      <td className="text-bold" id='tdtext'>Quantity</td>
+                      <td className="text-bold" id='tdtext'>Label Price</td>
+                      <td className="text-bold" id='tdtext'>Discount</td>
+                      <td className="text-bold" id='tdtext'>Unit Price</td>
+                      <td className="text-bold" id='tdtext'>Invoice Total</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -176,7 +170,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Invoiced by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second">SubTotal:${calculateTotal()}</div>
+                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>RS{calculateTotal()}</div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item border-bottom">
@@ -184,7 +178,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Checked and Approved by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second">Tax:%{invoice.Tax}</div>
+                      <div className="info-item-td text-end text-bold" id="second"><span class="label">Tax:%</span>{invoice.Tax}</div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item">
@@ -192,7 +186,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Goods issued by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second">Total: ${calculateTaxtot()}</div>
+                      <div className="info-item-td text-end text-bold" id="second"><span class="label" >Total</span>RS{calculateTaxtot()}</div>
                     </div>
                   </div>
                 </div>
