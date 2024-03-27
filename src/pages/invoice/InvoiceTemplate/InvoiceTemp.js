@@ -194,25 +194,25 @@ export default function InvoiceTemp() {
             </div>
             <div className="table-container">
               <div className="table-row">
-                <div className="table-cell">Security Checked by</div>
-                <div className="table-cell">Gate Pass No:{invoice.GatePassNo}</div>
-                <div className="table-cell with-space">Vehicle No:{invoice.VehicleNo}</div>
+                <div className="table-cell2">Security Checked by</div>
+                <div className="table-cell2">Gate Pass No:{invoice.GatePassNo}</div>
+                <div className="table-cell2 with-space">Vehicle No:{invoice.VehicleNo}</div>
               </div>
             </div>
             <div className="table-container">
               <div className="table-row">
-                <div className="table-cell">Driver Mobile:</div>
-                <div className="table-cell">Nic:</div>
-                <div className="table-cell with-space">Name:</div>
+                <div className="table-cell2">Driver Mobile:</div>
+                <div className="table-cell2">Nic:</div>
+                <div className="table-cell2 with-space">Name:</div>
               </div>
             </div>
             <h5 className="table-cell-pay">I/We acknowledge receipt of the above mentioned goods in good condition</h5>
             <div className="table-container">
               <div className="table-row">
-                <div className="table-cell">Customer stamp</div>
-                <div className="table-cell">Name and NIC</div>
-                <div className="table-cell">Signature</div>
-                <div className="table-cell with-space">Date:</div>
+                <div className="table-cell2">Customer stamp</div>
+                <div className="table-cell2">Name and NIC</div>
+                <div className="table-cell2">Signature</div>
+                <div className="table-cell2 with-space">Date:</div>
               </div>
             </div>
             <div className="table-container">
