@@ -178,7 +178,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Checked and Approved by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second"><span class="label">Tax:%</span>{invoice.Tax}</div>
+                      <div className="info-item-td text-end text-bold" id="second1"><span class="label">Tax:%</span>{invoice.Tax}</div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item">
@@ -186,7 +186,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Goods issued by</p>
                       </div>
-                      <div className="info-item-tot" id="second"><span class="label" >Total</span>RS{calculateTaxtot()}</div>
+                      <div className="info-item-tot" id="second2"><span class="label" >Total</span>RS{calculateTaxtot()}</div>
                     </div>
                   </div>
                 </div>
