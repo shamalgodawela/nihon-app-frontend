@@ -175,7 +175,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Invoiced by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>RS{calculateTotal().toFixed(2)}</div>
+                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>{formatNumbers(calculateTotal().toFixed(2))}</div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item border-bottom">
@@ -191,7 +191,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Goods issued by</p>
                       </div>
-                      <div className="info-item-tot" id="second2"><span class="label" >Total</span>RS{calculateTaxtot()}</div>
+                      <div className="info-item-tot" id="second2"><span class="label" >Total</span>{formatNumbers(calculateTaxtot())}</div>
                     </div>
                   </div>
                 </div>
