@@ -48,13 +48,32 @@ ul li{
     margin-top:0.2cm;
     font-weight: bold;
     color: #000000;
+    margin-left: 0.65cm;
 }
-.cusd{
+.cusd1{
     font-weight: bold;
     color: #000000;
-    
-
+    margin-left: 0.48cm;
+    margin-top:0.1cm;
 }
+.cusd2{
+    font-weight: bold;
+    color: #000000;
+    margin-top:0.1cm;
+}
+.cusd3{
+    font-weight: bold;
+    color: #000000;
+    margin-left:0.13cm;
+    margin-top:0.1cm;
+    
+}
+.cusd4{
+    font-weight: bold;
+    color: #000000;
+}
+
+
 .text-boldorder{
     visibility:hidden;
 }
@@ -69,27 +88,27 @@ ul li{
     visibility: hidden;
 }
 #ornumber {
-    margin-right:3cm;
+    margin-right:3.2cm;
    
 }
 #ordate{
-    margin-right:1.8cm;
+    margin-right:1.53cm;
    
     
 
 }
 #orexe{
-    margin-right:1.9cm;
+    margin-right:1.64cm;
     margin-top: 0.2cm;
 }
 #orinvoice{
-    margin-right:2.1cm;
+    margin-right:2.3cm;
     margin-top: 0.6cm;
     
 
 }
 #oridate{
-    margin-right:1.8cm;
+    margin-right:1.6cm;
     margin-top: 0.2cm;
 
 }
@@ -225,6 +244,7 @@ body{
   padding: 8px; 
   border: 1px solid transparent;
   width: 500px; 
+  font-size: 13px;
 }
 .table-cell1 {
  
