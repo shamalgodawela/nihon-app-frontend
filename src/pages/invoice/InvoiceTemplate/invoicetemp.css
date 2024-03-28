@@ -305,28 +305,21 @@ body{
 #second{
   position: absolute;
   margin-left: 13.5cm;
-  top: 17.5cm;
+  top: 17.1cm;
   color:black;
   font-weight: bold;
 }
 #second2{
     position: absolute;
     margin-left: 15.0cm;
-    top: 20.8cm;
+    top: 21cm;
     color:black;
     font-weight: bold;
   }
   #mod{
-    margin-left: 1cm;
+    margin-left:-0.8cm;
   }
-   #mod1{
-    
-    
-  }
-  #mod2{
-    
-    
-  }
+  
 .textheader{
   text-align: center;
   color: #000000;
