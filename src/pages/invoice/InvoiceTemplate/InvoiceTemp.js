@@ -64,10 +64,10 @@ export default function InvoiceTemp() {
       <td>{product.productCode}</td>
       <td>{product.productName}</td>
       <td>{product.quantity}</td>
-      <td>RS{product.labelPrice.toFixed(2)}</td>
+      <td>{product.labelPrice.toFixed(2)}</td>
       <td>{product.discount}</td>
-      <td>RS{product.unitPrice.toFixed(2)}</td>
-      <td>RS{product.invoiceTotal.toFixed(2)}</td>
+      <td>{product.unitPrice.toFixed(2)}</td>
+      <td>{product.invoiceTotal.toFixed(2)}</td>
     </tr>
   ));
   const emptyRows = Array.from({ length: emptyRowsCount }, (_, index) => (
