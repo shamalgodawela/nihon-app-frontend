@@ -141,9 +141,9 @@ export default function InvoiceTemp() {
             <h4 className="table-cell-pay"><span class="label">Payment Details</span></h4>
             <div className="table-container">
               <div className="table-row">
-                <div className="table-cell"><span class="label">Mode of Payment:</span>{invoice.ModeofPayment}</div>
-                <div className="table-cell"><span class="label">Terms of Payment:</span>{invoice.TermsofPayment} days</div>
-                <div className="table-cell with-space"><span class="label">Due date:</span>{invoice.Duedate}</div>
+                <div className="table-cell" id='mod'><span class="label" >Mode of Payment:</span>{invoice.ModeofPayment}</div>
+                <div className="table-cell"><span class="label" id='mod1'>Terms of Payment:</span>{invoice.TermsofPayment} days</div>
+                <div className="table-cell with-space"><span class="label" id='mod2'>Due date:</span>{invoice.Duedate}</div>
               </div>
             </div>
             <div class="overflow-view">

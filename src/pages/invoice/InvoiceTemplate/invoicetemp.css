@@ -303,16 +303,29 @@ body{
   
 }
 #second{
+  position: absolute;
   margin-left: 13.5cm;
-  margin-bottom:3.6cm;
+  top: 17.5cm;
   color:black;
   font-weight: bold;
 }
 #second2{
+    position: absolute;
     margin-left: 15.0cm;
-    margin-bottom: 0.6cm;
+    top: 20.8cm;
     color:black;
     font-weight: bold;
+  }
+  #mod{
+    margin-left: 1cm;
+  }
+   #mod1{
+    
+    
+  }
+  #mod2{
+    
+    
   }
 .textheader{
   text-align: center;
