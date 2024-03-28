@@ -55,7 +55,9 @@ export default function InvoiceTemp() {
   if (!invoice) {
     return <div>Loading...</div>;
   }
-
+  const formatNumbers = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
   // Ensure there are always 6 rows displayed, adding empty rows if needed
   const productsCount = invoice.products.length;
   const emptyRowsCount = Math.max(6 - productsCount, 0);
@@ -64,10 +66,10 @@ export default function InvoiceTemp() {
       <td>{product.productCode}</td>
       <td>{product.productName}</td>
       <td>{product.quantity}</td>
-      <td>{product.labelPrice.toFixed(2)}</td>
+      <td>{formatNumbers(product.labelPrice.toFixed(2))}</td>
       <td>{product.discount}</td>
-      <td>{product.unitPrice.toFixed(2)}</td>
-      <td>{product.invoiceTotal.toFixed(2)}</td>
+      <td>{formatNumbers(product.unitPrice.toFixed(2))}</td>
+      <td>{formatNumbers(product.invoiceTotal.toFixed(2))}</td>
     </tr>
   ));
   const emptyRows = Array.from({ length: emptyRowsCount }, (_, index) => (
@@ -82,6 +84,9 @@ export default function InvoiceTemp() {
     </tr>
   ));
   const allRows = [...filledRows, ...emptyRows];
+
+ 
+  
 
   
 
