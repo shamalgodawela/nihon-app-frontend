@@ -304,20 +304,20 @@ body{
 }
 #second{
   position: absolute;
-  margin-left: 14cm;
+  margin-left: 13cm;
   top: 17.1cm;
   color:black;
   font-weight: bold;
 }
 #second2{
     position: absolute;
-    margin-left: 15.7cm;
+    margin-left: 14.4cm;
     top: 21cm;
     color:black;
     font-weight: bold;
   }
   #mod{
-    margin-left:-0.9cm;
+    margin-left:-0.6cm;
   }
   
 .textheader{
