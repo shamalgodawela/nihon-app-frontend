@@ -69,7 +69,8 @@ export default function InvoiceTemp() {
       <td>{formatNumbers(product.labelPrice.toFixed(2))}</td>
       <td className="tddiscount">{product.discount}</td>
       <td>{formatNumbers(product.unitPrice.toFixed(2))}</td>
-      <td>{formatNumbers(product.invoiceTotal.toFixed(2))}</td>
+      <td style={{ textAlign: 'end' }}>{formatNumbers(product.invoiceTotal.toFixed(2))}</td>
+
     </tr>
   ));
   const emptyRows = Array.from({ length: emptyRowsCount }, (_, index) => (
