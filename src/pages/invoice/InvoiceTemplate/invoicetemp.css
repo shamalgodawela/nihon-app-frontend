@@ -340,4 +340,11 @@ body{
     
 }
 
-
+.tdquantity{
+    position: absolute;
+    left:11.3cm
+}
+.tddiscount{
+    position:absolute;
+    left:22cm
+}

@@ -65,9 +65,9 @@ export default function InvoiceTemp() {
     <tr key={index}>
       <td>{product.productCode}</td>
       <td>{product.productName}</td>
-      <td>{product.quantity}</td>
+      <td className="tdquantity">{product.quantity}</td>
       <td>{formatNumbers(product.labelPrice.toFixed(2))}</td>
-      <td>{product.discount}</td>
+      <td className="tddiscount">{product.discount}</td>
       <td>{formatNumbers(product.unitPrice.toFixed(2))}</td>
       <td>{formatNumbers(product.invoiceTotal.toFixed(2))}</td>
     </tr>
