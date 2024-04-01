@@ -25,9 +25,14 @@ const OfficeInventoryTable = () => {
   }, []);
 
   return (
+   
     <div className="office-inventory-container">
+      
       <Link to="/additems">
-        <button>Add Inventory</button>
+        <button id='btnaddin'>Add Inventory</button>
+      </Link><br/><br/>
+      <Link to="/viewstationery">
+        <button id='btnoffice'>view stationery items</button>
       </Link>
       <h2 className='h2office'>Office Inventory List</h2>
       {isLoading ? ( // Show loading spinner if isLoading is true
@@ -36,13 +41,13 @@ const OfficeInventoryTable = () => {
         <table>
           <thead>
             <tr>
-              <th>Code Number</th>
-              <th>Model</th>
-              <th>Type</th>
-              <th>Date of Purchase</th>
-              <th>Value:</th>
-              <th>Warranty Period</th>
-              <th>Used By</th>
+              <th id='thoffice'>Code Number</th>
+              <th id='thoffice'>Model</th>
+              <th id='thoffice' >Type</th>
+              <th id='thoffice'>Date of Purchase</th>
+              <th id='thoffice'>Value:</th>
+              <th id='thoffice'>Warranty Period</th>
+              <th id='thoffice'>Used By</th>
             </tr>
           </thead>
           <tbody>

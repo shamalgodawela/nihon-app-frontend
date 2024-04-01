@@ -42,6 +42,8 @@ import UpdateCustomerForm from "./pages/customer/Updatecus/UpdateCustomerForm";
 import Alldetails from "./pages/rawMaterials/Alldetails";
 import Addbulk from "./pages/rawMaterials/Addbulk";
 import AddReturnDetails from "./pages/returnNotes/AddReturnDetails";
+import Stationery from "./pages/stationery/Stationery";
+import ViewStationery from "./pages/viewstationery/ViewStationery";
 
 
 
@@ -110,6 +112,8 @@ function App() {
     <Route path="allbulkproduct" element={<Alldetails/>} />
     <Route path="/addbulkproduct" element={<Addbulk/>} />
     <Route path="/addreturn" element={<AddReturnDetails/>} />
+    <Route path="/addstationery" element={<Stationery/>} />
+    <Route path="/viewstationery" element={<ViewStationery/>} />
     
 
 
