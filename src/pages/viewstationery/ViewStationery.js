@@ -37,6 +37,7 @@ const ViewStationery = () => {
       <table className='product-table'>
         <thead>
           <tr>
+            <th className='table-header'>Index</th>
             <th className='table-header'>Code</th>
             <th className='table-header'>Name</th>
             <th className='table-header'>Quantity</th>
@@ -45,8 +46,9 @@ const ViewStationery = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map(product => (
+          {products.map((product, index) => (
             <tr key={product._id}>
+              <td>{index + 1}</td>
               <td>{product.code}</td>
               <td>{product.name}</td>
               <td>{product.quantity}</td>
