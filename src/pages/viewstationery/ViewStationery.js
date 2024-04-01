@@ -7,6 +7,7 @@ import NavBar from '../../compenents/sidebar/NavBar';
 
 const ViewStationery = () => {
   const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -20,6 +21,15 @@ const ViewStationery = () => {
 
     fetchProducts();
   }, []);
+
+  // Calculate total
+  useEffect(() => {
+    let totalAmount = 0;
+    products.forEach(product => {
+      totalAmount += product.quantity * product.price;
+    });
+    setTotal(totalAmount);
+  }, [products]);
 
   const formatNumbers = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -45,6 +55,7 @@ const ViewStationery = () => {
             <th className='table-header'>Value(RS)</th>
           </tr>
         </thead>
+        
         <tbody>
           {products.map((product, index) => (
             <tr key={product._id}>
@@ -56,7 +67,12 @@ const ViewStationery = () => {
               <td>{formatNumbers(product.quantity * product.price)}</td>
 
             </tr>
+
           ))}
+          <tr>
+            <td colSpan="3"><strong>Total:</strong></td>
+            <td>${total.toFixed(2)}</td>
+          </tr>
         </tbody>
       </table>
     </div>
