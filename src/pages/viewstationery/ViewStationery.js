@@ -70,8 +70,8 @@ const ViewStationery = () => {
 
           ))}
           <tr>
-            <td colSpan="3"><strong>Total:</strong></td>
-            <td>${total.toFixed(2)}</td>
+            <td colSpan="3"><h3>Total:</h3></td>
+            <td>RS:{formatNumbers(total.toFixed(2))}</td>
           </tr>
         </tbody>
       </table>
