@@ -29,13 +29,16 @@ const OfficeInventoryTable = () => {
     <div className="office-inventory-container">
       
       <Link to="/additems">
-        <button id='btnaddin'>Add Inventory</button>
+        <button id='btnaddin'>Add office Inventory</button>
       </Link><br/><br/>
       <Link to="/viewstationery">
         <button id='btnoffice'>view stationery items</button>
+      </Link><br/><br/>
+      <Link to="/getallusestationery">
+        <button id='btnoffice'>items used notes</button>
       </Link>
       <h2 className='h2office'>Office Inventory List</h2>
-      {isLoading ? ( // Show loading spinner if isLoading is true
+      {isLoading ? (
         <SpinnerImg />
       ) : (
         <table>

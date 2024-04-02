@@ -44,6 +44,10 @@ import Addbulk from "./pages/rawMaterials/Addbulk";
 import AddReturnDetails from "./pages/returnNotes/AddReturnDetails";
 import Stationery from "./pages/stationery/Stationery";
 import ViewStationery from "./pages/viewstationery/ViewStationery";
+import Stationeryuse from "./pages/stationeryused/Stationeryuse";
+import Getalluse from "./pages/stationeryused/getall/Getalluse";
+
+
 
 
 
@@ -114,7 +118,8 @@ function App() {
     <Route path="/addreturn" element={<AddReturnDetails/>} />
     <Route path="/addstationery" element={<Stationery/>} />
     <Route path="/viewstationery" element={<ViewStationery/>} />
-    
+    <Route path="/addstationeryUse" element={<Stationeryuse/>} />
+    <Route path="/getallusestationery" element={<Getalluse/>} />
 
 
     
