@@ -7,6 +7,7 @@ import { BsDatabaseFillGear } from "react-icons/bs";
 import { PiOfficeChairFill } from "react-icons/pi";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { GiMaterialsScience } from "react-icons/gi";
+import { TbTruckReturn } from "react-icons/tb";
 
 
 export const SidebarData = [
@@ -36,6 +37,12 @@ export const SidebarData = [
     title: 'Manage invoices',
     path: '/all-invoices',
     icon: <FaFileInvoice />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Return Notes',
+    path: '/addreturn',
+    icon: <TbTruckReturn/>,
     cName: 'nav-text'
   },
 

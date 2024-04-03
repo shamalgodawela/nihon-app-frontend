@@ -1,96 +1,117 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import NavBar from '../../compenents/sidebar/NavBar';
+import './return.css'
 
 const AddReturnDetails = () => {
-    const [returnData, setReturnData] = useState({
+    const [formData, setFormData] = useState({
         products: [{
             productCode: '',
-            quantity: 0,
-            unitPrice: 0,
-            returntotal: 0, // Adding returntotal field
+            productName: '',
+            quantity: '',
+            unitPrice: '',
+            returntotal: ''
         }],
         invoiceNumber: '',
         customer: '',
         reason: '',
         date: '',
-        remarks: '',
+        remarks: ''
     });
 
-    const handleChange = (e) => {
+    const handleChange = (e, index) => {
         const { name, value } = e.target;
-        setReturnData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
+        if (index === undefined) {
+            setFormData({ ...formData, [name]: value });
+        } else {
+            const products = [...formData.products];
+            products[index][name] = value;
+            setFormData({ ...formData, products });
+        }
+    };
+    
+
+    const handleAddProduct = () => {
+        setFormData({ ...formData, products: [...formData.products, {
+            productCode: '',
+            productName: '',
+            quantity: '',
+            unitPrice: '',
+            returntotal: ''
+        }]});
     };
 
-    const handleProductChange = (e, index) => {
-        const { name, value } = e.target;
-        setReturnData(prevData => ({
-            ...prevData,
-            products: prevData.products.map((product, i) => i === index ? { ...product, [name]: value } : product)
-        }));
-    };
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/addreturndetails', returnData);
-            alert('Return details added successfully!');
-            // You can redirect or perform any other action here after successful addition
+            const response = await axios.post('http://localhost:5000/api/addReturnDetails', formData);
+            console.log('Return details added successfully:', response.data);
+            // You can add additional logic here, such as showing a success message or redirecting to another page
         } catch (error) {
             console.error('Error adding return details:', error);
-            alert('An error occurred while adding return details.');
+            // You can add additional error handling logic here
         }
     };
 
     return (
         <div>
-            <h2>Add Return Details</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="invoiceNumber">Invoice Number:</label>
-                    <input type="text" id="invoiceNumber" name="invoiceNumber" value={returnData.invoiceNumber} onChange={handleChange} />
+            <NavBar/><br/><br/>
+            <h2 className='h2return'>Add Return Details</h2> <br/><br/><br/><br/><br/><br/>
+        
+        <div className="return-details-container">
+    
+    
+    <form onSubmit={handleSubmit} className="return-details-form">
+        {formData.products.map((product, index) => (
+            <div key={index} className="product-details">
+                <div className="form-group">
+                    <label htmlFor={`productCode-${index}`} className="form-label">Product Code:</label>
+                    <input type="text" id={`productCode-${index}`} name="productCode" value={product.productCode} onChange={e => handleChange(e, index)} className="form-input" />
                 </div>
-                {returnData.products.map((product, index) => (
-    <div key={index}>
-        <label htmlFor={`productCode${index}`}>Product Code:</label>
-        <input type="text" id={`productCode${index}`} name={`productCode${index}`} value={product.productCode} onChange={(e) => handleProductChange(e, index)} />
-        
-        <label htmlFor={`quantity${index}`}>Quantity:</label>
-        <input type="number" id={`quantity${index}`} name={`quantity${index}`} value={product.quantity} onChange={(e) => handleProductChange(e, index)} />
-        
-        <label htmlFor={`unitPrice${index}`}>Unit Price:</label>
-        <input type="number" id={`unitPrice${index}`} name={`unitPrice${index}`} value={product.unitPrice} onChange={(e) => handleProductChange(e, index)} />
-        
-        <label htmlFor={`returntotal${index}`}>Return Total:</label>
-        <input type="number" id={`returntotal${index}`} name={`returntotal${index}`} value={product.returntotal} onChange={(e) => handleProductChange(e, index)} />
-    </div>
-))}
-
-<div>
-    <label htmlFor="customer">Customer:</label>
-    <input type="text" id="customer" name="customer" value={returnData.customer} onChange={handleChange} />
-</div>
-
-<div>
-    <label htmlFor="reason">Reason:</label>
-    <textarea id="reason" name="reason" value={returnData.reason} onChange={handleChange}></textarea>
-</div>
-
-<div>
-    <label htmlFor="date">Date:</label>
-    <input type="date" id="date" name="date" value={returnData.date} onChange={handleChange} />
-</div>
-
-<div>
-    <label htmlFor="remarks">Remarks:</label>
-    <textarea id="remarks" name="remarks" value={returnData.remarks} onChange={handleChange}></textarea>
-</div>
-
-                <button type="submit">Add Return Details</button>
-            </form>
+                <div className="form-group">
+                    <label htmlFor={`productName-${index}`} className="form-label">Product Name:</label>
+                    <input type="text" id={`productName-${index}`} name="productName" value={product.productName} onChange={e => handleChange(e, index)} className="form-input" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`quantity-${index}`} className="form-label">Quantity:</label>
+                    <input type="number" id={`quantity-${index}`} name="quantity" value={product.quantity} onChange={e => handleChange(e, index)} className="form-input" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`unitPrice-${index}`} className="form-label">Unit Price:</label>
+                    <input type="number" id={`unitPrice-${index}`} name="unitPrice" value={product.unitPrice} onChange={e => handleChange(e, index)} className="form-input" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor={`returnTotal-${index}`} className="form-label">Return Total:</label>
+                    <input type="number" id={`returnTotal-${index}`} name="returntotal" value={product.returntotal} onChange={e => handleChange(e, index)} className="form-input" />
+                </div>
+            </div>
+        ))}
+        <button type="button" onClick={handleAddProduct} className="add-product-btn">Add More Product</button>
+        <div className="form-group">
+            <label htmlFor="invoiceNumber" className="form-label">Invoice Number:</label>
+            <input type="text" id="invoiceNumber" name="invoiceNumber" value={formData.invoiceNumber} onChange={handleChange} className="form-input" />
         </div>
+        <div className="form-group">
+            <label htmlFor="customer" className="form-label">Customer:</label>
+            <input type="text" id="customer" name="customer" value={formData.customer} onChange={handleChange} className="form-input" />
+        </div>
+        <div className="form-group">
+            <label htmlFor="reason" className="form-label">Reason:</label>
+            <input type="text" id="reason" name="reason" value={formData.reason} onChange={handleChange} className="form-input" />
+        </div>
+        <div className="form-group">
+            <label htmlFor="date" className="form-label">Date:</label>
+            <input type="date" id="date" name="date" value={formData.date} onChange={handleChange} className="form-input" />
+        </div>
+        <div className="form-group">
+            <label htmlFor="remarks" className="form-label">Remarks:</label>
+            <input type="text" id="remarks" name="remarks" value={formData.remarks} onChange={handleChange} className="form-input" />
+        </div>
+        <button type="submit" className="submit-btn">Add Return Details</button>
+    </form>
+</div>
+</div>
+
     );
 };
 
