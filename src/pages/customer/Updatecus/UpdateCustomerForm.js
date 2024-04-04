@@ -17,6 +17,7 @@ const UpdateCustomerForm = () => {
     phone: '',
     email: '',
     fax: '',
+    district:'',
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -86,6 +87,10 @@ const UpdateCustomerForm = () => {
       <div className="form-group">
         <label htmlFor="address">Address:</label>
         <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} />
+      </div>
+      <div className="form-group">
+        <label htmlFor="fax">District:</label>
+        <input type="text" id="fax" name="district" value={formData.district} onChange={handleChange} />
       </div>
       <div className="form-group">
         <label htmlFor="city">City:</label>

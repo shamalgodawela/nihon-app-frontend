@@ -46,6 +46,7 @@ import Stationery from "./pages/stationery/Stationery";
 import ViewStationery from "./pages/viewstationery/ViewStationery";
 import Stationeryuse from "./pages/stationeryused/Stationeryuse";
 import Getalluse from "./pages/stationeryused/getall/Getalluse";
+import GetAllReturnDetails from "./pages/returnNotes/gettall/GetAllReturnDetails";
 
 
 
@@ -120,6 +121,7 @@ function App() {
     <Route path="/viewstationery" element={<ViewStationery/>} />
     <Route path="/addstationeryUse" element={<Stationeryuse/>} />
     <Route path="/getallusestationery" element={<Getalluse/>} />
+    <Route path="/getallreturn" element={<GetAllReturnDetails/>} />
 
 
     

@@ -106,6 +106,7 @@ const CustomerDetails = () => {
       <p>Company Name: {customer.companyName}</p>
       <p>2nd Owner: {customer.contact}</p>
       <p>Address: {customer.address}</p>
+      <p>District:{customer.district}</p>
       <p>City: {customer.city}</p>
       <p>Phone: {customer.phone}</p>
       <p>Email: {customer.email}</p>

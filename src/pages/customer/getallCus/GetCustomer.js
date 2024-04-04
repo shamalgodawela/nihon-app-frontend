@@ -67,6 +67,7 @@ const CustomerList = () => {
                 <th>Company Name</th>
                 <th>Contact</th>
                 <th>Address</th>
+                <th>District</th>
                 <th>City</th>
                 <th>Phone</th>
                 <th>Fax</th>
@@ -89,6 +90,7 @@ const CustomerList = () => {
                     <td>{customer.companyName}</td>
                     <td>{customer.contact}</td>
                     <td>{customer.address}</td>
+                    <td>{customer.district}</td>
                     <td>{customer.city}</td>
                     <td>{customer.phone}</td>
                     <td>{customer.fax}</td>

@@ -41,7 +41,7 @@ export const SidebarData = [
   },
   {
     title: 'Return Notes',
-    path: '/addreturn',
+    path: '/getallreturn',
     icon: <TbTruckReturn/>,
     cName: 'nav-text'
   },
