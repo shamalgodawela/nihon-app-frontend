@@ -47,6 +47,10 @@ import ViewStationery from "./pages/viewstationery/ViewStationery";
 import Stationeryuse from "./pages/stationeryused/Stationeryuse";
 import Getalluse from "./pages/stationeryused/getall/Getalluse";
 import GetAllReturnDetails from "./pages/returnNotes/gettall/GetAllReturnDetails";
+import GoogleMapComponent from "./pages/Googlemap/GoogleMapComponent";
+import Executivel from "./pages/exelogin/Executivel";
+import ViewLiveLocation from "./pages/exelogin/viewlocation/ViewLiveLocation";
+
 
 
 
@@ -75,6 +79,8 @@ function App() {
     loginStatus()
 
   },[dispatch])
+
+  
 
   return (
    <BrowserRouter>
@@ -122,6 +128,9 @@ function App() {
     <Route path="/addstationeryUse" element={<Stationeryuse/>} />
     <Route path="/getallusestationery" element={<Getalluse/>} />
     <Route path="/getallreturn" element={<GetAllReturnDetails/>} />
+    <Route path="/map" element={<ViewLiveLocation/>} />
+    {/* <Route path="/executive" element={<Executivel/>} /> */}
+   
 
 
     

@@ -40,6 +40,7 @@ ul li{
     text-align: left;
 }
 .text-bold1 {
+    
     font-weight: 700;
     visibility: hidden;
     
@@ -48,29 +49,53 @@ ul li{
     margin-top:0.2cm;
     font-weight: bold;
     color: #000000;
-    margin-left: 0.65cm;
+    margin-left: 1.6cm;
 }
 .cusd1{
     font-weight: bold;
     color: #000000;
-    margin-left: 0.48cm;
+    margin-left: 1.4cm;
     margin-top:0.1cm;
 }
 .cusd2{
     font-weight: bold;
     color: #000000;
     margin-top:0.1cm;
+    margin-left: 0.9cm;
 }
 .cusd3{
     font-weight: bold;
     color: #000000;
-    margin-left:0.13cm;
+    margin-left:1cm;
     margin-top:0.1cm;
     
 }
 .cusd4{
+    position: absolute;
+    
     font-weight: bold;
     color: #000000;
+    margin-top:0.55cm
+}
+.cusd44{
+    position: absolute;
+    
+    font-weight: bold;
+    color: #000000;
+    margin-top:1.1cm
+}
+.cusd45{
+    position: absolute;
+    
+    font-weight: bold;
+    color: #000000;
+}
+.cusd46{
+    position: absolute;
+    
+    font-weight: bold;
+    color: #000000;
+    margin-top:2.55cm
 }
 
 
@@ -78,9 +103,11 @@ ul li{
     visibility:hidden;
 }
 .ordt{
-    margin-right:2.1cm;
+    position: absolute;
+    
     font-weight: bold;
     color: #000000;
+    margin-top:2cm
     
     
 }
@@ -88,28 +115,31 @@ ul li{
     visibility: hidden;
 }
 #ornumber {
-    margin-right:3.2cm;
+    
+    margin-left:10.2cm;
    
 }
 #ordate{
-    margin-right:1.53cm;
+    margin-left:12.2cm;
+    
    
     
 
 }
 #orexe{
-    margin-right:1.64cm;
-    margin-top: 0.2cm;
+    
+    margin-left:12.43cm;
+   
 }
 #orinvoice{
-    margin-right:2.3cm;
-    margin-top: 0.6cm;
+    margin-left:10.9cm;
+
     
 
 }
 #oridate{
-    margin-right:1.6cm;
-    margin-top: 0.2cm;
+    margin-left:12.2cm;
+   
 
 }
 .label {

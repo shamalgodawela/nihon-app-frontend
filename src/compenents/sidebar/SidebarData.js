@@ -70,4 +70,10 @@ export const SidebarData = [
   icon: <SiHomeassistantcommunitystore />,
   cName: 'nav-text'
 },  
+{
+  title: 'Check Executive Location',
+  path: '/map',
+  icon: <SiHomeassistantcommunitystore />,
+  cName: 'nav-text'
+},
 ];
