@@ -47,24 +47,24 @@ ul li{
 }
 .licus{
     margin-top:0.2cm;
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-left: 1.6cm;
 }
 .cusd1{
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-left: 1.47cm;
     margin-top:0.1cm;
 }
 .cusd2{
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top:0.1cm;
     margin-left: 1.17cm;
 }
 .cusd3{
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-left:1.3cm;
     margin-top:0.1cm;
@@ -73,14 +73,14 @@ ul li{
 .cusd4{
     position: absolute;
     
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top:0.29cm
 }
 .cusd44{
     position: absolute;
     
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top:0.9cm;
 }
@@ -88,14 +88,14 @@ ul li{
     position: absolute;
    
     
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top: -0.3cm;
 }
 .cusd46{
     position: absolute;
     
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top:2.5cm
 }
@@ -107,7 +107,7 @@ ul li{
 .ordt{
     position: absolute;
     
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top:2cm
     
@@ -123,7 +123,7 @@ ul li{
    
 }
 #ordate{
-    margin-left:6cm;
+    margin-left:6.1cm;
     visibility: hidden;
     
    
@@ -132,7 +132,7 @@ ul li{
 }
 #orexe{
     
-    margin-left:6.15cm;
+    margin-left:6.25cm;
     visibility: hidden;
    
 }
@@ -144,7 +144,7 @@ ul li{
 
 }
 #oridate{
-    margin-left:6cm;
+    margin-left:6.1cm;
     visibility: hidden;
    
 
@@ -282,7 +282,7 @@ body{
   border: 1px solid transparent;
   width: 500px; 
   font-size: 13px;
-  font-family:'Times New Roman', Times, serif;
+  font-family:Arial, Helvetica, sans-serif;
 }
 .table-cell1 {
  
@@ -345,7 +345,7 @@ body{
   margin-left: 13.36cm;
   top: 18.7cm;
   color:black;
-  font-family:'Times New Roman', Times, serif;
+  font-family:Arial, Helvetica, sans-serif;
   
 }
 #second2{
@@ -353,7 +353,7 @@ body{
     margin-left: 14.3cm;
     top: 22.2cm;
     color:black;
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     
   }
   #mod{
@@ -383,24 +383,24 @@ body{
 .tdquantity{
     position: absolute;
     left:8.1cm;
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     
     font-weight: 200;
 }
 .tddiscount{
     position:absolute;
     left:14.6cm;
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: 200;
 }
 .tdtot{
     position:absolute;
     right: 0.9cm;
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: 200;
 }
 .fontfamily-td{
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 300;
     
