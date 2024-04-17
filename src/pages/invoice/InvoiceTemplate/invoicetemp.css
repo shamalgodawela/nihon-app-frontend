@@ -75,14 +75,14 @@ ul li{
     
     font-weight: bold;
     color: #000000;
-    margin-top:0.55cm
+    margin-top:0.49cm
 }
 .cusd44{
     position: absolute;
     
     font-weight: bold;
     color: #000000;
-    margin-top:1.1cm;
+    margin-top:1cm;
 }
 .cusd45{
     position: absolute;
@@ -90,13 +90,14 @@ ul li{
     
     font-weight: bold;
     color: #000000;
+    margin-top: -0.1cm;
 }
 .cusd46{
     position: absolute;
     
     font-weight: bold;
     color: #000000;
-    margin-top:2.55cm
+    margin-top:2.9cm
 }
 
 
@@ -108,7 +109,7 @@ ul li{
     
     font-weight: bold;
     color: #000000;
-    margin-top:2cm
+    margin-top:2.4cm
     
     
 }
@@ -277,7 +278,7 @@ body{
 
 .table-cell {
  
-  padding: 8px; 
+  padding: 20px; 
   border: 1px solid transparent;
   width: 500px; 
   font-size: 13px;
@@ -341,14 +342,14 @@ body{
 #second{
   position: absolute;
   margin-left: 13cm;
-  top: 17.1cm;
+  top: 18.3cm;
   color:black;
   font-weight: bold;
 }
 #second2{
     position: absolute;
     margin-left: 14.3cm;
-    top: 21cm;
+    top: 21.8cm;
     color:black;
     font-weight: bold;
   }
