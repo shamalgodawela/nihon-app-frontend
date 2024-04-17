@@ -63,12 +63,12 @@ export default function InvoiceTemp() {
   const emptyRowsCount = Math.max(6 - productsCount, 0);
   const filledRows = invoice.products.map((product, index) => (
     <tr key={index}>
-      <td>{product.productCode}</td>
-      <td>{product.productName}</td>
+      <td className="fontfamily-td">{product.productCode}</td>
+      <td className="fontfamily-td">{product.productName}</td>
       <td className="tdquantity">{product.quantity}</td>
-      <td>{formatNumbers(product.labelPrice.toFixed(2))}</td>
+      <td className="fontfamily-td">{formatNumbers(product.labelPrice.toFixed(2))}</td>
       <td className="tddiscount">{product.discount}</td>
-      <td>{formatNumbers(product.unitPrice.toFixed(2))}</td>
+      <td className="fontfamily-td">{formatNumbers(product.unitPrice.toFixed(2))}</td>
       <td className="tdtot" style={{ textAlign: 'end' }}>{formatNumbers(product.invoiceTotal.toFixed(2))}</td>
 
     </tr>

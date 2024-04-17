@@ -47,40 +47,40 @@ ul li{
 }
 .licus{
     margin-top:0.2cm;
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
     margin-left: 1.6cm;
 }
 .cusd1{
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
-    margin-left: 1.4cm;
+    margin-left: 1.47cm;
     margin-top:0.1cm;
 }
 .cusd2{
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
     margin-top:0.1cm;
-    margin-left: 0.9cm;
+    margin-left: 1.17cm;
 }
 .cusd3{
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
-    margin-left:1cm;
+    margin-left:1.3cm;
     margin-top:0.1cm;
     
 }
 .cusd4{
     position: absolute;
     
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
     margin-top:0.29cm
 }
 .cusd44{
     position: absolute;
     
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
     margin-top:0.9cm;
 }
@@ -88,14 +88,14 @@ ul li{
     position: absolute;
    
     
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
     margin-top: -0.3cm;
 }
 .cusd46{
     position: absolute;
     
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
     margin-top:2.5cm
 }
@@ -107,7 +107,7 @@ ul li{
 .ordt{
     position: absolute;
     
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
     color: #000000;
     margin-top:2cm
     
@@ -118,7 +118,7 @@ ul li{
 }
 #ornumber {
     
-    margin-left:4cm;
+    margin-left:4.56cm;
     visibility: hidden;
    
 }
@@ -132,12 +132,12 @@ ul li{
 }
 #orexe{
     
-    margin-left:6.2cm;
+    margin-left:6.15cm;
     visibility: hidden;
    
 }
 #orinvoice{
-    margin-left:4.7cm;
+    margin-left:5.1cm;
     visibility: hidden;
 
     
@@ -151,7 +151,7 @@ ul li{
 }
 .label {
     visibility: hidden;
-    font-weight:bold;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .table-cell-final{
@@ -272,7 +272,7 @@ body{
   display: flex;
   font-size: 10px;
   color: #000000;
-  font-weight: bold;
+  
   
 }
 
@@ -282,6 +282,7 @@ body{
   border: 1px solid transparent;
   width: 500px; 
   font-size: 13px;
+  font-family:'Times New Roman', Times, serif;
 }
 .table-cell1 {
  
@@ -336,22 +337,24 @@ body{
   margin: 0; /* Reset margin for the paragraph */
   font-size: 10px;
   color: #000000;
-  font-weight: bold;
+  
   
 }
 #second{
   position: absolute;
-  margin-left: 13cm;
+  margin-left: 13.36cm;
   top: 18.7cm;
   color:black;
-  font-weight: bold;
+  font-family:'Times New Roman', Times, serif;
+  
 }
 #second2{
     position: absolute;
     margin-left: 14.3cm;
     top: 22.2cm;
     color:black;
-    font-weight: bold;
+    font-family:'Times New Roman', Times, serif;
+    
   }
   #mod{
     margin-left:-0.6cm;
@@ -362,7 +365,7 @@ body{
   color: #000000;
   visibility: hidden;
   
-  font-weight: bold;
+  
 }
 .image{
     margin-top: -3%;
@@ -379,13 +382,20 @@ body{
 
 .tdquantity{
     position: absolute;
-    left:8.1cm
+    left:8.1cm;
+    font-family:'Times New Roman', Times, serif;
 }
 .tddiscount{
     position:absolute;
-    left:14.6cm
+    left:14.6cm;
+    font-family:'Times New Roman', Times, serif;
 }
 .tdtot{
     position:absolute;
     right: 0.9cm;
+    font-family:'Times New Roman', Times, serif;
+}
+.fontfamily-td{
+    font-family:'Times New Roman', Times, serif;
+    
 }
