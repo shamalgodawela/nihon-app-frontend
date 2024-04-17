@@ -384,18 +384,24 @@ body{
     position: absolute;
     left:8.1cm;
     font-family:'Times New Roman', Times, serif;
+    
+    font-weight: 200;
 }
 .tddiscount{
     position:absolute;
     left:14.6cm;
     font-family:'Times New Roman', Times, serif;
+    font-weight: 200;
 }
 .tdtot{
     position:absolute;
     right: 0.9cm;
     font-family:'Times New Roman', Times, serif;
+    font-weight: 200;
 }
 .fontfamily-td{
     font-family:'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: 300;
     
 }
