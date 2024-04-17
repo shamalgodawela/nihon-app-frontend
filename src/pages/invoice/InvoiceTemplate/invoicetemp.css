@@ -117,12 +117,12 @@ ul li{
 }
 #ornumber {
     
-    margin-left:6cm;
+    margin-left:4cm;
     visibility: hidden;
    
 }
 #ordate{
-    margin-left:8cm;
+    margin-left:6cm;
     visibility: hidden;
     
    
@@ -131,19 +131,19 @@ ul li{
 }
 #orexe{
     
-    margin-left:8.2cm;
+    margin-left:6.2cm;
     visibility: hidden;
    
 }
 #orinvoice{
-    margin-left:6.7cm;
+    margin-left:4.7cm;
     visibility: hidden;
 
     
 
 }
 #oridate{
-    margin-left:8cm;
+    margin-left:6cm;
     visibility: hidden;
    
 
