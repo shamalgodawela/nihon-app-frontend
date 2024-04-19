@@ -47,9 +47,8 @@ import ViewStationery from "./pages/viewstationery/ViewStationery";
 import Stationeryuse from "./pages/stationeryused/Stationeryuse";
 import Getalluse from "./pages/stationeryused/getall/Getalluse";
 import GetAllReturnDetails from "./pages/returnNotes/gettall/GetAllReturnDetails";
-import GoogleMapComponent from "./pages/Googlemap/GoogleMapComponent";
-import Executivel from "./pages/exelogin/Executivel";
-import ViewLiveLocation from "./pages/exelogin/viewlocation/ViewLiveLocation";
+import ExeLogin from "./pages/authExe/ExeLogin";
+import Exedashboard from "./compenents/Exedashboard/Exedashboard";
 
 
 
@@ -128,8 +127,9 @@ function App() {
     <Route path="/addstationeryUse" element={<Stationeryuse/>} />
     <Route path="/getallusestationery" element={<Getalluse/>} />
     <Route path="/getallreturn" element={<GetAllReturnDetails/>} />
-    <Route path="/map" element={<ViewLiveLocation/>} />
-    {/* <Route path="/executive" element={<Executivel/>} /> */}
+    <Route path="/ExeLogin" element={<ExeLogin/>} />
+    <Route path="/Exedahsboard" element={<Exedashboard/>} />
+    
    
 
 

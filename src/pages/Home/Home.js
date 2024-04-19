@@ -32,7 +32,7 @@ export const Home = () => {
           </li> 
           <li>
           <button className='--btn --btn-primary'>
-             <Link to="/executive">Executive Login</Link>
+             <Link to="/ExeLogin">Executive Login</Link>
             </button> 
           </li> 
 
