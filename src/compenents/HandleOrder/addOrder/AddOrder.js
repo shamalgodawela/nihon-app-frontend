@@ -292,7 +292,7 @@ const AddOrder = ({ onAddOrder }) => {
         className="product-input"
       />
       
-<label className="product-label">Label Price:</label>
+<label className="product-label">invoice total:</label>
       <input
   type="text"
   name="invoiceTotal"
