@@ -67,7 +67,7 @@ export default function InvoiceTemp() {
       <td className="fontfamily-td">{product.productName}</td>
       <td className="tdquantity">{product.quantity}</td>
       <td className="fontfamily-td">{formatNumbers(product.labelPrice.toFixed(2))}</td>
-      <td className="tddiscount">{product.discount}</td>
+      <td className="tddiscount">{formatNumbers(product.discount.toFixed(2))}</td>
       <td className="fontfamily-td">{formatNumbers(product.unitPrice.toFixed(2))}</td>
       <td className="tdtot" style={{ textAlign: 'end' }}>{formatNumbers(product.invoiceTotal.toFixed(2))}</td>
 

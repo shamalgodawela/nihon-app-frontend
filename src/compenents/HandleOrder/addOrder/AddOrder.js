@@ -295,7 +295,6 @@ const AddOrder = ({ onAddOrder }) => {
         type="text"
         name="invoiceTotal"
         value={product.invoiceTotal}
-        readOnly
         className="product-input"
       />
 
