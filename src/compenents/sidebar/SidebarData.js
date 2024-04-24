@@ -28,12 +28,6 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'View Orders',
-    path: '/allorder',
-    icon: <FaBorderAll />,
-    cName: 'nav-text'
-  },
-  {
     title: 'Manage invoices',
     path: '/all-invoices',
     icon: <FaFileInvoice />,
