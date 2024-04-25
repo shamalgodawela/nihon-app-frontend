@@ -140,7 +140,7 @@ const AddOrder = ({ onAddOrder }) => {
               productName: '',
               quantity: 0,
               labelPrice: 0,
-              discount:'-',
+              discount:'',
               unitPrice: 0,
               invoiceTotal: 0,
             },
@@ -277,7 +277,7 @@ const AddOrder = ({ onAddOrder }) => {
     value={product.discount}
     onChange={(e) => handleChange(e, index)}
     className="product-input"
-    readOnly
+    
 />
 
 <label className="product-label">Unit Price:</label>
