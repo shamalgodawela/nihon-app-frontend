@@ -439,7 +439,7 @@ const InvoiceForm = () => {
               <div>
                 <label>Discount (%):</label>
                 <input
-                  type="number"
+                  type="text"
                   name={`products[${index}].discount`}
                   value={product.discount}
                   onChange={(e) => handleChange(e, index)}
