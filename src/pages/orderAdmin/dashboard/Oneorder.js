@@ -27,7 +27,7 @@ const Oneorder = () => {
             productName: product.productName || '',
             labelPrice: product.labelPrice || '',
             quantity: product.quantity || '',
-            discount: product.discount || '',
+            discount: product.discount || 0, // Set default value of discount to 0
             unitPrice: product.unitPrice || '',
             invoiceTotal: product.invoiceTotal || '',
           }))
@@ -54,9 +54,10 @@ const Oneorder = () => {
         ...updatedOrder,
         [name]: value,
         products: updatedOrder.products.map(product => {
-          const labelPrice = parseFloat(product.labelPrice)
+          const labelPrice = parseFloat(product.labelPrice);
+          const discount = parseFloat(product.discount);
           const quantity = parseFloat(product.quantity);
-          const unitPrice = parseFloat(product.unitPrice); // Calculate unit price
+          const unitPrice = labelPrice * (1 - discount / 100); // Calculate unit price
           const invoiceTotal = unitPrice * quantity; // Calculate invoice total
           return {
             ...product,
@@ -102,7 +103,7 @@ const Oneorder = () => {
       const labelPrice = parseFloat(updatedProducts[index].labelPrice);
       const discount = parseFloat(updatedProducts[index].discount);
       const quantity = parseFloat(updatedProducts[index].quantity);
-      const unitPrice = parseFloat(updatedProducts[index].unitPrice);
+      const unitPrice = labelPrice * (1 - discount / 100);
       const invoiceTotal = unitPrice * quantity;
   
       updatedProducts[index].unitPrice = isNaN(unitPrice) ? '' : unitPrice.toFixed(2);
