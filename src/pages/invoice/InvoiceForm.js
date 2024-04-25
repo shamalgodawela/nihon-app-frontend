@@ -18,7 +18,7 @@ const InvoiceForm = () => {
         productName: '',
         quantity: 0,
         labelPrice: 0,
-        discount: 0,
+        discount: '-',
         unitPrice: 0,
         invoiceTotal: 0,
         // Remove the category field
@@ -169,7 +169,7 @@ const InvoiceForm = () => {
           productName: '',
           quantity: 0,
           labelPrice: 0,
-          discount: 0,
+          discount: '-',
           unitPrice: 0,
           invoiceTotal: 0,
         },

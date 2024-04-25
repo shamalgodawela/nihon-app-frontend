@@ -71,22 +71,18 @@ const AddOrder = ({ onAddOrder }) => {
     const products = [...orderData.products];
     products[index][name] = value;
 
-    // Calculate unit price and invoice total when label price or discount changes
-    if (name === 'labelPrice' || name === 'discount') {
+    // Calculate invoice total when label price or unit price changes
+    if (name === 'labelPrice' || name === 'unitPrice') {
         const labelPrice = parseFloat(products[index].labelPrice);
-        const discount = parseFloat(products[index].discount);
+        const unitPrice = parseFloat(products[index].unitPrice);
         const quantity = parseFloat(products[index].quantity);
-        const unitPrice = labelPrice * (1 - discount / 100); // Calculate unit price
-        const invoiceTotal = unitPrice * quantity; // Calculate invoice total
-        products[index].unitPrice = isNaN(unitPrice) ? '' : unitPrice.toFixed(2); // Set unit price
+        const invoiceTotal = quantity * unitPrice; // Calculate invoice total
         products[index].invoiceTotal = isNaN(invoiceTotal) ? '' : invoiceTotal.toFixed(2); // Set invoice total
-    } else if (name === 'invoiceTotal') {
-        // Update invoice total directly if edited
-        products[index].invoiceTotal = value;
     }
 
     setOrderData({ ...orderData, products });
 };
+
 
 
     const handleAddProduct = () => {
@@ -144,7 +140,7 @@ const AddOrder = ({ onAddOrder }) => {
               productName: '',
               quantity: 0,
               labelPrice: 0,
-              discount: 0,
+              discount:'-',
               unitPrice: 0,
               invoiceTotal: 0,
             },
@@ -274,23 +270,24 @@ const AddOrder = ({ onAddOrder }) => {
         className="product-input"
       />
 
-      <label className="product-label">Discount (%):</label>
-      <input
-        type="text"
-        name="discount"
-        value={product.discount}
-        onChange={(e) => handleChange(e, index)}
-        className="product-input"
-      />
+<label className="product-label">Discount (%):</label>
+<input
+    type="text"
+    name="discount"
+    value={product.discount}
+    onChange={(e) => handleChange(e, index)}
+    className="product-input"
+    readOnly
+/>
 
-      <label className="product-label">Unit Price:</label>
-      <input
-        type="text"
-        name="unitPrice"
-        value={product.unitPrice}
-        readOnly
-        className="product-input"
-      />
+<label className="product-label">Unit Price:</label>
+<input
+    type="text"
+    name="unitPrice"
+    value={product.unitPrice}
+    onChange={(e) => handleChange(e, index)}
+    className="product-input"
+/>
       
 <label className="product-label">invoice total:</label>
       <input
@@ -299,6 +296,7 @@ const AddOrder = ({ onAddOrder }) => {
   value={product.invoiceTotal}
   onChange={(e) => handleChange(e, index)}
   className="product-input"
+  readOnly
 />
 
 

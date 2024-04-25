@@ -53,17 +53,23 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-  title: 'Office Inventory',
-  path: '/getallinven',
-  icon: <PiOfficeChairFill />,
-  cName: 'nav-text'
-},
-{
-  title: 'Stores Inventory',
-  path: '/getallinven',
-  icon: <SiHomeassistantcommunitystore />,
-  cName: 'nav-text'
-},  
+    title: 'Order details',
+    path: '/Dorder',
+    icon: <GiMaterialsScience />,
+    cName: 'nav-text'
+  },
+//   {
+// //   title: 'Office Inventory',
+// //   path: '/getallinven',
+// //   icon: <PiOfficeChairFill />,
+// //   cName: 'nav-text'
+// // },
+// // {
+// //   title: 'Stores Inventory',
+// //   path: '/getallinven',
+// //   icon: <SiHomeassistantcommunitystore />,
+// //   cName: 'nav-text'
+// // },  
 {
   title: 'Check Executive Location',
   path: '/map',

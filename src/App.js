@@ -49,6 +49,7 @@ import Getalluse from "./pages/stationeryused/getall/Getalluse";
 import GetAllReturnDetails from "./pages/returnNotes/gettall/GetAllReturnDetails";
 import ExeLogin from "./pages/authExe/ExeLogin";
 import Exedashboard from "./compenents/Exedashboard/Exedashboard";
+import Dorder from "./pages/Order/MainOrder/Dorder";
 
 
 
@@ -130,6 +131,7 @@ function App() {
     <Route path="/getallreturn" element={<GetAllReturnDetails/>} />
     <Route path="/ExeLogin" element={<ExeLogin/>} />
     <Route path="/Exedahsboard" element={<Exedashboard/>} />
+    <Route path="/Dorder" element={<Dorder/>} />
  
     
    
