@@ -18,7 +18,7 @@ const InvoiceForm = () => {
         productName: '',
         quantity: 0,
         labelPrice: 0,
-        discount: '-',
+        discount: '',
         unitPrice: 0,
         invoiceTotal: 0,
         // Remove the category field
@@ -169,7 +169,7 @@ const InvoiceForm = () => {
           productName: '',
           quantity: 0,
           labelPrice: 0,
-          discount: '-',
+          discount: '',
           unitPrice: 0,
           invoiceTotal: 0,
         },
@@ -443,7 +443,7 @@ const InvoiceForm = () => {
                   name={`products[${index}].discount`}
                   value={product.discount}
                   onChange={(e) => handleChange(e, index)}
-                  readOnly
+                  
 
                 />
               </div>
