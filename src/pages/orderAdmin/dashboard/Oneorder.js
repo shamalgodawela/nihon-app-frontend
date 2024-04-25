@@ -27,7 +27,7 @@ const Oneorder = () => {
             productName: product.productName || '',
             labelPrice: product.labelPrice || '',
             quantity: product.quantity || '',
-            discount: product.discount || 0, // Set default value of discount to 0
+            discount: product.discount || '-', // Set default value of discount to 0
             unitPrice: product.unitPrice || '',
             invoiceTotal: product.invoiceTotal || '',
           }))
