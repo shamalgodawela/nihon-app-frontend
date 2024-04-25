@@ -13,7 +13,7 @@ const AddOrder = ({ onAddOrder }) => {
         orderNumber: '',
         orderDate: '',
         exe: '',
-        products: [{ productCode: '', productName: '', quantity: '', labelPrice: '', discount: '-', unitPrice: '', invoiceTotal: '' }]
+        products: [{ productCode: '', productName: '', quantity: '', labelPrice: '', discount: '', unitPrice: '', invoiceTotal: '' }]
     });
     const [lastOrderNumber, setLastOrderNumber] = useState('');
 
