@@ -2,26 +2,25 @@ import React, { useState, useEffect } from 'react';
 import './orderdetails.css';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { SpinnerImg } from '../../loader/Loader'; // Import loading spinner
+import { SpinnerImg } from '../../loader/Loader'; 
 import { useSelector } from 'react-redux';
 
 const OrderDetails = () => {
   const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // State for loading indicator
+  const [isLoading, setIsLoading] = useState(true); 
   const [selectedPeriod, setSelectedPeriod] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [selectedExe, setSelectedExe] = useState('');
 
   useEffect(() => {
-    // Fetch order details from backend API
+    
     fetchOrders();
   }, [selectedPeriod, selectedStatus, selectedExe]);
 
   const fetchOrders = async () => {
     try {
-      setIsLoading(true); // Set loading to true when fetching starts
-
-      // Construct query parameters
+      setIsLoading(true);
+  
       const queryParams = new URLSearchParams();
       if (selectedPeriod) queryParams.append('period', selectedPeriod);
       if (selectedStatus) queryParams.append('status', selectedStatus);
@@ -30,10 +29,10 @@ const OrderDetails = () => {
       const response = await fetch(`https://nihon-inventory.onrender.com/api/allor?${queryParams}`); // Update the URL with your backend endpoint
       const data = await response.json();
       setOrders(data);
-      setIsLoading(false); // Set loading to false when fetching completes
+      setIsLoading(false); 
     } catch (error) {
       console.error('Error fetching orders:', error);
-      setIsLoading(false); // Set loading to false in case of error
+      setIsLoading(false);
     }
   };
 
@@ -89,8 +88,7 @@ const OrderDetails = () => {
         <th className='thorder'>Order Date</th>
         <th className='thorder'>Exe</th>
         <th className='thorder'>Status</th>
-        <th className='thorder'>Action</th>
-        {/* Add more table headers as needed */}
+        
       </tr>
     </thead>
     <tbody>
@@ -99,16 +97,11 @@ const OrderDetails = () => {
           <td className='tdorder'>{order.orderNumber}</td>
           <td className='tdorder'>{order.customer}</td>
           <td className='tdorder'>{order.code}</td>
-          {/* Add more table cells for other order details */}
           <td className='tdorder'>{order.orderDate}</td>
           <td className='tdorder'>{order.exe}</td>
           <td className='tdorder'>{order.status}</td>
-          <td className='tdorder'>
-            <Link to={`/orders/${order.orderNumber}`}>
-              <AiOutlineEye size={20} color={"purple"} />
-            </Link>
-          </td>
-          {/* Add more table cells as needed */}
+          
+        
         </tr>
       ))}
     </tbody>
