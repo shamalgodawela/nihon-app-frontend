@@ -2,7 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import './addorder.css'
+import { useNavigate } from 'react-router-dom';
 const AddOrder = ({ onAddOrder }) => {
+    const navigate = useNavigate();
     const [orderData, setOrderData] = useState({
         invoiceNumber: '',
         customer: '',
@@ -116,6 +118,8 @@ const AddOrder = ({ onAddOrder }) => {
             const response = await axios.post(`https://nihon-inventory.onrender.com/api/orders`, orderData);
             console.log('Invoice added successfully', response.data);
             toast.success('Order is added sucessfully');
+            navigate('/allorder')
+
             // Optionally, you can perform additional actions upon successful addition of the order
         } catch (error) {
             console.error('Error adding invoice:', error);

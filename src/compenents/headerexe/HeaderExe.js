@@ -19,7 +19,7 @@ const HeaderExe = () => {
       </span>
       <div className={`menu-wrap ${isMenuOpen ? 'menu-show' : ''}`}>
         <ul className="menu">
-        <li className='liexe'><a  className='aexe' href="#">Dashboard</a></li>
+        <li className='liexe'><a  className='aexe' href="/Exedahsboard">Dashboard</a></li>
           <li className='liexe'><a className='aexe' href="/addorder">Add Order</a></li>
           <li className='liexe'><a  className='aexe' href="/allorder">List of Order</a></li>
           <li className='liexe'><a  className='aexe' href="#"></a></li>
