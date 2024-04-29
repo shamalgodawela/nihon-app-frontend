@@ -375,8 +375,8 @@ body{
 #print-area{
     border:1px solid transparent;
     
-    max-width: auto; /* Maximum width for the invoice */
-    margin: 0 auto; /* Center the invoice horizontally */
+    max-width: auto;
+    margin: 0 auto; 
     
 }
 

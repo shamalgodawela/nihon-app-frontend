@@ -118,7 +118,7 @@ const AddOrder = ({ onAddOrder }) => {
             const response = await axios.post(`https://nihon-inventory.onrender.com/api/orders`, orderData);
             console.log('Invoice added successfully', response.data);
             toast.success('Order is added sucessfully');
-            navigate('/allorder')
+            navigate('/allorder ')
 
             // Optionally, you can perform additional actions upon successful addition of the order
         } catch (error) {
@@ -179,6 +179,7 @@ const AddOrder = ({ onAddOrder }) => {
     <option value="Mr.Dasun">Mr.Dasun</option> 
     <option value="Mr.Chameera">Mr.Chameera</option> 
     <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
+    <option value="Mr.Sanjeewa">Mr.Nayum</option>
   </select>
   {orderData.exe === 'Mr.Ahamed' && (
                 <div className="form-row">

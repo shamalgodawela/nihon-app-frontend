@@ -634,15 +634,22 @@ const InvoiceForm = () => {
             />
           </div>
           <div>
-            <label >Inventory No:</label>
-            <input
-              type="text"
-              name="VehicleNo"
-              value={formData.VehicleNo}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          
+  <label>Inventory No:</label>
+  <select
+   
+    name="VehicleNo"
+    value={formData.VehicleNo}
+    onChange={(e) => handleChange(e)}
+  >
+    <option value="MS">MS</option>
+    <option value="EA1">EA1</option>
+    <option value="UPC1">UPC1</option>
+    <option value="NCP1">NCP1</option>
+    <option value="SU1">SU1</option>
+   
+  </select>
+</div>
+
           
           <button type="submit">Submit</button>
         </form>
