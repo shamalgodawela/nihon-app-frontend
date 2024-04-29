@@ -405,3 +405,10 @@ body{
     font-weight: 300;
     
 }
+#inventory{
+    position: absolute;
+    top:2cm;
+    right:2cm;
+    font-size: 20px;
+    font-weight: 100;
+}

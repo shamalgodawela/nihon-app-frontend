@@ -116,6 +116,7 @@ export default function InvoiceTemp() {
             <h6>Email: info@nihonagholdings.com</h6>
             <h6>Hotline: 0777666802</h6>
           </div>
+          <p id='inventory'>{invoice.VehicleNo}</p>
           <div class="invoice-container">
             <div class="invoice-head">
               <div class="invoice-head-top">
@@ -124,6 +125,7 @@ export default function InvoiceTemp() {
               </div>
               <div class="invoice-head-bottom">
                 <div class="invoice-head-bottom-left">
+                  
                   <ul>
                     <li class='text-bold1'>Customer Details</li>
                     <li className="licus"><span class="label" >Code:</span>{invoice.code}</li>
@@ -202,7 +204,7 @@ export default function InvoiceTemp() {
               <div className="table-row">
                 <div className="table-cell2">Security Checked by</div>
                 <div className="table-cell2">Gate Pass No:{invoice.GatePassNo}</div>
-                <div className="table-cell2 with-space">Vehicle No:{invoice.VehicleNo}</div>
+                <div className="table-cell2 with-space">Vehicle No:</div>
               </div>
             </div>
             <div className="table-container">
