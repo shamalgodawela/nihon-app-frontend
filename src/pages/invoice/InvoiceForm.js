@@ -634,7 +634,7 @@ const InvoiceForm = () => {
             />
           </div>
           <div>
-            <label>Vehicle No:</label>
+            <label >Inventory No:</label>
             <input
               type="text"
               name="VehicleNo"
@@ -642,6 +642,7 @@ const InvoiceForm = () => {
               onChange={(e) => handleChange(e)}
             />
           </div>
+          
           
           <button type="submit">Submit</button>
         </form>
