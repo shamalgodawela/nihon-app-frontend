@@ -202,7 +202,7 @@ export default function InvoiceTemp() {
               <div className="table-row">
                 <div className="table-cell2">Security Checked by</div>
                 <div className="table-cell2">Gate Pass No:{invoice.GatePassNo}</div>
-                <div className="Inventory-No"><div className="table-cell2" >Vehicle No</div>{invoice.VehicleNo}</div>
+                <div className="table-cell2 with-space">Vehicle No:{invoice.VehicleNo}</div>
               </div>
             </div>
             <div className="table-container">
