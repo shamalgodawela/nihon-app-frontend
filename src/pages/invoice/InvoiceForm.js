@@ -603,7 +603,7 @@ const InvoiceForm = () => {
               name="TermsofPayment"
               value={formData.TermsofPayment}
               onChange={(e) => handleChange(e)}
-              required
+             
             />
           </div>
           <div>
