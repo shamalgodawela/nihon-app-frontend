@@ -1,4 +1,3 @@
-// Import the useState and useEffect hooks
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -603,7 +602,7 @@ const InvoiceForm = () => {
               name="TermsofPayment"
               value={formData.TermsofPayment}
               onChange={(e) => handleChange(e)}
-             
+              required
             />
           </div>
           <div>
@@ -634,22 +633,15 @@ const InvoiceForm = () => {
             />
           </div>
           <div>
-  <label>Inventory No:</label>
-  <select
-   
-    name="VehicleNo"
-    value={formData.VehicleNo}
-    onChange={(e) => handleChange(e)}
-  >
-    <option value="MS">MS</option>
-    <option value="EA1">EA1</option>
-    <option value="UPC1">UPC1</option>
-    <option value="NCP1">NCP1</option>
-    <option value="SU1">SU1</option>
-   
-  </select>
-</div>
-
+            <label>Inventory No:</label>
+            <input
+              type="text"
+              name="VehicleNo"
+              value={formData.VehicleNo}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          
           
           <button type="submit">Submit</button>
         </form>
