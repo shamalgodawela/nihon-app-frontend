@@ -186,29 +186,29 @@ const InvoiceForm = () => {
     });
   };
 
-  // useEffect(() => {
-  //   let totalUnitPrice = 0;
-  //   let totalInvoiceTotal = 0;
+  useEffect(() => {
+    let totalUnitPrice = 0;
+    let totalInvoiceTotal = 0;
   
-  //   formData.products.forEach((product) => {
-  //     const calculatedUnitPrice = parseFloat(product.labelPrice) - (parseFloat(product.labelPrice) * parseFloat(product.discount) / 100);
-  //     const calculatedInvoiceTotal = parseFloat(calculatedUnitPrice) * parseFloat(product.quantity);
+    formData.products.forEach((product) => {
+      const calculatedUnitPrice = parseFloat(product.labelPrice) - (parseFloat(product.labelPrice) * parseFloat(product.discount) / 100);
+      const calculatedInvoiceTotal = parseFloat(calculatedUnitPrice) * parseFloat(product.quantity);
   
-  //     totalUnitPrice += isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
-  //     totalInvoiceTotal += isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
+      totalUnitPrice += isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
+      totalInvoiceTotal += isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
   
-  //     product.unitPrice = isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
-  //     product.invoiceTotal = isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
-  //   });
+      product.unitPrice = isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
+      product.invoiceTotal = isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
+    });
   
     // Fetch last invoice number and order number
     // Fetch last numbers on component mount
   
-  //   setCalculatedValues({
-  //     unitPrice: totalUnitPrice,
-  //     invoiceTotal: totalInvoiceTotal,
-  //   });
-  // }, [formData.products]);
+    setCalculatedValues({
+      unitPrice: totalUnitPrice,
+      invoiceTotal: totalInvoiceTotal,
+    });
+  }, [formData.products]);
   
   
 
