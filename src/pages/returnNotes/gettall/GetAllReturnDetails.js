@@ -23,7 +23,9 @@ const GetAllReturnDetails = () => {
 
     return (
         <div>
-            <NavBar/>
+            <NavBar/><br/>
+
+            <button type="button" className="btn btn-outline-primary" disabled><a href="/addreturn" >Add return</a></button><br/><br/>
             <div className="return-details-container">
     <div>
         <h2 className="return-details-heading">Return Details</h2>
