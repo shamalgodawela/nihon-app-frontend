@@ -1,3 +1,27 @@
+.beautiful-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+ 
+}
+
+
+.beautiful-select::-ms-expand {
+  display: none;
+}
+
+.beautiful-select::before {
+  content: '\25BC'; 
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #666; 
+}
 
 .all-invoice {
     max-width: 800px;

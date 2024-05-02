@@ -117,8 +117,9 @@ const Oneorder = () => {
   };
 
   return (
-    <div>
+    <div className='bodAdmin'>
       <Menu/>
+     
       <div className="container">
         <div className="order-details-container">
           <h2 className="order-details-header">Order Details</h2>
@@ -219,8 +220,8 @@ const Oneorder = () => {
                       <th>Label Price</th>
                       <th>Quantity</th>
                       <th>Discount</th>
-                      <th>Unit Price</th>
-                      <th>Invoice Total</th>
+                      <th>Unit Price(RS)</th>
+                      <th>Invoice Total(RS)</th>
                     </tr>
                   </thead>
                   <tbody>

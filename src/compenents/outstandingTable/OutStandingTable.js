@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-
+import './allInvoice.css'
 const PAGE_SIZE = 10;
 
 const OutStandingTable = () => {
@@ -92,14 +92,21 @@ const OutStandingTable = () => {
     return (
         <div className='invoice-body'>
             <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Search by Exe"
-                    value={searchParams.exe}
-                    onChange={(e) => handleChangeSearchParams('exe', e.target.value)}
-                />
-                <button onClick={handleSearch}>Search</button>
-            </div>
+    <select
+        className="beautiful-select"
+        value={searchParams.exe}
+        onChange={(e) => handleChangeSearchParams('exe', e.target.value)}
+    >
+        <option value="">Select Exe</option>
+        <option value="Mr.Ahamed">Mr.Ahamed</option> 
+          <option value="Mr.Dasun">Mr.Dasun</option> 
+          <option value="Mr.Chameera">Mr.Chameera</option> 
+          <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
+          <option value="Mr.Nayum">Mr.Nayum</option>
+    </select>
+    <button onClick={handleSearch}>Search</button>
+</div>
+
             <div className="all-invoice">
                 <h2 className='h2-invoice'>Outstanding Details</h2>
                 <table>
