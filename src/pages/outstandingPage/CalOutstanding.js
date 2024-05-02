@@ -104,7 +104,9 @@ const CalOutstanding = () => {
             const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-all-outstanding/${invoice.invoiceNumber}`);
             const data = response.data;
             if (data.length === 0) {
-                toast.error('Customer did not pay yet')          
+                alert('Customer did not pay yet')          
+                toast.error('Customer did not pay yet')
+                
             }
             else{
                 setSavedDetails(data);
@@ -113,6 +115,7 @@ const CalOutstanding = () => {
             
         } catch (error) {
             toast.error('Customer did not pay yet')
+            alert('Customer did not pay yet') 
             console.error('Failed to fetch all outstanding details:', error.message);
             // Handle error
         }
@@ -164,9 +167,9 @@ const CalOutstanding = () => {
         </table>
        
 
-        <div className="info-item-td text-end text-bold" id="second">SubTotal: RS/={calculateTotal()}</div>
-        <div className="info-item-td text-end text-bold" id="second">Tax: %{invoice.Tax}</div>
-        <div className="info-item-td text-end text-bold" id="second">Total: RS/={calculateTaxtot()}</div>
+        {/* <div className="info-item-td text-end text-bold1" id="second1">SubTotal: RS/={calculateTotal()}</div>
+        <div className="info-item-td text-end text-bold2" id="second2">Tax: %{invoice.Tax}</div> */}
+        <div className="info-item-td text-end text-bold3" id="second3">Total: RS/={calculateTaxtot()}</div>
         <br/><br/><hr/> <br/><br/>
         <div className="add-outstanding-container">
     <h1 className="h1-out">Add Outstanding</h1>

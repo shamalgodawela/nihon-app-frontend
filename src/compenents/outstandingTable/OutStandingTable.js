@@ -41,6 +41,19 @@ const OutStandingTable = () => {
             setLoading(false);
         }
     };
+    const handleSearchByCode = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get(`https://nihon-inventory.onrender.com/search-outstandingbycus`, { params: searchParams });
+            setInvoices(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Failed to perform search by code', error.message);
+            setError('Failed to perform search by code');
+            setLoading(false);
+        }
+    };
+    
 
     const handleChangeSearchParams = (key, value) => {
         setSearchParams({ [key]: value }); // Update searchParams directly
@@ -105,6 +118,15 @@ const OutStandingTable = () => {
           <option value="Mr.Nayum">Mr.Nayum</option>
     </select>
     <button onClick={handleSearch}>Search</button>
+</div>
+<div className="search-container">
+    <input
+        type="text"
+        placeholder="Search by code"
+        value={searchParams.code}
+        onChange={(e) => handleChangeSearchParams('code', e.target.value)}
+    />
+    <button onClick={handleSearchByCode}>Search by Code</button>
 </div>
 
             <div className="all-invoice">
