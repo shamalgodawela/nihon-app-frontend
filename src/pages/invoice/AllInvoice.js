@@ -70,14 +70,31 @@ const AllInvoice = () => {
             style={{ marginRight: '10px', padding: '5px' }}
           />
          
-          <input
-            type="text"
-            placeholder="Search by Exe"
-            value={exe}
-            onChange={(e) => setExe(e.target.value)}
-            style={{ marginRight: '10px', padding: '5px' }}
-          />
-          <button onClick={searchInvoices} style={{ padding: '5px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>Search</button>
+         <select
+  value={exe}
+  onChange={(e) => setExe(e.target.value)}
+  style={{ marginRight: '10px', padding: '5px' }}
+>
+  <option value="">Select Exe</option>
+  <option value="Mr.Ahamed">Mr.Ahamed</option>
+  <option value="Mr.Dasun">Mr.Dasun</option>
+  <option value="Mr.Chameera">Mr.Chameera</option>
+  <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
+  <option value="Mr.Nayum">Mr.Nayum</option>
+</select>
+<button
+  onClick={searchInvoices}
+  style={{
+    padding: '5px',
+    backgroundColor: '#007bff',
+    color: 'white',
+    border: 'none',
+    cursor: 'pointer'
+  }}
+>
+  Search
+</button>
+
         </div>
 
         <button type="button" class="btn btn-outline-primary" disabled><a href="/add-invoice" >Add Invoice</a></button>
