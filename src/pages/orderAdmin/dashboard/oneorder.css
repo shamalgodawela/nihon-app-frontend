@@ -1,50 +1,89 @@
+.bodAdmin{
+  background-image: url('../../../assets/order-back.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+}
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .order-details-container {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-  }
-  
-  .order-details-header {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .order-details-label {
-    font-weight: bold;
-  }
-  
-  .order-details-product-header {
-    font-size: 20px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-  }
-  
-  .order-details-product-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .order-details-product-table th,
-  .order-details-product-table td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .order-details-product-item {
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .order-details-product-item:last-child {
-    border-bottom: none;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.order-details-container {
+  background-color: #ffffff76;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-details-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #000000;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.order-details-label {
+  font-weight: bold;
+  color: #000000;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.order-details-product-header {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #333333;
+}
+
+.order-details-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.order-details-product-table th,
+.order-details-product-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eeeeee;
+  text-align: left;
+}
+
+.order-details-product-item {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.order-details-product-item:last-child {
+  border-bottom: none;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+input[type="date"] {
+  width: calc(100% - 16px);
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
