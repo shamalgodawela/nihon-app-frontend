@@ -44,7 +44,7 @@ const OutStandingTable = () => {
     const handleSearchByCode = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(`https://nihon-inventory.onrender.com/search-outstandingbycus`, { params: searchParams });
+            const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-outstandingbycus`, { params: searchParams });
             setInvoices(response.data);
             setLoading(false);
         } catch (error) {
