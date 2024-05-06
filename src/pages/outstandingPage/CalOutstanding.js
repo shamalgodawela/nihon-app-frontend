@@ -35,29 +35,34 @@ const CalOutstanding = () => {
 
     const calculateTotal = () => {
         let total = 0;
+      
         if (invoice && invoice.products) {
-            total = invoice.products.reduce((acc, product) => acc + parseFloat(product.invoiceTotal), 0);
+          total = invoice.products.reduce((acc, product) => {
+            const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+            return acc + productTotal;
+          }, 0);
         }
-        return total;
-    };
+      
+        return total.toFixed(2); // Return the total with 2 decimal places
+      };
 
-    const calculateTaxtot = () => {
-        if (invoice && invoice.products) {
-            const taxRate = invoice.Tax || 0;
+    // const calculateTaxtot = () => {
+    //     if (invoice && invoice.products) {
+    //         const taxRate = invoice.Tax || 0;
 
-            const totalTax = invoice.products.reduce((acc, product) => {
-                const productTax = parseFloat(product.invoiceTotal) * (taxRate / 100);
-                return acc + productTax;
-            }, 0);
+    //         const totalTax = invoice.products.reduce((acc, product) => {
+    //             const productTax = parseFloat(product.invoiceTotal) * (taxRate / 100);
+    //             return acc + productTax;
+    //         }, 0);
 
-            const subtotal = calculateTotal();
-            const totalWithTax = subtotal + totalTax;
+    //         const subtotal = calculateTotal();
+    //         const totalWithTax = subtotal + totalTax;
 
-            return totalWithTax.toFixed(2);
-        }
+    //         return totalWithTax.toFixed(2);
+    //     }
 
-        return 0;
-    };
+    //     return 0;
+    // };
 
     const handleCalculate = async () => {
         try {
@@ -75,7 +80,7 @@ const CalOutstanding = () => {
             } 
             setOutstanding(newOutstanding);
         } catch (error) {
-            const total = calculateTaxtot();
+            const total =calculateTotal();
             const newOutstanding = total - amount;
             setOutstanding(newOutstanding);
             return;
@@ -160,7 +165,7 @@ const CalOutstanding = () => {
                         <td>RS/={product.labelPrice}</td>
                         <td>{product.discount}</td>
                         <td>RS/={product.unitPrice}</td>
-                        <td>RS/={product.invoiceTotal}</td>
+                        <td>RS/={product.labelPrice * (1 - product.discount / 100) * product.quantity}</td>
                     </tr>
                 ))}
             </tbody>
@@ -169,7 +174,7 @@ const CalOutstanding = () => {
 
         {/* <div className="info-item-td text-end text-bold1" id="second1">SubTotal: RS/={calculateTotal()}</div>
         <div className="info-item-td text-end text-bold2" id="second2">Tax: %{invoice.Tax}</div> */}
-        <div className="info-item-td text-end text-bold3" id="second3">Total: RS/={calculateTaxtot()}</div>
+        <div className="info-item-td text-end text-bold3" id="second3">Total: RS/={calculateTotal()}</div>
         <br/><br/><hr/> <br/><br/>
         <div className="add-outstanding-container">
     <h1 className="h1-out">Add Outstanding</h1>
