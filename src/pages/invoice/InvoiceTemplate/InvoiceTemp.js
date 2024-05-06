@@ -69,7 +69,10 @@ export default function InvoiceTemp() {
       <td className="fontfamily-td">{formatNumbers(product.labelPrice.toFixed(2))}</td>
       <td className="tddiscount">{product.discount}</td>
       <td className="fontfamily-td">{formatNumbers(product.unitPrice.toFixed(2))}</td>
-      <td className="tdtot" style={{ textAlign: 'end' }}>{formatNumbers(product.invoiceTotal.toFixed(2))}</td>
+      <td className="tdtot" style={{ textAlign: 'end' }}>
+  {formatNumbers((product.labelPrice * (1 - product.discount / 100) * product.quantity).toFixed(2))}
+</td>
+
 
     </tr>
   ));
