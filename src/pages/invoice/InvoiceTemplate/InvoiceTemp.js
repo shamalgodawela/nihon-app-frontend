@@ -28,36 +28,47 @@ export default function InvoiceTemp() {
 
   const calculateTotal = () => {
     let total = 0;
-    if (invoice && invoice.products) {
-      total = invoice.products.reduce((acc, product) => acc + parseFloat(product.invoiceTotal), 0);
-    }
-    return total;
-  };
   
-  const calculateTaxtot = () => {
     if (invoice && invoice.products) {
-      const taxRate = invoice.Tax || 0; // Default to 0 if tax rate is not available
-  
-      const totalTax = invoice.products.reduce((acc, product) => {
-        const productTax = parseFloat(product.invoiceTotal) * (taxRate / 100);
-        return acc + productTax;
+      total = invoice.products.reduce((acc, product) => {
+        const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+        return acc + productTotal;
       }, 0);
-  
-      const subtotal = calculateTotal(); // Get the subtotal
-      const totalWithTax = subtotal + totalTax; // Subtract tax amount from subtotal
-  
-      return totalWithTax.toFixed(2); // Adjust decimal places as needed
     }
   
-    return 0;
+    return total.toFixed(2); // Return the total with 2 decimal places
   };
+  
+  const formatNumbers = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  
+  
+  // const calculateTaxtot = () => {
+  //   if (invoice && invoice.products) {
+  //     const taxRate = invoice.Tax || 0; // Default to 0 if tax rate is not available
+  
+  //     const totalTax = invoice.products.reduce((acc, product) => {
+  //       const productTax = parseFloat(product.invoiceTotal) * (taxRate / 100);
+  //       return acc + productTax;
+  //     }, 0);
+  
+  //     const subtotal = calculateTotal(); // Get the subtotal
+  //     const totalWithTax = subtotal + totalTax; // Subtract tax amount from subtotal
+  
+  //     console.log(typeof totalWithTax, totalWithTax); // Log type and value of totalWithTax
+  
+  //     return totalWithTax.toFixed(2); // Adjust decimal places as needed
+  //   }
+  
+  //   return 0;
+  // };
+  
 
   if (!invoice) {
     return <div>Loading...</div>;
   }
-  const formatNumbers = (x) => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
+  
   // Ensure there are always 6 rows displayed, adding empty rows if needed
   const productsCount = invoice.products.length;
   const emptyRowsCount = Math.max(6 - productsCount, 0);
@@ -181,7 +192,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Invoiced by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>{formatNumbers(calculateTotal().toFixed(2))}</div>
+                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>{formatNumbers(calculateTotal())}</div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item border-bottom">
@@ -197,7 +208,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Goods issued by</p>
                       </div>
-                      <div className="info-item-tot" id="second2"><span class="label" >Total</span>{formatNumbers(calculateTaxtot())}</div>
+                      <div className="info-item-tot" id="second2"><span class="label" >Total</span>{formatNumbers(calculateTotal())}</div>
                     </div>
                   </div>
                 </div>
