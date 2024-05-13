@@ -73,6 +73,7 @@ const OrderDetails = () => {
           <option value="Mr.Dasun">Mr.Dasun</option> 
           <option value="Mr.Chameera">Mr.Chameera</option> 
           <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
+          <option value="Mr.Navaneedan">Mr.Navaneedan</option>
           <option value="Mr.Nayum">Mr.Nayum</option>
         </select>
       </div>

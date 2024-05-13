@@ -60,11 +60,22 @@ const AddOrder = ({ onAddOrder }) => {
         }
     }
 };
+const fetchLastOrderNumberUPC2 = async () => {
+  if (orderData.exe === 'Mr.Navaneedan') {
+      try {
+          const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastorder/upc1`);
+          setLastOrderNumber(response.data.lastOrderNumber);
+      } catch (error) {
+          console.error('Error fetching last order number:', error);
+      }
+  }
+};
 
       fetchLastOrderNumber();
       fetchLastOrderNumberSU();
       fetchLastOrderNumberNCP();
       fetchLastOrderNumberUPC();
+      fetchLastOrderNumberUPC2();
   }, [orderData.exe]);
    
 
@@ -179,6 +190,7 @@ const AddOrder = ({ onAddOrder }) => {
     <option value="Mr.Dasun">Mr.Dasun</option> 
     <option value="Mr.Chameera">Mr.Chameera</option> 
     <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
+    <option value="Mr.Navaneedan">Mr.Navaneedan</option> 
     <option value="Mr.Nayum">Mr.Nayum</option>
   </select>
   {orderData.exe === 'Mr.Ahamed' && (
