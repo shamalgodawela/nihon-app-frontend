@@ -221,6 +221,13 @@ const fetchLastOrderNumberUPC2 = async () => {
                     </p>
                 </div>
             )}
+{orderData.exe === 'Mr.Navaneedan' && (
+                <div className="form-row">
+                    <p className="last-order-number">
+                        Last Order Number (Starting with UPC2): {lastOrderNumber}
+                    </p>
+                </div>
+            )}
                                                                                                                                                                 
 </div>
   <label className="form-label">Order Number:</label>
