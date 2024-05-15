@@ -8,6 +8,8 @@ import { PiOfficeChairFill } from "react-icons/pi";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { GiMaterialsScience } from "react-icons/gi";
 import { TbTruckReturn } from "react-icons/tb";
+import { MdOutlineCancelPresentation } from "react-icons/md";
+
 
 
 export const SidebarData = [
@@ -31,6 +33,12 @@ export const SidebarData = [
     title: 'Manage invoices',
     path: '/all-invoices',
     icon: <FaFileInvoice />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Canceled Invoices details',
+    path: '/canceledInvoice',
+    icon: <MdOutlineCancelPresentation />,
     cName: 'nav-text'
   },
   {
@@ -58,6 +66,7 @@ export const SidebarData = [
     icon: <GiMaterialsScience />,
     cName: 'nav-text'
   },
+
 //   {
 // //   title: 'Office Inventory',
 // //   path: '/getallinven',

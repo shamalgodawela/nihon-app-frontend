@@ -142,6 +142,7 @@ const OutStandingTable = () => {
                             <th>Exe</th>
                             <th>Action</th>
                             <th>Status</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -153,6 +154,7 @@ const OutStandingTable = () => {
                                 <td>{invoice.address}</td>
                                 <td>{invoice.invoiceDate}</td>
                                 <td>{invoice.exe}</td>
+                                
                                 <td>
                                     <Link to={`/caloutStanding/${invoice._id}`}>
                                         <AiOutlineEye size={20} color={"purple"} />

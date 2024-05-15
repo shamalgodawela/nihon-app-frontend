@@ -50,6 +50,7 @@ import GetAllReturnDetails from "./pages/returnNotes/gettall/GetAllReturnDetails
 import ExeLogin from "./pages/authExe/ExeLogin";
 import Exedashboard from "./compenents/Exedashboard/Exedashboard";
 import Dorder from "./pages/Order/MainOrder/Dorder";
+import Canceled from "./pages/invoice/CanceledInvoice/Canceled";
 
 
 
@@ -132,6 +133,7 @@ function App() {
     <Route path="/ExeLogin" element={<ExeLogin/>} />
     <Route path="/Exedahsboard" element={<Exedashboard/>} />
     <Route path="/Dorder" element={<Dorder/>} />
+    <Route path="/canceledInvoice" element={<Canceled/>} />
  
     
    
