@@ -20,7 +20,7 @@ const Canceled = () => {
         discount: 0,
         unitPrice: 0,
         invoiceTotal: 0,
-        
+        // Remove the category field
       },
     ],
     invoiceNumber:'',
@@ -44,7 +44,7 @@ const Canceled = () => {
 
   const [lastInvoiceNumber, setLastInvoiceNumber] = useState('');
 
-  
+  // Fetch last invoice number on component mount
   useEffect(() => {
     const fetchLastInvoiceNumber = async () => {
       try {
@@ -84,6 +84,7 @@ const Canceled = () => {
               products: updatedProducts,
             });
           } else {
+            // Handle category mismatch
             toast.error('Category mismatch for the provided product code', {
               position: 'top-right',
               autoClose: 3000,
@@ -96,6 +97,7 @@ const Canceled = () => {
           }
         } catch (error) {
           console.error('Failed to fetch product details', error.message);
+          // Handle product not found
           toast.error('No matching product found for the provided product code', {
             position: 'top-right',
             autoClose: 3000,
@@ -107,6 +109,7 @@ const Canceled = () => {
           });
         }
       } else if (productField === 'productName') {
+        // Handle product name change
         setFormData({
           ...formData,
           products: updatedProducts,
@@ -124,26 +127,37 @@ const Canceled = () => {
         const dueDate = new Date(today.setDate(today.getDate() + termOfPaymentDays));
   
         if (!isNaN(dueDate.getTime())) {
+          // Date is valid, update the form data
           setFormData({
             ...formData,
             [name]: value,
             Duedate: dueDate.toISOString().split('T')[0],
           });
         } else {
-          toast.error('Invalid date');
+          toast.error('Invalid date')
           console.error('Invalid due date');
+          // Handle error
         }
       } else {
-        toast.error('Invalid terms of payment');
+        toast.error('Invalid date')
         console.error('Invalid terms of payment');
+        // Handle error
       }
-    } else {
+    } else if (name === 'invoiceNumber') { // Modification starts here
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    } else { // Modification ends here
       setFormData({
         ...formData,
         [name]: value,
       });
     }
   };
+  
+  
+  
   const addProduct = () => {
     setFormData({
       ...formData,
@@ -187,43 +201,47 @@ const Canceled = () => {
       product.invoiceTotal = isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
     });
   
+    // Fetch last invoice number and order number
+    // Fetch last numbers on component mount
+  
     setCalculatedValues({
       unitPrice: totalUnitPrice,
       invoiceTotal: totalInvoiceTotal,
     });
   }, [formData.products]);
   
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      
-    //   const orderCheckResponse = await axios.get(`https://nihon-inventory.onrender.com/api/check/${formData.orderNumber}`);
-    //   const orderExists = orderCheckResponse.data.exists;
+      // Check if the orderNumber already exists in the database
+      const orderCheckResponse = await axios.get(`https://nihon-inventory.onrender.com/api/check/${formData.orderNumber}`);
+      const orderExists = orderCheckResponse.data.exists;
   
-    //   if (orderExists) {
-        
-    //     toast.error('Order number already exists', {
-    //       position: 'top-right',
-    //       autoClose: 3000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //     });
-    //     return; 
-    //   }
+      if (orderExists) {
+        // Show toast for existing order number
+        toast.error('Order number already exists', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        return; // Exit the function early
+      }
   
-      
+      // If order number does not exist, proceed with adding the invoice
       const response = await axios.post(`https://nihon-inventory.onrender.com/api/addCanceled-invoice`, formData);
-      console.log('cancel Invoice added successfully', response.data);
+      console.log('Invoice added successfully', response.data);
   
-      
+      // Optionally, reset the form or navigate to another page on success
   
-     
-      toast.success('cancel Invoice add successfully', {
+      // Show success toast
+      toast.success('Invoice added successfully', {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
@@ -235,10 +253,10 @@ const Canceled = () => {
   
       navigate("/all-invoices");
     } catch (error) {
-      console.error('Failed to add canceled invoice', error.message);
+      console.error('Failed to add invoice', error.message);
   
-     
-      toast.error('Failed to add caneled invoice', {
+      // Show generic error toast
+      toast.error('Failed to add invoice', {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
@@ -250,17 +268,17 @@ const Canceled = () => {
     }
   };
   
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false); // State for loading indicator
 
   const handleGetDetails = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault(); // Prevent default button click behavior
   
     try {
       const response = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${formData.orderNumber}`);
       const orderData = response.data;
   
       if (orderData.status === "pending") {
-        
+        // Show toast message for pending orders
         toast.warning('Order is pending', {
           position: 'top-right',
           autoClose: 3000,
@@ -271,7 +289,7 @@ const Canceled = () => {
           progress: undefined,
         });
       } else if (orderData.status === "Canceled") {
-        
+        // Show toast message for canceled orders
         toast.error('Order was canceled by admin', {
           position: 'top-right',
           autoClose: 3000,
@@ -282,7 +300,7 @@ const Canceled = () => {
           progress: undefined,
         });
       } else if (orderData.status === "Approved") {
-        
+        // Set the fetched order details in the form data state
         setFormData({
           ...formData,
           invoiceNumber: orderData.orderNumber,
@@ -311,8 +329,8 @@ const Canceled = () => {
           })),
         });
   
-        
-        toast.success('Canceled invoice details fetched successfully', {
+        // Show success toast
+        toast.success('Order details fetched successfully', {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
