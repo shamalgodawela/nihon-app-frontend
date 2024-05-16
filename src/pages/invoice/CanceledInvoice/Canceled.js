@@ -20,71 +20,52 @@ const Canceled = () => {
         discount: 0,
         unitPrice: 0,
         invoiceTotal: 0,
-        // Remove the category field
       },
     ],
-    invoiceNumber:'',
+    invoiceNumber: '',
     customer: '',
-    code:'',
-    address:'',
-    contact:'',
+    code: '',
+    address: '',
+    contact: '',
     invoiceDate: '',
-    orderNumber:'',
-    orderDate:'',
+    orderNumber: '',
+    orderDate: '',
     exe: '',
-    ModeofPayment:'',
-    TermsofPayment:'',
-    Duedate:'',
+    ModeofPayment: '',
+    TermsofPayment: '',
+    Duedate: '',
     Tax: '',
     GatePassNo: '',
-    VehicleNo:'',
+    VehicleNo: '',
   });
 
-
-
   const [lastInvoiceNumber, setLastInvoiceNumber] = useState('');
-
-  // Fetch last invoice number on component mount
-  useEffect(() => {
-    const fetchLastInvoiceNumber = async () => {
-      try {
-        const response = await axios.get('https://nihon-inventory.onrender.com/api/lastInvoiceNumber');
-        setLastInvoiceNumber(response.data.lastInvoiceNumber);
-      } catch (error) {
-        console.error('Failed to fetch last invoice number:', error.message);
-      }
-    };
-
-    fetchLastInvoiceNumber();
-  }, []);
-  
   const [calculatedValues, setCalculatedValues] = useState({
     unitPrice: 0,
     invoiceTotal: 0,
   });
-
-  const [customerDetailsFetched, setCustomerDetailsFetched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = async (e, index) => {
     const { name, value } = e.target;
-  
+
     if (name.startsWith('products')) {
       const [field, productField] = name.split('.');
       const updatedProducts = [...formData.products];
       updatedProducts[index] = { ...updatedProducts[index], [productField]: value };
-  
+
       if (productField === 'productCode') {
         try {
+          setIsLoading(true);
           const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/${value}`);
           const product = response.data;
-  
+
           if (product.category === updatedProducts[index].category) {
             setFormData({
               ...formData,
               products: updatedProducts,
             });
           } else {
-            // Handle category mismatch
             toast.error('Category mismatch for the provided product code', {
               position: 'top-right',
               autoClose: 3000,
@@ -97,7 +78,6 @@ const Canceled = () => {
           }
         } catch (error) {
           console.error('Failed to fetch product details', error.message);
-          // Handle product not found
           toast.error('No matching product found for the provided product code', {
             position: 'top-right',
             autoClose: 3000,
@@ -107,13 +87,9 @@ const Canceled = () => {
             draggable: true,
             progress: undefined,
           });
+        } finally {
+          setIsLoading(false);
         }
-      } else if (productField === 'productName') {
-        // Handle product name change
-        setFormData({
-          ...formData,
-          products: updatedProducts,
-        });
       } else {
         setFormData({
           ...formData,
@@ -125,39 +101,161 @@ const Canceled = () => {
       if (!isNaN(termOfPaymentDays) && termOfPaymentDays > 0) {
         const today = new Date();
         const dueDate = new Date(today.setDate(today.getDate() + termOfPaymentDays));
-  
+
         if (!isNaN(dueDate.getTime())) {
-          // Date is valid, update the form data
           setFormData({
             ...formData,
             [name]: value,
             Duedate: dueDate.toISOString().split('T')[0],
           });
         } else {
-          toast.error('Invalid date')
+          toast.error('Invalid date');
           console.error('Invalid due date');
-          // Handle error
         }
       } else {
-        toast.error('Invalid date')
+        toast.error('Invalid terms of payment');
         console.error('Invalid terms of payment');
-        // Handle error
       }
-    } else if (name === 'invoiceNumber') { // Modification starts here
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    } else { // Modification ends here
+    } else {
       setFormData({
         ...formData,
         [name]: value,
       });
     }
   };
-  
-  
-  
+
+  useEffect(() => {
+    const fetchLastInvoiceNumber = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get('https://nihon-inventory.onrender.com/api/lastInvoiceNumber');
+        setLastInvoiceNumber(response.data.lastInvoiceNumber);
+      } catch (error) {
+        console.error('Failed to fetch last invoice number:', error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchLastInvoiceNumber();
+  }, []);
+
+  useEffect(() => {
+    let totalUnitPrice = 0;
+    let totalInvoiceTotal = 0;
+
+    formData.products.forEach((product) => {
+      const calculatedUnitPrice = parseFloat(product.labelPrice) - (parseFloat(product.labelPrice) * parseFloat(product.discount) / 100);
+      const calculatedInvoiceTotal = parseFloat(calculatedUnitPrice) * parseFloat(product.quantity);
+
+      totalUnitPrice += isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
+      totalInvoiceTotal += isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
+
+      product.unitPrice = isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
+      product.invoiceTotal = isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
+    });
+
+    setCalculatedValues({
+      unitPrice: totalUnitPrice,
+      invoiceTotal: totalInvoiceTotal,
+    });
+  }, [formData.products]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      setIsLoading(true);
+      const response = await axios.post(`http://localhost:5000/api/addCanceled-invoice`, formData);
+      console.log('cancel Invoice added successfully', response.data);
+
+      toast.success('Cancel Invoice added successfully', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      navigate("/all-invoices");
+    } catch (error) {
+      console.error('Failed to add canceled invoice', error.message);
+      toast.error('Failed to add canceled invoice', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGetDetails = async (e) => {
+    e.preventDefault();
+
+    try {
+      setIsLoading(true);
+      const response = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${formData.orderNumber}`);
+      const orderData = response.data;
+
+      if (orderData.status === "pending") {
+        toast.warning('Order is pending, cannot proceed', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        setFormData({
+          ...formData,
+          customer: orderData.customer,
+          code: orderData.code,
+          address: orderData.address,
+          contact: orderData.contact,
+          orderDate: orderData.orderDate,
+          exe: orderData.exe,
+          ModeofPayment: orderData.ModeofPayment,
+          TermsofPayment: orderData.TermsofPayment,
+          Duedate: orderData.Duedate,
+          Tax: orderData.Tax,
+          GatePassNo: orderData.GatePassNo,
+          VehicleNo: orderData.VehicleNo,
+          products: orderData.products.map((product) => ({
+            productCode: product.productCode,
+            productName: product.productName,
+            quantity: product.quantity,
+            labelPrice: product.labelPrice,
+            discount: product.discount,
+            unitPrice: parseFloat(product.labelPrice) - (parseFloat(product.labelPrice) * parseFloat(product.discount) / 100),
+            invoiceTotal: (parseFloat(product.labelPrice) - (parseFloat(product.labelPrice) * parseFloat(product.discount) / 100)) * parseFloat(product.quantity),
+          })),
+        });
+      }
+    } catch (error) {
+      console.error('Failed to get order details', error.message);
+      toast.error('Failed to get order details', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const addProduct = () => {
     setFormData({
       ...formData,
@@ -176,164 +274,6 @@ const Canceled = () => {
     });
   };
 
-  const removeProduct = (index) => {
-    const updatedProducts = [...formData.products];
-    updatedProducts.splice(index, 1);
-
-    setFormData({
-      ...formData,
-      products: updatedProducts,
-    });
-  };
-
-  useEffect(() => {
-    let totalUnitPrice = 0;
-    let totalInvoiceTotal = 0;
-  
-    formData.products.forEach((product) => {
-      const calculatedUnitPrice = parseFloat(product.labelPrice) - (parseFloat(product.labelPrice) * parseFloat(product.discount) / 100);
-      const calculatedInvoiceTotal = parseFloat(calculatedUnitPrice) * parseFloat(product.quantity);
-  
-      totalUnitPrice += isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
-      totalInvoiceTotal += isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
-  
-      product.unitPrice = isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
-      product.invoiceTotal = isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
-    });
-  
-    // Fetch last invoice number and order number
-    // Fetch last numbers on component mount
-  
-    setCalculatedValues({
-      unitPrice: totalUnitPrice,
-      invoiceTotal: totalInvoiceTotal,
-    });
-  }, [formData.products]);
-  
-  
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    try {
-      
-      const response = await axios.post(`https://nihon-inventory.onrender.com/api/addCanceled-invoice`, formData);
-      console.log('Invoice added successfully', response.data);
-  
-      toast.success('Invoice added successfully', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-  
-      navigate("/all-invoices");
-    } catch (error) {
-      console.error('Failed to add invoice', error.message);
-  
-      // Show generic error toast
-      toast.error('Failed to add invoice', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
-  
-  const [isLoading, setIsLoading] = useState(false); // State for loading indicator
-
-  const handleGetDetails = async (e) => {
-    e.preventDefault(); // Prevent default button click behavior
-  
-    try {
-      const response = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${formData.orderNumber}`);
-      const orderData = response.data;
-  
-      if (orderData.status === "pending") {
-        // Show toast message for pending orders
-        toast.warning('Order is pending', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else if (orderData.status === "Canceled") {
-        // Show toast message for canceled orders
-        toast.error('Order was canceled by admin', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      } else if (orderData.status === "Approved") {
-        // Set the fetched order details in the form data state
-        setFormData({
-          ...formData,
-          invoiceNumber: orderData.orderNumber,
-          customer: orderData.customer,
-          code: orderData.code,
-          address: orderData.address,
-          contact: orderData.contact,
-          invoiceDate: orderData.invoiceDate,
-          orderNumber: orderData.orderNumber,
-          orderDate: orderData.orderDate,
-          exe: orderData.exe,
-          ModeofPayment: orderData.ModeofPayment,
-          TermsofPayment: orderData.TermsofPayment,
-          Duedate: orderData.Duedate,
-          Tax: orderData.Tax,
-          GatePassNo: orderData.GatePassNo,
-          VehicleNo: orderData.VehicleNo,
-          products: orderData.products.map(product => ({
-            productCode: product.productCode,
-            productName: product.productName,
-            quantity: product.quantity,
-            labelPrice: product.labelPrice,
-            discount: product.discount,
-            unitPrice: product.unitPrice,
-            invoiceTotal: product.invoiceTotal,
-          })),
-        });
-  
-        // Show success toast
-        toast.success('Order details fetched successfully', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      }
-    } catch (error) {
-      console.error('Failed to fetch order details', error.message);
-      toast.error('Order not found', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
-  };
-  
-  
   
   return (
     <div>
