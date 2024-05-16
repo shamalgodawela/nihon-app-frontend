@@ -84,7 +84,6 @@ const Canceled = () => {
               products: updatedProducts,
             });
           } else {
-            
             toast.error('Category mismatch for the provided product code', {
               position: 'top-right',
               autoClose: 3000,
@@ -97,7 +96,6 @@ const Canceled = () => {
           }
         } catch (error) {
           console.error('Failed to fetch product details', error.message);
-          
           toast.error('No matching product found for the provided product code', {
             position: 'top-right',
             autoClose: 3000,
@@ -109,7 +107,6 @@ const Canceled = () => {
           });
         }
       } else if (productField === 'productName') {
-       
         setFormData({
           ...formData,
           products: updatedProducts,
@@ -127,37 +124,26 @@ const Canceled = () => {
         const dueDate = new Date(today.setDate(today.getDate() + termOfPaymentDays));
   
         if (!isNaN(dueDate.getTime())) {
-          
           setFormData({
             ...formData,
             [name]: value,
             Duedate: dueDate.toISOString().split('T')[0],
           });
         } else {
-          toast.error('Invalid date')
+          toast.error('Invalid date');
           console.error('Invalid due date');
-          
         }
       } else {
-        toast.error('Invalid date')
+        toast.error('Invalid terms of payment');
         console.error('Invalid terms of payment');
-       
       }
-    } else if (name === 'invoiceNumber') { 
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    } else { 
+    } else {
       setFormData({
         ...formData,
         [name]: value,
       });
     }
   };
-  
-  
-  
   const addProduct = () => {
     setFormData({
       ...formData,
@@ -201,14 +187,11 @@ const Canceled = () => {
       product.invoiceTotal = isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
     });
   
-    
-  
     setCalculatedValues({
       unitPrice: totalUnitPrice,
       invoiceTotal: totalInvoiceTotal,
     });
   }, [formData.products]);
-  
   
 
   const handleSubmit = async (e) => {
