@@ -216,31 +216,10 @@ const Canceled = () => {
     e.preventDefault();
   
     try {
-      // Check if the orderNumber already exists in the database
-      const orderCheckResponse = await axios.get(`https://nihon-inventory.onrender.com/api/check/${formData.orderNumber}`);
-      const orderExists = orderCheckResponse.data.exists;
-  
-      if (orderExists) {
-        // Show toast for existing order number
-        toast.error('Order number already exists', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        return; // Exit the function early
-      }
-  
-      // If order number does not exist, proceed with adding the invoice
+      
       const response = await axios.post(`https://nihon-inventory.onrender.com/api/addCanceled-invoice`, formData);
       console.log('Invoice added successfully', response.data);
   
-      // Optionally, reset the form or navigate to another page on success
-  
-      // Show success toast
       toast.success('Invoice added successfully', {
         position: 'top-right',
         autoClose: 3000,
