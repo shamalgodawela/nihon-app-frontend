@@ -37,7 +37,7 @@ export const SidebarData = [
   },
   {
     title: 'Canceled Invoices details',
-    path: '/canceledInvoice',
+    path: '/getallcanceledInvoice',
     icon: <MdOutlineCancelPresentation />,
     cName: 'nav-text'
   },
