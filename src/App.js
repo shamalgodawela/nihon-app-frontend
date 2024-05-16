@@ -51,6 +51,8 @@ import ExeLogin from "./pages/authExe/ExeLogin";
 import Exedashboard from "./compenents/Exedashboard/Exedashboard";
 import Dorder from "./pages/Order/MainOrder/Dorder";
 import Canceled from "./pages/invoice/CanceledInvoice/Canceled";
+import GetAllCanInvoice from "./pages/invoice/CanceledInvoice/getAllcancelinvoice/GetAllCanInvoice";
+import SingleCancelinvoice from "./pages/invoice/CanceledInvoice/Singlecancelinvoice/SingleCancelinvoice";
 
 
 
@@ -134,6 +136,8 @@ function App() {
     <Route path="/Exedahsboard" element={<Exedashboard/>} />
     <Route path="/Dorder" element={<Dorder/>} />
     <Route path="/canceledInvoice" element={<Canceled/>} />
+    <Route path="/getallcanceledInvoice" element={<GetAllCanInvoice/>} />
+    <Route path="/gesinglecancelInvoice/:invoiceNumber" element={<SingleCancelinvoice/>} />
  
     
    
