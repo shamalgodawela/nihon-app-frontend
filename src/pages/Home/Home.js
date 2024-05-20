@@ -43,7 +43,7 @@ export const Home = () => {
 
       <section className='container hero'>
         <div className='hero-text'>
-          <h2>Nihon Agriculture Inventory & Stock Management System</h2>
+          <h2>Nihon Agriculture ERP Management System</h2>
 
           <p className='--color-white'>Inventory system to control and manage products in the warehouse in real time
            and integrate it to make it easier to develop your business.....
