@@ -81,6 +81,7 @@ const AllInvoice = () => {
   <option value="Mr.Chameera">Mr.Chameera</option>
   <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
   <option value="Mr.Nayum">Mr.Nayum</option>
+  <option value="Mr.Navaneedan">Mr.Navaneedan</option>
 </select>
 <button
   onClick={searchInvoices}
