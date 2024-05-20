@@ -87,3 +87,7 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0056b3;
 }
+.h3-order-admin{
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}

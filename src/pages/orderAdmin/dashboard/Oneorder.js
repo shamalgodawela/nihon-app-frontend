@@ -43,6 +43,18 @@ const Oneorder = () => {
   
     fetchOrderDetails();
   }, [id]);
+  const calculateTotal = () => {
+    let total = 0;
+  
+    if (order && order.products) {
+      total = order.products.reduce((acc, product) => {
+        const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+        return acc + productTotal;
+      }, 0);
+    }
+  
+    return total.toFixed(2); // Return the total with 2 decimal places
+  };
   
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -116,6 +128,11 @@ const Oneorder = () => {
       products: updatedProducts,
     });
   };
+  const formatNumbers = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+  
+
 
   return (
     <div className='bodAdmin'>
@@ -290,7 +307,8 @@ const Oneorder = () => {
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </table><br/>
+                <h3 className='h3-order-admin'>Order Total :RS/= {formatNumbers(calculateTotal())}</h3>
                 <button type="submit">Update Order</button>
               </form>
             </div>
