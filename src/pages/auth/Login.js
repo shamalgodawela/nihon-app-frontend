@@ -53,7 +53,7 @@ const Login = () => {
       console.log(data);
       await dispatch(SET_LOGIN(true))
       await dispatch(SET_NAME(data.name))
-      navigate("/dashboard")
+      navigate("/sales")
 
      } catch (error) {
       setIsLoading(false)
