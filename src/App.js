@@ -50,7 +50,6 @@ import GetAllReturnDetails from "./pages/returnNotes/gettall/GetAllReturnDetails
 import ExeLogin from "./pages/authExe/ExeLogin";
 import Exedashboard from "./compenents/Exedashboard/Exedashboard";
 import Dorder from "./pages/Order/MainOrder/Dorder";
-import Canceled from "./pages/invoice/CanceledInvoice/Canceled";
 import GetAllCanInvoice from "./pages/invoice/CanceledInvoice/getAllcancelinvoice/GetAllCanInvoice";
 import SingleCancelinvoice from "./pages/invoice/CanceledInvoice/Singlecancelinvoice/SingleCancelinvoice";
 import Sales from "./pages/Companysales/Sales";
@@ -137,7 +136,6 @@ function App() {
     <Route path="/ExeLogin" element={<ExeLogin/>} />
     <Route path="/Exedahsboard" element={<Exedashboard/>} />
     <Route path="/Dorder" element={<Dorder/>} />
-    <Route path="/canceledInvoice" element={<Canceled/>} />
     <Route path="/getallcanceledInvoice" element={<GetAllCanInvoice/>} />
     <Route path="/gesinglecancelInvoice/:invoiceNumber" element={<SingleCancelinvoice/>} />
     <Route path="/sales" element={<Sales/>} />
