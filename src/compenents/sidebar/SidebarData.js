@@ -9,6 +9,9 @@ import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { GiMaterialsScience } from "react-icons/gi";
 import { TbTruckReturn } from "react-icons/tb";
 import { MdOutlineCancelPresentation } from "react-icons/md";
+import { FcSalesPerformance } from "react-icons/fc";
+import { AiFillProduct } from "react-icons/ai";
+
 
 
 
@@ -18,13 +21,19 @@ export const SidebarData = [
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"></link>
   </div>,
   {
-    title: 'Dashboard',
-    path: '/dashboard',
-    icon: <AiIcons.AiFillHome />,
+    title: 'Company sales',
+    path: '/sales',
+    icon: <FcSalesPerformance />,
     cName: 'nav-text'
   },
   {
     title: 'Products summery',
+    path: '/dashboard',
+    icon:<FaProductHunt />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Finished Products',
     path: '/dateproductDetails',
     icon: <FaProductHunt />,
     cName: 'nav-text'
@@ -35,12 +44,7 @@ export const SidebarData = [
     icon: <FaFileInvoice />,
     cName: 'nav-text'
   },
-  {
-    title: 'Canceled Invoices details',
-    path: '/getallcanceledInvoice',
-    icon: <MdOutlineCancelPresentation />,
-    cName: 'nav-text'
-  },
+
   {
     title: 'Return Notes',
     path: '/getallreturn',
