@@ -3,6 +3,9 @@ import axios from 'axios';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import './allInvoice.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome icons
+import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'; 
+import Footer from '../footer/Footer';
 const PAGE_SIZE = 10;
 
 const OutStandingTable = () => {
@@ -137,7 +140,7 @@ const OutStandingTable = () => {
                             <th>Invoice Number</th>
                             <th>Customer</th>
                             <th>Customer Code</th>
-                            <th>Customer Address</th>
+                            <th>Printed or Canceled</th>
                             <th>Invoice Date</th>
                             <th>Exe</th>
                             <th>Action</th>
@@ -146,28 +149,37 @@ const OutStandingTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {invoices.map((invoice) => (
-                            <tr key={invoice._id}>
-                                <td>{invoice.invoiceNumber}</td>
-                                <td>{invoice.customer}</td>
-                                <td>{invoice.code}</td>
-                                <td>{invoice.address}</td>
-                                <td>{invoice.invoiceDate}</td>
-                                <td>{invoice.exe}</td>
-                                
-                                <td>
-                                    <Link to={`/caloutStanding/${invoice._id}`}>
-                                        <AiOutlineEye size={20} color={"purple"} />
-                                    </Link>
-                                </td>
-                                <td style={{ color: invoice.status === 'Paid' ? 'green' : 'red' }}>
-                                    {invoice.status !== undefined ? invoice.status : "Loading..."}
-                                </td>
-                            </tr>
-                        ))}
+    {invoices.map((invoice) => {
+  
+  return (
+    <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled' : ''}>
+      <td>{invoice.invoiceNumber}</td>
+      <td>{invoice.customer}</td>
+      <td>{invoice.code}</td>
+      <td>{invoice.GatePassNo}</td>
+      <td>{invoice.invoiceDate}</td>
+      <td>{invoice.exe}</td>
+      <td>
+        <Link to={`/caloutStanding/${invoice._id}`}>
+          <AiOutlineEye size={20} color={"purple"} />
+        </Link>
+      </td>
+      <td style={{ color: invoice.status === 'Paid' ? 'green' : 'red' }}>
+        {invoice.status !== undefined ? invoice.status : "Loading..."}
+      </td>
+      <td>
+        <Link to={`/invoice/${invoice.invoiceNumber}`}>
+          <FontAwesomeIcon icon={faEye} className="action-icon" />
+        </Link>
+      </td>
+    </tr>
+  );
+})}
+
                     </tbody>
                 </table>
             </div>
+            <Footer/>
         </div>
     );
 }

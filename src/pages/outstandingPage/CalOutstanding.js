@@ -43,7 +43,7 @@ const CalOutstanding = () => {
           }, 0);
         }
       
-        return total.toFixed(2); // Return the total with 2 decimal places
+        return formatNumbers(total.toFixed(2));; // Return the total with 2 decimal places
       };
 
     // const calculateTaxtot = () => {
@@ -132,6 +132,10 @@ const CalOutstanding = () => {
         return <div>Loading...</div>;
     }
 
+    const formatNumbers = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      };
+
     return (
         <div>
             <Menu/>
@@ -165,7 +169,7 @@ const CalOutstanding = () => {
                         <td>RS/={product.labelPrice}</td>
                         <td>{product.discount}</td>
                         <td>RS/={product.unitPrice}</td>
-                        <td>RS/={product.labelPrice * (1 - product.discount / 100) * product.quantity}</td>
+                        <td>RS/= {formatNumbers((product.labelPrice * (1 - product.discount / 100) * product.quantity).toFixed(2))}</td>
                     </tr>
                 ))}
             </tbody>
@@ -174,7 +178,8 @@ const CalOutstanding = () => {
 
         {/* <div className="info-item-td text-end text-bold1" id="second1">SubTotal: RS/={calculateTotal()}</div>
         <div className="info-item-td text-end text-bold2" id="second2">Tax: %{invoice.Tax}</div> */}
-        <div className="info-item-td text-end text-bold3" id="second3">Total: RS/={calculateTotal()}</div>
+        <div className="info-item-td text-end text-bold3" id="second3">Total: RS/={calculateTotal()}
+</div>
         <br/><br/><hr/> <br/><br/>
         <div className="add-outstanding-container">
     <h1 className="h1-out">Add Outstanding</h1>
