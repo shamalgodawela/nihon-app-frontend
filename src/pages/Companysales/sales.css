@@ -4,38 +4,56 @@
     font-weight:bolder;
     margin-left:10%
 }
+.sales-Heading {
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
+  font-weight: bolder;
+  margin-left: 10%;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 5%;
+  margin-right: 5%;
+  gap: 10px;
+}
+
 .card {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #333;
-    max-width: 300px;
-    overflow: hidden;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease;
-    margin-left:5%;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-  }
-  
-  .card-header {
-    background: #6b6868;  
-    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8); 
-    background: linear-gradient(to right, #8f94fb, #ababab);
-    border-radius: 8px 8px 0 0;
-    color: white;
-    padding: 10px;
-  }
-  
-  .card-body {
-    font-size: 24px;
-    padding: 20px;
-  }
-  
-  .card-body p {
-    margin: 0;
-  }
-  
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  max-width: 300px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-header {
+  background: #6b6868;
+  background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);
+  background: linear-gradient(to right, #8f94fb, #ababab);
+  border-radius: 8px 8px 0 0;
+  color: white;
+  padding: 10px;
+}
+
+.card-body {
+  font-size: 24px;
+  padding: 20px;
+}
+
+.card-body p {
+  margin: 0;
+}
+.h4-season-update-heading{
+  color:black;
+  font-weight: 900;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: italic;
+}
