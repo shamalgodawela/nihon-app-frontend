@@ -3,6 +3,7 @@ import axios from 'axios';
 import NavBar from '../../compenents/sidebar/NavBar';
 import Footer from '../../compenents/footer/Footer';
 import './sales.css';
+import MonthlySalesChart from './Barchartsales/MonthlySalesChart';
 
 const Sales = () => {
   const [totalSales, setTotalSales] = useState(0);
@@ -107,6 +108,10 @@ const Sales = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className="chart-container">
+        <h2>Monthly Sales</h2>
+        <MonthlySalesChart/>
       </div>
      
       <Footer />

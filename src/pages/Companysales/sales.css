@@ -57,3 +57,7 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-style: italic;
 }
+.chart-container {
+  width: 80%;
+  margin: 20px auto;
+}
