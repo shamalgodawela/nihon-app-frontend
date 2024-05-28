@@ -107,12 +107,12 @@ const AllInvoice = () => {
                 <thead>
                   <tr>
                     <th>Invoice Number</th>
+                    <th>Printed or Canceled</th>
                     <th>Customer</th>
                     <th>Customer Code</th>
                     <th>Customer Address</th>
                     <th>Invoice Date</th>
                     <th>Exe</th>
-                    <th>Printed or Canceled</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -120,12 +120,13 @@ const AllInvoice = () => {
                   {invoices.map((invoice) => (
                     <tr key={invoice._id}>
                       <td>{invoice.invoiceNumber}</td>
+                      <th>{invoice.GatePassNo}</th>
                       <td>{invoice.customer}</td>
                       <td>{invoice.code}</td>
                       <td>{invoice.address}</td>
                       <td>{invoice.invoiceDate}</td>
                       <td>{invoice.exe}</td>
-                      <td>{invoice.GatePassNo}</td>
+                      
                       <td>
                         <Link to={`/invoice-temp/${invoice._id}`}>
                           <AiOutlineEye size={20} color={"purple"} />
