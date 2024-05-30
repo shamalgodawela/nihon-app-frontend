@@ -4,6 +4,7 @@ import NavBar from '../../compenents/sidebar/NavBar';
 import Footer from '../../compenents/footer/Footer';
 import './sales.css';
 import MonthlySalesChart from './Barchartsales/MonthlySalesChart';
+import SalesByExePieChart from './piechartsales/SalesByExePieChart';
 
 const Sales = () => {
   const [totalSales, setTotalSales] = useState(0);
@@ -112,6 +113,10 @@ const Sales = () => {
       <div className="chart-container">
         <h2>Monthly Sales</h2>
         <MonthlySalesChart/>
+      </div>
+      <div>
+        <h2  className="pie-container">Executive wise Sales(2024 april to present)</h2>
+        <SalesByExePieChart/>
       </div>
      
       <Footer />
