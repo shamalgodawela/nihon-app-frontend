@@ -63,4 +63,49 @@
 }
 .pie-container{
   text-align:center;
+  font-family:'Times New Roman', Times, serif;
+
+}
+.sales-by-exe-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.sales-by-exe-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.sales-by-exe-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sales-by-exe-table th, .sales-by-exe-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.sales-by-exe-table th {
+  background-color: #4CAF50;
+  color: white;
+  text-transform: uppercase;
+}
+
+.sales-by-exe-table tr {
+  background-color: #f9f9f9;
+}
+
+.sales-by-exe-table tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.sales-by-exe-table tr:hover {
+  background-color: #f1f1f1;
 }
