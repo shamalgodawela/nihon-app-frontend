@@ -33,6 +33,12 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
+    title: 'Executive products',
+    path: '/exetable',
+    icon:<FaProductHunt />,
+    cName: 'nav-text'
+  },
+  {
     title: 'Finished Products',
     path: '/dateproductDetails',
     icon: <FaProductHunt />,

@@ -54,6 +54,7 @@ import GetAllCanInvoice from "./pages/invoice/CanceledInvoice/getAllcancelinvoic
 import SingleCancelinvoice from "./pages/invoice/CanceledInvoice/Singlecancelinvoice/SingleCancelinvoice";
 import Sales from "./pages/Companysales/Sales";
 import EditInvoice from "./pages/invoice/Editinvoice/EditInvoice";
+import Exetable from "./pages/Exeproductdetails/Exetable";
 
 
 
@@ -140,6 +141,7 @@ function App() {
     <Route path="/gesinglecancelInvoice/:invoiceNumber" element={<SingleCancelinvoice/>} />
     <Route path="/sales" element={<Sales/>} />
     <Route path="/invoice/:invoiceNumber" element={<EditInvoice/>} />
+    <Route path="/exetable" element={<Exetable/>} />
  
     
    

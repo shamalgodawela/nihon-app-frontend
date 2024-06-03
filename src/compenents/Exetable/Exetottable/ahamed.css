@@ -1,0 +1,32 @@
+.product-table-container {
+    margin-top: 20px;
+  }
+  
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product-table th,
+  .product-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .product-table th {
+    background-color: #4f4f4f;
+    font-weight: bold;
+  }
+  
+  .product-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .product-table tbody tr:hover {
+    background-color: #ddd;
+  }
+  .ahamed-h2{
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+  }
