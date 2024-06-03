@@ -33,7 +33,7 @@ const CustomerList = () => {
 
   // Filter customers based on search query
   const filteredCustomers = customers.filter(customer =>
-    customer.code.toLowerCase().includes(searchQuery.toLowerCase()) || customer.name.toLowerCase().includes(searchQuery.toLowerCase())
+    customer.code.toLowerCase().includes(searchQuery.toLowerCase())
    
 );
 
