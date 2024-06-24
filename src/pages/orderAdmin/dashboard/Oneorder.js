@@ -164,7 +164,7 @@ const Oneorder = () => {
                     name="customer"
                     value={updatedOrder.customer}
                     onChange={handleInputChange}
-                    readOnly
+                    
                   />
                 </div>
                 <div className="form-group">
@@ -184,7 +184,7 @@ const Oneorder = () => {
                     name="address"
                     value={updatedOrder.address}
                     onChange={handleInputChange}
-                    readOnly
+                    
                   />
                 </div>
                 <div className="form-group">
@@ -194,7 +194,7 @@ const Oneorder = () => {
                     name="contact"
                     value={updatedOrder.contact}
                     onChange={handleInputChange}
-                    readOnly
+                    
                   />
                 </div>
                 <div className="form-group">
@@ -204,7 +204,7 @@ const Oneorder = () => {
                     name="orderDate"
                     value={updatedOrder.orderDate}
                     onChange={handleInputChange}
-                    readOnly
+                    
                   />
                 </div>
                 <div className="form-group">
