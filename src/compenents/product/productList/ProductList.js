@@ -116,6 +116,7 @@ const ProductList = ({ products, isLoading }) => {
                       <th>Product Code</th>
                       <th>Price</th>
                       <th>Quantity</th>
+                      <th>Total weight(Kg/l)</th>
                       <th>Value</th>
                       <th>Action</th>
                     </tr>
@@ -123,7 +124,7 @@ const ProductList = ({ products, isLoading }) => {
     
                   <tbody>
                     {currentItems.map((record, index) => {
-                      const { _id, name, category, price, quantity } = record;
+                      const { _id, name, category, price, quantity,description } = record;
                       return (
                         <tr key={_id}>
                           <td>{index + 1}</td>
@@ -136,28 +137,26 @@ const ProductList = ({ products, isLoading }) => {
 
 
                           <td>{quantity}</td>
+                          <td>{formatNumbers(parseFloat(description * quantity))}</td>
                           <td>
                           {"Rs:"}
                           {typeof price === 'string' ? formatNumbers(parseFloat(price * quantity).toFixed(2)) : formatNumbers((price * quantity).toFixed(2))}
                           </td>
+                          
                           <td className="icons">
-                        <span>
-                          <Link to={`/product-detail/${_id}`}>
-                            <AiOutlineEye size={25} color={"purple"} />
-                          </Link>
-                        </span>
+                        
                         <span>
                           <Link to={`/edit-product/${_id}`}>
                             <FaEdit size={20} color={"green"} />
                           </Link>
                         </span>
-                        <span>
+                        {/* <span>
                           <FaTrashAlt
                             size={20}
                             produ onClick={()=>confirmDelete(_id)}
                            
                           />
-                        </span>
+                        </span> */}
                       </td>
                         </tr>
                       );
