@@ -137,7 +137,7 @@ const ProductList = ({ products, isLoading }) => {
 
 
                           <td>{quantity}</td>
-                          <td>{formatNumbers(parseFloat(description * quantity))}</td>
+                          <td>{formatNumbers(parseFloat(description * quantity).toFixed(2))}</td>
                           <td>
                           {"Rs:"}
                           {typeof price === 'string' ? formatNumbers(parseFloat(price * quantity).toFixed(2)) : formatNumbers((price * quantity).toFixed(2))}
