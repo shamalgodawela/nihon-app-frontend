@@ -55,6 +55,7 @@ import SingleCancelinvoice from "./pages/invoice/CanceledInvoice/Singlecancelinv
 import Sales from "./pages/Companysales/Sales";
 import EditInvoice from "./pages/invoice/Editinvoice/EditInvoice";
 import Exetable from "./pages/Exeproductdetails/Exetable";
+import Mdashboard from "./pages/MainDashboard/Mdashboard";
 
 
 
@@ -142,6 +143,7 @@ function App() {
     <Route path="/sales" element={<Sales/>} />
     <Route path="/invoice/:invoiceNumber" element={<EditInvoice/>} />
     <Route path="/exetable" element={<Exetable/>} />
+    <Route path="/Maindashboard" element={<Mdashboard/>} />
  
     
    

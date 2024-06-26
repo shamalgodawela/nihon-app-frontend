@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NavBar from '../../compenents/sidebar/NavBar';
 import Footer from '../../compenents/footer/Footer';
 import './sales.css';
 import MonthlySalesChart from './Barchartsales/MonthlySalesChart';
 import SalesByExePieChart from './piechartsales/SalesByExePieChart';
 import Tabelexesales from './tabelsales/Tabelexesales';
+import { Link, useNavigate } from 'react-router-dom';
+import { IoMdArrowRoundBack } from "react-icons/io";
+
+const NAVIGATE_BACK = 'NAVIGATE_BACK';
 
 const Sales = () => {
   const [totalSales, setTotalSales] = useState(0);
@@ -13,6 +16,10 @@ const Sales = () => {
   const [outstanding, setoutstanding]= useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate=useNavigate();
+ 
+ 
 
   useEffect(() => {
     const fetchTotalSales = async () => {
@@ -56,10 +63,14 @@ const Sales = () => {
   const formatNumbers = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
+  const goBack = () => {
+    // Use navigate(-1) to navigate back
+    navigate(-1);
+  };
 
   return (
     <div>
-      <NavBar />
+      <Link to="#" onClick={goBack}><IoMdArrowRoundBack size={23}/></Link>&nbsp;&nbsp;
       <div className='sales-Heading'>
         <h3>Hi, Welcome back!</h3>
         <h4>Finance Performance and Monitoring Sales Performance</h4>
