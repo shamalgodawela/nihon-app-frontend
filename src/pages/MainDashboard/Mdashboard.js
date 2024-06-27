@@ -48,7 +48,7 @@ const Mdashboard = () => {
   };
 
   return (
-    <div>
+    <div className='madashboard-body'>
     <Link to="#" onClick={goBack}><IoMdArrowRoundBack size={23}/></Link>&nbsp;&nbsp;
 
       <h1 className='madash-h1'>Nihon ERP System</h1>
