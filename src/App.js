@@ -56,6 +56,7 @@ import Sales from "./pages/Companysales/Sales";
 import EditInvoice from "./pages/invoice/Editinvoice/EditInvoice";
 import Exetable from "./pages/Exeproductdetails/Exetable";
 import Mdashboard from "./pages/MainDashboard/Mdashboard";
+import ProductQuantityChart from "./pages/ProductQuantity/totalseasonQuantity/ProductQuantityChart";
 
 
 
@@ -144,6 +145,7 @@ function App() {
     <Route path="/invoice/:invoiceNumber" element={<EditInvoice/>} />
     <Route path="/exetable" element={<Exetable/>} />
     <Route path="/Maindashboard" element={<Mdashboard/>} />
+    <Route path="/Season-Product-Quantity" element={<ProductQuantityChart/>} />
  
     
    
