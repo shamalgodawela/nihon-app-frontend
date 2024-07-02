@@ -36,7 +36,7 @@ const Mdashboard = () => {
       imageClass: "card__image--record",
       title: "Sales of product quantity",
       text: "",
-      href: "/products" // Example link
+      href: "/Season-Product-Quantity" // Example link
     },
     
   ];
