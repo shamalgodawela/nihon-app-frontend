@@ -84,6 +84,10 @@ const ProductList = ({ products, isLoading }) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
 
+      const calculateSalesPrice = (price, discount) => {
+        return price - (price * discount / 100);
+      };
+
 
       return (
         <div className="product-list">
@@ -114,53 +118,56 @@ const ProductList = ({ products, isLoading }) => {
                       <th>s/n</th>
                       <th>Name</th>
                       <th>Product Code</th>
-                      <th>Price</th>
+                      <th>Label Price</th>
+                      <th>Discount</th>
+                      <th>sales price</th>
                       <th>Quantity</th>
                       <th>Total weight(Kg/l)</th>
                       <th>Value</th>
-                      <th>Action</th>
+                      {/* <th>Action</th> */}
                     </tr>
                   </thead>
     
                   <tbody>
-                    {currentItems.map((record, index) => {
-                      const { _id, name, category, price, quantity,description } = record;
-                      return (
-                        <tr key={_id}>
-                          <td>{index + 1}</td>
-                          <td>{shortenText(name, 16)}</td>
-                          <td>{category}</td>
-                          <td>
-                          {"Rs:"}
-                          {typeof price === 'string' ? formatNumbers(parseFloat(price).toFixed(2)) : formatNumbers(price.toFixed(2))}
-                          </td>
-
-
-                          <td>{quantity}</td>
-                          <td>{formatNumbers(parseFloat(description * quantity).toFixed(2))}</td>
-                          <td>
-                          {"Rs:"}
-                          {typeof price === 'string' ? formatNumbers(parseFloat(price * quantity).toFixed(2)) : formatNumbers((price * quantity).toFixed(2))}
-                          </td>
-                          
-                          <td className="icons">
-                        
+                  {currentItems.map((record, index) => {
+                  const { _id, name, category, price, quantity, description, discount } = record;
+                  const salesPrice = calculateSalesPrice(price, discount);
+                  return (
+                    <tr key={_id}>
+                      <td>{index + 1}</td>
+                      <td>{shortenText(name, 16)}</td>
+                      <td>{category}</td>
+                      <td>
+                        {"Rs:"}
+                        {typeof price === 'string' ? formatNumbers(parseFloat(price).toFixed(2)) : formatNumbers(price.toFixed(2))}
+                      </td>
+                      <td>{discount}%</td>
+                      <td>
+                        {"Rs:"}
+                        {formatNumbers(salesPrice.toFixed(2))}
+                      </td>
+                      <td>{quantity}</td>
+                      <td>{formatNumbers(parseFloat(description * quantity).toFixed(2))}</td>
+                      <td>
+                        {"Rs:"}
+                        {typeof price === 'string' ? formatNumbers(parseFloat(salesPrice * quantity).toFixed(2)) : formatNumbers((price * quantity).toFixed(2))}
+                      </td>
+                      {/* <td className="icons">
                         <span>
                           <Link to={`/edit-product/${_id}`}>
                             <FaEdit size={20} color={"green"} />
                           </Link>
                         </span>
-                        {/* <span>
+                        <span>
                           <FaTrashAlt
                             size={20}
-                            produ onClick={()=>confirmDelete(_id)}
-                           
+                            onClick={() => confirmDelete(_id)}
                           />
-                        </span> */}
-                      </td>
-                        </tr>
-                      );
-                    })}
+                        </span>
+                      </td> */}
+                    </tr>
+                  );
+                })}
                   </tbody>
                 </table>
               )}

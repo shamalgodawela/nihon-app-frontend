@@ -106,22 +106,19 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    CALC_STORE_VALUE(state,action){
-      const products=action.payload
-      const array=[]
-      products.map((item)=>{
-        const {price,quantity}=item
-        const productvalue= price * quantity
-        return array.push(productvalue)
-
-      })
-      const totalVlaue= array.reduce((a,b)=>{
-        return a + b
-
-      }, 0)
-      state.totalStoreValue=totalVlaue;
-      
+    CALC_STORE_VALUE(state, action) {
+      const products = action.payload;
+      const array = products.map((item) => {
+        const { price, quantity, discount } = item;
+        const salesPrice = price - (price * discount / 100);
+        const productValue = salesPrice * quantity;
+        return productValue;
+      });
+    
+      const totalValue = array.reduce((a, b) => a + b, 0);
+      state.totalStoreValue = totalValue;
     },
+    
     CALC_OUTOFSTOCK(state,action){
       const products=action.payload
       const array=[]

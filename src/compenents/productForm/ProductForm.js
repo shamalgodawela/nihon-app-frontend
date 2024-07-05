@@ -64,6 +64,14 @@ const ProductForm = ({
             value={product?.price}
             onChange={handleInputChange}
           />
+          <label>Product Discount:</label>
+          <input
+            type="text"
+            placeholder="Product Price"
+            name="discount"
+            value={product?.discount}
+            onChange={handleInputChange}
+          />
 
           <label>Product Quantity:</label>
           <input
