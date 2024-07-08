@@ -196,18 +196,9 @@ const CalOutstanding = () => {
         <input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
     </div>
     <div className="input-container">
-    <label>Executive Name:</label>
-    <select value={CHnumber} onChange={(e) => setCHnumber(e.target.value)}>
-        <option value="">Select Executive Name</option>
-        <option value="Mr.Ahamed">Mr.Ahamed</option> 
-        <option value="Mr.Dasun">Mr.Dasun</option> 
-        <option value="Mr.Chameera">Mr.Chameera</option> 
-        <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
-        <option value="Mr.Navaneedan">Mr.Navaneedan</option> 
-        <option value="Mr.Nayum">Mr.Nayum</option>
-    </select>
-  </div>
-
+        <label>Executive Name:</label>
+        <input type="text" placeholder="Cheque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
+    </div>
     <div className="input-container">
         <label>Amount:</label>
         <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
