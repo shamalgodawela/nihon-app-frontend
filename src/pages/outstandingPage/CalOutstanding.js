@@ -82,25 +82,20 @@ const CalOutstanding = () => {
     
             const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-last-outstanding/${invoice.invoiceNumber}`);
             const lastOutstanding = parseFloat(response.data.outstanding);
-            if (isNaN(lastOutstanding)) {
-                throw new Error('Invalid last outstanding value');
-            }
+            
     
             console.log('Last Outstanding:', lastOutstanding);
     
             let newOutstanding;
-            if (lastOutstanding !== 0) {
-                newOutstanding = lastOutstanding - parsedAmount;
-                console.log('New Outstanding (from last outstanding):', newOutstanding);
-            } else {
+            if (lastOutstanding === -1) {
                 newOutstanding = parsedTotal - parsedAmount;
+                console.log('New Outstanding (from last outstanding):', newOutstanding);
+            } 
+            else{
+                newOutstanding = lastOutstanding - parsedAmount;
                 console.log('New Outstanding (last outstanding is 0):', newOutstanding);
             }
-    
-            if (isNaN(newOutstanding)) {
-                throw new Error('Calculation resulted in NaN');
-            }
-    
+
             setOutstanding(newOutstanding.toFixed(2));
         } catch (error) {
             console.error('Failed to calculate outstanding value:', error.message);
