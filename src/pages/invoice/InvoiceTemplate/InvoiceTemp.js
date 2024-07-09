@@ -44,25 +44,25 @@ export default function InvoiceTemp() {
   };
   
   
-  // const calculateTaxtot = () => {
-  //   if (invoice && invoice.products) {
-  //     const taxRate = invoice.Tax || 0; // Default to 0 if tax rate is not available
+  const calculateTaxtot = () => {
+    if (invoice && invoice.products) {
+      const taxRate = invoice.Tax || 0; // Default to 0 if tax rate is not available
   
-  //     const totalTax = invoice.products.reduce((acc, product) => {
-  //       const productTax = parseFloat(product.invoiceTotal) * (taxRate / 100);
-  //       return acc + productTax;
-  //     }, 0);
+      const totalTax = invoice.products.reduce((acc, product) => {
+        const productTax = parseFloat(product.invoiceTotal) * (taxRate / 100);
+        return acc + productTax;
+      }, 0);
   
-  //     const subtotal = calculateTotal(); // Get the subtotal
-  //     const totalWithTax = subtotal + totalTax; // Subtract tax amount from subtotal
+      const subtotal = calculateTotal(); // Get the subtotal
+      const totalWithTax = subtotal + totalTax; // Subtract tax amount from subtotal
   
-  //     console.log(typeof totalWithTax, totalWithTax); // Log type and value of totalWithTax
+      console.log(typeof totalWithTax, totalWithTax); // Log type and value of totalWithTax
   
-  //     return totalWithTax.toFixed(2); // Adjust decimal places as needed
-  //   }
+      return totalWithTax.toFixed(2); // Adjust decimal places as needed
+    }
   
-  //   return 0;
-  // };
+    return 0;
+  };
   
 
   if (!invoice) {

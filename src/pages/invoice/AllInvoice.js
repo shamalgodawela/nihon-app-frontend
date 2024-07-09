@@ -124,7 +124,7 @@ const AllInvoice = () => {
                       <td>{invoice.customer}</td>
                       <td>{invoice.code}</td>
                       <td>{invoice.invoiceDate}</td>
-                      <td>{Duedate}</td>
+                      <td>{invoice.Duedate}</td>
                       <td>{invoice.exe}</td>
                       
                       <td>
