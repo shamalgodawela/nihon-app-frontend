@@ -228,10 +228,10 @@ const CalOutstanding = () => {
         <label>Deposited Date:</label>
         <input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
     </div>
-    {/* <div className="input-container">
+    <div className="input-container">
         <label>Cheque Number/Reference Number:</label>
         <input type="text" placeholder="Cheque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
-    </div> */}
+    </div>
     <div className="input-container">
         <label>Amount:</label>
         <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
