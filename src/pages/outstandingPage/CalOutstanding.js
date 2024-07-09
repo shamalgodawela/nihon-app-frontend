@@ -16,6 +16,7 @@ const CalOutstanding = () => {
     const [backName, setBackname]=useState('');
     const [depositedate, setdepositedate]=useState('');
     const [CHnumber, setCHnumber]=useState('');
+    const [exe, setexe]=useState('');
     const [savedDetails, setSavedDetails] = useState(null); // To store saved details
     const [invoiceNumber, setInvoiceNumber] = useState(''); // To store invoice number for fetching details
 
@@ -35,16 +36,17 @@ const CalOutstanding = () => {
 
     const calculateTotal = () => {
         let total = 0;
-      
+    
         if (invoice && invoice.products) {
-          total = invoice.products.reduce((acc, product) => {
-            const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
-            return acc + productTotal;
-          }, 0);
+            total = invoice.products.reduce((acc, product) => {
+                const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+                return acc + productTotal;
+            }, 0);
         }
-      
-        return formatNumbers(total.toFixed(2));; // Return the total with 2 decimal places
-      };
+    
+        return total.toFixed(2);
+    };
+    
 
     // const calculateTaxtot = () => {
     //     if (invoice && invoice.products) {
@@ -63,38 +65,54 @@ const CalOutstanding = () => {
 
     //     return 0;
     // };
-
     const handleCalculate = async () => {
         try {
-            // Fetch the last outstanding value for the current invoice number
+            const parsedAmount = parseFloat(amount);
+            if (isNaN(parsedAmount)) {
+                throw new Error('Invalid amount value');
+            }
+    
+            const total = calculateTotal();
+            const parsedTotal = parseFloat(total.replace(/,/g, ''));
+            if (isNaN(parsedTotal)) {
+                throw new Error('Invalid total value');
+            }
+    
+            console.log('Amount:', parsedAmount);
+            console.log('Total:', parsedTotal);
+    
             const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-last-outstanding/${invoice.invoiceNumber}`);
-            const lastOutstanding = response.data.outstanding;
+            const lastOutstanding = parseFloat(response.data.outstanding);
+            if (isNaN(lastOutstanding)) {
+                throw new Error('Invalid last outstanding value');
+            }
     
             console.log('Last Outstanding:', lastOutstanding);
     
             let newOutstanding;
-            if (lastOutstanding !== null && lastOutstanding !== undefined) {
-                // Calculate the new outstanding value based on the last outstanding value
-                newOutstanding = lastOutstanding - amount;
+            if (lastOutstanding !== 0) {
+                newOutstanding = lastOutstanding - parsedAmount;
                 console.log('New Outstanding (from last outstanding):', newOutstanding);
-            } 
-            setOutstanding(newOutstanding);
+            } else {
+                newOutstanding = parsedTotal - parsedAmount;
+                console.log('New Outstanding (last outstanding is 0):', newOutstanding);
+            }
+    
+            if (isNaN(newOutstanding)) {
+                throw new Error('Calculation resulted in NaN');
+            }
+    
+            setOutstanding(newOutstanding.toFixed(2));
         } catch (error) {
-            const total =calculateTotal();
-            const newOutstanding = total - amount;
-            setOutstanding(newOutstanding);
-            return;
-            
-            // Handle error
+            console.error('Failed to calculate outstanding value:', error.message);
+            // Handle error case if needed
         }
     };
     
     
-    
-
     const handleSave = async () => {
         try {
-            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber, date,backName,depositedate,CHnumber, amount, outstanding });
+            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber,exe:invoice.exe, date,backName,depositedate,CHnumber, amount, outstanding });
             // Display success message
             toast.success('Data added successfully!');
         } catch (error) {
@@ -135,6 +153,13 @@ const CalOutstanding = () => {
     const formatNumbers = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       };
+
+
+      const backoption =[
+        'BOC',
+        'Commercial',
+        'HNB'
+      ]
 
     return (
         <div>
@@ -189,22 +214,30 @@ const CalOutstanding = () => {
     </div>
     <div className="input-container">
         <label>Bank Name:</label>
-        <input type="text" placeholder="Bank Name" value={backName} onChange={(e)=> setBackname(e.target.value)} />
+        <select value={backName} onChange={(e) => setBackname(e.target.value)}>
+            <option value="" disabled>Select a Bank</option>
+            {backoption.map((bank, index) => (
+                    <option key={index} value={bank}>
+                        {bank}
+                    </option>
+            ))}
+
+        </select>
     </div>
     <div className="input-container">
         <label>Deposited Date:</label>
         <input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
     </div>
-    <div className="input-container">
-        <label>Executive Name:</label>
+    {/* <div className="input-container">
+        <label>Cheque Number/Reference Number:</label>
         <input type="text" placeholder="Cheque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
-    </div>
+    </div> */}
     <div className="input-container">
         <label>Amount:</label>
         <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
     </div>
     <button className="calculate-button" onClick={handleCalculate}>Calculate</button>
-    <div className="outstanding">Outstanding: ${outstanding}</div>
+    <div className="outstanding">Outstanding:RS/={outstanding}</div>
     <button className="save-button" onClick={handleSave}>Save</button>
     <hr/>
     <button className="fetch-button" onClick={handleFetchAllOutstandingDetails}>Fetch All Outstanding Details</button>
@@ -222,7 +255,7 @@ const CalOutstanding = () => {
                             <th>Amount</th>
                             <th>Bank Name</th>
                             <th>Outstanding</th>
-                            <th>Cheque Number/Reference Number</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -232,7 +265,8 @@ const CalOutstanding = () => {
                                 <td>RS/={detail.amount}</td>
                                 <td>{detail.backName}</td>
                                 <td>RS/={detail.outstanding}</td>
-                                <td>{detail.CHnumber}</td>
+                                
+                                
                             </tr>
                         ))}
                     </tbody>
