@@ -16,7 +16,6 @@ const CalOutstanding = () => {
     const [backName, setBackname]=useState('');
     const [depositedate, setdepositedate]=useState('');
     const [CHnumber, setCHnumber]=useState('');
-    const [exe, setexe]=useState('');
     const [savedDetails, setSavedDetails] = useState(null); // To store saved details
     const [invoiceNumber, setInvoiceNumber] = useState(''); // To store invoice number for fetching details
 
@@ -112,7 +111,7 @@ const CalOutstanding = () => {
     
     const handleSave = async () => {
         try {
-            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber,exe:invoice.exe, date,backName,depositedate,CHnumber, amount, outstanding });
+            await axios.post(`https://nihon-inventory.onrender.com/api/create`, { invoiceNumber: invoice.invoiceNumber,date ,backName,depositedate,CHnumber, amount, outstanding });
             // Display success message
             toast.success('Data added successfully!');
         } catch (error) {
@@ -228,10 +227,10 @@ const CalOutstanding = () => {
         <label>Date:</label>
         <input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
     </div>
-    {/* <div className="input-container">
+    <div className="input-container">
         <label>Cheque Number/Reference Number:</label>
-        <input type="text" placeholder="Cheque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
-    </div> */}
+        <input type="text" placeholder="Cheque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)} required/>
+    </div>
     <div className="input-container">
         <label>Amount:</label>
         <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
