@@ -209,7 +209,7 @@ const CalOutstanding = () => {
         <div className="add-outstanding-container">
     <h1 className="h1-out">Add Outstanding</h1>
     <div className="input-container">
-        <label>Date:</label>
+        <label>Deposited Date:</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
     </div>
     <div className="input-container">
@@ -225,13 +225,13 @@ const CalOutstanding = () => {
         </select>
     </div>
     <div className="input-container">
-        <label>Deposited Date:</label>
+        <label>Date:</label>
         <input type="date" placeholder="Deposited date" value={depositedate} onChange={(e)=>setdepositedate(e.target.value)}/>
     </div>
-    <div className="input-container">
+    {/* <div className="input-container">
         <label>Cheque Number/Reference Number:</label>
         <input type="text" placeholder="Cheque number" value={CHnumber} onChange={(e)=>setCHnumber(e.target.value)}/>
-    </div>
+    </div> */}
     <div className="input-container">
         <label>Amount:</label>
         <input type="number" value={amount} onChange={(e) => setAmount(parseFloat(e.target.value))} />
