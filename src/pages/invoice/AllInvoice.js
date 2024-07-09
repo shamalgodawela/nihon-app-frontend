@@ -110,8 +110,8 @@ const AllInvoice = () => {
                     <th>Printed or Canceled</th>
                     <th>Customer</th>
                     <th>Customer Code</th>
-                    <th>Customer Address</th>
                     <th>Invoice Date</th>
+                    <th>Due date</th>
                     <th>Exe</th>
                     <th>Action</th>
                   </tr>
@@ -123,8 +123,8 @@ const AllInvoice = () => {
                       <th>{invoice.GatePassNo}</th>
                       <td>{invoice.customer}</td>
                       <td>{invoice.code}</td>
-                      <td>{invoice.address}</td>
                       <td>{invoice.invoiceDate}</td>
+                      <td>{Duedate}</td>
                       <td>{invoice.exe}</td>
                       
                       <td>
