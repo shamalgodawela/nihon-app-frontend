@@ -624,6 +624,15 @@ const InvoiceForm = () => {
             />
           </div>
           <div>
+            <label>TAX INVOICE or Not:</label>
+            <input
+              type="text"
+              name="TextTax"
+              value={formData.TextTax}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div>
             <label>Gate Pass No:</label>
             <input
               type="text"

@@ -98,7 +98,7 @@ ul li{
     
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
-    margin-top:2.5cm
+    margin-top:2.7cm
 }
 
 
@@ -416,6 +416,15 @@ body{
 #vat-reg{
     position:absolute;
     color:black;
-    left:23cm;
-    top:4.5cm
+    left:15cm;
+    top:3.7cm;
+    font-size:18px
+}
+#tax-invoice-text{
+    position:absolute;
+    color:black;
+    left:16.9cm;
+    top:3cm;
+    font-size: 22px;
+
 }
