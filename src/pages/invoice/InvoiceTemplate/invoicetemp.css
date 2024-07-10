@@ -344,7 +344,7 @@ body{
 #second{
   position: absolute;
   margin-left: 13.36cm;
-  top: 18.2cm;
+  top: 18.4cm;
   color:black;
   font-family:Arial, Helvetica, sans-serif;
   
@@ -352,7 +352,7 @@ body{
 #second2{
     position: absolute;
     margin-left: 14.3cm;
-    top: 21.8cm;
+    top: 22cm;
     color:black;
     font-family:Arial, Helvetica, sans-serif;
     
@@ -406,17 +406,16 @@ body{
     font-weight: 300;
     
 }
-#inventory{
-    position: absolute;
-    top:2cm;
-    right:2cm;
-    font-size: 20px;
-    font-weight: 100;
-}
 #tax{
     position: absolute;
-    top:19.7cm;
+    top:19.9cm;
     left:14cm;
     color:black;
     font-family:Arial, Helvetica, sans-serif;
+}
+#vat-reg{
+    position:absolute;
+    color:black;
+    left:23cm;
+    top:4.5cm
 }
