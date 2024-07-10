@@ -627,29 +627,13 @@ const InvoiceForm = () => {
             <label>TAX INVOICE or Not:</label>
             <input
               type="text"
-              name="TextTax"
-              value={formData.TextTax}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            <label>Gate Pass No:</label>
-            <input
-              type="text"
-              name="GatePassNo"
-              value={formData.GatePassNo}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            <label>Inventory No:</label>
-            <input
-              type="text"
               name="VehicleNo"
               value={formData.VehicleNo}
               onChange={(e) => handleChange(e)}
             />
           </div>
+          
+          
           
           
           <button type="submit">Submit</button>
