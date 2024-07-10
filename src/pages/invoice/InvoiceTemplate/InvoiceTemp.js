@@ -28,42 +28,41 @@ export default function InvoiceTemp() {
 
   const calculateTotal = () => {
     let total = 0;
-  
+
     if (invoice && invoice.products) {
-      total = invoice.products.reduce((acc, product) => {
-        const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
-        return acc + productTotal;
-      }, 0);
+        total = invoice.products.reduce((acc, product) => {
+            const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+            return acc + productTotal;
+        }, 0);
     }
-  
+
     return total.toFixed(2); // Return the total with 2 decimal places
-  };
-  
-  const formatNumbers = (x) => {
+};
+
+const formatNumbers = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
-  
-  
-  const calculateTaxtot = () => {
+};
+
+const calculateTaxtot = () => {
     if (invoice && invoice.products) {
-      const taxRate = invoice.Tax || 0; // Default to 0 if tax rate is not available
-  
-      const totalTax = invoice.products.reduce((acc, product) => {
-        const productTax = parseFloat(product.invoiceTotal) * (taxRate / 100);
-        return acc + productTax;
-      }, 0);
-  
-      const subtotal = calculateTotal(); // Get the subtotal
-      const totalWithTax = subtotal + totalTax; // Subtract tax amount from subtotal
-  
-      console.log(typeof totalWithTax, totalWithTax); // Log type and value of totalWithTax
-  
-      return totalWithTax.toFixed(2); // Adjust decimal places as needed
+        const taxRate = invoice.Tax || 0; // Default to 0 if tax rate is not available
+
+        const totalTax = invoice.products.reduce((acc, product) => {
+            const productTax = parseFloat(product.invoiceTotal) * (taxRate / 100);
+            return acc + productTax;
+        }, 0);
+
+        const subtotal = parseFloat(calculateTotal()); // Get the subtotal and parse it to float
+        const totalWithTax = subtotal + totalTax; // Add tax amount to subtotal
+
+        console.log(typeof totalWithTax, totalWithTax); // Log type and value of totalWithTax
+
+        return totalWithTax.toFixed(2); // Adjust decimal places as needed
     }
-  
+
     return 0;
-  };
-  
+};
+
 
   if (!invoice) {
     return <div>Loading...</div>;
@@ -200,7 +199,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Checked and Approved by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second1"><span class="label">Tax:%</span>{invoice.Tax}</div>
+                      <div className="info-item-td text-end text-bold" id="tax"><span class="label">Tax:%</span>{invoice.Tax}</div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item">
@@ -208,7 +207,7 @@ export default function InvoiceTemp() {
                       <div className="info-item">
                         <p className="subject">Goods issued by</p>
                       </div>
-                      <div className="info-item-tot" id="second2"><span class="label" >Total</span>{formatNumbers(calculateTotal())}</div>
+                      <div className="info-item-tot" id="second2"><span class="label" >Total</span>{formatNumbers(calculateTaxtot())}</div>
                     </div>
                   </div>
                 </div>
