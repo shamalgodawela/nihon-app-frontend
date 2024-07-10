@@ -344,7 +344,7 @@ body{
 #second{
   position: absolute;
   margin-left: 13.36cm;
-  top: 18.7cm;
+  top: 18.2cm;
   color:black;
   font-family:Arial, Helvetica, sans-serif;
   
@@ -352,7 +352,7 @@ body{
 #second2{
     position: absolute;
     margin-left: 14.3cm;
-    top: 22.2cm;
+    top: 21.8cm;
     color:black;
     font-family:Arial, Helvetica, sans-serif;
     
@@ -415,6 +415,8 @@ body{
 }
 #tax{
     position: absolute;
-    top:20cm;
+    top:19.7cm;
     left:14cm;
+    color:black;
+    font-family:Arial, Helvetica, sans-serif;
 }
