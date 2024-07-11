@@ -129,8 +129,8 @@ const calculateTaxtot = () => {
             <h6>Email: info@nihonagholdings.com</h6>
             <h6>Hotline: 0777666802</h6>
           </div>
-          <p id='tax-invoice-text'>{invoice.VehicleNo}</p>
-          <p id='vat-reg'>VAT Reg No-102784022-7000</p>
+          {/* <p id='tax-invoice-text'>{invoice.VehicleNo}</p>
+          <p id='vat-reg'>VAT Reg No-102784022-7000</p> */}
           <div class="invoice-container">
             <div class="invoice-head">
               <div class="invoice-head-top">
@@ -200,7 +200,7 @@ const calculateTaxtot = () => {
                       <div className="info-item">
                         <p className="subject">Checked and Approved by</p>
                       </div>
-                      <p id='vat-p'>VAT 18%</p>
+                      {/* <p id='vat-p'>VAT 18%</p> */}
                       <div className="info-item-td text-end text-bold" id="tax"><span class="label">Tax:%</span>{invoice.Tax}</div>
                     </div>
                   </div>
