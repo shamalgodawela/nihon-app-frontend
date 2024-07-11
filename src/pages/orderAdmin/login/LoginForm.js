@@ -42,7 +42,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div><br/><br/><br/><br/><br/><br/>
+    <div className='backgroud-admin'><br/><br/><br/><br/><br/><br/>
     <div className="login-form-container">
     <h2>Admin Login</h2>
     <form onSubmit={handleLogin} className="login-form">

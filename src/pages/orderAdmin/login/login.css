@@ -4,6 +4,7 @@
     padding: 20px;
     border: 1px solid #303030;
     border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.249);
   }
   
   .login-form {
@@ -34,4 +35,9 @@
   .login-form button:hover {
     background-color: #0056b3;
   }
-  
+  .backgroud-admin{
+    background-image: url(https://t4.ftcdn.net/jpg/02/55/77/03/360_F_255770374_rbmJO9gkkIhMBcyVPc3iW016BCLDvcWc.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    height:900px;
+  }
