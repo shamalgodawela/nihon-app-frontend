@@ -200,6 +200,7 @@ const calculateTaxtot = () => {
                       <div className="info-item">
                         <p className="subject">Checked and Approved by</p>
                       </div>
+                      <p id='vat-p'>VAT 18%</p>
                       <div className="info-item-td text-end text-bold" id="tax"><span class="label">Tax:%</span>{invoice.Tax}</div>
                     </div>
                   </div>
