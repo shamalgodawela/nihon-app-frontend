@@ -15,35 +15,39 @@ import { AiFillProduct } from "react-icons/ai";
 
 
 
-export const SidebarData = [
+export const SidebarData2 = [
   <div>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"></link>
   </div>,
   {
-    title: 'Products summery',
-    path: '/dashboard',
-    icon:<FaProductHunt />,
+    title: 'Manage invoices',
+    path: '/all-invoices',
+    icon: <FaFileInvoice />,
     cName: 'nav-text'
   },
+
   {
-    title: 'Executive products',
-    path: '/exetable',
-    icon:<FaProductHunt />,
+    title: 'Return Notes',
+    path: '/getallreturn',
+    icon: <TbTruckReturn/>,
     cName: 'nav-text'
   },
+
   {
-    title: 'Finished Products',
-    path: '/dateproductDetails',
-    icon: <FaProductHunt />,
+    title: 'Manage Custormers',
+    path: '/getAllCustomer',
+    icon: <BsDatabaseFillGear />,
     cName: 'nav-text'
   },
+
   {
-    title: 'Bulk Products Details',
-    path: '/allbulkproduct',
+    title: 'Order details',
+    path: '/Dorder',
     icon: <GiMaterialsScience />,
     cName: 'nav-text'
   },
- 
+
+
 
 ];

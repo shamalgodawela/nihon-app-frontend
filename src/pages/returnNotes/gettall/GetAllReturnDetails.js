@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import NavBar from '../../../compenents/sidebar/NavBar';
 import './getallreturn.css'
+import Navbar2 from '../../../compenents/sidebar/Navbar2';
 
 const GetAllReturnDetails = () => {
     const [returnDetails, setReturnDetails] = useState([]);
@@ -23,7 +23,7 @@ const GetAllReturnDetails = () => {
 
     return (
         <div>
-            <NavBar/><br/>
+            <Navbar2/><br/>
 
             <button type="button" className="btn btn-outline-primary" disabled><a href="/addreturn" >Add return</a></button><br/><br/>
             <div className="return-details-container">

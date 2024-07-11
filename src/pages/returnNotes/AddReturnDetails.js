@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import NavBar from '../../compenents/sidebar/NavBar';
 import './return.css'
+import Navbar2 from '../../compenents/sidebar/Navbar2';
 
 const AddReturnDetails = () => {
     const [formData, setFormData] = useState({
@@ -55,7 +55,7 @@ const AddReturnDetails = () => {
 
     return (
         <div>
-            <NavBar/><br/><br/>
+            <Navbar2/><br/><br/>
             <h2 className='h2return'>Add Return Details</h2> <br/><br/><br/><br/><br/><br/>
         
         <div className="return-details-container">

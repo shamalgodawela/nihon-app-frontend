@@ -4,8 +4,8 @@ import axios from 'axios';
 import './allInvoice.css';
 import { AiOutlineEye } from 'react-icons/ai';
 import Footer from '../../compenents/footer/Footer';
-import NavBar from '../../compenents/sidebar/NavBar';
 import Loader from '../../compenents/loader/Loader';
+import Navbar2 from '../../compenents/sidebar/Navbar2';
 
 const AllInvoice = () => {
   const [invoices, setInvoices] = useState([]);
@@ -60,7 +60,7 @@ const AllInvoice = () => {
   return (
     <body className='invoice-body'>
       <div>
-        <NavBar/><br/><br/>
+        <Navbar2/><br/><br/>
         <div className="search-container" style={{ display: 'flex', marginBottom: '20px' }}>
           <input
             type="text"

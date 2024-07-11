@@ -42,13 +42,13 @@ const Mdashboard = () => {
       imageClass: "card__image--invoice",
       title: "Invoice and order management",
       text: "",
-      href: "" 
+      href: "/all-invoices" 
     },
     {
       imageClass: "card__image--customer",
       title: "Customer management",
       text: "",
-      href: "" 
+      href: "/getAllCustomer" 
     }
     
   ];

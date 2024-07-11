@@ -4,9 +4,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./invoice.css"
 import Footer from '../../compenents/footer/Footer';
-import NavBar from '../../compenents/sidebar/NavBar';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../compenents/loader/Loader';
+import Navbar2 from '../../compenents/sidebar/Navbar2';
 
 const InvoiceForm = () => {
   const navigate = useNavigate();
@@ -358,7 +358,7 @@ const InvoiceForm = () => {
   
   return (
     <div>
-      <NavBar/>
+      <Navbar2/>
       <br/>
       <div className="invoice-form">
       {isLoading && <Loader />} {/* Show loader if isLoading is true */}

@@ -5,9 +5,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome icons
 import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'; // Import required icons
 import './getcustomer.css';
-import NavBar from '../../../compenents/sidebar/NavBar';
 import { Link } from 'react-router-dom';
 import { SpinnerImg } from '../../../compenents/loader/Loader'; // Import loading spinner
+import Navbar3 from '../../../compenents/sidebar/Navbar3';
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
@@ -45,11 +45,10 @@ const CustomerList = () => {
 
   return (
     <div className='bd2'>
-      <NavBar/>
+      <Navbar3/>
       <section>
         <h2 className='h2getcus'>Customer Database</h2>
-        {/* Search input field */}
-        <button type="button" className="btn btn-outline-primary" disabled><a href="/customerReg" >Customer Registration</a></button><br/><br/>
+       
         <input
           type="text"
           placeholder="Search by code"

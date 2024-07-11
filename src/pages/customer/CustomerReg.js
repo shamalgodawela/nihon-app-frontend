@@ -3,8 +3,8 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./customer.css";
-import NavBar from '../../compenents/sidebar/NavBar';
 import Footer from '../../compenents/footer/Footer';
+import Navbar3 from '../../compenents/sidebar/Navbar3';
 
 const CustomerReg = () => {
   const [formData, setFormData] = useState({
@@ -58,7 +58,7 @@ const CustomerReg = () => {
 
   return (
     <div>
-      <NavBar/>
+      <Navbar3/>
       <div className="form_wrapper">
         <div className="form_container">
           <div className="title_container">
