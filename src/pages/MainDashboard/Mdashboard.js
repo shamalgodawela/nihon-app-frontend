@@ -11,7 +11,7 @@ const Card = ({ imageClass, title, text, href }) => (
         <div className="card__title">{title}</div>
         <p className="card__text">{text}</p>
         <a href={href} className="btn btn--block card__btn">
-          Button
+          Go inside
         </a>
       </div>
     </div>
@@ -30,14 +30,26 @@ const Mdashboard = () => {
       imageClass: "card__image--river",
       title: "Sales performance and collection",
       text: "",
-      href: "/sales" // Example link
+      href: "/sales" 
     },
     {
       imageClass: "card__image--record",
-      title: "Sales of product quantity",
+      title: "Annual sales by unit",
       text: "",
-      href: "/Season-Product-Quantity" // Example link
+      href: "/Season-Product-Quantity" 
     },
+    {
+      imageClass: "card__image--invoice",
+      title: "Invoice and order management",
+      text: "",
+      href: "" 
+    },
+    {
+      imageClass: "card__image--customer",
+      title: "Customer management",
+      text: "",
+      href: "" 
+    }
     
   ];
 

@@ -105,8 +105,9 @@
     }
   }
   
-  .card__image--flowers {
-    background-image: url(https://nationalwhateverday.com/wp-content/uploads/2020/04/Untitled-3.jpg);
+  .card__image--customer {
+    background-image: url(https://wallpaperaccess.com/full/2374145.jpg);
+    width:300px
   }
   
   .card__image--river {
@@ -114,14 +115,20 @@
   }
   
   .card__image--record {
-    background-image: url(https://kokolevel.com/wp-content/uploads/2019/10/How-to-increase-sales-2.jpg);
+    background-image: url(https://wallpaperaccess.com/full/1804129.jpg);
+    width:300px
   }
   
   .card__image--fence {
     background-image: url(https://nationalwhateverday.com/wp-content/uploads/2020/04/Untitled-3.jpg);
+    width:300px
     
   }
-  
+  .card__image--invoice {
+    background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20221118/pngtree-invoice-office-business-finance-photo-image_1350394.jpg);
+    width:300px
+    
+  }
   .card__title {
     color: var(--gray-dark);
     font-size: 1.25rem;
@@ -138,13 +145,13 @@
   }
   .madash-h1{
     text-align: center;
-    color:rgb(255, 255, 255);
+    color:rgb(0, 0, 0);
     font-family: 'Times New Roman', Times, serif;
   }
   .madashboard-body{
     background-size: 100%;
     background-attachment: fixed;
     height:700px;
-    background-image: url(http://orioncity.lk/images/slider/t-a11.jpg);
+    background-image: url(https://digitalizetrends.com/wp-content/uploads/2020/11/Role-of-IoT-in-agriculture-scaled.jpg);
     background-repeat:no-repeat ;
   }
