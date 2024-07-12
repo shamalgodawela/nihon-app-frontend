@@ -1,0 +1,17 @@
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px; /* Add padding to prevent the chart from touching the edges */
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+.h1-exe-colelction{
+    text-align:center;
+    color:black;
+    font-family:'Times New Roman', Times, serif;
+}

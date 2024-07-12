@@ -91,7 +91,7 @@ const Sales = () => {
             )}
           </div>
         </div>
-
+<Link to="/Executive-by-collection">
         <div className="card">
           <div className="card-header">
             <h2>Total Collection</h2>
@@ -106,6 +106,7 @@ const Sales = () => {
             )}
           </div>
         </div>
+</Link>
 
         <div className="card">
           <div className="card-header">
