@@ -16,29 +16,29 @@ const MonthlyCollection = () => {
     const fetchMonthlySales = async () => {
       try {
         const response = await axios.get('https://nihon-inventory.onrender.com/api/monthlysales');
-        console.log('Sales Response:', response.data); // Logging the sales response
         setMonthlySales(response.data);
       } catch (error) {
         console.error('Failed to fetch monthly sales', error);
         setError('Failed to fetch monthly sales');
+      } finally {
+        setLoading(false);
       }
     };
 
     const fetchMonthlyCollection = async () => {
       try {
-        const response = await axios.get('https://nihon-inventory.onrender.com/monthly-collection');
-        console.log('Collection Response:', response.data); // Check the actual response
+        const response = await axios.get('https://nihon-inventory.onrender.com/api/monthly-collection');
         setMonthlyCollection(response.data);
       } catch (error) {
         console.error('Failed to fetch monthly collection', error);
         setError('Failed to fetch monthly collection');
+      } finally {
+        setLoading(false);
       }
     };
-    
 
     fetchMonthlySales();
     fetchMonthlyCollection();
-    setLoading(false);  
   }, []);
 
   if (loading) {
@@ -51,23 +51,14 @@ const MonthlyCollection = () => {
 
   // Combine sales and collection data
   const combinedData = monthlySales.map(sale => {
-    const collection = monthlyCollection.find(col => {
-      console.log(`Matching sale ${sale.year}-${sale.month} with collection ${col.year}-${col.month}`);
-      return col.year === sale.year && col.month === sale.month;
-    });
-    if (!collection) {
-      console.warn(`No collection found for ${sale.year}-${sale.month}`);
-    }
+    const collection = monthlyCollection.find(col => col.year === sale.year && col.month === sale.month);
     return {
       year: sale.year,
       month: sale.month,
       totalSales: sale.totalSales,
-      totalCollection: collection ? collection.totalOutstanding : 0
+      totalCollection: collection ? collection.totaloutstanding : 0
     };
   });
-  
-
-  console.log('Combined Data:', combinedData);  // Debugging log for combined data
 
   const data = {
     labels: combinedData.map(item => `${item.year}-${String(item.month).padStart(2, '0')}`),
@@ -104,7 +95,7 @@ const MonthlyCollection = () => {
 
   return (
     <div>
-      <h1 className='h1-collection'>Sales and Collection compairism according to months</h1>
+      <h1 className='h1-collection'>Sales and Collection Compairism According to Months</h1>
     <div className="chart-container">
       <Bar data={data} options={options} />
     </div>
