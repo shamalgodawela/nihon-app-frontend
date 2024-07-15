@@ -51,14 +51,21 @@ const MonthlyCollection = () => {
 
   // Combine sales and collection data
   const combinedData = monthlySales.map(sale => {
-    const collection = monthlyCollection.find(col => col.year === sale.year && col.month === sale.month);
+    const collection = monthlyCollection.find(col => {
+      console.log(`Matching sale ${sale.year}-${sale.month} with collection ${col.year}-${col.month}`);
+      return col.year === sale.year && col.month === sale.month;
+    });
+    if (!collection) {
+      console.warn(`No collection found for ${sale.year}-${sale.month}`);
+    }
     return {
       year: sale.year,
       month: sale.month,
       totalSales: sale.totalSales,
-      totalCollection: collection ? collection.totaloutstanding : 0
+      totalCollection: collection ? collection.totalOutstanding : 0
     };
   });
+  
 
   const data = {
     labels: combinedData.map(item => `${item.year}-${String(item.month).padStart(2, '0')}`),
