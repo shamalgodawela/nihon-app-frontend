@@ -57,7 +57,9 @@ import EditInvoice from "./pages/invoice/Editinvoice/EditInvoice";
 import Exetable from "./pages/Exeproductdetails/Exetable";
 import Mdashboard from "./pages/MainDashboard/Mdashboard";
 import ProductQuantityChart from "./pages/ProductQuantity/totalseasonQuantity/ProductQuantityChart";
-import Collectionbyexe from "./pages/CompanyCollection/Piechart/Collectionbyexe";
+import Collectiondash from "./pages/CompanyCollection/CollectionDashboard/Collectiondash";
+
+
 
 
 
@@ -147,7 +149,9 @@ function App() {
     <Route path="/exetable" element={<Exetable/>} />
     <Route path="/Maindashboard" element={<Mdashboard/>} />
     <Route path="/Season-Product-Quantity" element={<ProductQuantityChart/>} />
-    <Route path="/Executive-by-collection" element={<Collectionbyexe/>} />
+    <Route path="/Collectioh-dashboard" element={<Collectiondash/>} />
+    
+   
  
     
    

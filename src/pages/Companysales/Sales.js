@@ -91,7 +91,7 @@ const Sales = () => {
             )}
           </div>
         </div>
-<Link to="/Executive-by-collection">
+<Link to="/Collectioh-dashboard">
         <div className="card">
           <div className="card-header">
             <h2>Total Collection</h2>
