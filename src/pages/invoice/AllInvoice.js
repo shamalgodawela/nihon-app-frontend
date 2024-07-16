@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './allInvoice.css';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -14,6 +14,8 @@ const AllInvoice = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [exe, setExe] = useState('');
+  const {id}=useParams();
+  const [sinvoice, setsinvoice]=useState(null);
 
   const fetchInvoices = async () => {
     setIsLoading(true);
@@ -27,12 +29,11 @@ const AllInvoice = () => {
       setIsLoading(false);
     }
   };
+
   const searchInvoices = async () => {
     setIsLoading(true);
     try {
-      // Format start date as 'YYYY-MM-DD'
       const formattedStartDate = startDate ? new Date(startDate).toISOString().split('T')[0] : '';
-      // Format end date as 'YYYY-MM-DD'
       const formattedEndDate = endDate ? new Date(endDate).toISOString().split('T')[0] : '';
   
       const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoices`, {
@@ -50,12 +51,34 @@ const AllInvoice = () => {
       setIsLoading(false);
     }
   };
-  
-  
 
   useEffect(() => {
+    const fetchSinvoice = async ()=>{
+      try{
+        const response= await axios.get(`https://nihon-inventory.onrender.com/api/get-invoice/${id}`);
+        setsinvoice(response.data);
+      }catch(error){
+        console.log('error feching data', error);
+      }
+    };
     fetchInvoices();
+    fetchSinvoice();
   }, []);
+
+  const formatNumbers = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const calculateTotal = (invoice) => {
+    let total = 0;
+    if (invoice && invoice.products) {
+      total = invoice.products.reduce((acc, product) => {
+        const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+        return acc + productTotal;
+      }, 0);
+    }
+    return total.toFixed(2); // Return the total with 2 decimal places
+  };
 
   return (
     <body className='invoice-body'>
@@ -69,36 +92,34 @@ const AllInvoice = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{ marginRight: '10px', padding: '5px' }}
           />
-         
-         <select
-  value={exe}
-  onChange={(e) => setExe(e.target.value)}
-  style={{ marginRight: '10px', padding: '5px' }}
->
-  <option value="">Select Exe</option>
-  <option value="Mr.Ahamed">Mr.Ahamed</option>
-  <option value="Mr.Dasun">Mr.Dasun</option>
-  <option value="Mr.Chameera">Mr.Chameera</option>
-  <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
-  <option value="Mr.Nayum">Mr.Nayum</option>
-  <option value="Mr.Navaneedan">Mr.Navaneedan</option>
-</select>
-<button
-  onClick={searchInvoices}
-  style={{
-    padding: '5px',
-    backgroundColor: '#007bff',
-    color: 'white',
-    border: 'none',
-    cursor: 'pointer'
-  }}
->
-  Search
-</button>
-
+          <select
+            value={exe}
+            onChange={(e) => setExe(e.target.value)}
+            style={{ marginRight: '10px', padding: '5px' }}
+          >
+            <option value="">Select Exe</option>
+            <option value="Mr.Ahamed">Mr.Ahamed</option>
+            <option value="Mr.Dasun">Mr.Dasun</option>
+            <option value="Mr.Chameera">Mr.Chameera</option>
+            <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
+            <option value="Mr.Nayum">Mr.Nayum</option>
+            <option value="Mr.Navaneedan">Mr.Navaneedan</option>
+          </select>
+          <button
+            onClick={searchInvoices}
+            style={{
+              padding: '5px',
+              backgroundColor: '#007bff',
+              color: 'white',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            Search
+          </button>
         </div>
 
-        <button type="button" class="btn btn-outline-primary" disabled><a href="/add-invoice" >Add Invoice</a></button>
+        <button type="button" className="btn btn-outline-primary" disabled><a href="/add-invoice" >Add Invoice</a></button>
         <div className="all-invoice">
           {isLoading ? <Loader /> : (
             <>
@@ -113,6 +134,7 @@ const AllInvoice = () => {
                     <th>Invoice Date</th>
                     <th>Due date</th>
                     <th>Exe</th>
+                    <th>Invoice Total</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -120,13 +142,13 @@ const AllInvoice = () => {
                   {invoices.map((invoice) => (
                     <tr key={invoice._id}>
                       <td>{invoice.invoiceNumber}</td>
-                      <th>{invoice.GatePassNo}</th>
+                      <td>{invoice.GatePassNo}</td>
                       <td>{invoice.customer}</td>
                       <td>{invoice.code}</td>
                       <td>{invoice.invoiceDate}</td>
                       <td>{invoice.Duedate}</td>
                       <td>{invoice.exe}</td>
-                      
+                      <td>{formatNumbers(calculateTotal(invoice))}</td>
                       <td>
                         <Link to={`/invoice-temp/${invoice._id}`}>
                           <AiOutlineEye size={20} color={"purple"} />
