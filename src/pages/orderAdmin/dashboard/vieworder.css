@@ -7,20 +7,31 @@
   
 
 .thorder {
-    background-color: #f2f2f2;
-    border: 1px solid #dddddd;
+    background-color: #000000;
+    border: 1px solid #ffffff;
     padding: 8px;
     text-align: left;
+    color:white;
+    font-style:italic;
+    font-family:'Times New Roman', Times, serif;
   }
   
  
 .tdorder {
-    border: 1px solid #dddddd;
+    color: rgb(0, 0, 0);
+    border: 1px solid #2e2e2e;
     padding: 8px;
+    font-family:'Times New Roman', Times, serif;
+    font-weight:bold;
+    font-size:15px
   }
   
   .h3order{
     color: black;
     text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    font-size:40px;
+    font-style:italic;
+    font-weight:bold;
     
   } 

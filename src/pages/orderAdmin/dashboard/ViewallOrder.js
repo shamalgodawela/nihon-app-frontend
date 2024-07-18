@@ -4,25 +4,24 @@ import { Link } from 'react-router-dom';
 import Footer from '../../../compenents/footer/Footer';
 import { SpinnerImg } from '../../../compenents/loader/Loader';
 import Menu from '../../../compenents/Menu/Menu';
- // Import Loader component
+import './vieworder.css'
 
 const ViewallOrder = () => {
   const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // State for loading indicator
+  const [isLoading, setIsLoading] = useState(true); 
   const [selectedPeriod, setSelectedPeriod] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [selectedExe, setSelectedExe] = useState('');
 
   useEffect(() => {
-    // Fetch order details from backend API
+    
     fetchOrders();
   }, [selectedPeriod, selectedStatus, selectedExe]);
 
   const fetchOrders = async () => {
     try {
-      setIsLoading(true); // Set loading to true when fetching starts
+      setIsLoading(true); 
 
-      // Construct query parameters
       const queryParams = new URLSearchParams();
       if (selectedPeriod) queryParams.append('period', selectedPeriod);
       if (selectedStatus) queryParams.append('status', selectedStatus);
@@ -31,10 +30,10 @@ const ViewallOrder = () => {
       const response = await fetch(`https://nihon-inventory.onrender.com/api/allor?${queryParams}`); // Update the URL with your backend endpoint
       const data = await response.json();
       setOrders(data);
-      setIsLoading(false); // Set loading to false when fetching completes
+      setIsLoading(false); 
     } catch (error) {
       console.error('Error fetching orders:', error);
-      setIsLoading(false); // Set loading to false in case of error
+      setIsLoading(false);
     }
   };
 
@@ -52,17 +51,8 @@ const ViewallOrder = () => {
     <div>
       <h3 className="h3order">All Order Details</h3>
       
-      {/* Search form */}
+      
       <div className="search-form">
-        <label>Time Period:</label>
-        <select value={selectedPeriod} onChange={(e) => setSelectedPeriod(e.target.value)}>
-          <option value="">All</option>
-          {dateRanges.map((range) => (
-            <option key={range.value} value={range.value}>
-              {range.label}
-            </option>
-          ))}
-        </select>
         <label>Status:</label>
         <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
           <option value="">All</option>
@@ -95,7 +85,7 @@ const ViewallOrder = () => {
         <th className='thorder'>Exe</th>
         <th className='thorder'>Status</th>
         <th className='thorder'>Action</th>
-        {/* Add more table headers as needed */}
+        
       </tr>
     </thead>
     <tbody>
@@ -104,7 +94,6 @@ const ViewallOrder = () => {
           <td className='tdorder'>{order.orderNumber}</td>
           <td className='tdorder'>{order.customer}</td>
           <td className='tdorder'>{order.code}</td>
-          {/* Add more table cells for other order details */}
           <td className='tdorder'>{order.orderDate}</td>
           <td className='tdorder'>{order.exe}</td>
           <td className='tdorder'>{order.status}</td>
@@ -113,7 +102,6 @@ const ViewallOrder = () => {
            <AiOutlineEye size={20} color={"purple"} />
           </Link>
           </td>
-          {/* Add more table cells as needed */}
         </tr>
       ))}
     </tbody>
