@@ -8,24 +8,20 @@ import Tabelexesales from './tabelsales/Tabelexesales';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-const NAVIGATE_BACK = 'NAVIGATE_BACK';
-
 const Sales = () => {
   const [totalSales, setTotalSales] = useState(0);
-  const [totalcollection, settotalcollection]=useState(0);
-  const [outstanding, setoutstanding]= useState(0);
+  const [totalcollection, setTotalCollection] = useState(0);
+  const [outstanding, setOutstanding] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const navigate=useNavigate();
- 
- 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTotalSales = async () => {
       try {
         const response = await axios.get('https://nihon-inventory.onrender.com/api/invoi/sum');
-        setTotalSales(response.data.sum);
+        setTotalSales(response.data.sum || 0); // Ensure default value
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch total sales', error);
@@ -34,47 +30,42 @@ const Sales = () => {
       }
     };
 
-    const fetchTotalcollection= async ()=>{
-      try{
-        const response= await axios.get(`https://nihon-inventory.onrender.com/api/sumofcollection`);
-        settotalcollection(response.data.sum);
+    const fetchTotalCollection = async () => {
+      try {
+        const response = await axios.get('https://nihon-inventory.onrender.com/api/sumofcollection');
+        setTotalCollection(response.data.sum || 0); // Ensure default value
         setLoading(false);
-
-      }
-      catch(error){
-        console.error('failed to fetch total collection',error);
-        setError('failed to fetch total collection')
+      } catch (error) {
+        console.error('Failed to fetch total collection', error);
+        setError('Failed to fetch total collection');
         setLoading(false);
-
       }
-
     };
 
     fetchTotalSales();
-    fetchTotalcollection();
+    fetchTotalCollection();
   }, []);
 
-  useEffect(()=>{
-    setoutstanding(totalSales-totalcollection);
-  },[totalSales,totalcollection]);
-
-  
+  useEffect(() => {
+    setOutstanding(totalSales - totalcollection);
+  }, [totalSales, totalcollection]);
 
   const formatNumbers = (x) => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if (x === undefined || x === null) return "0";
+    return x.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
+
   const goBack = () => {
-    // Use navigate(-1) to navigate back
     navigate(-1);
   };
 
   return (
     <div>
-      <Link to="#" onClick={goBack}><IoMdArrowRoundBack size={23}/></Link>&nbsp;&nbsp;
+      <Link to="#" onClick={goBack}><IoMdArrowRoundBack size={23} /></Link>&nbsp;&nbsp;
       <div className='sales-Heading'>
         <h3>Hi, Welcome back!</h3>
         <h4>Finance Performance and Monitoring Sales Performance</h4>
-        <h4 className='h4-season-update-heading'>Updated details of 2024 april to present(yala season)</h4>
+        <h4 className='h4-season-update-heading'>Updated details of 2024 April to present (Yala season)</h4>
       </div>
       <div className="cards-container">
         <div className="card">
@@ -87,26 +78,26 @@ const Sales = () => {
             ) : error ? (
               <p>{error}</p>
             ) : (
-              <p>RS/= {formatNumbers(totalSales.toFixed(2))}</p>
+              <p>RS/= {formatNumbers(totalSales)}</p>
             )}
           </div>
         </div>
-<Link to="/Collectioh-dashboard">
-        <div className="card">
-          <div className="card-header">
-            <h2>Total Collection</h2>
+        <Link to="/Collectioh-dashboard">
+          <div className="card">
+            <div className="card-header">
+              <h2>Total Collection</h2>
+            </div>
+            <div className="card-body">
+              {loading ? (
+                <p>Loading...</p>
+              ) : error ? (
+                <p>{error}</p>
+              ) : (
+                <p>RS/= {formatNumbers(totalcollection)}</p>
+              )}
+            </div>
           </div>
-          <div className="card-body">
-            {loading ? (
-              <p>Loading...</p>
-            ) : error ? (
-              <p>{error}</p>
-            ) : (
-              <p>RS/= {formatNumbers((totalcollection.toFixed(2)))}</p>
-            )}
-          </div>
-        </div>
-</Link>
+        </Link>
 
         <div className="card">
           <div className="card-header">
@@ -118,24 +109,24 @@ const Sales = () => {
             ) : error ? (
               <p>{error}</p>
             ) : (
-              <p>RS/= {formatNumbers(outstanding.toFixed(2))}</p>
+              <p>RS/= {formatNumbers(outstanding)}</p>
             )}
           </div>
         </div>
       </div>
       <div className="chart-container">
         <h2>Monthly Sales</h2>
-        <MonthlySalesChart/>
+        <MonthlySalesChart />
       </div>
       <div>
-        <h2  className="pie-container">Executive wise Sales(2024 april to present)</h2>
-        <SalesByExePieChart/>
+        <h2 className="pie-container">Executive wise Sales (2024 April to present)</h2>
+        <SalesByExePieChart />
       </div>
       <div>
-        <h2 className="pie-container">Executive Monthly sales</h2>
-        <Tabelexesales/>
+        <h2 className="pie-container">Executive Monthly Sales</h2>
+        <Tabelexesales />
       </div>
-     
+
       <Footer />
     </div>
   );

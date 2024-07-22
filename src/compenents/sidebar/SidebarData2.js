@@ -28,8 +28,14 @@ export const SidebarData2 = [
   },
 
   {
-    title: 'Return Notes',
+    title: 'Return Notes belong to new invoice',
     path: '/getallreturn',
+    icon: <TbTruckReturn/>,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Return Notes belong to belong to old invoice',
+    path: '',
     icon: <TbTruckReturn/>,
     cName: 'nav-text'
   },

@@ -3,13 +3,17 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./invoice.css"
-import Footer from '../../compenents/footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import Loader from '../../compenents/loader/Loader';
 import Navbar2 from '../../compenents/sidebar/Navbar2';
+import Loader from '../../compenents/loader/Loader';
+
+
 
 const InvoiceForm = () => {
   const navigate = useNavigate();
+  const [totalInvoiceAmount, setTotalInvoiceAmount] = useState(0);
+  const [finalValue, setFinalValue] = useState(0);
+
   const [formData, setFormData] = useState({
     products: [
       {
@@ -20,31 +24,27 @@ const InvoiceForm = () => {
         discount: 0,
         unitPrice: 0,
         invoiceTotal: 0,
-        // Remove the category field
       },
     ],
-    invoiceNumber:'',
+    invoiceNumber: '',
     customer: '',
-    code:'',
-    address:'',
-    contact:'',
+    code: '',
+    address: '',
+    contact: '',
     invoiceDate: '',
-    orderNumber:'',
-    orderDate:'',
+    orderNumber: '',
+    orderDate: '',
     exe: '',
-    ModeofPayment:'',
-    TermsofPayment:'',
-    Duedate:'',
+    ModeofPayment: '',
+    TermsofPayment: '',
+    Duedate: '',
     Tax: '',
     GatePassNo: '',
-    VehicleNo:'',
+    VehicleNo: '',
   });
-
-
 
   const [lastInvoiceNumber, setLastInvoiceNumber] = useState('');
 
-  // Fetch last invoice number on component mount
   useEffect(() => {
     const fetchLastInvoiceNumber = async () => {
       try {
@@ -57,47 +57,31 @@ const InvoiceForm = () => {
 
     fetchLastInvoiceNumber();
   }, []);
-  
+
   const [calculatedValues, setCalculatedValues] = useState({
     unitPrice: 0,
     invoiceTotal: 0,
   });
 
-  const [customerDetailsFetched, setCustomerDetailsFetched] = useState(false);
-
   const handleChange = async (e, index) => {
     const { name, value } = e.target;
-  
+
     if (name.startsWith('products')) {
       const [field, productField] = name.split('.');
       const updatedProducts = [...formData.products];
       updatedProducts[index] = { ...updatedProducts[index], [productField]: value };
-  
+
       if (productField === 'productCode') {
         try {
           const response = await axios.get(`https://nihon-inventory.onrender.com/api/products/${value}`);
           const product = response.data;
-  
-          if (product.category === updatedProducts[index].category) {
-            setFormData({
-              ...formData,
-              products: updatedProducts,
-            });
-          } else {
-            // Handle category mismatch
-            toast.error('Category mismatch for the provided product code', {
-              position: 'top-right',
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          }
+
+          setFormData({
+            ...formData,
+            products: updatedProducts,
+          });
         } catch (error) {
           console.error('Failed to fetch product details', error.message);
-          // Handle product not found
           toast.error('No matching product found for the provided product code', {
             position: 'top-right',
             autoClose: 3000,
@@ -109,7 +93,6 @@ const InvoiceForm = () => {
           });
         }
       } else if (productField === 'productName') {
-        // Handle product name change
         setFormData({
           ...formData,
           products: updatedProducts,
@@ -123,41 +106,36 @@ const InvoiceForm = () => {
     } else if (name === 'TermsofPayment') {
       const termOfPaymentDays = parseInt(value, 10);
       if (!isNaN(termOfPaymentDays) && termOfPaymentDays > 0) {
-        const today = new Date();
-        const dueDate = new Date(today.setDate(today.getDate() + termOfPaymentDays));
+        const invoiceDate = new Date(formData.invoiceDate); 
+        const dueDate = new Date(invoiceDate.setDate(invoiceDate.getDate() + termOfPaymentDays));
   
+
         if (!isNaN(dueDate.getTime())) {
-          // Date is valid, update the form data
           setFormData({
             ...formData,
             [name]: value,
             Duedate: dueDate.toISOString().split('T')[0],
           });
         } else {
-          toast.error('Invalid date')
+          toast.error('Invalid date');
           console.error('Invalid due date');
-          // Handle error
         }
       } else {
-        toast.error('Invalid date')
+        toast.error('Invalid date');
         console.error('Invalid terms of payment');
-        // Handle error
       }
-    } else if (name === 'invoiceNumber') { // Modification starts here
+    } else {
       setFormData({
         ...formData,
         [name]: value,
       });
-    } else { // Modification ends here
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+
+      if (name === 'Tax') {
+        calculateFinalValue(totalInvoiceAmount, value);
+      }
     }
   };
-  
-  
-  
+
   const addProduct = () => {
     setFormData({
       ...formData,
@@ -176,52 +154,46 @@ const InvoiceForm = () => {
     });
   };
 
-  const removeProduct = (index) => {
-    const updatedProducts = [...formData.products];
-    updatedProducts.splice(index, 1);
 
-    setFormData({
-      ...formData,
-      products: updatedProducts,
-    });
-  };
 
   useEffect(() => {
     let totalUnitPrice = 0;
     let totalInvoiceTotal = 0;
-  
+
     formData.products.forEach((product) => {
       const calculatedUnitPrice = parseFloat(product.labelPrice) - (parseFloat(product.labelPrice) * parseFloat(product.discount) / 100);
       const calculatedInvoiceTotal = parseFloat(calculatedUnitPrice) * parseFloat(product.quantity);
-  
+
       totalUnitPrice += isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
       totalInvoiceTotal += isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
-  
+
       product.unitPrice = isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
       product.invoiceTotal = isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
     });
-  
-    // Fetch last invoice number and order number
-    // Fetch last numbers on component mount
-  
+
     setCalculatedValues({
       unitPrice: totalUnitPrice,
       invoiceTotal: totalInvoiceTotal,
     });
+
+    setTotalInvoiceAmount(totalInvoiceTotal);
+    calculateFinalValue(totalInvoiceTotal, formData.Tax);
   }, [formData.products]);
-  
-  
+
+  const calculateFinalValue = (totalInvoiceAmount, tax) => {
+    const taxRate = parseFloat(tax) || 0;
+    const finalValue = totalInvoiceAmount + (totalInvoiceAmount * taxRate / 100);
+    setFinalValue(finalValue);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      // Check if the orderNumber already exists in the database
       const orderCheckResponse = await axios.get(`https://nihon-inventory.onrender.com/api/check/${formData.orderNumber}`);
       const orderExists = orderCheckResponse.data.exists;
   
       if (orderExists) {
-        // Show toast for existing order number
         toast.error('Order number already exists', {
           position: 'top-right',
           autoClose: 3000,
@@ -231,16 +203,18 @@ const InvoiceForm = () => {
           draggable: true,
           progress: undefined,
         });
-        return; // Exit the function early
+        return;
       }
   
-      // If order number does not exist, proceed with adding the invoice
-      const response = await axios.post(`https://nihon-inventory.onrender.com/api/add-invoice`, formData);
+      
+      const updatedFormData = {
+        ...formData,
+        // taxtotal: finalValue.toFixed(2),
+      };
+  
+      const response = await axios.post(`https://nihon-inventory.onrender.com/api/add-invoice`, updatedFormData);
       console.log('Invoice added successfully', response.data);
   
-      // Optionally, reset the form or navigate to another page on success
-  
-      // Show success toast
       toast.success('Invoice added successfully', {
         position: 'top-right',
         autoClose: 3000,
@@ -255,7 +229,6 @@ const InvoiceForm = () => {
     } catch (error) {
       console.error('Failed to add invoice', error.message);
   
-      // Show generic error toast
       toast.error('Failed to add invoice', {
         position: 'top-right',
         autoClose: 3000,
@@ -268,17 +241,17 @@ const InvoiceForm = () => {
     }
   };
   
-  const [isLoading, setIsLoading] = useState(false); // State for loading indicator
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleGetDetails = async (e) => {
-    e.preventDefault(); // Prevent default button click behavior
-  
+    e.preventDefault();
+
     try {
       const response = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${formData.orderNumber}`);
       const orderData = response.data;
-  
+
       if (orderData.status === "pending") {
-        // Show toast message for pending orders
         toast.warning('Order is pending', {
           position: 'top-right',
           autoClose: 3000,
@@ -289,7 +262,6 @@ const InvoiceForm = () => {
           progress: undefined,
         });
       } else if (orderData.status === "Canceled") {
-        // Show toast message for canceled orders
         toast.error('Order was canceled by admin', {
           position: 'top-right',
           autoClose: 3000,
@@ -300,7 +272,6 @@ const InvoiceForm = () => {
           progress: undefined,
         });
       } else if (orderData.status === "Approved") {
-        // Set the fetched order details in the form data state
         setFormData({
           ...formData,
           invoiceNumber: orderData.orderNumber,
@@ -318,7 +289,8 @@ const InvoiceForm = () => {
           Tax: orderData.Tax,
           GatePassNo: orderData.GatePassNo,
           VehicleNo: orderData.VehicleNo,
-          products: orderData.products.map(product => ({
+          taxtotal:orderData.taxtotal,
+          products: orderData.products.map((product) => ({
             productCode: product.productCode,
             productName: product.productName,
             quantity: product.quantity,
@@ -328,21 +300,14 @@ const InvoiceForm = () => {
             invoiceTotal: product.invoiceTotal,
           })),
         });
-  
-        // Show success toast
-        toast.success('Order details fetched successfully', {
-          position: 'top-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+
+        setTotalInvoiceAmount(orderData.totalInvoiceAmount || 0);
+        calculateFinalValue(orderData.totalInvoiceAmount || 0, orderData.Tax || '');
       }
     } catch (error) {
       console.error('Failed to fetch order details', error.message);
-      toast.error('Order not found', {
+
+      toast.error('Failed to fetch order details', {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
@@ -353,241 +318,127 @@ const InvoiceForm = () => {
       });
     }
   };
-  
-  
-  
+
+  useEffect(() => {
+    let totalUnitPrice = 0;
+    let totalInvoiceTotal = 0;
+
+    formData.products.forEach((product) => {
+      const calculatedUnitPrice = parseFloat(product.labelPrice) - (parseFloat(product.labelPrice) * parseFloat(product.discount) / 100);
+      const calculatedInvoiceTotal = parseFloat(calculatedUnitPrice) * parseFloat(product.quantity);
+
+      totalUnitPrice += isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
+      totalInvoiceTotal += isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
+
+      product.unitPrice = isNaN(calculatedUnitPrice) ? 0 : calculatedUnitPrice;
+      product.invoiceTotal = isNaN(calculatedInvoiceTotal) ? 0 : calculatedInvoiceTotal;
+    });
+
+    setCalculatedValues({
+      unitPrice: totalUnitPrice,
+      invoiceTotal: totalInvoiceTotal,
+    });
+
+    setTotalInvoiceAmount(totalInvoiceTotal);
+    calculateFinalValue(totalInvoiceTotal, formData.Tax);
+  }, [formData.products]);
+
   return (
     <div>
-      <Navbar2/>
-      <br/>
-      <div className="invoice-form">
-      {isLoading && <Loader />} {/* Show loader if isLoading is true */}
-        <h2>Add Invoice</h2>
-        <div>
-  <label>Order Number:</label>
-  <input
-    type="text"
-    name="orderNumber"
-    value={formData.orderNumber}
-    onChange={(e) => handleChange(e)}
-    required
-  />
-  <button onClick={handleGetDetails}>Get Order Details</button>
-</div>
-
+      <Navbar2 />
+      {isLoading && <Loader />}
+      <div className={`invoice-form ${isLoading ? "loading" : ""}`}>
+        <h2>Create Invoice</h2>
         <form onSubmit={handleSubmit}>
-          {formData.products.map((product, index) => (
-            <div key={index}>
-               <div>
-    <label>Product Code:</label>
-    <input
-      type="text"
-      name={`products[${index}].productCode`}
-      value={product.productCode}
-      onChange={(e) => handleChange(e, index)}
-      required
-      readOnly
-    />
-    
-  </div>
-              <h3>Product {index + 1}</h3>
-              <div>
-                <label>Product Code:</label>
-                <input
-                  type="text"
-                  name={`products[${index}].productCode`}
-                  value={product.productCode}
-                  onChange={(e) => handleChange(e, index)}
-                  required
-                  readOnly
-                />
-              </div>
-              <div>
-                <label>Product Name:</label>
-                <input
-                  type="text"
-                  name={`products[${index}].productName`}
-                  value={product.productName}
-                  onChange={(e) => handleChange(e, index)}
-                  required
-                  readOnly
-                />
-              </div>
-              <div>
-                <label>Number of unit:</label>
-                <input
-                  type="number"
-                  name={`products[${index}].quantity`}
-                  value={product.quantity}
-                  onChange={(e) => handleChange(e, index)}
-                  required
-                  readOnly
-                />
-              </div>
-              <div>
-                <label>Label Price:</label>
-                <input
-                  type="number"
-                  name={`products[${index}].labelPrice`}
-                  value={product.labelPrice}
-                  onChange={(e) => handleChange(e, index)}
-                  required
-                  readOnly
-                />
-              </div>
-              <div>
-                <label>Discount (%):</label>
-                <input
-                  type="number"
-                  name={`products[${index}].discount`}
-                  value={product.discount}
-                  onChange={(e) => handleChange(e, index)}
-                  readOnly
-
-                />
-              </div>
-              <div>
-                <label>Unit Price:</label>
-                <span>{product.unitPrice}</span>
-              </div>
-              <div>
-                <label>Invoice Total:</label>
-                <span>{product.invoiceTotal}</span>
-              </div>
-              
-            </div>
-          ))}
-          <button type="button" onClick={addProduct}>
-            Add Product
-          </button>
-          <div>
-        <label>Customer Code:</label>
-        <input
-          type="text"
-          name="code"
-          value={formData.code}
-          onChange={handleChange}
-          required
-          readOnly
-        />
-        
-      </div>
-      <p>Last Invoice Number: {lastInvoiceNumber}</p>
-      
-
-          <div>
-          
-            <label>Invoice Number:</label>
-            <input
-              type="text"
-              name="invoiceNumber"
-              value={formData.invoiceNumber}
-              onChange={(e) => handleChange(e)}
-              required
-              
-            />
-            
-             
-          </div>
-          <div>
-            <label>Invoice Date:</label>
-            <input
-              type="date"
-              name="invoiceDate"
-              value={formData.invoiceDate}
-              onChange={(e) => handleChange(e)}
-              required
-             
-            />
-          </div>
-          <h4></h4>
-          <div>
-            <h3>Customer details</h3>
-            <label>Customer:</label>
-            <input
-              type="text"
-              name="customer"
-              value={formData.customer}
-              onChange={(e) => handleChange(e)}
-              required
-              readOnly
-            />
-          </div>
-          <div>
-            <label>Customer Code:</label>
-            <input
-              type="text"
-              name="code"
-              value={formData.code}
-              onChange={(e) => handleChange(e)}
-              required
-              readOnly
-            />
-          </div>
-          <div>
-            <label>Customer Address:</label>
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={(e) => handleChange(e)}
-              required
-              readOnly
-            />
-          </div>
-          <div>
-            <label>Contact:</label>
-            <input
-              type="text"
-              name="address"
-              value={formData.contact}
-              onChange={(e) => handleChange(e)}
-              readOnly
-            />
-          </div>
-         
-          <div>
-            <h3>Order details</h3>
+        <div className="form-group">
             <label>Order Number:</label>
             <input
               type="text"
               name="orderNumber"
               value={formData.orderNumber}
-              onChange={(e) => handleChange(e)}
-              required
-              readOnly
+              onChange={handleChange}
             />
-            
+            <button onClick={handleGetDetails}>Get Details</button>
           </div>
-          <div>
+          <div className="form-group">
+            <label>Invoice Number:</label>
+            <input
+              type="text"
+              name="invoiceNumber"
+              value={formData.invoiceNumber}
+              onChange={handleChange}
+            
+            />
+          </div>
+          <div className="form-group">
+            <label>Customer:</label>
+            <input
+              type="text"
+              name="customer"
+              value={formData.customer}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Code:</label>
+            <input
+              type="text"
+              name="code"
+              value={formData.code}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Address:</label>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Contact:</label>
+            <input
+              type="text"
+              name="contact"
+              value={formData.contact}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Invoice Date:</label>
+            <input
+              type="date"
+              name="invoiceDate"
+              value={formData.invoiceDate}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
             <label>Order Date:</label>
             <input
               type="date"
               name="orderDate"
               value={formData.orderDate}
-              onChange={(e) => handleChange(e)}
-              required
-              readOnly
+              onChange={handleChange}
             />
           </div>
-          <div>
-            <label>Executive (EXE):</label>
+          <div className="form-group">
+            <label>Executive:</label>
             <input
               type="text"
               name="exe"
               value={formData.exe}
-              onChange={(e) => handleChange(e)}
-              required
-              readOnly
+              onChange={handleChange}
             />
           </div>
-          <h3>Payment details</h3>
           <div>
             <label>Mode of Payment:</label>
               <select
               name="ModeofPayment"
               value={formData.ModeofPayment}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               required
               >
                <option value="">Select mode of payment</option>
@@ -595,54 +446,129 @@ const InvoiceForm = () => {
                <option value="Cheque">Cheque</option>
               </select>
           </div>
-          <div>
-            <label>Terms of Payment(days):</label>
+          <div className="form-group">
+            <label>Terms of Payment (days):</label>
             <input
               type="text"
               name="TermsofPayment"
               value={formData.TermsofPayment}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               required
             />
           </div>
-          <div>
-            <label>Due date:</label>
+          <div className="form-group">
+            <label>Due Date:</label>
             <input
               type="date"
               name="Duedate"
               value={formData.Duedate}
-              onChange={(e) => handleChange(e)}
+              readOnly
             />
           </div>
-          <div>
-            <label>Tax:</label>
+          <div className="form-group">
+            <label>Tax (%):</label>
             <input
-              type="number"
+              type="text"
               name="Tax"
               value={formData.Tax}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
             />
           </div>
-          <div>
-            <label>TAX INVOICE or Not:</label>
+          <div className="form-group">
+            <label>Invoice Total with Tax:</label>
+            <input
+              type="text"
+              name="GatePassNo"
+              value={finalValue.toFixed(2)}
+              readOnly
+            />
+          </div>
+          <div className="form-group">
+            <label>Vehicle No:</label>
             <input
               type="text"
               name="VehicleNo"
               value={formData.VehicleNo}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
             />
           </div>
-          
-          
-          
-          
-          <button type="submit">Submit</button>
+          <h3>Products</h3>
+          {formData.products.map((product, index) => (
+            <div key={index} className="product-group">
+              <div className="form-group">
+                <label>Product Code:</label>
+                <input
+                  type="text"
+                  name={`products.${index}.productCode`}
+                  value={product.productCode}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Product Name:</label>
+                <input
+                  type="text"
+                  name={`products.${index}.productName`}
+                  value={product.productName}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Quantity:</label>
+                <input
+                  type="number"
+                  name={`products.${index}.quantity`}
+                  value={product.quantity}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Label Price:</label>
+                <input
+                  type="number"
+                  name={`products.${index}.labelPrice`}
+                  value={product.labelPrice}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Discount (%):</label>
+                <input
+                  type="number"
+                  name={`products.${index}.discount`}
+                  value={product.discount}
+                  onChange={(e) => handleChange(e, index)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Unit Price:</label>
+                <input
+                  type="number"
+                  name={`products.${index}.unitPrice`}
+                  value={product.unitPrice}
+                  readOnly
+                />
+              </div>
+              <div className="form-group">
+                <label>Invoice Total:</label>
+                <input
+                  type="number"
+                  name={`products.${index}.invoiceTotal`}
+                  value={product.invoiceTotal}
+                  readOnly
+                />
+              </div>
+              {/* {index > 0 && (
+                <button type="button" onClick={() => removeProduct(index)}>Remove Product</button>
+              )} */}
+            </div>
+          ))}
+          {/* <button type="button" onClick={addProduct}>Add Product</button> */}
+          <button type="submit">Create Invoice</button>
         </form>
-
-        {/* Toast container */}
         <ToastContainer />
       </div>
-      <Footer/>
+      
     </div>
   );
 };
