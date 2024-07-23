@@ -1,0 +1,27 @@
+.h1-return{
+    color:black;
+    font-family:'Times New Roman', Times, serif;
+    align-items: center;
+}
+
+.Form-add-product{
+    width:400px;
+    margin-left: 35%;
+    
+}
+.view-all-product-table{
+    border: 1px solid black;
+}
+.td-return{
+    font-family:'Times New Roman', Times, serif;
+    border: 1px solid black;
+}
+.view-all-product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .view-all-product-table table {
+    width: 100%;
+    border: 1px solid black; 
+  }

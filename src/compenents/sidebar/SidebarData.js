@@ -44,6 +44,19 @@ export const SidebarData = [
     icon: <GiMaterialsScience />,
     cName: 'nav-text'
   },
+  {
+    title: 'Inserted return and new product',
+    path: '/Add-newReturn-product',
+    icon: <GiMaterialsScience />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'View all inserted products',
+    path: '/view-all-product-details',
+    icon: <GiMaterialsScience />,
+    cName: 'nav-text'
+  },
+  
  
 
 ];

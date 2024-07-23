@@ -58,6 +58,8 @@ import Exetable from "./pages/Exeproductdetails/Exetable";
 import Mdashboard from "./pages/MainDashboard/Mdashboard";
 import ProductQuantityChart from "./pages/ProductQuantity/totalseasonQuantity/ProductQuantityChart";
 import Collectiondash from "./pages/CompanyCollection/CollectionDashboard/Collectiondash";
+import NandRproduct from "./pages/AddNewProductAndReturn/NandRproduct";
+import ViewallRAndn from "./pages/AddNewProductAndReturn/ViewallRAndn";
 
 
 
@@ -150,6 +152,8 @@ function App() {
     <Route path="/Maindashboard" element={<Mdashboard/>} />
     <Route path="/Season-Product-Quantity" element={<ProductQuantityChart/>} />
     <Route path="/Collectioh-dashboard" element={<Collectiondash/>} />
+    <Route path="/Add-newReturn-product" element={<NandRproduct/>} />
+    <Route path="/view-all-product-details" element={<ViewallRAndn/>} />
     
    
  

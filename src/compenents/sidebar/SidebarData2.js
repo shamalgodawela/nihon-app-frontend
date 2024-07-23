@@ -34,13 +34,6 @@ export const SidebarData2 = [
     cName: 'nav-text'
   },
   {
-    title: 'Return Notes belong to belong to old invoice',
-    path: '',
-    icon: <TbTruckReturn/>,
-    cName: 'nav-text'
-  },
-
-  {
     title: 'Manage Custormers',
     path: '/getAllCustomer',
     icon: <BsDatabaseFillGear />,
