@@ -152,7 +152,7 @@ const ProductList = ({ products, isLoading }) => {
                         {"Rs:"}
                         {typeof price === 'string' ? formatNumbers(parseFloat(salesPrice * quantity).toFixed(2)) : formatNumbers((price * quantity).toFixed(2))}
                       </td>
-                      <td className="icons">
+                      {/* <td className="icons">
                         <span>
                           <Link to={`/edit-product/${_id}`}>
                             <FaEdit size={20} color={"green"} />
@@ -164,7 +164,7 @@ const ProductList = ({ products, isLoading }) => {
                             onClick={() => confirmDelete(_id)}
                           />
                         </span>
-                      </td>
+                      </td> */}
                     </tr>
                   );
                 })}
