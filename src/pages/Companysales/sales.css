@@ -39,7 +39,7 @@
   background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);
   background: linear-gradient(to right, #8f94fb, #ababab);
   border-radius: 8px 8px 0 0;
-  color: white;
+  color: rgb(242, 242, 242);
   padding: 10px;
 }
 
