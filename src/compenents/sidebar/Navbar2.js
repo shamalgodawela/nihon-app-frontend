@@ -10,6 +10,7 @@ import { SET_LOGIN, selectName } from '../../redux/features/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { LuRefreshCw } from "react-icons/lu";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { FaHome } from "react-icons/fa";
 
 // Action type
 const NAVIGATE_BACK = 'NAVIGATE_BACK';
@@ -79,6 +80,7 @@ function Navbar2() {
         </div>
       </IconContext.Provider><br/><br/>
       <Link to="#" onClick={goBack}><IoMdArrowRoundBack size={23}/></Link>&nbsp;&nbsp;
+      <Link to="/Maindashboard"><FaHome  size={23}/></Link>&nbsp;&nbsp;
     
       <RefreshButton/>
     </div>
