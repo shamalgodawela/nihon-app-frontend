@@ -32,6 +32,9 @@ const Menu = () => {
         <Link to="/AllOutstanding" className="nav-link2">Manage Outstanding</Link>
       </li>
       <li className="nav-item2">
+        <Link to="/view-dealer-history" className="nav-link2">Check Dealer History</Link>
+      </li>
+      <li className="nav-item2">
         <Link to="/" className="nav-link2">Logout</Link>
       </li>
       

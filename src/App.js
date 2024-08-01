@@ -62,6 +62,7 @@ import NandRproduct from "./pages/AddNewProductAndReturn/NandRproduct";
 import ViewallRAndn from "./pages/AddNewProductAndReturn/ViewallRAndn";
 import AddNewBulk from "./pages/NewBulkDetails/AddNewBulk";
 import ViewAllBulk from "./pages/NewBulkDetails/ViewAllBulk";
+import DealerHistory from "./pages/orderAdmin/CheckdealerHistory/DealerHistory";
 
 
 
@@ -158,6 +159,7 @@ function App() {
     <Route path="/view-all-product-details" element={<ViewallRAndn/>} />
     <Route path="/Add-New-bulk-product" element={<AddNewBulk/>} />
     <Route path="/view-all-bulk" element={<ViewAllBulk/>} />
+    <Route path="/view-dealer-history" element={<DealerHistory/>} />
     
    
  
