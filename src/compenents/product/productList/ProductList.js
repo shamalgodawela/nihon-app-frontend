@@ -163,7 +163,7 @@ const ProductList = ({ products, isLoading }) => {
                             size={20}
                             onClick={() => confirmDelete(_id)}
                           />
-                        </span>   b
+                        </span>   
                       </td> */}
                     </tr>
                   );

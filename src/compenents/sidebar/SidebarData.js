@@ -11,6 +11,8 @@ import { TbTruckReturn } from "react-icons/tb";
 import { MdOutlineCancelPresentation } from "react-icons/md";
 import { FcSalesPerformance } from "react-icons/fc";
 import { AiFillProduct } from "react-icons/ai";
+import { RiInsertColumnRight } from "react-icons/ri";
+import { GrOverview } from "react-icons/gr";
 
 
 
@@ -54,6 +56,18 @@ export const SidebarData = [
     title: 'View all inserted products',
     path: '/view-all-product-details',
     icon: <GiMaterialsScience />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Add New Bulk Product',
+    path: '/Add-New-bulk-product',
+    icon: <RiInsertColumnRight />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'View Added bulk details',
+    path: '/view-all-bulk',
+    icon: <GrOverview />,
     cName: 'nav-text'
   },
   

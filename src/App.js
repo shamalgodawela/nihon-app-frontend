@@ -60,6 +60,8 @@ import ProductQuantityChart from "./pages/ProductQuantity/totalseasonQuantity/Pr
 import Collectiondash from "./pages/CompanyCollection/CollectionDashboard/Collectiondash";
 import NandRproduct from "./pages/AddNewProductAndReturn/NandRproduct";
 import ViewallRAndn from "./pages/AddNewProductAndReturn/ViewallRAndn";
+import AddNewBulk from "./pages/NewBulkDetails/AddNewBulk";
+import ViewAllBulk from "./pages/NewBulkDetails/ViewAllBulk";
 
 
 
@@ -154,6 +156,8 @@ function App() {
     <Route path="/Collectioh-dashboard" element={<Collectiondash/>} />
     <Route path="/Add-newReturn-product" element={<NandRproduct/>} />
     <Route path="/view-all-product-details" element={<ViewallRAndn/>} />
+    <Route path="/Add-New-bulk-product" element={<AddNewBulk/>} />
+    <Route path="/view-all-bulk" element={<ViewAllBulk/>} />
     
    
  
