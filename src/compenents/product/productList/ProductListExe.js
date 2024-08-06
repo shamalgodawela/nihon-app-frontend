@@ -121,10 +121,7 @@ const ProductListExe = ({ products, isLoading }) => {
                           {"Rs:"}
                           {typeof price === 'string' ? formatNumbers(parseFloat(price * quantity).toFixed(2)) : formatNumbers((price * quantity).toFixed(2))}
                           </td>
-                          <td className="icons">
-                        
-                        
-                      </td>
+                          
                         </tr>
                       );
                     })}
