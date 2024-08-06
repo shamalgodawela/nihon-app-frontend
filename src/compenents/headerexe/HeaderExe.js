@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import './headerexe.css'
+import { Link } from 'react-router-dom';
 
 const HeaderExe = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,20 +12,28 @@ const HeaderExe = () => {
     
   return (
     <div>
-        
-      <span className={`toggle-button ${isMenuOpen ? 'button-open' : ''}`} onClick={toggleMenu}>
-        <div className="menu-bar menu-bar-top"></div>
-        <div className="menu-bar menu-bar-middle"></div>
-        <div className="menu-bar menu-bar-bottom"></div>
-      </span>
-      <div className={`menu-wrap ${isMenuOpen ? 'menu-show' : ''}`}>
-        <ul className="menu">
-        <li className='liexe'><a  className='aexe' href="/Exedahsboard">Dashboard</a></li>
-          <li className='liexe'><a className='aexe' href="/addorder">Add Order</a></li>
-          <li className='liexe'><a  className='aexe' href="/allorder">List of Order</a></li>
-          <li className='liexe'><a  className='aexe' href="#"></a></li>
-        </ul>
-      </div>
+
+  <nav className="navbar2">
+    <ul className="nav-menu2">
+      <li className="nav-item2">
+        <Link to="/Exedahsboard" className="nav-link2">Dashboard</Link>
+      </li>
+      <li className="nav-item2">
+        <Link to="/addorder" className="nav-link2">Add Order</Link>
+      </li>
+      <li className="nav-item2">
+        <Link to="/allorder" className="nav-link2">List of Order</Link>
+      </li>
+      <li className="nav-item2">
+        <Link to="/" className="nav-link2">Logout</Link>
+      </li>
+      
+    </ul>
+    
+    
+  </nav>
+          
+    
     
       
     </div>
