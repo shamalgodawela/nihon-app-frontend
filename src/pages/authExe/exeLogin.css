@@ -1,113 +1,110 @@
-.body2{
-  
-
+.body2 {
     background-image: url('../../pages/auth/background-photo/back.jpg');
-   
-    background-size:cover;
-    height: 800px;
+    background-size: cover;
+    height: 100vh;
     background-attachment: fixed;
-    
-   
-
-  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-#exampleInputEmail1{
-    width: 300px;
+
+#exampleInputEmail1, #exampleInputPassword1 {
+    width: 80%;
+    max-width: 300px;
     height: 40px;
     font-size: 20px;
     color: rgb(0, 0, 0);
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     border-color: brown;
     border-width: 2px;
-    margin-left: 7%;
-    margin-top: 4%;
+    margin: 4% auto 0;
 }
 
-#exampleInputPassword1{
-    width: 300px;
-    height: 40px;
-    font-size: 20px;
-    color: rgb(0, 0, 0);
-    font-family:'Times New Roman', Times, serif;
-    border-color: brown;
-    border-width: 2px; 
-    margin-left: 7%;
-
-}
-#emailHelp{
+#emailHelp {
     color: rgb(255, 255, 255);
     font-size: 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-left: 7%;
+    text-align: center;
+    margin: 4px auto 0;
+    width: 80%;
+    max-width: 300px;
+}
 
-}
-#login-form{
-    margin-left: 38%;
-   
+#login-form {
+    margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.662);
-    width: 350px;
-    height: 300px;
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
     border-radius: 2%;
+    text-align: center;
 }
-#register-form{
-    margin-left: 38%;
-   
-    background-color: rgba(0, 0, 0, 0.662);
-    width: 350px;
-    height: 450px;
-    border-radius: 2%;
 
-}
-#login-btn{
-    width: 298px;
-    margin-left: 7%;
-    height: 30px;
+#login-btn {
+    width: 80%;
+    max-width: 298px;
+    height: 40px;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     font-size: 15px;
     font-weight: bolder;
+    margin: 20px auto;
 }
-#login-btn:hover{
+
+#login-btn:hover {
     color: rgb(255, 255, 255);
     background-color: rgba(92, 87, 87, 0.509);
 }
-.h2-login{
+
+.h2-login {
     color: aliceblue;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
-    font-size:30px
+    font-size: 30px;
 }
-.h1-login{
+
+.h1-login {
     text-align: center;
     font-size: 40px;
     font-family: fantasy;
     color: rgb(0, 0, 0);
-    
-    
-   
 }
-.a-login{
-    margin-left: 7%;
+
+.a-login {
+    display: block;
     color: black;
     text-decoration: none;
     font-weight: bolder;
-    
+    margin: 10px auto;
+    width: fit-content;
 }
-.a-login:hover{
+
+.a-login:hover {
     color: rgb(255, 255, 255);
 }
-#forgot-l{
-    margin-left: 58%;
-}
-.icon-mail{
-    margin-left:43%;
+
+.icon-login {
+    display: flex;
+    justify-content: center;
     color: antiquewhite;
 }
-.icon-login{
-    margin-left:43%;
-    color: antiquewhite;
-}
-.icon-resetpass{
-    margin-left:43%;
-    color: antiquewhite;
+
+@media (max-width: 768px) {
+    .h1-login {
+        font-size: 30px;
+    }
+
+    .h2-login {
+        font-size: 25px;
+    }
+
+    #login-form {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #login-btn {
+        width: 90%;
+    }
 }
