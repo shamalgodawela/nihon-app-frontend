@@ -21,7 +21,7 @@
       }
 
       th {
-        border: 1px solid #eee;
+        border: 1px solid #000000;
       }
 
       th,
@@ -29,6 +29,7 @@
         vertical-align: top;
         text-align: left;
         padding: 8px;
+        border: 1px solid #000000;
 
         &.icons {
           display: flex;

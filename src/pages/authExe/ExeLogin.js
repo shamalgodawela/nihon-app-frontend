@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginUser, validateEmail } from '../../services/authServiceExe';
 import { SET_LOGIN, SET_NAME } from '../../redux/features/auth/authSliceExe';
 import { toast } from 'react-toastify';
+import Loader from '../../compenents/loader/Loader';
 
 const initialState={
 
@@ -61,6 +62,7 @@ const ExeLogin = () => {
   return (
     
     <body className='body2'>
+       {isLoading && <Loader />}
       
        
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></link>
