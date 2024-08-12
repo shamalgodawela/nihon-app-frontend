@@ -258,7 +258,7 @@ const fetchLastOrderNumberUPC2 = async () => {
   <label className="form-label">Contact:</label>
   <input type="text" className="form-input" name="contact" value={orderData.contact} onChange={(e) => setOrderData({ ...orderData, contact: e.target.value })} />
 </div>
-<div className="form-row">
+{/* <div className="form-row">
   <label className="form-label">Vat reg no:</label>
   <input type="text" className="form-input" name="VatRegNo" value={orderData.VatRegNo} onChange={(e) => setOrderData({ ...orderData, VatRegNo: e.target.value })} />
 </div>
@@ -269,7 +269,7 @@ const fetchLastOrderNumberUPC2 = async () => {
 <div className="form-row">
   <label className="form-label">Tax No:</label>
   <input type="text" className="form-input" name="TaxNo" value={orderData.TaxNo} onChange={(e) => setOrderData({ ...orderData, TaxNo: e.target.value })} />
-</div>
+</div> */}
 
 <h1 className='h1order'>Product details</h1>
             {/* Render product input fields */}

@@ -432,32 +432,39 @@ const InvoiceForm = () => {
             />
           </div>
           <div className="form-group">
-  <label>Vat RegNo:</label>
-  <input
-    type="text"
-    name="VatRegNo"
-    value={formData.VatRegNo}
-    onChange={handleChange}
-  />
-</div>
-<div className="form-group">
-  <label>Vat NO:</label>
-  <input
-    type="text"
-    name="VatNO"
-    value={formData.VatNO}
-    onChange={handleChange}
-  />
-</div>
-<div className="form-group">
-  <label>Tax No:</label>
-  <input
-    type="text"
-    name="TaxNo"
-    value={formData.TaxNo}
-    onChange={handleChange}
-  />
-</div>
+            <label>Vat RegNo:</label>
+              <select
+                name="VatRegNo"
+                value={formData.VatRegNo}
+                onChange={handleChange}
+              >
+                <option value="">Select Vat RegNo:</option>
+                <option value="VAT Reg No-1027840227000">VAT Reg No-1027840227000</option>
+                <option value="">None</option>
+              </select>
+          </div>
+          <div className="form-group">
+            <label>Tax invoice or not:</label>
+              <select
+              name="VatNO"
+              value={formData.VatNO}
+              onChange={handleChange}
+            >
+              <option value="">Select Option</option>
+              <option value="TAX INVOICE">Yes</option>
+              <option value="">No</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+           <label>Tax Invoice No:</label>
+              <input
+              type="text"
+              name="TaxNo"
+              value={formData.TaxNo}
+              onChange={handleChange}
+              />
+          </div>
 
           <div className="form-group">
             <label>Executive:</label>
@@ -518,7 +525,7 @@ const InvoiceForm = () => {
               readOnly
             />
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label>Vehicle No:</label>
             <input
               type="text"
@@ -526,7 +533,7 @@ const InvoiceForm = () => {
               value={formData.VehicleNo}
               onChange={handleChange}
             />
-          </div>
+          </div> */}
           <h3>Products</h3>
           {formData.products.map((product, index) => (
             <div key={index} className="product-group">
