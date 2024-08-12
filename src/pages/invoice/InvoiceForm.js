@@ -41,6 +41,9 @@ const InvoiceForm = () => {
     Tax: '',
     GatePassNo: '',
     VehicleNo: '',
+    VatRegNo: '',
+    VatNO: '',
+    TaxNo: ''
   });
 
   const [lastInvoiceNumber, setLastInvoiceNumber] = useState('');
@@ -188,6 +191,7 @@ const InvoiceForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+     
   
     try {
       const orderCheckResponse = await axios.get(`https://nihon-inventory.onrender.com/api/check/${formData.orderNumber}`);
@@ -290,6 +294,9 @@ const InvoiceForm = () => {
           GatePassNo: orderData.GatePassNo,
           VehicleNo: orderData.VehicleNo,
           taxtotal:orderData.taxtotal,
+          VatRegNo:orderData.VatRegNo,
+          VatNO:orderData.VatNO,
+          TaxNo:orderData.TaxNo,
           products: orderData.products.map((product) => ({
             productCode: product.productCode,
             productName: product.productName,
@@ -424,6 +431,34 @@ const InvoiceForm = () => {
               onChange={handleChange}
             />
           </div>
+          <div className="form-group">
+  <label>Vat RegNo:</label>
+  <input
+    type="text"
+    name="VatRegNo"
+    value={formData.VatRegNo}
+    onChange={handleChange}
+  />
+</div>
+<div className="form-group">
+  <label>Vat NO:</label>
+  <input
+    type="text"
+    name="VatNO"
+    value={formData.VatNO}
+    onChange={handleChange}
+  />
+</div>
+<div className="form-group">
+  <label>Tax No:</label>
+  <input
+    type="text"
+    name="TaxNo"
+    value={formData.TaxNo}
+    onChange={handleChange}
+  />
+</div>
+
           <div className="form-group">
             <label>Executive:</label>
             <input

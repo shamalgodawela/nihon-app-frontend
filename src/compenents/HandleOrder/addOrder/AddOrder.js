@@ -15,6 +15,9 @@ const AddOrder = ({ onAddOrder }) => {
         orderNumber: '',
         orderDate: '',
         exe: '',
+        VatRegNo:'',
+        VatNO:'',
+        TaxNo:'',
         products: [{ productCode: '', productName: '', quantity: '', labelPrice: '', discount: '', unitPrice: '', invoiceTotal: '' }]
     });
     const [lastOrderNumber, setLastOrderNumber] = useState('');
@@ -181,7 +184,7 @@ const fetchLastOrderNumberUPC2 = async () => {
         <form onSubmit={handleSubmit}>
 
             <div className="form-row">
-                <h1 className='h1order'>Order details</h1>
+                <h1 className='h1order'>Order details..........................</h1>
                 <div className="form-row">
   <label className="form-label">Exe:</label>
   <select className="form-input" name="exe" value={orderData.exe} onChange={(e) => setOrderData({ ...orderData, exe: e.target.value })} >
@@ -254,6 +257,18 @@ const fetchLastOrderNumberUPC2 = async () => {
 <div className="form-row">
   <label className="form-label">Contact:</label>
   <input type="text" className="form-input" name="contact" value={orderData.contact} onChange={(e) => setOrderData({ ...orderData, contact: e.target.value })} />
+</div>
+<div className="form-row">
+  <label className="form-label">Vat reg no:</label>
+  <input type="text" className="form-input" name="VatRegNo" value={orderData.VatRegNo} onChange={(e) => setOrderData({ ...orderData, VatRegNo: e.target.value })} />
+</div>
+<div className="form-row">
+  <label className="form-label">vat no:</label>
+  <input type="text" className="form-input" name="VatNO" value={orderData.VatNO} onChange={(e) => setOrderData({ ...orderData, VatNO: e.target.value })} />
+</div>
+<div className="form-row">
+  <label className="form-label">Tax No:</label>
+  <input type="text" className="form-input" name="TaxNo" value={orderData.TaxNo} onChange={(e) => setOrderData({ ...orderData, TaxNo: e.target.value })} />
 </div>
 
 <h1 className='h1order'>Product details</h1>
