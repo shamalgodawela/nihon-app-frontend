@@ -428,3 +428,10 @@ body{
     font-size: 22px;
 
 }
+.tav-invoice-No{
+    position:absolute;
+    color:black;
+    left: 20.5cm;
+    top:6.75cm
+
+}
