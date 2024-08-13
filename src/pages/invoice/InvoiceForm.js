@@ -439,7 +439,7 @@ const InvoiceForm = () => {
                 onChange={handleChange}
               >
                 <option value="">Select Vat RegNo:</option>
-                <option value="VAT Reg No-1027840227000">VAT Reg No-1027840227000</option>
+                <option value="VAT Reg No-102784022-7000">VAT Reg No-102784022-7000</option>
                 <option value="">None</option>
               </select>
           </div>
