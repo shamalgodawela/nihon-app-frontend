@@ -63,6 +63,10 @@ import ViewallRAndn from "./pages/AddNewProductAndReturn/ViewallRAndn";
 import AddNewBulk from "./pages/NewBulkDetails/AddNewBulk";
 import ViewAllBulk from "./pages/NewBulkDetails/ViewAllBulk";
 import DealerHistory from "./pages/orderAdmin/CheckdealerHistory/DealerHistory";
+import Operationlogin from "./pages/AdminOperation/adminlogin/Operationlogin";
+import OpearationHome from "./pages/AdminOperation/OpearationHome/OpearationHome";
+import Opertionoutstanding from "./pages/AdminOperation/outstanding/Opertionoutstanding";
+import SummeryDashboard from "./pages/AdminOperation/SalesandCollection/SummeryDashboard";
 
 
 
@@ -160,6 +164,11 @@ function App() {
     <Route path="/Add-New-bulk-product" element={<AddNewBulk/>} />
     <Route path="/view-all-bulk" element={<ViewAllBulk/>} />
     <Route path="/view-dealer-history" element={<DealerHistory/>} />
+
+    <Route path="/admin-operation-dashboard" element={<OpearationHome/>} />
+    <Route path="/admin-operation-loginpage" element={<Operationlogin/>} />
+    <Route path="/admin-operation-outstanding" element={<Opertionoutstanding/>} />
+    <Route path="/admin-operation-salesCollection" element={<SummeryDashboard/>} />
     
    
  
