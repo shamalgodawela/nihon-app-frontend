@@ -127,29 +127,29 @@ const AllInvoice = () => {
               <table>
                 <thead>
                   <tr>
-                    <th>Invoice Number</th>
-                    <th>Printed or Canceled</th>
-                    <th>Customer</th>
-                    <th>Customer Code</th>
-                    <th>Invoice Date</th>
-                    <th>Due date</th>
-                    <th>Exe</th>
-                    <th>Invoice Total</th>
-                    <th>Action</th>
+                    <th className='th-invoice'>Invoice Number</th>
+                    <th className='th-invoice'>Printed or Canceled</th>
+                    <th className='th-invoice'>Customer</th>
+                    <th className='th-invoice'>Customer Code</th>
+                    <th className='th-invoice'>Invoice Date</th>
+                    <th className='th-invoice'>Due date</th>
+                    <th className='th-invoice'>Exe</th>
+                    <th className='th-invoice'>Invoice Total</th>
+                    <th className='th-invoice'>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {invoices.map((invoice) => (
                     <tr key={invoice._id}>
-                      <td>{invoice.invoiceNumber}</td>
-                      <td>{invoice.GatePassNo}</td>
-                      <td>{invoice.customer}</td>
-                      <td>{invoice.code}</td>
-                      <td>{invoice.invoiceDate}</td>
-                      <td>{invoice.Duedate}</td>
-                      <td>{invoice.exe}</td>
-                      <td>{formatNumbers(calculateTotal(invoice))}</td>
-                      <td>
+                      <td className='td-invoice'>{invoice.invoiceNumber}</td>
+                      <td className='td-invoice'>{invoice.GatePassNo}</td>
+                      <td className='td-invoice'>{invoice.customer}</td>
+                      <td className='td-invoice'>{invoice.code}</td>
+                      <td  className='td-invoice'>{invoice.invoiceDate}</td>
+                      <td  className='td-invoice'>{invoice.Duedate}</td>
+                      <td  className='td-invoice'>{invoice.exe}</td>
+                      <td  className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+                      <td  className='td-invoice'>
                         <Link to={`/invoice-temp/${invoice._id}`}>
                           <AiOutlineEye size={20} color={"purple"} />
                         </Link>

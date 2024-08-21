@@ -1,46 +1,27 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState, useCallback } from 'react';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import MenuOperation from '../../../compenents/Menu/MenuOperation';
 import Footer from '../../../compenents/footer/Footer';
-
-const PAGE_SIZE = 10;
-
-const getSearchParamsFromURL = () => {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        exe: params.get('exe') || '',
-        code: params.get('code') || '',
-    };
-};
-
-const updateURLSearchParams = (params) => {
-    const searchParams = new URLSearchParams();
-    Object.keys(params).forEach(key => {
-        if (params[key]) {
-            searchParams.set(key, params[key]);
-        }
-    });
-    const newURL = `${window.location.pathname}?${searchParams.toString()}`;
-    window.history.pushState({ path: newURL }, '', newURL);
-};
+import debounce from 'lodash.debounce';
 
 const Opertionoutstanding = () => {
     const [invoices, setInvoices] = useState([]);
+    const [filteredInvoices, setFilteredInvoices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [searchParams, setSearchParams] = useState(getSearchParamsFromURL());
+    const [selectedExe, setSelectedExe] = useState('');
 
+    // Fetch all invoices initially
     useEffect(() => {
-        const fetchInvoices = async () => {
+        const fetchAllInvoices = async () => {
             try {
-                const initialSearchParams = getSearchParamsFromURL();
-                setSearchParams(initialSearchParams);
-                const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-all-invoices`);
+                const response = await axios.get('https://nihon-inventory.onrender.com/api/get-lastoutstanding-invoicedetails');
                 setInvoices(response.data);
+                setFilteredInvoices(response.data);
                 setLoading(false);
             } catch (error) {
                 console.error('Failed to fetch invoices', error.message);
@@ -49,74 +30,24 @@ const Opertionoutstanding = () => {
             }
         };
 
-        fetchInvoices();
+        fetchAllInvoices();
     }, []);
 
-    const handleSearch = async () => {
-        try {
-            setLoading(true);
-            updateURLSearchParams(searchParams);
-            const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-outstanding`, { params: searchParams });
-            setInvoices(response.data);
-            setLoading(false);
-        } catch (error) {
-            console.error('Failed to perform search', error.message);
-            setError('Failed to perform search');
-            setLoading(false);
-        }
-    };
-
-    const handleSearchByCode = async () => {
-        try {
-            setLoading(true);
-            updateURLSearchParams(searchParams);
-            const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-outstandingbycus`, { params: searchParams });
-            setInvoices(response.data);
-            setLoading(false);
-        } catch (error) {
-            console.error('Failed to perform search by code', error.message);
-            setError('Failed to perform search by code');
-            setLoading(false);
-        }
-    };
-
-    const handleChangeSearchParams = (key, value) => {
-        setSearchParams({ ...searchParams, [key]: value });
-    };
-
-    const fetchAndUpdateStatuses = async (invoices) => {
-        try {
-            const invoiceNumbers = invoices.map((invoice) => invoice.invoiceNumber);
-            const statuses = await fetchOutstandingStatuses(invoiceNumbers);
-            const updatedInvoices = invoices.map((invoice) => {
-                const status = statuses[invoice.invoiceNumber] || 'Unpaid';
-                return { ...invoice, status };
-            });
-            setInvoices(updatedInvoices);
-        } catch (error) {
-            console.error('Failed to fetch outstanding statuses', error.message);
-        }
-    };
-
-    const fetchOutstandingStatuses = async (invoiceNumbers) => {
-        const statuses = {};
-        for (const invoiceNumber of invoiceNumbers) {
-            try {
-                const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-last-outstanding/${invoiceNumber}`);
-                const lastOutstanding = response.data.outstanding;
-                statuses[invoiceNumber] = lastOutstanding === 0 ? 'Paid' : 'Unpaid';
-            } catch (error) {
-                statuses[invoiceNumber] = 'Unpaid';
+    // Debounced function to filter invoices
+    const debounceFilter = useCallback(
+        debounce((exe) => {
+            if (exe) {
+                const filtered = invoices.filter(invoice => invoice.exe === exe);
+                setFilteredInvoices(filtered);
+            } else {
+                setFilteredInvoices(invoices);
             }
-        }
-        return statuses;
-    };
+        }, 300), [invoices]
+    );
 
     useEffect(() => {
-        if (!loading && !error) {
-            fetchAndUpdateStatuses(invoices);
-        }
-    }, [invoices, loading, error]);
+        debounceFilter(selectedExe);
+    }, [selectedExe, debounceFilter]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -124,90 +55,96 @@ const Opertionoutstanding = () => {
 
     if (error) {
         return <div>Error: {error}</div>;
+
     }
+    const formatNumbers = (x) => {
+        // Ensure x is a number before formatting
+        if (typeof x === 'number') {
+            return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        return x; // Return the original value if it's not a number
+    };
+
+    const calculateTotal = (invoice) => {
+        if (invoice && invoice.products) {
+            // Calculate the total by reducing the products array
+            return invoice.products.reduce((acc, product) => {
+                const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+                return acc + productTotal;
+            }, 0);
+        }
+        return 0; // Return 0 if there are no products
+    };
+    
 
     return (
         <div>
-            <MenuOperation/>
+            <MenuOperation />
 
-        <div className='invoice-body'>
-            <div className="search-container">
-                <select
-                    className="beautiful-select"
-                    value={searchParams.exe}
-                    onChange={(e) => handleChangeSearchParams('exe', e.target.value)}
-                >
-                    <option value="">Select Exe</option>
+            <h1 className='h1-admin'>Welcome, Mr Roshan</h1>
+
+            <div className='invoice-body'>
+                <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
+                    <option value="">All</option>
                     <option value="Mr.Ahamed">Mr.Ahamed</option>
                     <option value="Mr.Dasun">Mr.Dasun</option>
                     <option value="Mr.Chameera">Mr.Chameera</option>
                     <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
-                    <option value="Mr.Nayum">Mr.Nayum</option>
                     <option value="Mr.Navaneedan">Mr.Navaneedan</option>
+                    <option value="Mr.Nayum">Mr.Nayum</option>
                 </select>
-                <button onClick={handleSearch}>Search</button>
-            </div>
-            <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Search by code"
-                    value={searchParams.code}
-                    onChange={(e) => handleChangeSearchParams('code', e.target.value)}
-                />
-                <button onClick={handleSearchByCode}>Search by Code</button>
-            </div>
-            <div className="all-invoice">
-                <h2 className='h2-invoice'>Outstanding Details</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Invoice Number</th>
-                            <th>Customer</th>
-                            <th>Customer Code</th>
-                            <th>Printed or Canceled</th>
-                            <th>Invoice Date</th>
-                            <th>Due Date</th>
-                            <th>Exe</th>
-                            <th>Action</th>
-                            <th>Status</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {invoices.map((invoice) => {
-                            return (
+                <div className="all-invoice">
+                    <h2 className='h2-invoice'>Outstanding Details</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th className='th-invoice'>Invoice Number</th>
+                                <th className='th-invoice'>Customer</th>
+                                <th className='th-invoice'>Customer Code</th>
+                                <th className='th-invoice'>Printed or Canceled</th>
+                                <th className='th-invoice'>Invoice Date</th>
+                                <th className='th-invoice'>Due Date</th>
+                                <th className='th-invoice'>Exe</th>
+                                <th className='th-invoice'>Outstanding</th>
+                                <th className='th-invoice'>Invoice Total(RS/=)</th>
+                                <th className='th-invoice'>Action</th>
+                                {/* <th className='th-invoice'>Edit</th> */}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredInvoices.map((invoice) => (
                                 <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled' : ''}>
-                                    <td>{invoice.invoiceNumber}</td>
-                                    <td>{invoice.customer}</td>
-                                    <td>{invoice.code}</td>
-                                    <td>{invoice.GatePassNo}</td>
-                                    <td>{invoice.invoiceDate}</td>
-                                    <td>{invoice.Duedate}</td>
-                                    <td>{invoice.exe}</td>
-                                    <td>
-                                        <Link to={`/caloutStanding/${invoice._id}`}>
+                                    <td className='td-invoice'>{invoice.invoiceNumber}</td>
+                                    <td className='td-invoice'>{invoice.customer}</td>
+                                    <td className='td-invoice'>{invoice.code}</td>
+                                    <td className='td-invoice'>{invoice.GatePassNo}</td>
+                                    <td className='td-invoice'>{invoice.invoiceDate}</td>
+                                    <td className='td-invoice'>{invoice.Duedate}</td>
+                                    <td className='td-invoice'>{invoice.exe}</td>
+                                    <td className='td-invoice'>{formatNumbers(invoice.lastOutstanding)}</td>
+                                    <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+
+                                    <td className='td-invoice'>
+                                        <Link to={`/view-single-outstanding/${invoice._id}`}>
                                             <AiOutlineEye size={20} color={"purple"} />
                                         </Link>
                                     </td>
-                                    <td style={{ color: invoice.status === 'Paid' ? 'green' : 'red' }}>
-                                        {invoice.status !== undefined ? invoice.status : "Loading..."}
-                                    </td>
-                                    <td>
+                                    
+                                    {/* <td className='td-invoice'>
                                         <Link to={`/invoice/${invoice.invoiceNumber}`}>
                                             <FontAwesomeIcon icon={faEye} className="action-icon" />
                                         </Link>
-                                    </td>
+                                    </td> */}
                                 </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            
-        </div>
-        <Footer/>
+            <Footer />
         </div>
     );
 }
 
 export default Opertionoutstanding;
+

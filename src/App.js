@@ -67,6 +67,7 @@ import Operationlogin from "./pages/AdminOperation/adminlogin/Operationlogin";
 import OpearationHome from "./pages/AdminOperation/OpearationHome/OpearationHome";
 import Opertionoutstanding from "./pages/AdminOperation/outstanding/Opertionoutstanding";
 import SummeryDashboard from "./pages/AdminOperation/SalesandCollection/SummeryDashboard";
+import ViewSingleOutstanding from "./pages/AdminOperation/ViewSingleOut/ViewSingleOutstanding";
 
 
 
@@ -165,10 +166,17 @@ function App() {
     <Route path="/view-all-bulk" element={<ViewAllBulk/>} />
     <Route path="/view-dealer-history" element={<DealerHistory/>} />
 
+
+    {/*----------------------------------Admin Operations pages----------------------------------------------------*/}
+
     <Route path="/admin-operation-dashboard" element={<OpearationHome/>} />
     <Route path="/admin-operation-loginpage" element={<Operationlogin/>} />
     <Route path="/admin-operation-outstanding" element={<Opertionoutstanding/>} />
     <Route path="/admin-operation-salesCollection" element={<SummeryDashboard/>} />
+    <Route path="/view-single-outstanding/:id" element={<ViewSingleOutstanding/>} />
+
+
+    {/*-----------------------------------------------------------------------------------------------------------*/}
     
    
  
