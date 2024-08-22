@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import MenuOperation from "../../../compenents/Menu/MenuOperation";
 import Footer from "../../../compenents/footer/Footer";
+import './singleout.css'
 
 const ViewSingleOutstanding = () => {
     const containerRef = useRef(null);
