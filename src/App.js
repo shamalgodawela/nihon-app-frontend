@@ -68,6 +68,7 @@ import OpearationHome from "./pages/AdminOperation/OpearationHome/OpearationHome
 import Opertionoutstanding from "./pages/AdminOperation/outstanding/Opertionoutstanding";
 import SummeryDashboard from "./pages/AdminOperation/SalesandCollection/SummeryDashboard";
 import ViewSingleOutstanding from "./pages/AdminOperation/ViewSingleOut/ViewSingleOutstanding";
+import SingleOpOutstanding from "./pages/AdminOperation/outstanding/SingleOpOutstanding";
 
 
 
@@ -173,7 +174,7 @@ function App() {
     <Route path="/admin-operation-loginpage" element={<Operationlogin/>} />
     <Route path="/admin-operation-outstanding" element={<Opertionoutstanding/>} />
     <Route path="/admin-operation-salesCollection" element={<SummeryDashboard/>} />
-    <Route path="/view-single-outstanding/:id" element={<ViewSingleOutstanding/>} />
+    <Route path="/view-single-operation/:id" element={<SingleOpOutstanding/>} />
 
 
     {/*-----------------------------------------------------------------------------------------------------------*/}

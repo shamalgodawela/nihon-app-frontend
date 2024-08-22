@@ -6,7 +6,7 @@ import MenuOperation from "../../../compenents/Menu/MenuOperation";
 import Footer from "../../../compenents/footer/Footer";
 import './singleout.css'
 
-const ViewSingleOutstanding = () => {
+const SingleOpOutstanding = () => {
     const containerRef = useRef(null);
     const { id } = useParams();
     const [invoice, setInvoice] = useState(null);
@@ -201,7 +201,7 @@ const ViewSingleOutstanding = () => {
 </div>
         <br/><br/><hr/> <br/><br/>
         <div className="add-outstanding-container">
-    <h1 className="h1-out">Add Outstanding</h1>
+    {/* <h1 className="h1-out">Add Outstanding</h1>
     <div className="input-container">
         <label>Deposited Date:</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
@@ -233,7 +233,7 @@ const ViewSingleOutstanding = () => {
     <button className="calculate-button" onClick={handleCalculate}>Calculate</button>
     <div className="outstanding">Outstanding:RS/={outstanding}</div>
     <button className="save-button" onClick={handleSave}>Save</button>
-    <hr/>
+    <hr/> */}
     <button className="fetch-button" onClick={handleFetchAllOutstandingDetails}>Fetch All Outstanding Details</button>
 </div>
  <br/><br/><hr/> <br/>
@@ -273,4 +273,4 @@ const ViewSingleOutstanding = () => {
     );
 }
 
-export default ViewSingleOutstanding;
+export default SingleOpOutstanding;

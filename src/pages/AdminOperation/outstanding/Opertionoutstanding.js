@@ -125,7 +125,7 @@ const Opertionoutstanding = () => {
                                     <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
 
                                     <td className='td-invoice'>
-                                        <Link to={`/view-single-outstanding/${invoice._id}`}>
+                                        <Link to={`/view-single-operation/${invoice._id}`}>
                                             <AiOutlineEye size={20} color={"purple"} />
                                         </Link>
                                     </td>
