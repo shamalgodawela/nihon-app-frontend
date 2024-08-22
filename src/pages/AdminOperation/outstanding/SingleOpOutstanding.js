@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import MenuOperation from "../../../compenents/Menu/MenuOperation";
 import Footer from "../../../compenents/footer/Footer";
-import './singleout.css'
+
 
 const SingleOpOutstanding = () => {
     const containerRef = useRef(null);
@@ -273,4 +273,4 @@ const SingleOpOutstanding = () => {
     );
 }
 
-export default SingleOpOutstanding;
+export default SingleOpOutstanding.js;
