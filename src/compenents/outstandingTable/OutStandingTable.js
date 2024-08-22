@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
-import Menu from '../Menu/Menu';
 import Footer from '../footer/Footer';
 
 const Opertionoutstanding = () => {
@@ -19,7 +18,7 @@ const Opertionoutstanding = () => {
     useEffect(() => {
         const fetchAllInvoices = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/get-lastoutstanding-invoicedetails');
+                const response = await axios.get('https://nihon-inventory.onrender.com/api/get-lastoutstanding-invoicedetails');
                 setInvoices(response.data);
                 setFilteredInvoices(response.data);
                 setLoading(false);
@@ -79,7 +78,6 @@ const Opertionoutstanding = () => {
 
     return (
         <div>
-            <Menu/>
 
             <h1 className='h1-admin'>Welcome, Mr Subash</h1>
 
