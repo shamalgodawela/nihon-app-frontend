@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import MenuOperation from "../../../compenents/Menu/MenuOperation";
 import Footer from "../../../compenents/footer/Footer";
 import './singleout.css'
+import Menu from "../../../compenents/Menu/Menu";
 
 const ViewSingleOutstanding = () => {
     const containerRef = useRef(null);
@@ -157,7 +157,7 @@ const ViewSingleOutstanding = () => {
 
     return (
         <div>
-            <MenuOperation/>
+            <Menu/>
         <div className="cal-outstanding-container">
         <h4 className="h1-out">Invoice code: {invoice.invoiceNumber}</h4>
         <h4 className="h1-out">Customer:{invoice.customer}</h4>
