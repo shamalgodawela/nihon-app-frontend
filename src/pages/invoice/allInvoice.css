@@ -13,13 +13,13 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    border: 1px solid #000000;
+   
   }
   
   thead {
     background-color: #181818;
     color:white;
-    border: 1px solid #000000;
+   
   }
   
   th, td {
@@ -28,7 +28,7 @@
     font-size: 12px;
     font-weight: bolder;
     color:white;
-    border: 1px solid #000000;
+    
   }
   
   th {

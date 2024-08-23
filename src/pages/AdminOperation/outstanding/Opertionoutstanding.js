@@ -79,70 +79,69 @@ const Opertionoutstanding = () => {
 
     return (
         <div>
-            <MenuOperation />
+        <MenuOperation />
 
-            <h1 className='h1-admin'>Welcome, Mr Roshan</h1>
+        <h1 className='h1-admin'>Welcome, Mr Roshan</h1>
 
-            <div className='invoice-body'>
-                <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
-                    <option value="">All</option>
-                    <option value="Mr.Ahamed">Mr.Ahamed</option>
-                    <option value="Mr.Dasun">Mr.Dasun</option>
-                    <option value="Mr.Chameera">Mr.Chameera</option>
-                    <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
-                    <option value="Mr.Navaneedan">Mr.Navaneedan</option>
-                    <option value="Mr.Nayum">Mr.Nayum</option>
-                </select>
-                <div className="all-invoice">
-                    <h2 className='h2-invoice'>Outstanding Details</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th className='th-invoice'>Invoice Number</th>
-                                <th className='th-invoice'>Customer</th>
-                                <th className='th-invoice'>Customer Code</th>
-                                <th className='th-invoice'>Printed or Canceled</th>
-                                <th className='th-invoice'>Invoice Date</th>
-                                <th className='th-invoice'>Due Date</th>
-                                <th className='th-invoice'>Exe</th>
+        <div className='invoice-body'>
+            <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
+                <option value="">All</option>
+                <option value="Mr.Ahamed">Mr.Ahamed</option>
+                <option value="Mr.Dasun">Mr.Dasun</option>
+                <option value="Mr.Chameera">Mr.Chameera</option>
+                <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
+                <option value="Mr.Navaneedan">Mr.Navaneedan</option>
+                <option value="Mr.Nayum">Mr.Nayum</option>
+            </select>
+            <div className="all-invoice">
+                <h2 className='h2-invoice'>Outstanding Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th className='th-invoice'>Invoice Number</th>
+                            <th className='th-invoice'>Customer</th>
+                            <th className='th-invoice'>Customer Code</th>
+                            <th className='th-invoice'>Printed or Canceled</th>
+                            <th className='th-invoice'>Invoice Date</th>
+                            <th className='th-invoice'>Due Date</th>
+                            <th className='th-invoice'>Exe</th>
+                            {filteredInvoices.some(invoice => invoice.lastOutstanding > 0) && (
                                 <th className='th-invoice'>Outstanding</th>
-                                <th className='th-invoice'>Invoice Total(RS/=)</th>
-                                <th className='th-invoice'>Action</th>
-                                {/* <th className='th-invoice'>Edit</th> */}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredInvoices.map((invoice) => (
-                                <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled' : ''}>
-                                    <td className='td-invoice'>{invoice.invoiceNumber}</td>
-                                    <td className='td-invoice'>{invoice.customer}</td>
-                                    <td className='td-invoice'>{invoice.code}</td>
-                                    <td className='td-invoice'>{invoice.GatePassNo}</td>
-                                    <td className='td-invoice'>{invoice.invoiceDate}</td>
-                                    <td className='td-invoice'>{invoice.Duedate}</td>
-                                    <td className='td-invoice'>{invoice.exe}</td>
-                                    <td className='td-invoice'>{formatNumbers(invoice.lastOutstanding)}</td>
-                                    <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+                            )}
+                            <th className='th-invoice'>Invoice Total(RS/=)</th>
+                            <th className='th-invoice'>Action</th>
+                            {/* <th className='th-invoice'>Edit</th> */}
+                        </tr>
+                    </thead>
+                    <tbody>
+    {filteredInvoices.map((invoice) => (
+        <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled' : ''}>
+            <td className='td-invoice'>{invoice.invoiceNumber}</td>
+            <td className='td-invoice'>{invoice.customer}</td>
+            <td className='td-invoice'>{invoice.code}</td>
+            <td className='td-invoice'>{invoice.GatePassNo}</td>
+            <td className='td-invoice'>{invoice.invoiceDate}</td>
+            <td className='td-invoice'>{invoice.Duedate}</td>
+            <td className='td-invoice'>{invoice.exe}</td>
+            <td className='td-invoice'>
+                {invoice.lastOutstanding}
+            </td>
+            <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
 
-                                    <td className='td-invoice'>
-                                        <Link to={`/view-single-operation/${invoice._id}`}>
-                                            <AiOutlineEye size={20} color={"purple"} />
-                                        </Link>
-                                    </td>
-                                    
-                                    {/* <td className='td-invoice'>
-                                        <Link to={`/invoice/${invoice.invoiceNumber}`}>
-                                            <FontAwesomeIcon icon={faEye} className="action-icon" />
-                                        </Link>
-                                    </td> */}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+            <td className='td-invoice'>
+                <Link to={`/view-single-operation/${invoice._id}`}>
+                    <AiOutlineEye size={20} color={"purple"} />
+                </Link>
+            </td>
+        </tr>
+    ))}
+</tbody>
+
+                </table>
             </div>
-            <Footer />
         </div>
+        <Footer />
+    </div>
     );
 }
 

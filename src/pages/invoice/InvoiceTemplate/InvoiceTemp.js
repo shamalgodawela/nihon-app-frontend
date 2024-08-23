@@ -88,13 +88,13 @@ const calculateTaxtot = () => {
   ));
   const emptyRows = Array.from({ length: emptyRowsCount }, (_, index) => (
     <tr key={`empty-${index}`}>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
+      <td className="td-invoictemp">&nbsp;</td>
+      <td className="td-invoictemp">&nbsp;</td>
+      <td className="td-invoictemp">&nbsp;</td>
+      <td className="td-invoictemp">&nbsp;</td>
+      <td className="td-invoictemp">&nbsp;</td>
+      <td className="td-invoictemp">&nbsp;</td>
+      <td className="td-invoictemp">&nbsp;</td>
     </tr>
   ));
   const allRows = [...filledRows, ...emptyRows];
@@ -172,16 +172,16 @@ const calculateTaxtot = () => {
             </div>
             <div class="overflow-view">
               <div class="invoice-body">
-                <table>
-                  <thead>
+                <table className="thead-invoicetemp">
+                  <thead className="thead-invoicetemp">
                     <tr>
-                      <td className="text-bold" id='tdtext'>Product Code</td>
-                      <td className="text-bold" id='tdtext'>Description</td>
-                      <td className="text-bold" id='tdtext'>Quantity</td>
-                      <td className="text-bold" id='tdtext'>Label Price</td>
-                      <td className="text-bold" id='tdtext'>Discount</td>
-                      <td className="text-bold" id='tdtext'>Unit Price</td>
-                      <td className="text-bold" id='tdtext'>Invoice Total</td>
+                      <td  id='tdtext'>Product Code</td>
+                      <td  id='tdtext'>Description</td>
+                      <td   id='tdtext'>Quantity</td>
+                      <td  id='tdtext'>Label Price</td>
+                      <td  id='tdtext'>Discount</td>
+                      <td  id='tdtext'>Unit Price</td>
+                      <td  id='tdtext'>Invoice Total</td>
                     </tr>
                   </thead>
                   <tbody>
