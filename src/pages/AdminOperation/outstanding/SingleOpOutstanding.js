@@ -273,4 +273,4 @@ const SingleOpOutstanding = () => {
     );
 }
 
-export default SingleOpOutstanding.js;
+export default SingleOpOutstanding;
