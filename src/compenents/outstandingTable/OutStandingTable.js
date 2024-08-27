@@ -7,7 +7,7 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 import Footer from '../footer/Footer';
 
-const Opertionoutstanding = () => {
+const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
     const [filteredInvoices, setFilteredInvoices] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -144,5 +144,5 @@ const Opertionoutstanding = () => {
     );
 }
 
-export default Opertionoutstanding;
+export default OutStandingTable;
 
