@@ -20,8 +20,9 @@ const Opertionoutstanding = () => {
         const fetchAllInvoices = async () => {
             try {
                 const response = await axios.get('https://nihon-inventory.onrender.com/api/get-lastoutstanding-invoicedetails');
-                setInvoices(response.data);
-                setFilteredInvoices(response.data);
+                const sortedInvoices = response.data.sort((a, b) => new Date(b.invoiceDate) - new Date(a.invoiceDate));
+                setInvoices(sortedInvoices);
+                setFilteredInvoices(sortedInvoices);
                 setLoading(false);
             } catch (error) {
                 console.error('Failed to fetch invoices', error.message);
