@@ -26,7 +26,7 @@ const LoginForm = () => {
       setLoading(false);
       if (response.ok) {
         toast.success('Login successful');
-        navigate("/Adminallorder");
+        navigate("/AllOutstanding");
       } else {
         if (response.status === 404) {
           toast.error('User not found. Please check your email.');

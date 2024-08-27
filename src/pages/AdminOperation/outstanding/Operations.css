@@ -6,3 +6,7 @@
     background-color: rgb(141, 31, 0);
     font-weight: bold; 
 }
+.paid {
+    background-color: green;
+    font-weight: bold;
+}

@@ -233,13 +233,13 @@ const Oneorder = () => {
                 <table className="order-details-product-table">
                   <thead>
                     <tr>
-                      <th>Product Code</th>
-                      <th>Product Name</th>
-                      <th>Label Price</th>
-                      <th>Quantity</th>
-                      <th>Discount</th>
-                      <th>Unit Price(RS)</th>
-                      <th>Invoice Total(RS)</th>
+                      <th className='th-invoice'>Product Code</th>
+                      <th className='th-invoice'>Product Name</th>
+                      <th className='th-invoice'>Label Price</th>
+                      <th className='th-invoice'>Quantity</th>
+                      <th className='th-invoice'>Discount</th>
+                      <th className='th-invoice'>Unit Price(RS)</th>
+                      <th className='th-invoice'>Invoice Total(RS)</th>
                     </tr>
                   </thead>
                   <tbody>

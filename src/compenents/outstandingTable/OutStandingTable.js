@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
-import Footer from '../footer/Footer';
+
 
 const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
@@ -18,7 +18,7 @@ const OutStandingTable = () => {
     useEffect(() => {
         const fetchAllInvoices = async () => {
             try {
-                const response = await axios.get('https://nihon-inventory.onrender.com/api/get-lastoutstanding-invoicedetails');
+                const response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
                 setInvoices(response.data);
                 setFilteredInvoices(response.data);
                 setLoading(false);
@@ -54,8 +54,8 @@ const OutStandingTable = () => {
 
     if (error) {
         return <div>Error: {error}</div>;
-
     }
+
     const formatNumbers = (x) => {
         // Ensure x is a number before formatting
         if (typeof x === 'number') {
@@ -74,12 +74,10 @@ const OutStandingTable = () => {
         }
         return 0; // Return 0 if there are no products
     };
-    
 
     return (
         <div>
-
-            <h1 className='h1-admin'>Welcome, Mr Subash</h1>
+          
 
             <div className='invoice-body'>
                 <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
@@ -104,45 +102,55 @@ const OutStandingTable = () => {
                                 <th className='th-invoice'>Due Date</th>
                                 <th className='th-invoice'>Exe</th>
                                 <th className='th-invoice'>Outstanding</th>
-                                <th className='th-invoice'>Invoice Total(RS/=)</th>
+                                <th className='th-invoice'>Invoice Total</th>
                                 <th className='th-invoice'>Action</th>
-                                <th className='th-invoice'>Edit</th>
+                                <th  className='th-invoice'>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredInvoices.map((invoice) => (
-                                <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled' : ''}>
-                                    <td className='td-invoice'>{invoice.invoiceNumber}</td>
-                                    <td className='td-invoice'>{invoice.customer}</td>
-                                    <td className='td-invoice'>{invoice.code}</td>
-                                    <td className='td-invoice'>{invoice.GatePassNo}</td>
-                                    <td className='td-invoice'>{invoice.invoiceDate}</td>
-                                    <td className='td-invoice'>{invoice.Duedate}</td>
-                                    <td className='td-invoice'>{invoice.exe}</td>
-                                    <td className='td-invoice'>{formatNumbers(invoice.lastOutstanding)}</td>
-                                    <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+    {filteredInvoices.map((invoice) => (
+        <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
+            <td className='td-invoice'>{invoice.invoiceNumber}</td>
+            <td className='td-invoice'>{invoice.customer}</td>
+            <td className='td-invoice'>{invoice.code}</td>
+            <td className='td-invoice'>{invoice.GatePassNo}</td>
+            <td className='td-invoice'>{invoice.invoiceDate}</td>
+            <td className='td-invoice'>{invoice.Duedate}</td>
+            <td className='td-invoice'>{invoice.exe}</td>
+            <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
+    {formatNumbers(invoice.lastOutstanding)}
+</td>
+            <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
 
-                                    <td className='td-invoice'>
-                                        <Link to={`/view-admin-outstanding/${invoice._id}`}>
-                                            <AiOutlineEye size={20} color={"purple"} />
-                                        </Link>
-                                    </td>
+            
+            <td className='td-invoice'>
+               <Link to={`/view-admin-outstanding/${invoice._id}`}>
+                <AiOutlineEye size={20} color={"purple"} />
+                </Link>
+             </td>
                                     
-                                    <td className='td-invoice'>
-                                        <Link to={`/invoice/${invoice.invoiceNumber}`}>
-                                            <FontAwesomeIcon icon={faEye} className="action-icon" />
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
+            <td className='td-invoice'>
+                 <Link to={`/invoice/${invoice.invoiceNumber}`}>
+                <FontAwesomeIcon icon={faEye} className="action-icon" />
+                </Link>
+            </td>
+        </tr>
+    ))}
+</tbody>
+
                     </table>
                 </div>
             </div>
-            <Footer/>
+         
         </div>
     );
 }
 
 export default OutStandingTable;
+
+
+
+
+
+
 

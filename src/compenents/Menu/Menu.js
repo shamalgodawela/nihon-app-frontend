@@ -26,10 +26,10 @@ const Menu = () => {
     <nav className="navbar2">
     <ul className="nav-menu2">
       <li className="nav-item2">
-        <Link to="/Adminallorder" className="nav-link2">Home</Link>
+        <Link to="/AllOutstanding" className="nav-link2">Dashboard</Link>
       </li>
       <li className="nav-item2">
-        <Link to="/AllOutstanding" className="nav-link2">Manage Outstanding</Link>
+        <Link to="/Adminallorder" className="nav-link2">Oder details</Link>
       </li>
       <li className="nav-item2">
         <Link to="/view-dealer-history" className="nav-link2">Check Dealer History</Link>
