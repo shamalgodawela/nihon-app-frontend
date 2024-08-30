@@ -20,7 +20,7 @@ const Opertionoutstanding = () => {
     useEffect(() => {
         const fetchAllInvoices = async () => {
             try {
-                const response = await axios.get('https://nihon-inventory.onrender.com/api/get-lastoutstanding-invoicedetails');
+                const response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
                 setInvoices(response.data);
                 setFilteredInvoices(response.data);
                 setLoading(false);
