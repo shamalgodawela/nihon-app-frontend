@@ -293,7 +293,7 @@ const fetchLastOrderNumberUPC2 = async () => {
         value={product.productName}
         onChange={(e) => handleChange(e, index)}
         className="product-input"
-        readOnly
+        
       />
 
       <label className="product-label">Label Price:</label>
