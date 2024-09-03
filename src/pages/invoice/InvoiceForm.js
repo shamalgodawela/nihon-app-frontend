@@ -567,7 +567,7 @@ const InvoiceForm = () => {
               <div className="form-group">
                 <label>Label Price:</label>
                 <input
-                  type="number"
+                  type="text"
                   name={`products.${index}.labelPrice`}
                   value={product.labelPrice}
                   onChange={(e) => handleChange(e, index)}
@@ -576,7 +576,7 @@ const InvoiceForm = () => {
               <div className="form-group">
                 <label>Discount (%):</label>
                 <input
-                  type="number"
+                  type="text"
                   name={`products.${index}.discount`}
                   value={product.discount}
                   onChange={(e) => handleChange(e, index)}
@@ -585,19 +585,19 @@ const InvoiceForm = () => {
               <div className="form-group">
                 <label>Unit Price:</label>
                 <input
-                  type="number"
+                  type="text"
                   name={`products.${index}.unitPrice`}
                   value={product.unitPrice}
-                  readOnly
+                  
                 />
               </div>
               <div className="form-group">
                 <label>Invoice Total:</label>
                 <input
-                  type="number"
+                  type="text"
                   name={`products.${index}.invoiceTotal`}
                   value={product.invoiceTotal}
-                  readOnly
+                  
                 />
               </div>
               {/* {index > 0 && (
