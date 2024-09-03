@@ -327,7 +327,6 @@ const fetchLastOrderNumberUPC2 = async () => {
         type="text"
         name="unitPrice"
         value={product.unitPrice}
-        readOnly
         className="product-input"
       />
       
