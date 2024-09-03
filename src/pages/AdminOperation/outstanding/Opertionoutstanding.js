@@ -105,6 +105,7 @@ const Opertionoutstanding = () => {
                                 <th className='th-invoice'>Exe</th>
                                 <th className='th-invoice'>Outstanding</th>
                                 <th className='th-invoice'>Invoice Total</th>
+                                <th className='th-invoice'>Phone Number</th>
                                 <th className='th-invoice'>Action</th>
                             </tr>
                         </thead>
@@ -122,6 +123,7 @@ const Opertionoutstanding = () => {
     {formatNumbers(invoice.lastOutstanding)}
 </td>
             <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+            <td>{invoice.contact}</td>
 
             <td className='td-invoice'>
                 <Link to={`/view-single-operation/${invoice._id}`}>
