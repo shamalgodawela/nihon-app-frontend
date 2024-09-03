@@ -123,7 +123,7 @@ const Opertionoutstanding = () => {
     {formatNumbers(invoice.lastOutstanding)}
 </td>
             <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-            <td>{invoice.contact}</td>
+            <td className='td-invoice'>{invoice.contact}</td>
 
             <td className='td-invoice'>
                 <Link to={`/view-single-operation/${invoice._id}`}>
