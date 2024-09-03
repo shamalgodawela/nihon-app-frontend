@@ -153,7 +153,7 @@ const Oneorder = () => {
                     name="orderNumber"
                     value={updatedOrder.orderNumber}
                     onChange={handleInputChange}
-                    readOnly
+                   
                   />
                 </div>
                 {/* Form inputs */}

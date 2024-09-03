@@ -293,6 +293,7 @@ const fetchLastOrderNumberUPC2 = async () => {
         value={product.productName}
         onChange={(e) => handleChange(e, index)}
         className="product-input"
+        readOnly
       />
 
       <label className="product-label">Label Price:</label>
@@ -302,6 +303,7 @@ const fetchLastOrderNumberUPC2 = async () => {
         value={product.labelPrice}
         onChange={(e) => handleChange(e, index)}
         className="product-input"
+        readOnly
       />
 
       <label className="product-label">Quantity:</label>
@@ -328,6 +330,7 @@ const fetchLastOrderNumberUPC2 = async () => {
         name="unitPrice"
         value={product.unitPrice}
         className="product-input"
+        readOnly
       />
       
 <label className="product-label">invoice total:</label>
