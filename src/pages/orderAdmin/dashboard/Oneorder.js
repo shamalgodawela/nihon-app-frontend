@@ -269,7 +269,7 @@ const Oneorder = () => {
                             name="labelPrice"
                             value={updatedOrder.products[index].labelPrice}
                             onChange={(e) => handleProductInputChange(e, index)}
-                            readOnly
+                            
                           />
                         </td>
                         <td>
