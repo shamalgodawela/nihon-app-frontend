@@ -74,6 +74,29 @@ const OutStandingTable = () => {
         }
         return 0; // Return 0 if there are no products
     };
+    useEffect(() => {
+        const fetchInvoicesByCode = async () => {
+            setLoading(true);
+            try {
+                let response;
+                if (searchCode) {
+                    // Fetch invoices by code if a code is entered
+                    response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoice-by-executive/${searchCode}`);
+                } else {
+                    // Fetch all invoices if no code is entered
+                    response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
+                }
+                setInvoices(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Failed to fetch invoices', error.message);
+                setError('Failed to fetch invoices');
+                setLoading(false);
+            }
+        };
+
+        fetchInvoicesByCode();
+    }, [searchCode]);
 
     return (
         <div>
@@ -89,6 +112,12 @@ const OutStandingTable = () => {
                     <option value="Mr.Navaneedan">Mr.Navaneedan</option>
                     <option value="Mr.Nayum">Mr.Nayum</option>
                 </select>
+                <input
+                    type="text"
+                    value={searchCode}
+                    onChange={(e) => setSearchCode(e.target.value)}
+                    placeholder="Search by Customer Code"
+                />
                 <div className="all-invoice">
                     <h2 className='h2-invoice'>Outstanding Details</h2>
                     <table>
