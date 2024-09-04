@@ -14,7 +14,6 @@ const OutStandingTable = () => {
     const [selectedExe, setSelectedExe] = useState('');
     const [searchCode, setSearchCode] = useState('');
 
-    // Fetch all invoices initially
     useEffect(() => {
         const fetchAllInvoices = async () => {
             try {
@@ -32,7 +31,6 @@ const OutStandingTable = () => {
         fetchAllInvoices();
     }, []);
 
-    // Debounced function to filter invoices
     const debounceFilter = useCallback(
         debounce((exe) => {
             if (exe) {
@@ -48,29 +46,24 @@ const OutStandingTable = () => {
         debounceFilter(selectedExe);
     }, [selectedExe, debounceFilter]);
 
-    useEffect(() => {
-        const fetchInvoicesByCode = async () => {
-            setLoading(true);
-            try {
-                let response;
-                if (searchCode) {
-                    // Fetch invoices by code if a code is entered
-                    response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoice-by-executive/${searchCode}`);
-                } else {
-                    // Fetch all invoices if no code is entered
-                    response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
-                }
-                setInvoices(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Failed to fetch invoices', error.message);
-                setError('Failed to fetch invoices');
-                setLoading(false);
+    const handleSearch = async () => {
+        setLoading(true);
+        try {
+            let response;
+            if (searchCode) {
+                response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoice-by-executive/${searchCode}`);
+            } else {
+                response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
             }
-        };
-
-        fetchInvoicesByCode();
-    }, [searchCode]);
+            setInvoices(response.data);
+            setFilteredInvoices(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Failed to fetch invoices', error.message);
+            setError('Failed to fetch invoices');
+            setLoading(false);
+        }
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -115,6 +108,7 @@ const OutStandingTable = () => {
                     onChange={(e) => setSearchCode(e.target.value)}
                     placeholder="Search by Customer Code"
                 />
+                <button onClick={handleSearch}>Search</button>
                 <div className="all-invoice">
                     <h2 className='h2-invoice'>Outstanding Details</h2>
                     <table>
