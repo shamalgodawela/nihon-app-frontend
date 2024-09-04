@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 
-
 const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
     const [filteredInvoices, setFilteredInvoices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedExe, setSelectedExe] = useState('');
+    const [searchCode, setSearchCode] = useState('');
 
     // Fetch all invoices initially
     useEffect(() => {
@@ -48,32 +48,6 @@ const OutStandingTable = () => {
         debounceFilter(selectedExe);
     }, [selectedExe, debounceFilter]);
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
-    const formatNumbers = (x) => {
-        // Ensure x is a number before formatting
-        if (typeof x === 'number') {
-            return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-        return x; // Return the original value if it's not a number
-    };
-
-    const calculateTotal = (invoice) => {
-        if (invoice && invoice.products) {
-            // Calculate the total by reducing the products array
-            return invoice.products.reduce((acc, product) => {
-                const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
-                return acc + productTotal;
-            }, 0);
-        }
-        return 0; // Return 0 if there are no products
-    };
     useEffect(() => {
         const fetchInvoicesByCode = async () => {
             setLoading(true);
@@ -98,10 +72,33 @@ const OutStandingTable = () => {
         fetchInvoicesByCode();
     }, [searchCode]);
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+    const formatNumbers = (x) => {
+        if (typeof x === 'number') {
+            return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        return x;
+    };
+
+    const calculateTotal = (invoice) => {
+        if (invoice && invoice.products) {
+            return invoice.products.reduce((acc, product) => {
+                const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+                return acc + productTotal;
+            }, 0);
+        }
+        return 0;
+    };
+
     return (
         <div>
-          
-
             <div className='invoice-body'>
                 <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
                     <option value="">All</option>
@@ -133,53 +130,41 @@ const OutStandingTable = () => {
                                 <th className='th-invoice'>Outstanding</th>
                                 <th className='th-invoice'>Invoice Total</th>
                                 <th className='th-invoice'>Action</th>
-                                <th  className='th-invoice'>Edit</th>
+                                <th className='th-invoice'>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
-    {filteredInvoices.map((invoice) => (
-        <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
-            <td className='td-invoice'>{invoice.invoiceNumber}</td>
-            <td className='td-invoice'>{invoice.customer}</td>
-            <td className='td-invoice'>{invoice.code}</td>
-            <td className='td-invoice'>{invoice.GatePassNo}</td>
-            <td className='td-invoice'>{invoice.invoiceDate}</td>
-            <td className='td-invoice'>{invoice.Duedate}</td>
-            <td className='td-invoice'>{invoice.exe}</td>
-            <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
-    {formatNumbers(invoice.lastOutstanding)}
-</td>
-            <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-
-            
-            <td className='td-invoice'>
-               <Link to={`/view-admin-outstanding/${invoice._id}`}>
-                <AiOutlineEye size={20} color={"purple"} />
-                </Link>
-             </td>
-                                    
-            <td className='td-invoice'>
-                 <Link to={`/invoice/${invoice.invoiceNumber}`}>
-                <FontAwesomeIcon icon={faEye} className="action-icon" />
-                </Link>
-            </td>
-        </tr>
-    ))}
-</tbody>
-
+                            {filteredInvoices.map((invoice) => (
+                                <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
+                                    <td className='td-invoice'>{invoice.invoiceNumber}</td>
+                                    <td className='td-invoice'>{invoice.customer}</td>
+                                    <td className='td-invoice'>{invoice.code}</td>
+                                    <td className='td-invoice'>{invoice.GatePassNo}</td>
+                                    <td className='td-invoice'>{invoice.invoiceDate}</td>
+                                    <td className='td-invoice'>{invoice.Duedate}</td>
+                                    <td className='td-invoice'>{invoice.exe}</td>
+                                    <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
+                                        {formatNumbers(invoice.lastOutstanding)}
+                                    </td>
+                                    <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+                                    <td className='td-invoice'>
+                                        <Link to={`/view-admin-outstanding/${invoice._id}`}>
+                                            <AiOutlineEye size={20} color={"purple"} />
+                                        </Link>
+                                    </td>
+                                    <td className='td-invoice'>
+                                        <Link to={`/invoice/${invoice.invoiceNumber}`}>
+                                            <FontAwesomeIcon icon={faEye} className="action-icon" />
+                                        </Link>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
                 </div>
             </div>
-         
         </div>
     );
 }
 
 export default OutStandingTable;
-
-
-
-
-
-
-
