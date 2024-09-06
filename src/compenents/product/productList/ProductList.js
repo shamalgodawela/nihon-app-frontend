@@ -115,15 +115,15 @@ const ProductList = ({ products, isLoading }) => {
                 <table>
                   <thead>
                     <tr>
-                      <th>s/n</th>
-                      <th>Name</th>
-                      <th>Product Code</th>
-                      <th>Label Price</th>
-                      <th>Discount</th>
-                      <th>sales price</th>
-                      <th>Quantity</th>
-                      <th>Total weight(Kg/l)</th>
-                      <th>Value</th>
+                      <th className='th-product-list'>s/n</th>
+                      <th className='th-product-list'>Name</th>
+                      <th className='th-product-list'>Product Code</th>
+                      <th className='th-product-list'>Label Price</th>
+                      <th className='th-product-list'>Discount</th>
+                      <th className='th-product-list'>sales price</th>
+                      <th className='th-product-list'>Quantity</th>
+                      <th className='th-product-list'>Total weight(Kg/l)</th>
+                      <th className='th-product-list'>Value</th>
                       {/* <th>Action</th> */}
                     </tr>
                   </thead>
@@ -152,7 +152,7 @@ const ProductList = ({ products, isLoading }) => {
                         {"Rs:"}
                         {typeof price === 'string' ? formatNumbers(parseFloat(salesPrice * quantity).toFixed(2)) : formatNumbers((price * quantity).toFixed(2))}
                       </td>
-                      <td className="icons">
+                      {/* <td className="icons">
                         <span>
                           <Link to={`/edit-product/${_id}`}>
                             <FaEdit size={20} color={"green"} />
@@ -164,7 +164,7 @@ const ProductList = ({ products, isLoading }) => {
                             onClick={() => confirmDelete(_id)}
                           />
                         </span>   
-                      </td>
+                      </td> */}
                     </tr>
                   );
                 })}
