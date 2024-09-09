@@ -243,16 +243,16 @@ const fetchLastOrderNumberUPC2 = async () => {
 </div>
 <div className="form-row">
   <label className="form-label">Customer Code:</label>
-  <input type="text" className="form-input" name="code" value={orderData.code} onChange={(e) => setOrderData({ ...orderData, code: e.target.value })} />
+  <input type="text" className="form-input" name="code" value={orderData.code} onChange={(e) => setOrderData({ ...orderData, code: e.target.value })} required/>
   <button type="button" className="form-button" onClick={handleGetCustomerDetails}>Get Details of Customer</button>
 </div>
 <div className="form-row">
   <label className="form-label">Customer:</label>
-  <input type="text" className="form-input" name="customer" value={orderData.customer} onChange={(e) => setOrderData({ ...orderData, customer: e.target.value })} />
+  <input type="text" className="form-input" name="customer" value={orderData.customer} onChange={(e) => setOrderData({ ...orderData, customer: e.target.value })}readOnly />
 </div>
 <div className="form-row">
   <label className="form-label">Address:</label>
-  <input type="text" className="form-input" name="address" value={orderData.address} onChange={(e) => setOrderData({ ...orderData, address: e.target.value })} />
+  <input type="text" className="form-input" name="address" value={orderData.address} onChange={(e) => setOrderData({ ...orderData, address: e.target.value })} readOnly />
 </div>
 <div className="form-row">
   <label className="form-label">Contact:</label>
