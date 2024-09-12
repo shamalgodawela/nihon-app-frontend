@@ -69,6 +69,7 @@ import Opertionoutstanding from "./pages/AdminOperation/outstanding/Opertionouts
 import SummeryDashboard from "./pages/AdminOperation/SalesandCollection/SummeryDashboard";
 import SingleOpOutstanding from "./pages/AdminOperation/outstanding/SingleOpOutstanding";
 import ViewSingleOutstanding from "./pages/AdminOperation/ViewSingleOut/ViewSingleOutstanding";
+import DealerPastHistory from "./pages/ViewDealerHitory/DealerPastHistory";
 
 
 
@@ -180,8 +181,13 @@ function App() {
     {/*-----------------------------------------------------------------------------------------------------------*/}
     
    
+
+
+   
  
  <Route path="/view-admin-outstanding/:id" element={<ViewSingleOutstanding/>} />
+
+ <Route path="/view-Delaer-history/:code" element={<DealerPastHistory/>} />
    
 
 

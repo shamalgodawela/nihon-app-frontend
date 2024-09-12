@@ -32,7 +32,7 @@ const Menu = () => {
         <Link to="/Adminallorder" className="nav-link2">Oder details</Link>
       </li>
       <li className="nav-item2">
-        <Link to="/view-dealer-history" className="nav-link2">Check Dealer History</Link>
+        <Link to="/view-Delaer-history/:code" className="nav-link2">Check Dealer History</Link>
       </li>
       <li className="nav-item2">
         <Link to="/" className="nav-link2">Logout</Link>
