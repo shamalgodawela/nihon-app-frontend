@@ -14,8 +14,9 @@ const AllInvoice = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [exe, setExe] = useState('');
-  const {id}=useParams();
-  const [sinvoice, setsinvoice]=useState(null);
+  const [productCode, setProductCode] = useState(''); // New state for product code
+  const { id } = useParams();
+  const [sinvoice, setsinvoice] = useState(null);
 
   const fetchInvoices = async () => {
     setIsLoading(true);
@@ -33,18 +34,24 @@ const AllInvoice = () => {
   const searchInvoices = async () => {
     setIsLoading(true);
     try {
-      const formattedStartDate = startDate ? new Date(startDate).toISOString().split('T')[0] : '';
-      const formattedEndDate = endDate ? new Date(endDate).toISOString().split('T')[0] : '';
-  
-      const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoices`, {
-        params: {
-          searchQuery,
-          startDate: formattedStartDate,
-          endDate: formattedEndDate,
-          exe
-        }
-      });
-      setInvoices(response.data);
+      if (productCode) {
+        // If product code is provided, use the product code search endpoint
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-by-productcode/${productCode}`);
+        setInvoices(response.data);
+      } else {
+        const formattedStartDate = startDate ? new Date(startDate).toISOString().split('T')[0] : '';
+        const formattedEndDate = endDate ? new Date(endDate).toISOString().split('T')[0] : '';
+
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoices`, {
+          params: {
+            searchQuery,
+            startDate: formattedStartDate,
+            endDate: formattedEndDate,
+            exe
+          }
+        });
+        setInvoices(response.data);
+      }
     } catch (error) {
       console.error('Failed to search invoices', error.message);
     } finally {
@@ -53,12 +60,12 @@ const AllInvoice = () => {
   };
 
   useEffect(() => {
-    const fetchSinvoice = async ()=>{
-      try{
-        const response= await axios.get(`https://nihon-inventory.onrender.com/api/get-invoice/${id}`);
+    const fetchSinvoice = async () => {
+      try {
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-invoice/${id}`);
         setsinvoice(response.data);
-      }catch(error){
-        console.log('error feching data', error);
+      } catch (error) {
+        console.log('Error fetching data', error);
       }
     };
     fetchInvoices();
@@ -83,7 +90,7 @@ const AllInvoice = () => {
   return (
     <body className='invoice-body'>
       <div>
-        <Navbar2/><br/><br/>
+        <Navbar2 /><br /><br />
         <div className="search-container" style={{ display: 'flex', marginBottom: '20px' }}>
           <input
             type="text"
@@ -105,6 +112,16 @@ const AllInvoice = () => {
             <option value="Mr.Nayum">Mr.Nayum</option>
             <option value="Mr.Navaneedan">Mr.Navaneedan</option>
           </select>
+
+          {/* New Input for Product Code Search */}
+          <input
+            type="text"
+            placeholder="Search by Product Code"
+            value={productCode}
+            onChange={(e) => setProductCode(e.target.value)}
+            style={{ marginRight: '10px', padding: '5px' }}
+          />
+
           <button
             onClick={searchInvoices}
             style={{
@@ -119,7 +136,7 @@ const AllInvoice = () => {
           </button>
         </div>
 
-        <button type="button" className="btn btn-outline-primary" disabled><a href="/add-invoice" >Add Invoice</a></button>
+        <button type="button" className="btn btn-outline-primary" disabled><a href="/add-invoice">Add Invoice</a></button>
         <div className="all-invoice">
           {isLoading ? <Loader /> : (
             <>
@@ -145,11 +162,11 @@ const AllInvoice = () => {
                       <td className='td-invoice'>{invoice.GatePassNo}</td>
                       <td className='td-invoice'>{invoice.customer}</td>
                       <td className='td-invoice'>{invoice.code}</td>
-                      <td  className='td-invoice'>{invoice.invoiceDate}</td>
-                      <td  className='td-invoice'>{invoice.Duedate}</td>
-                      <td  className='td-invoice'>{invoice.exe}</td>
-                      <td  className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-                      <td  className='td-invoice'>
+                      <td className='td-invoice'>{invoice.invoiceDate}</td>
+                      <td className='td-invoice'>{invoice.Duedate}</td>
+                      <td className='td-invoice'>{invoice.exe}</td>
+                      <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+                      <td className='td-invoice'>
                         <Link to={`/invoice-temp/${invoice._id}`}>
                           <AiOutlineEye size={20} color={"purple"} />
                         </Link>
@@ -161,7 +178,7 @@ const AllInvoice = () => {
             </>
           )}
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </body>
   );
