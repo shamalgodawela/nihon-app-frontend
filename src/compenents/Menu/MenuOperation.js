@@ -32,6 +32,9 @@ const MenuOperation = () => {
         <Link to="/admin-operation-salesCollection" className="nav-link2">Sales and Collection Summery</Link>
       </li>
       <li className="nav-item2">
+        <Link to="/view-Delaer-history/:code" className="nav-link2">Check Dealer History</Link>
+      </li>
+      <li className="nav-item2">
         <Link to="/" className="nav-link2">Logout</Link>
       </li>
       
