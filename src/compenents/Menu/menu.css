@@ -35,4 +35,7 @@
   .logout-btn:hover {
 	color: #ffd700; /* Change to desired hover color */
   }
-  
+  .Back-Icon{
+	color:white;
+	background-color: #fff;
+  }

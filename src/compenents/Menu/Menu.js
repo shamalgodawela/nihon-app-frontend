@@ -42,7 +42,7 @@ const Menu = () => {
     
     
   </nav>
-  <Link to="#" onClick={goBack}><IoMdArrowRoundBack size={23}/></Link>&nbsp;&nbsp;
+  <Link to="#" onClick={goBack} className='Back-Icon'><IoMdArrowRoundBack size={23}/></Link>&nbsp;&nbsp;
   <RefreshButton />
   </div>
   );
