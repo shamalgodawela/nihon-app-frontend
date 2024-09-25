@@ -24,6 +24,9 @@ const SalesByExe = () => {
       setIsLoading(false);
     }
   };
+  const formatNumbers = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 
   return (
     <div>
@@ -69,7 +72,7 @@ const SalesByExe = () => {
               {salesData.map((data, index) => (
                 <tr key={index}>
                   <td>{data.productName}</td>
-                  <td>{data.totalSales}</td>
+                  <td>{formatNumbers(data.totalSales.toFixed(2))}</td>
                   <td>{data.totalQuantity}</td>
                 </tr>
               ))}
