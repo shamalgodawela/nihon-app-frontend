@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './SalesByExe.css'; // Import the CSS file
+import NavBar from '../../../compenents/sidebar/NavBar';
 
 const SalesByExe = () => {
   const [exe, setExe] = useState('');
@@ -13,7 +15,7 @@ const SalesByExe = () => {
     }
     setIsLoading(true);
     try {
-      const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-executives-sales-eachProduct/${exe}`);
+      const response = await axios.get(`http://localhost:5000/api/get-sales-by-exe/${exe}`);
       setSalesData(response.data);
     } catch (error) {
       console.error('Error fetching sales data:', error.message);
@@ -25,40 +27,37 @@ const SalesByExe = () => {
 
   return (
     <div>
-      <h2>Product-Wise Sales by Executive</h2>
-      <select
-        className="form-input"
-        name="exe"
-        value={exe}
-        onChange={(e) => setExe(e.target.value)} // Update the exe state on change
-        style={{ marginRight: '10px', padding: '5px' }}
-      >
-        <option value="">Select EXE:</option>
-        <option value="Mr.Ahamed">Mr.Ahamed</option>
-        <option value="Mr.Dasun">Mr.Dasun</option>
-        <option value="Mr.Chameera">Mr.Chameera</option>
-        <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
-        <option value="Mr.Navaneedan">Mr.Navaneedan</option>
-        <option value="Mr.Nayum">Mr.Nayum</option>
-      </select>
-      <button
-        onClick={handleSearch}
-        style={{
-          padding: '5px',
-          backgroundColor: '#007bff',
-          color: 'white',
-          border: 'none',
-          cursor: 'pointer'
-        }}
-      >
-        Get Sales Data
-      </button>
+        <NavBar/>
+    <div className="sales-container">
+      <h2 className="sales-title">Product-Wise Sales by Executive</h2>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
+        <select
+          className="sales-select"
+          name="exe"
+          value={exe}
+          onChange={(e) => setExe(e.target.value)} // Update the exe state on change
+        >
+          <option value="">Select EXE:</option>
+          <option value="Mr.Ahamed">Mr.Ahamed</option>
+          <option value="Mr.Dasun">Mr.Dasun</option>
+          <option value="Mr.Chameera">Mr.Chameera</option>
+          <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
+          <option value="Mr.Navaneedan">Mr.Navaneedan</option>
+          <option value="Mr.Nayum">Mr.Nayum</option>
+        </select>
+        <button
+          className="sales-button"
+          onClick={handleSearch}
+        >
+          Get Sales Data
+        </button>
+      </div>
 
       {isLoading ? (
-        <p>Loading...</p>
+        <p className="sales-loader">Loading...</p>
       ) : (
         salesData.length > 0 && (
-          <table>
+          <table className="sales-table">
             <thead>
               <tr>
                 <th>Product Name</th>
@@ -78,6 +77,7 @@ const SalesByExe = () => {
           </table>
         )
       )}
+    </div>
     </div>
   );
 };
