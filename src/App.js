@@ -70,6 +70,7 @@ import SummeryDashboard from "./pages/AdminOperation/SalesandCollection/SummeryD
 import SingleOpOutstanding from "./pages/AdminOperation/outstanding/SingleOpOutstanding";
 import ViewSingleOutstanding from "./pages/AdminOperation/ViewSingleOut/ViewSingleOutstanding";
 import DealerPastHistory from "./pages/ViewDealerHitory/DealerPastHistory";
+import SalesByExe from "./pages/Exeproductdetails/salesEachProduct/SalesByExe";
 
 
 
@@ -183,6 +184,8 @@ function App() {
    
 
 
+
+<Route path="/Exe-product-wise-sales" element={<SalesByExe/>} />
    
  
  <Route path="/view-admin-outstanding/:id" element={<ViewSingleOutstanding/>} />

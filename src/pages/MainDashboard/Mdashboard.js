@@ -49,7 +49,13 @@ const Mdashboard = () => {
       title: "Customer management",
       text: "",
       href: "/getAllCustomer" 
-    }
+    },
+    {
+      imageClass: "card__image--record",
+      title: "Delaer Wise Product Movement ",
+      text: "",
+      href: "/Exe-product-wise-sales" 
+    },
     
   ];
 
