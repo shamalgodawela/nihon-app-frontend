@@ -161,7 +161,7 @@
   .madashboard-body{
     background-size: 100%;
     background-attachment: fixed;
-    height:900px;
+    height:100%;
     background-image: url(https://digitalizetrends.com/wp-content/uploads/2020/11/Role-of-IoT-in-agriculture-scaled.jpg);
     background-repeat:no-repeat ;
   }
