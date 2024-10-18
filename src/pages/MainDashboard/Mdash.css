@@ -129,6 +129,16 @@
     width:300px
     
   }
+  .card__image--DamageInventory{
+    background-image: url(../../assets/damageIn.jpg);
+    width:300px
+
+  }
+  .card__image--PackingMaterials{
+    background-image: url(../../assets/packing_materials.jpg);
+    width:300px
+
+  }
   .card__title {
     color: var(--gray-dark);
     font-size: 1.25rem;

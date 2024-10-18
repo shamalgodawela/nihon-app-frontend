@@ -24,7 +24,18 @@ const Mdashboard = () => {
       imageClass: "card__image--fence",
       title: "Inventory Management",
       text: "",
-      href: "/dashboard" // Example link
+      href: "/dashboard" 
+    },
+    {
+      imageClass: "card__image--DamageInventory",
+      title: "Damage Inventory",
+      text: "",
+      href: "/Damage-Inventory" 
+    },{
+      imageClass: "card__image--PackingMaterials",
+      title: "Packing Materials",
+      text: "",
+      href: "/Packing-Materials-details" 
     },
     {
       imageClass: "card__image--river",
