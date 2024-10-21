@@ -18,6 +18,10 @@ const CustomerReg = () => {
     email: '',
     fax: '',
     district:'',
+    BankName:'',
+    AccountNo:'',
+    Branch:'',
+    OtherAccunt:''
   });
 
   const handleChange = (e) => {
@@ -44,7 +48,11 @@ const CustomerReg = () => {
         phone: '',
         email: '',
         fax: '',
-        district:''
+        district:'',
+        BankName:'',
+        AccountNo:'',
+        Branch:'',
+        OtherAccunt:''
       });
     } catch (error) {
       console.error('Error adding customer:', error);
@@ -78,6 +86,11 @@ const CustomerReg = () => {
   <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange}  />
   <input type="text" name="fax" placeholder="Fax" value={formData.fax} onChange={handleChange} />
   <input type="text" name="district" placeholder="district" value={formData.district} onChange={handleChange} />
+  <input type="text" name="BankName" placeholder="Bank Name" value={formData.BankName} onChange={handleChange} />
+  <input type="text" name="AccountNo" placeholder="Account Number" value={formData.AccountNo} onChange={handleChange} />
+  <input type="text" name="Branch" placeholder="Branch" value={formData.Branch} onChange={handleChange} />
+  <input type="text" name="OtherAccunt" placeholder="Other Account" value={formData.OtherAccunt} onChange={handleChange} />
+  
   <input className="button" type="submit" value="Register" />
 </form>
 
