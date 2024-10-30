@@ -245,7 +245,7 @@ const fetchLastOrderNumberNum = async () => {
 {orderData.exe === 'Mr.Nayum' && (
                 <div className="form-row">
                     <p className="last-order-number">
-                        Last Order Number (Starting with UPC2): {lastOrderNumber}
+                        Last Order Number (Starting with NUM): {lastOrderNumber}
                     </p>
                 </div>
             )}
