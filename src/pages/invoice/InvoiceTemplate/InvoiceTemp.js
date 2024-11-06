@@ -53,7 +53,7 @@ const calculateTaxtot = () => {
         }, 0);
 
         const subtotal = parseFloat(calculateTotal()); // Get the subtotal and parse it to float
-        const totalWithTax = subtotal + totalTax; // Add tax amount to subtotal
+        const totalWithTax = subtotal - totalTax; // Add tax amount to subtotal // temp change for discount
 
         console.log(typeof totalWithTax, totalWithTax); // Log type and value of totalWithTax
 
