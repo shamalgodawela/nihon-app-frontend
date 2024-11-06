@@ -413,6 +413,14 @@ body{
     color:black;
     font-family:Arial, Helvetica, sans-serif;
 }
+#discount{
+    position: absolute;
+    top:18.8cm;
+    left:12.5cm;
+    color:black;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
 #vat-reg{
     position:absolute;
     color:black;
