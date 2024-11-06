@@ -185,7 +185,7 @@ const InvoiceForm = () => {
 
   const calculateFinalValue = (totalInvoiceAmount, tax) => {
     const taxRate = parseFloat(tax) || 0;
-    const finalValue = totalInvoiceAmount + (totalInvoiceAmount * taxRate / 100);
+    const finalValue = totalInvoiceAmount - (totalInvoiceAmount * taxRate / 100);
     setFinalValue(finalValue);
   };
 
