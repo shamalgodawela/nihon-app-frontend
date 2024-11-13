@@ -172,7 +172,7 @@ function App() {
     <Route path="/view-dealer-history" element={<DealerHistory/>} />
 
 
-    {/*----------------------------------Admin Operations pages----------------------------------------------*/}
+{/*----------------------------------Admin Operations pages----------------------------------------------*/}
 
     <Route path="/admin-operation-dashboard" element={<OpearationHome/>} />
     <Route path="/admin-operation-loginpage" element={<Operationlogin/>} />
@@ -181,8 +181,17 @@ function App() {
     <Route path="/view-single-operation/:id" element={<SingleOpOutstanding/>} />
 
 
-{/*-----------------------------------------------------------------------------------------------------------*/}
-    
+
+{/* -------------------------------------Admin Page--------------------------------------------------------- */}
+
+
+
+
+
+
+
+
+{/* ------------------------------------------------------------------------------------------------------------ */}
 <Route path="/Exe-product-wise-sales" element={<SalesByExe/>} />
 <Route path="/view-admin-outstanding/:id" element={<ViewSingleOutstanding/>} />
 <Route path="/view-Delaer-history/:code" element={<DealerPastHistory/>} />

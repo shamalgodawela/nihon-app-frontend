@@ -136,7 +136,7 @@ const Oneorder = () => {
 
   return (
     <div className='bodAdmin'>
-      <Menu/>
+      <Menu/><br/><br/>
      
       <div className="container">
         <div className="order-details-container">
@@ -215,6 +215,26 @@ const Oneorder = () => {
                     value={updatedOrder.exe}
                     onChange={handleInputChange}
                     readOnly
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="order-details-label">Terms Of Payment:</label>
+                  <input
+                    type="text"
+                    name="CreditPeriod"
+                    value={updatedOrder.CreditPeriod}
+                    onChange={handleInputChange}
+                    
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="order-details-label">Mode of Payment:</label>
+                  <input
+                    type="text"
+                    name="Paymentmethod"
+                    value={updatedOrder.Paymentmethod}
+                    onChange={handleInputChange}
+                    
                   />
                 </div>
                 <div className="form-group">

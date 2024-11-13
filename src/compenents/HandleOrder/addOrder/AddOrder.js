@@ -18,6 +18,8 @@ const AddOrder = ({ onAddOrder }) => {
         VatRegNo:'',
         VatNO:'',
         TaxNo:'',
+        CreditPeriod:'',
+        Paymentmethod:'',
         products: [{ productCode: '', productName: '', quantity: '', labelPrice: '', discount: '', unitPrice: '', invoiceTotal: '' }]
     });
     const [lastOrderNumber, setLastOrderNumber] = useState('');
@@ -141,7 +143,7 @@ const fetchLastOrderNumberNum = async () => {
         try {
             // Send POST request to backend API to add the order
             const response = await axios.post(`https://nihon-inventory.onrender.com/api/orders`, orderData);
-            console.log('Invoice added successfully', response.data);
+            console.log('order added successfully', response.data);
             toast.success('Order is added sucessfully');
             navigate('/allorder ')
 
@@ -275,6 +277,14 @@ const fetchLastOrderNumberNum = async () => {
 <div className="form-row">
   <label className="form-label">Contact:</label>
   <input type="text" className="form-input" name="contact" value={orderData.contact} onChange={(e) => setOrderData({ ...orderData, contact: e.target.value })} />
+</div>
+<div className="form-row">
+  <label className="form-label">Terms of Payment:</label>
+  <input type="text" className="form-input" name="CreditPeriod" value={orderData.CreditPeriod} onChange={(e) => setOrderData({ ...orderData, CreditPeriod: e.target.value })} />
+</div>
+<div className="form-row">
+  <label className="form-label">Mode Of Payment:</label>
+  <input type="text" className="form-input" name="Paymentmethod" value={orderData.Paymentmethod} onChange={(e) => setOrderData({ ...orderData, Paymentmethod: e.target.value })} />
 </div>
 {/* <div className="form-row">
   <label className="form-label">Vat reg no:</label>

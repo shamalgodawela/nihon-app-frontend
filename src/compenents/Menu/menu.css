@@ -1,41 +1,91 @@
-.navbar2 {
-	background-color: #333;
-	padding: 10px 20px;
+ 
+  /* Navbar container */
+  .navbar2 {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: linear-gradient(135deg, #000000, #01194a);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	padding: 15px 0;
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
   }
   
   .nav-menu2 {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	list-style: none;
 	display: flex;
+	justify-content: space-around;
+	max-width: 1000px;
+	width: 100%;
   }
   
+  /* Navbar items */
   .nav-item2 {
-	margin-right: 20px;
+	flex: 1;
+	text-align: center;
   }
   
   .nav-link2 {
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bold;
 	text-decoration: none;
-	color: #fff;
-	transition: color 0.3s;
+	padding: 10px 20px;
+	transition: color 0.3s, transform 0.3s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
   }
   
-  .nav-link:hover2 {
-	color: #ffd700; /* Change to desired hover color */
+  .nav-link2 i {
+	margin-right: 8px; /* Icon spacing */
+	font-size: 20px;
   }
-  .logout-btn {
-	background-color: transparent;
+  
+  /* Hover effect */
+  .nav-link2:hover {
+	color: #ffde59;
+	transform: scale(1.15);
+  }
+  
+  /* Back Icon and Refresh Button */
+  .Back-Icon {
+	position: absolute;
+	top: 15px;
+	left: 20px;
+	color: #ffffff;
+	font-size: 24px;
+	text-decoration: none;
+	transition: color 0.3s, transform 0.3s;
+  }
+  
+  .refresh-button {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	background: none;
 	border: none;
-	color: #fff;
 	cursor: pointer;
-	font-size: 16px;
-	transition: color 0.3s;
+	color: #ffffff;
+	font-size: 24px;
+	transition: color 0.3s, transform 0.3s;
   }
   
-  .logout-btn:hover {
-	color: #ffd700; /* Change to desired hover color */
+  .Back-Icon:hover, .refresh-button:hover {
+	color: #ffde59;
+	transform: scale(1.15);
   }
-  .Back-Icon{
-	color:rgb(0, 0, 0);
-	
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+	.nav-link2 {
+	  font-size: 16px;
+	  padding: 8px 10px;
+	}
+  
+	.Back-Icon, .refresh-button {
+	  font-size: 20px;
+	}
   }
+  
