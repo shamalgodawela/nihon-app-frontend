@@ -157,7 +157,7 @@ const SingleOpOutstanding = () => {
 
     return (
         <div>
-            <MenuOperation/>
+            <MenuOperation/><br/><br/><br/><br/>
         <div className="cal-outstanding-container">
         <h4 className="h1-out">Invoice code: {invoice.invoiceNumber}</h4>
         <h4 className="h1-out">Customer:{invoice.customer}</h4>
