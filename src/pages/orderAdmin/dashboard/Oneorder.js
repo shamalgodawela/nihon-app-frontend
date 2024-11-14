@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import './oneorder.css';
 import Menu from '../../../compenents/Menu/Menu';
@@ -12,6 +12,7 @@ const Oneorder = () => {
   const [order, setOrder] = useState(null);
   const [updatedOrder, setUpdatedOrder] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate= useNavigate();
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -97,7 +98,10 @@ const Oneorder = () => {
       // Assuming successful update, setOrder to updatedOrder to reflect changes
       setOrder(updatedOrder);
 
-      alert('Order details updated successfully');
+      
+      toast.success("Order details updated successfully")
+
+      navigate("/Adminallorder", { state: { selectedStatus: "pending" } });
 
       
     } catch (error) {

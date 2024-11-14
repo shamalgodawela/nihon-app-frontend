@@ -10,13 +10,20 @@ const ViewallOrder = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
   const [selectedPeriod, setSelectedPeriod] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState(location.state?.selectedStatus || '');
   const [selectedExe, setSelectedExe] = useState('');
 
   useEffect(() => {
     
     fetchOrders();
   }, [selectedPeriod, selectedStatus, selectedExe]);
+
+  useEffect(() => {
+    if (location.state?.selectedStatus === "pending") {
+      setSelectedStatus("pending");
+    }
+  }, [location.state]);
+
 
   const fetchOrders = async () => {
     try {
