@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineEye } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Footer from '../../../compenents/footer/Footer';
 import { SpinnerImg } from '../../../compenents/loader/Loader';
 import Menu from '../../../compenents/Menu/Menu';
@@ -8,6 +8,7 @@ import './vieworder.css'
 
 const ViewallOrder = () => {
   const [orders, setOrders] = useState([]);
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(true); 
   const [selectedPeriod, setSelectedPeriod] = useState('');
   const [selectedStatus, setSelectedStatus] = useState(location.state?.selectedStatus || '');
