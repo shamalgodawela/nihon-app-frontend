@@ -25,7 +25,7 @@ const AllProducts = () => {
 
   return (
     <div>
-    <h2 className='bulkh'>Bulk Products</h2>
+    <h2 className='bulk-heading'>Bulk Products</h2>
     {isLoading ? (
       <p>Loading...</p>
     ) : (

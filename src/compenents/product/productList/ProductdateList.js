@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTable } from 'react-table';
 import { SpinnerImg } from '../../loader/Loader'; // Import loading spinner
+import "./productdate.css"
 
 const ProductdateList = () => {
   const [data, setData] = useState([]);
@@ -67,42 +68,46 @@ const ProductdateList = () => {
   } = tableInstance;
 
   return (
-    <div>
-      <button type="button" className="btn btn-outline-primary" disabled><a href="/dateproduct" >Add Product</a></button>
-      {isLoading ? ( // Show loading spinner if isLoading is true
-        <SpinnerImg />
-      ) : (
-        <table {...getTableProps()} style={{ border: 'solid 1px blue', borderCollapse: 'collapse', width: '100%' }}>
-          <thead>
-            {headerGroups.map(headerGroup => (
-              <tr {...headerGroup.getHeaderGroupProps()} style={{ background: '#f1f1f1' }}>
-                {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps()} style={{ padding: '8px', border: 'solid 1px gray' }}>
-                    {column.render('Header')}
-                  </th>
+    <div className="product-management">
+    <button type="button" className="add-product-btn" disabled>
+      <a href="/dateproduct" className="add-product-link">Add Product</a>
+    </button>
+    {isLoading ? (
+      <SpinnerImg />
+    ) : (
+      <table {...getTableProps()} className="product-table">
+        <thead className="table-header">
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()} className="header-row">
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps()} className="header-cell">
+                  {column.render('Header')}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()} className="table-body">
+          {rows.map(row => {
+            prepareRow(row);
+            return (
+              <tr
+                {...row.getRowProps()}
+                className={`body-row ${row.index % 2 === 0 ? 'even-row' : 'odd-row'}`}
+              >
+                {row.cells.map(cell => (
+                  <td {...cell.getCellProps()} className="body-cell">
+                    {cell.render('Cell')}
+                  </td>
                 ))}
               </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map(row => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()} style={{ background: row.index % 2 === 0 ? '#fff' : '#f1f1f1' }}>
-                  {row.cells.map(cell => {
-                    return (
-                      <td {...cell.getCellProps()} style={{ padding: '8px', border: 'solid 1px gray' }}>
-                        {cell.render('Cell')}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      )}
-    </div>
+            );
+          })}
+        </tbody>
+      </table>
+    )}
+  </div>
+  
   );
 };
 

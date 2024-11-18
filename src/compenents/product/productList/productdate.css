@@ -1,0 +1,93 @@
+/* General container styling */
+.product-management {
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  /* Add Product Button Styling */
+  .add-product-btn {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: not-allowed;
+    text-transform: uppercase;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-product-link {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .add-product-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Table Styling */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+  }
+  
+  .table-header {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .header-row {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  
+  .header-cell {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* Table Body Styling */
+  .table-body .body-row {
+    transition: background-color 0.3s;
+  }
+  
+  .table-body .even-row {
+    background-color: #f9f9f9;
+  }
+  
+  .table-body .odd-row {
+    background-color: #ffffff;
+  }
+  
+  .table-body .body-row:hover {
+    background-color: #e8f5e9;
+  }
+  
+  .body-cell {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .product-table {
+      font-size: 14px;
+    }
+  
+    .header-cell, .body-cell {
+      padding: 8px;
+    }
+  }
+  

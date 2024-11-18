@@ -31,43 +31,46 @@ const ViewallRAndn = () => {
   }
 
   return (
-    <div>
-        <NavBar/>
+    <div className="return-product-container">
+  <NavBar />
 
-        <h1 className='h1-return'>Return and new inserted Product details</h1>
-      <ToastContainer /> 
-      <div className='view-all-product-table'>
-        <table>
-          <thead>
-            <tr>
-              <th className='td-return'>Invoice Number/index No</th>
-              <th className='td-return'>Invoice Date/ Product in date</th>
-              <th className='td-return'>Customer</th>
-              <th className='td-return'>Product Code</th>
-              <th className='td-return'>Product Name</th>
-              <th className='td-return'>Quantity</th>
-              <th className='td-return'>Value</th>
-              <th className='td-return'>Reason</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((pd, index) => (
-              <tr key={index}>
-                <td className='td-return'>{pd.invoiceNo}</td>
-                <td className='td-return'>{pd.InvoiceDte}</td>
-                <td className='td-return'>{pd.Customer}</td>
-                <td className='td-return'>{pd.ProductCode}</td>
-                <td className='td-return'>{pd.productName}</td>
-                <td className='td-return'>{pd.quanity}</td>
-                <td className='td-return'>{pd.value}</td>
-                <td className='td-return'>{pd.reason}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <Footer/>
-    </div>
+  <h1 className="return-product-heading">Return Product Details</h1>
+  <ToastContainer />
+
+  <div className="return-product-table-container">
+    <table className="return-product-table">
+      <thead className="return-table-header">
+        <tr className="return-header-row">
+          <th className="return-table-cell">Invoice Number/Index No</th>
+          <th className="return-table-cell">Invoice Date/Product In Date</th>
+          <th className="return-table-cell">Customer</th>
+          <th className="return-table-cell">Product Code</th>
+          <th className="return-table-cell">Product Name</th>
+          <th className="return-table-cell">Quantity</th>
+          <th className="return-table-cell">Value</th>
+          <th className="return-table-cell">Reason</th>
+        </tr>
+      </thead>
+      <tbody className="return-table-body">
+        {products.map((pd, index) => (
+          <tr key={index} className="return-body-row">
+            <td className="return-table-cell">{pd.invoiceNo}</td>
+            <td className="return-table-cell">{pd.InvoiceDte}</td>
+            <td className="return-table-cell">{pd.Customer}</td>
+            <td className="return-table-cell">{pd.ProductCode}</td>
+            <td className="return-table-cell">{pd.productName}</td>
+            <td className="return-table-cell">{pd.quanity}</td>
+            <td className="return-table-cell">{pd.value}</td>
+            <td className="return-table-cell">{pd.reason}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <Footer />
+</div>
+
   );
 }
 

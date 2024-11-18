@@ -85,7 +85,7 @@ const AddateProduct = () => {
 
     return (
         <div className="add-product-container">
-            <h1 className='h1add'>Add Product</h1>
+            <h1 className='h1add'>Add daily packing details</h1>
             <form className="add-product-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="GpnDate">GPN Date:</label>
