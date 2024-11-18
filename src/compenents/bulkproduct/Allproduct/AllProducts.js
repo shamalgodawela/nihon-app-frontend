@@ -49,7 +49,8 @@ const AllProducts = () => {
               <td>{product.name}</td>
               <td>{parseFloat(product.quantity).toFixed(2)}</td>
               <td>{product.weightsh}</td>
-              <td>{parseFloat(product.weightsh) * product.quantity}</td>
+              <td>{(parseFloat(product.weightsh) * product.quantity).toFixed(2)}</td>
+
 
 
              
