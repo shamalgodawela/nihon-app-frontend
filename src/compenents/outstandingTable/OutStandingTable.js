@@ -123,6 +123,7 @@ const OutStandingTable = () => {
                                 <th className='th-invoice'>Exe</th>
                                 <th className='th-invoice'>Outstanding</th>
                                 <th className='th-invoice'>Invoice Total</th>
+                                <th className='th-invoice'>Cheque Details</th>
                                 <th className='th-invoice'>Action</th>
                                 <th className='th-invoice'>Edit</th>
                             </tr>
@@ -142,6 +143,19 @@ const OutStandingTable = () => {
                                     </td>
                                     <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
                                     <td className='td-invoice'>
+                                        {invoice.chequeDetails.length > 0 ? (
+                                            <ul>
+                                                {invoice.chequeDetails.map((cheque, index) => (
+                                                    <li key={index}>
+                                                        {`Cheque #: ${cheque.ChequeNumber}, Value: ${formatNumbers(cheque.ChequeValue)}, Deposit Date: ${cheque.DepositeDate}`}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            "No Cheques Found"
+                                        )}
+                                    </td>
+                                    <td className='td-invoice'>
                                         <Link to={`/view-admin-outstanding/${invoice._id}`}>
                                             <AiOutlineEye size={20} color={"purple"} />
                                         </Link>
@@ -159,6 +173,6 @@ const OutStandingTable = () => {
             </div>
         </div>
     );
-}
+};
 
 export default OutStandingTable;
