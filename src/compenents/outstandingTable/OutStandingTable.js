@@ -143,14 +143,15 @@ const OutStandingTable = () => {
             </td>
             <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
             <td className='td-invoice'>
-            {invoice.chequeDetails && invoice.chequeDetails.length > 0 ? (
-        invoice.chequeDetails.map((cheque, index) => (
-            <div key={index}>{formatNumbers(cheque.ChequeValue)}</div> // Using ChequeValue here
-        ))
-    ) : (
-        "No cheque value"
-    )}
-            </td>
+  {Array.isArray(invoice.chequeValues) && invoice.chequeValues.length > 0 ? (
+    invoice.chequeValues.map((cheque, index) => (
+      <div key={index}>{formatNumbers(cheque)}</div>  // Using cheque value directly here
+    ))
+  ) : (
+    "No cheque value"
+  )}
+</td>
+
             <td className='td-invoice'>
                 <Link to={`/view-admin-outstanding/${invoice._id}`}>
                     <AiOutlineEye size={20} color={"purple"} />
