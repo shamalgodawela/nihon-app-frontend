@@ -40,6 +40,11 @@ const Menu = () => {
             </Link>
           </li>
           <li className="nav-item2">
+            <Link to="/Add-Cheque" className="nav-link2">
+              <i className="fas fa-history"></i> Add Cheque
+            </Link>
+          </li>
+          <li className="nav-item2">
             <Link to="/" className="nav-link2">
               <i className="fas fa-sign-out-alt"></i> Logout
             </Link>

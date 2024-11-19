@@ -73,6 +73,7 @@ import DealerPastHistory from "./pages/ViewDealerHitory/DealerPastHistory";
 import SalesByExe from "./pages/Exeproductdetails/salesEachProduct/SalesByExe";
 import DamangeInventory from "./pages/DamageInventory/DamangeInventory";
 import PackingDashboard from "./pages/PackingMaterials/PackingDashboard";
+import AddCheque from "./pages/Cheque/AddCheque/AddCheque";
 
 
 
@@ -139,7 +140,7 @@ function App() {
     <Route path="/addorder" element={<AddOrderdetails/>} />
     <Route path="/allorder" element={<Allorder/>} />
     <Route path="/orders/:id" element={<SingleOrder/>} />
-
+{/* ------------------------------------------------------------------------------------------------ */}
     <Route path="/Adminallorder" element={<ViewallOrder/>} />
     <Route path="/adminorder/:id" element={<Oneorder/>} />
     <Route path="/adminlogin" element={<LoginForm/>} />
@@ -182,12 +183,10 @@ function App() {
 
 
 
+
 {/* -------------------------------------Admin Page--------------------------------------------------------- */}
 
-
-
-
-
+<Route path="/Add-Cheque" element={<AddCheque/>} />
 
 
 
