@@ -129,45 +129,37 @@ const OutStandingTable = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredInvoices.map((invoice) => (
-                                <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
-                                    <td className='td-invoice'>{invoice.invoiceNumber}</td>
-                                    <td className='td-invoice'>{invoice.customer}</td>
-                                    <td className='td-invoice'>{invoice.code}</td>
-                                    <td className='td-invoice'>{invoice.GatePassNo}</td>
-                                    <td className='td-invoice'>{invoice.invoiceDate}</td>
-                                    <td className='td-invoice'>{invoice.Duedate}</td>
-                                    <td className='td-invoice'>{invoice.exe}</td>
-                                    <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
-                                        {formatNumbers(invoice.lastOutstanding)}
-                                    </td>
-                                    <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-                                    <td className='td-invoice'>
-                                        {invoice.chequeDetails.length > 0 ? (
-                                            <ul>
-                                                {invoice.chequeDetails.map((cheque, index) => (
-                                                    <li key={index}>
-                                                        {`Cheque #: ${cheque.ChequeNumber}, Value: ${formatNumbers(cheque.ChequeValue)}, Deposit Date: ${cheque.DepositeDate}`}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            "No Cheques Found"
-                                        )}
-                                    </td>
-                                    <td className='td-invoice'>
-                                        <Link to={`/view-admin-outstanding/${invoice._id}`}>
-                                            <AiOutlineEye size={20} color={"purple"} />
-                                        </Link>
-                                    </td>
-                                    <td className='td-invoice'>
-                                        <Link to={`/invoice/${invoice.invoiceNumber}`}>
-                                            <FontAwesomeIcon icon={faEye} className="action-icon" />
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
+    {filteredInvoices.map((invoice) => (
+        <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
+            <td className='td-invoice'>{invoice.invoiceNumber}</td>
+            <td className='td-invoice'>{invoice.customer}</td>
+            <td className='td-invoice'>{invoice.code}</td>
+            <td className='td-invoice'>{invoice.GatePassNo}</td>
+            <td className='td-invoice'>{invoice.invoiceDate}</td>
+            <td className='td-invoice'>{invoice.Duedate}</td>
+            <td className='td-invoice'>{invoice.exe}</td>
+            <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
+                {formatNumbers(invoice.lastOutstanding)}
+            </td>
+            <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+            <td className='td-invoice'>
+                {/* Render cheque value directly if available */}
+                {invoice.chequeDetails?.value ? formatNumbers(invoice.chequeDetails.value) : "No cheque value"}
+            </td>
+            <td className='td-invoice'>
+                <Link to={`/view-admin-outstanding/${invoice._id}`}>
+                    <AiOutlineEye size={20} color={"purple"} />
+                </Link>
+            </td>
+            <td className='td-invoice'>
+                <Link to={`/invoice/${invoice.invoiceNumber}`}>
+                    <FontAwesomeIcon icon={faEye} className="action-icon" />
+                </Link>
+            </td>
+        </tr>
+    ))}
+</tbody>
+
                     </table>
                 </div>
             </div>
