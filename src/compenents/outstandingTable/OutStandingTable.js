@@ -143,8 +143,13 @@ const OutStandingTable = () => {
             </td>
             <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
             <td className='td-invoice'>
-                {/* Render cheque value directly if available */}
-                {invoice.chequeDetails?.value ? formatNumbers(invoice.chequeDetails.value) : "No cheque value"}
+            {invoice.chequeDetails && invoice.chequeDetails.length > 0 ? (
+        invoice.chequeDetails.map((cheque, index) => (
+            <div key={index}>{formatNumbers(cheque.ChequeValue)}</div> // Using ChequeValue here
+        ))
+    ) : (
+        "No cheque value"
+    )}
             </td>
             <td className='td-invoice'>
                 <Link to={`/view-admin-outstanding/${invoice._id}`}>
