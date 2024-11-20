@@ -110,7 +110,7 @@ const OutStandingTable = () => {
                 </select>
 
                 
-                <input type='text' value={selectedCode} onChange={(e) => setSelectedCode(e.target.value)}/>
+                <input type='text' value={selectedCode} onChange={(e) => setSelectedCode(e.target.value)} placeholder='Custormer code'/>
 
                 {/* Search button */}
                 {/* <input
