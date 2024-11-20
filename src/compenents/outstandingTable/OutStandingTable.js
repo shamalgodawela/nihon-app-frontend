@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 import { Link } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
 
 const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
@@ -54,7 +54,7 @@ const OutStandingTable = () => {
         setLoading(true);
         try {
             let response;
-            // You can handle search by code in the API call if necessary
+            
             if (searchCode) {
                 response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoice-by-customer-code/${searchCode}`);
             } else {
@@ -98,7 +98,7 @@ const OutStandingTable = () => {
     return (
         <div>
             <div className='invoice-body'>
-                {/* Exec dropdown */}
+               
                 <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
                     <option value="">All Executives</option>
                     <option value="Mr.Ahamed">Mr.Ahamed</option>
@@ -109,7 +109,7 @@ const OutStandingTable = () => {
                     <option value="Mr.Nayum">Mr.Nayum</option>
                 </select>
 
-                {/* Customer code dropdown */}
+                
                 <input type='text' value={selectedCode} onChange={(e) => setSelectedCode(e.target.value)}/>
 
                 {/* Search button */}
