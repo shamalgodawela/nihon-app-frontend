@@ -8,6 +8,7 @@ const AddCheque = () => {
     ChequeNumber: '',
     ChequeValue: '',
     DepositeDate: '',
+    Bankdetails:''
   });
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
@@ -32,7 +33,7 @@ const AddCheque = () => {
       const data = await response.json();
       if (response.ok) {
         setMessage(data.message);
-        setFormData({ invoiceNumber: '', ChequeNumber: '', ChequeValue: '', DepositeDate: '' });
+        setFormData({ invoiceNumber: '', ChequeNumber: '', ChequeValue: '', DepositeDate: '',Bankdetails:'' });
       } else {
         setError(data.error || 'An error occurred');
       }
@@ -85,6 +86,17 @@ const AddCheque = () => {
 
         <div className="form-group">
           <label htmlFor="DepositeDate">Deposit Date</label>
+          <input
+            type="date"
+            id="DepositeDate"
+            name="DepositeDate"
+            value={formData.DepositeDate}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="DepositeDate"></label>
           <input
             type="date"
             id="DepositeDate"
