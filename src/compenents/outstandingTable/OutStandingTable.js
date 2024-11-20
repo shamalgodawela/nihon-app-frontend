@@ -4,6 +4,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
+import { Link } from 'react-router-dom';
 
 const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
@@ -108,23 +109,16 @@ const OutStandingTable = () => {
                 </select>
 
                 {/* Customer code dropdown */}
-                <select value={selectedCode} onChange={(e) => setSelectedCode(e.target.value)}>
-                    <option value="">All Customer Codes</option>
-                    <option value="AM06007">AM06007</option>
-                    <option value="C002">C002</option>
-                    <option value="C003">C003</option>
-                    <option value="C004">C004</option>
-                    {/* Add more customer codes as needed */}
-                </select>
+                <input type='text' value={selectedCode} onChange={(e) => setSelectedCode(e.target.value)}/>
 
                 {/* Search button */}
-                <input
+                {/* <input
                     type="text"
                     value={searchCode}
                     onChange={(e) => setSearchCode(e.target.value)}
                     placeholder="Search by Customer Code"
                 />
-                <button onClick={handleSearch}>Search</button>
+                <button onClick={handleSearch}>Search</button> */}
 
                 <div className="all-invoice">
                     <h2 className='h2-invoice'>Outstanding Details</h2>
