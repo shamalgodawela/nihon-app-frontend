@@ -96,16 +96,25 @@ const AddCheque = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="DepositeDate"></label>
-          <input
-            type="date"
-            id="DepositeDate"
-            name="DepositeDate"
-            value={formData.DepositeDate}
-            onChange={handleChange}
-            required
-          />
-        </div>
+  <label htmlFor="BankName">Bank Name</label>
+  <select
+    id="BankName"
+    name="backName"
+    value={formData.backName}
+    onChange={handleChange}
+    required
+  >
+    <option value="">Select Bank</option>
+    <option value="Bank of Ceylon">Bank of Ceylon</option>
+    <option value="Commercial Bank">Commercial Bank</option>
+    <option value="Hatton National Bank">Hatton National Bank</option>
+    <option value="People's Bank">People's Bank</option>
+    <option value="Sampath Bank">Sampath Bank</option>
+    <option value="National Savings Bank">National Savings Bank</option>
+    <option value="DFCC Bank">DFCC Bank</option>
+  </select>
+</div>
+
 
         <button type="submit" className="btn-submit">Submit</button>
       </form>
