@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
@@ -12,7 +13,7 @@ const OutStandingTable = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedExe, setSelectedExe] = useState('');
-    const [selectedCode, setSelectedCode] = useState(''); // State for customer code
+    const [selectedCode, setSelectedCode] = useState(''); 
     const [searchCode, setSearchCode] = useState('');
 
     useEffect(() => {
