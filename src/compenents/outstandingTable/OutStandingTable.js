@@ -1,7 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState, useCallback } from 'react';
+import axios from 'axios';
 import { AiOutlineEye } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
@@ -12,6 +11,7 @@ const OutStandingTable = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedExe, setSelectedExe] = useState('');
+    const [selectedCode, setSelectedCode] = useState(''); // State for customer code
     const [searchCode, setSearchCode] = useState('');
 
     useEffect(() => {
@@ -32,26 +32,29 @@ const OutStandingTable = () => {
     }, []);
 
     const debounceFilter = useCallback(
-        debounce((exe) => {
-            if (exe) {
-                const filtered = invoices.filter(invoice => invoice.exe === exe);
-                setFilteredInvoices(filtered);
-            } else {
-                setFilteredInvoices(invoices);
+        debounce(() => {
+            let filtered = invoices;
+            if (selectedExe) {
+                filtered = filtered.filter(invoice => invoice.exe === selectedExe);
             }
-        }, 300), [invoices]
+            if (selectedCode) {
+                filtered = filtered.filter(invoice => invoice.code === selectedCode);
+            }
+            setFilteredInvoices(filtered);
+        }, 300), [invoices, selectedExe, selectedCode]
     );
 
     useEffect(() => {
-        debounceFilter(selectedExe);
-    }, [selectedExe, debounceFilter]);
+        debounceFilter();
+    }, [selectedExe, selectedCode, debounceFilter]);
 
     const handleSearch = async () => {
         setLoading(true);
         try {
             let response;
+            // You can handle search by code in the API call if necessary
             if (searchCode) {
-                response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoice-by-executive/${searchCode}`);
+                response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoice-by-customer-code/${searchCode}`);
             } else {
                 response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
             }
@@ -64,14 +67,6 @@ const OutStandingTable = () => {
             setLoading(false);
         }
     };
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
 
     const formatNumbers = (x) => {
         if (typeof x === 'number') {
@@ -90,11 +85,20 @@ const OutStandingTable = () => {
         return 0;
     };
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <div>
             <div className='invoice-body'>
+                {/* Exec dropdown */}
                 <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
-                    <option value="">All</option>
+                    <option value="">All Executives</option>
                     <option value="Mr.Ahamed">Mr.Ahamed</option>
                     <option value="Mr.Dasun">Mr.Dasun</option>
                     <option value="Mr.Chameera">Mr.Chameera</option>
@@ -102,6 +106,18 @@ const OutStandingTable = () => {
                     <option value="Mr.Navaneedan">Mr.Navaneedan</option>
                     <option value="Mr.Nayum">Mr.Nayum</option>
                 </select>
+
+                {/* Customer code dropdown */}
+                <select value={selectedCode} onChange={(e) => setSelectedCode(e.target.value)}>
+                    <option value="">All Customer Codes</option>
+                    <option value="AM06007">AM06007</option>
+                    <option value="C002">C002</option>
+                    <option value="C003">C003</option>
+                    <option value="C004">C004</option>
+                    {/* Add more customer codes as needed */}
+                </select>
+
+                {/* Search button */}
                 <input
                     type="text"
                     value={searchCode}
@@ -109,6 +125,7 @@ const OutStandingTable = () => {
                     placeholder="Search by Customer Code"
                 />
                 <button onClick={handleSearch}>Search</button>
+
                 <div className="all-invoice">
                     <h2 className='h2-invoice'>Outstanding Details</h2>
                     <table>
@@ -129,43 +146,42 @@ const OutStandingTable = () => {
                             </tr>
                         </thead>
                         <tbody>
-    {filteredInvoices.map((invoice) => (
-        <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
-            <td className='td-invoice'>{invoice.invoiceNumber}</td>
-            <td className='td-invoice'>{invoice.customer}</td>
-            <td className='td-invoice'>{invoice.code}</td>
-            <td className='td-invoice'>{invoice.GatePassNo}</td>
-            <td className='td-invoice'>{invoice.invoiceDate}</td>
-            <td className='td-invoice'>{invoice.Duedate}</td>
-            <td className='td-invoice'>{invoice.exe}</td>
-            <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
-                {formatNumbers(invoice.lastOutstanding)}
-            </td>
-            <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-            <td className='td-invoice'>
-  {Array.isArray(invoice.chequeValues) && invoice.chequeValues.length > 0 ? (
-    invoice.chequeValues.map((cheque, index) => (
-      <div key={index}>{formatNumbers(cheque)}</div>  // Using cheque value directly here
-    ))
-  ) : (
-    "No cheque value"
-  )}
-</td>
+                            {filteredInvoices.map((invoice) => (
+                                <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
+                                    <td className='td-invoice'>{invoice.invoiceNumber}</td>
+                                    <td className='td-invoice'>{invoice.customer}</td>
+                                    <td className='td-invoice'>{invoice.code}</td>
+                                    <td className='td-invoice'>{invoice.GatePassNo}</td>
+                                    <td className='td-invoice'>{invoice.invoiceDate}</td>
+                                    <td className='td-invoice'>{invoice.Duedate}</td>
+                                    <td className='td-invoice'>{invoice.exe}</td>
+                                    <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
+                                        {formatNumbers(invoice.lastOutstanding)}
+                                    </td>
+                                    <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+                                    <td className='td-invoice'>
+                                        {Array.isArray(invoice.chequeValues) && invoice.chequeValues.length > 0 ? (
+                                            invoice.chequeValues.map((cheque, index) => (
+                                                <div key={index}>{formatNumbers(cheque)}</div>
+                                            ))
+                                        ) : (
+                                            "No cheque value"
+                                        )}
+                                    </td>
 
-            <td className='td-invoice'>
-                <Link to={`/view-admin-outstanding/${invoice._id}`}>
-                    <AiOutlineEye size={20} color={"purple"} />
-                </Link>
-            </td>
-            <td className='td-invoice'>
-                <Link to={`/invoice/${invoice.invoiceNumber}`}>
-                    <FontAwesomeIcon icon={faEye} className="action-icon" />
-                </Link>
-            </td>
-        </tr>
-    ))}
-</tbody>
-
+                                    <td className='td-invoice'>
+                                        <Link to={`/view-admin-outstanding/${invoice._id}`}>
+                                            <AiOutlineEye size={20} color={"purple"} />
+                                        </Link>
+                                    </td>
+                                    <td className='td-invoice'>
+                                        <Link to={`/invoice/${invoice.invoiceNumber}`}>
+                                            <FontAwesomeIcon icon={faEye} className="action-icon" />
+                                        </Link>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
                 </div>
             </div>
