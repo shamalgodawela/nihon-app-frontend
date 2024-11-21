@@ -86,7 +86,7 @@ const AddCheque = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="DepositeDate">Deposit Date</label>
+          <label htmlFor="DepositeDate">Due Date</label>
           <input
             type="date"
             id="DepositeDate"
@@ -112,8 +112,8 @@ const AddCheque = () => {
      <label htmlFor="BankName">Bank Name</label>
  <select
     id="BankName"
-    name="backName"
-    value={formData.backName}
+    name="Bankdetails"
+    value={formData.Bankdetails}
     onChange={handleChange}
     required
   >
