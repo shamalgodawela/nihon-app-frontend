@@ -99,7 +99,7 @@ const AddCheque = () => {
         <div className="form-group">
           <label htmlFor="DepositeDate">Branch Name</label>
           <input
-            type="date"
+            type="text"
             id="DepositeDate"
             name="BankBranch"
             value={formData.BankBranch}
