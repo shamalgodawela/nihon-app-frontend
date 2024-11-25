@@ -1,13 +1,12 @@
-import axios from 'axios';
 import React, { useEffect, useState, useCallback } from 'react';
+import axios from 'axios';
 import { AiOutlineEye } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
-import MenuOperation from '../../../compenents/Menu/MenuOperation';
-import Footer from '../../../compenents/footer/Footer';
 import debounce from 'lodash.debounce';
-import './Operations.css'
+import { Link } from 'react-router-dom';
+import MenuOperation from '../../../compenents/Menu/MenuOperation';
+
 
 const Opertionoutstanding = () => {
     const [invoices, setInvoices] = useState([]);
@@ -15,8 +14,9 @@ const Opertionoutstanding = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedExe, setSelectedExe] = useState('');
+    const [selectedCode, setSelectedCode] = useState(''); 
+    const [searchCode, setSearchCode] = useState('');
 
-    // Fetch all invoices initially
     useEffect(() => {
         const fetchAllInvoices = async () => {
             try {
@@ -34,21 +34,59 @@ const Opertionoutstanding = () => {
         fetchAllInvoices();
     }, []);
 
-    // Debounced function to filter invoices
     const debounceFilter = useCallback(
-        debounce((exe) => {
-            if (exe) {
-                const filtered = invoices.filter(invoice => invoice.exe === exe);
-                setFilteredInvoices(filtered);
-            } else {
-                setFilteredInvoices(invoices);
+        debounce(() => {
+            let filtered = invoices;
+            if (selectedExe) {
+                filtered = filtered.filter(invoice => invoice.exe === selectedExe);
             }
-        }, 300), [invoices]
+            if (selectedCode) {
+                filtered = filtered.filter(invoice => invoice.code === selectedCode);
+            }
+            setFilteredInvoices(filtered);
+        }, 300), [invoices, selectedExe, selectedCode]
     );
 
     useEffect(() => {
-        debounceFilter(selectedExe);
-    }, [selectedExe, debounceFilter]);
+        debounceFilter();
+    }, [selectedExe, selectedCode, debounceFilter]);
+
+    const handleSearch = async () => {
+        setLoading(true);
+        try {
+            let response;
+            
+            if (searchCode) {
+                response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoice-by-customer-code/${searchCode}`);
+            } else {
+                response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
+            }
+            setInvoices(response.data);
+            setFilteredInvoices(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Failed to fetch invoices', error.message);
+            setError('Failed to fetch invoices');
+            setLoading(false);
+        }
+    };
+
+    const formatNumbers = (x) => {
+        if (typeof x === 'number') {
+            return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        return x;
+    };
+
+    const calculateTotal = (invoice) => {
+        if (invoice && invoice.products) {
+            return invoice.products.reduce((acc, product) => {
+                const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+                return acc + productTotal;
+            }, 0);
+        }
+        return 0;
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -58,32 +96,13 @@ const Opertionoutstanding = () => {
         return <div>Error: {error}</div>;
     }
 
-    const formatNumbers = (x) => {
-        // Ensure x is a number before formatting
-        if (typeof x === 'number') {
-            return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-        return x; // Return the original value if it's not a number
-    };
-
-    const calculateTotal = (invoice) => {
-        if (invoice && invoice.products) {
-            // Calculate the total by reducing the products array
-            return invoice.products.reduce((acc, product) => {
-                const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
-                return acc + productTotal;
-            }, 0);
-        }
-        return 0; // Return 0 if there are no products
-    };
-
     return (
         <div>
-            <MenuOperation /><br/><br/><br/><br/>
-
+            <MenuOperation/><br/><br/><br/><br/><br/>
             <div className='invoice-body'>
+               
                 <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
-                    <option value="">All</option>
+                    <option value="">All Executives</option>
                     <option value="Mr.Ahamed">Mr.Ahamed</option>
                     <option value="Mr.Dasun">Mr.Dasun</option>
                     <option value="Mr.Chameera">Mr.Chameera</option>
@@ -91,6 +110,19 @@ const Opertionoutstanding = () => {
                     <option value="Mr.Navaneedan">Mr.Navaneedan</option>
                     <option value="Mr.Nayum">Mr.Nayum</option>
                 </select>
+
+                
+                <input type='text' value={selectedCode} onChange={(e) => setSelectedCode(e.target.value)} placeholder='Custormer code '/>
+
+                {/* Search button */}
+                {/* <input
+                    type="text"
+                    value={searchCode}
+                    onChange={(e) => setSearchCode(e.target.value)}
+                    placeholder="Search by Customer Code"
+                />
+                <button onClick={handleSearch}>Search</button> */}
+
                 <div className="all-invoice">
                     <h2 className='h2-invoice'>Outstanding Details</h2>
                     <table>
@@ -105,46 +137,49 @@ const Opertionoutstanding = () => {
                                 <th className='th-invoice'>Exe</th>
                                 <th className='th-invoice'>Outstanding</th>
                                 <th className='th-invoice'>Invoice Total</th>
-                                <th className='th-invoice'>Phone Number</th>
+                                <th className='th-invoice'>Cheque Details</th>
                                 <th className='th-invoice'>Action</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-    {filteredInvoices.map((invoice) => (
-        <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
-            <td className='td-invoice'>{invoice.invoiceNumber}</td>
-            <td className='td-invoice'>{invoice.customer}</td>
-            <td className='td-invoice'>{invoice.code}</td>
-            <td className='td-invoice'>{invoice.GatePassNo}</td>
-            <td className='td-invoice'>{invoice.invoiceDate}</td>
-            <td className='td-invoice'>{invoice.Duedate}</td>
-            <td className='td-invoice'>{invoice.exe}</td>
-            <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
-    {formatNumbers(invoice.lastOutstanding)}
-</td>
-            <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-            <td className='td-invoice'>{invoice.contact}</td>
+                            {filteredInvoices.map((invoice) => (
+                                <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
+                                    <td className='td-invoice'>{invoice.invoiceNumber}</td>
+                                    <td className='td-invoice'>{invoice.customer}</td>
+                                    <td className='td-invoice'>{invoice.code}</td>
+                                    <td className='td-invoice'>{invoice.GatePassNo}</td>
+                                    <td className='td-invoice'>{invoice.invoiceDate}</td>
+                                    <td className='td-invoice'>{invoice.Duedate}</td>
+                                    <td className='td-invoice'>{invoice.exe}</td>
+                                    <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
+                                        {formatNumbers(invoice.lastOutstanding)}
+                                    </td>
+                                    <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+                                    <td className='td-invoice'>
+                                        {Array.isArray(invoice.chequeValues) && invoice.chequeValues.length > 0 ? (
+                                            invoice.chequeValues.map((cheque, index) => (
+                                                <div key={index}>{formatNumbers(cheque)}</div>
+                                            ))
+                                        ) : (
+                                            "No cheque value"
+                                        )}
+                                    </td>
 
-            <td className='td-invoice'>
-                <Link to={`/view-single-operation/${invoice._id}`}>
-                    <AiOutlineEye size={20} color={"purple"} />
-                </Link>
-            </td>
-        </tr>
-    ))}
-</tbody>
-
+                                    <td className='td-invoice'>
+                                        <Link to={`/view-admin-outstanding/${invoice._id}`}>
+                                            <AiOutlineEye size={20} color={"purple"} />
+                                        </Link>
+                                    </td>
+                                    
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
                 </div>
             </div>
-            <Footer />
         </div>
     );
-}
+};
 
 export default Opertionoutstanding;
-
-
-
-
-
