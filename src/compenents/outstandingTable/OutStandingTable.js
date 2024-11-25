@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 import { Link } from 'react-router-dom';
-import './Operations.css'
 
 const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
