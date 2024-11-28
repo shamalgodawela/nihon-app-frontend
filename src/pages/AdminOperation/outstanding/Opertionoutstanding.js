@@ -168,7 +168,7 @@ const Opertionoutstanding = () => {
                                     </td>
 
                                     <td className='td-invoice'>
-                                        <Link to={`/view-admin-outstanding/${invoice._id}`}>
+                                        <Link to={`/view-single-operation/${invoice._id}`}>
                                             <AiOutlineEye size={20} color={"purple"} />
                                         </Link>
                                     </td>

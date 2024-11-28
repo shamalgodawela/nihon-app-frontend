@@ -164,6 +164,7 @@ const SingleOpOutstanding = () => {
         <h4 className="h1-out">Invoice Date:{invoice.invoiceDate}</h4>
         <h4 className="h1-out">EXE: {invoice.exe}</h4>
         <h4 className="h1-out">Phone number: {invoice.contact}</h4>
+        
 
         
         <br/><hr/><br/>
