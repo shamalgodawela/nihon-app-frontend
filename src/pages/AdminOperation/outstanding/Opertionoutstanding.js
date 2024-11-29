@@ -6,6 +6,7 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 import { Link } from 'react-router-dom';
 import MenuOperation from '../../../compenents/Menu/MenuOperation';
+import './Operations.css'
 
 
 

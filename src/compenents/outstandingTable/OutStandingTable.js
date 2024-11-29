@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 import { Link } from 'react-router-dom';
+import './allInvoice.css'
 
 const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
@@ -111,14 +112,7 @@ const OutStandingTable = () => {
                 
                 <input type='text' value={selectedCode} onChange={(e) => setSelectedCode(e.target.value)} placeholder='Custormer code '/>
 
-                {/* Search button */}
-                {/* <input
-                    type="text"
-                    value={searchCode}
-                    onChange={(e) => setSearchCode(e.target.value)}
-                    placeholder="Search by Customer Code"
-                />
-                <button onClick={handleSearch}>Search</button> */}
+                
 
                 <div className="all-invoice">
                     <h2 className='h2-invoice'>Outstanding Details</h2>
