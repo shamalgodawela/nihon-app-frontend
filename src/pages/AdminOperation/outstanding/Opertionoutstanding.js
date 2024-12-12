@@ -80,15 +80,21 @@ const Opertionoutstanding = () => {
         return x;
     };
 
-    const calculateTotal = (invoice) => {
+    const calculateTotal = (invoice, taxPercentage) => {
         if (invoice && invoice.products) {
-            return invoice.products.reduce((acc, product) => {
-                const productTotal = product.labelPrice * (1 - product.discount / 100) * product.quantity;
-                return acc + productTotal;
+            const productTotal = invoice.products.reduce((acc, product) => {
+                const productValue = product.labelPrice * (1 - product.discount / 100) * product.quantity;
+                return acc + productValue;
             }, 0);
+    
+            // Deduct tax from the total
+            const totalAfterTax = productTotal - (productTotal * taxPercentage / 100);
+    
+            return totalAfterTax;
         }
         return 0;
     };
+    
 
     if (loading) {
         return <div>Loading...</div>;
