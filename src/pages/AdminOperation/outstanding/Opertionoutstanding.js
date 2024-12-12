@@ -88,7 +88,7 @@ const Opertionoutstanding = () => {
             }, 0);
     
             // Deduct tax from the total
-            const totalAfterTax = productTotal - (productTotal * taxPercentage / 100);
+            const totalAfterTax = productTotal - (productTotal * Tax / 100);
     
             return totalAfterTax;
         }
