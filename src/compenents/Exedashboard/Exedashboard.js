@@ -3,7 +3,7 @@ import HeaderExe from '../headerexe/HeaderExe';
 import HeaderE from '../header/HeaderE';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/features/product/productSlicaExe';
-import { selectIsLoggedIn, selectName, selectInvoices } from '../../redux/features/auth/authSliceExe'; // Import the selector to get invoices
+import { selectIsLoggedIn, selectName, selectInvoices, SET_INVOICES } from '../../redux/features/auth/authSliceExe'; // Import the selector and action
 import ProductListExe from '../product/productList/ProductListExe';
 
 const Exedashboard = () => {
@@ -11,9 +11,7 @@ const Exedashboard = () => {
   const dispatch = useDispatch();
   const isLoggedin = useSelector(selectIsLoggedIn);
   const { products, isLoading, isError, message } = useSelector((state) => state.product);
-
-  // Access invoices directly from the Redux store
-  const invoices = useSelector(selectInvoices);
+  const invoices = useSelector(selectInvoices); // Access invoices from Redux state
 
   useEffect(() => {
     if (isLoggedin) {
@@ -23,6 +21,14 @@ const Exedashboard = () => {
     if (isError) {
       console.log(message);
     }
+
+    // Example of setting invoices, you can replace this with actual invoice data
+    const fetchedInvoices = [
+      { customer: 'Customer A', code: 'A123', address: 'Address A', contact: '1234567890', invoiceDate: '2024-12-01' },
+      { customer: 'Customer B', code: 'B456', address: 'Address B', contact: '0987654321', invoiceDate: '2024-12-02' },
+    ];
+    
+    dispatch(SET_INVOICES(fetchedInvoices)); // Dispatch action to set invoices
   }, [isLoggedin, isError, message, dispatch]);
 
   return (
@@ -33,7 +39,6 @@ const Exedashboard = () => {
       <ProductListExe products={products} />
       <div>
         <h3>Invoices</h3>
-        {/* Check if invoices are available */}
         {invoices.length === 0 ? (
           <p>No invoices available.</p>
         ) : (
@@ -50,7 +55,7 @@ const Exedashboard = () => {
             </thead>
             <tbody>
               {invoices.map((invoice, index) => (
-                <tr key={invoice._id}>
+                <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{invoice.customer}</td>
                   <td>{invoice.code}</td>
