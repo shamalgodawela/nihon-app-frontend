@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import HeaderExe from '../headerexe/HeaderExe';
 import HeaderE from '../header/HeaderE';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/features/product/productSlicaExe';
-import { selectIsLoggedIn, selectName } from '../../redux/features/auth/authSliceExe';
+import { selectIsLoggedIn, selectName, selectInvoices } from '../../redux/features/auth/authSliceExe'; // Import the selector to get invoices
 import ProductListExe from '../product/productList/ProductListExe';
-import axios from 'axios';
 
 const Exedashboard = () => {
   const name = useSelector(selectName);
@@ -13,34 +12,18 @@ const Exedashboard = () => {
   const isLoggedin = useSelector(selectIsLoggedIn);
   const { products, isLoading, isError, message } = useSelector((state) => state.product);
 
-  const [invoices, setInvoices] = useState([]);
-  const [invoiceLoading, setInvoiceLoading] = useState(true);
+  // Access invoices directly from the Redux store
+  const invoices = useSelector(selectInvoices);
 
   useEffect(() => {
     if (isLoggedin) {
       dispatch(getProducts());
-      fetchInvoices();
     }
 
     if (isError) {
       console.log(message);
     }
   }, [isLoggedin, isError, message, dispatch]);
-
-  const fetchInvoices = async () => {
-    try {
-      const response = await axios.get('https://nihon-inventory.onrender.com/api/get-all-invoices', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Adjust token handling as needed
-        },
-      });
-      setInvoices(response.data.invoices || []);
-      setInvoiceLoading(false);
-    } catch (error) {
-      console.error('Error fetching invoices:', error);
-      setInvoiceLoading(false);
-    }
-  };
 
   return (
     <div>
@@ -50,9 +33,10 @@ const Exedashboard = () => {
       <ProductListExe products={products} />
       <div>
         <h3>Invoices</h3>
-        {invoiceLoading ? (
-          <p>Loading invoices...</p>
-        ) : invoices.length > 0 ? (
+        {/* Check if invoices are available */}
+        {invoices.length === 0 ? (
+          <p>No invoices available.</p>
+        ) : (
           <table className="table table-bordered">
             <thead>
               <tr>
@@ -66,7 +50,7 @@ const Exedashboard = () => {
             </thead>
             <tbody>
               {invoices.map((invoice, index) => (
-                <tr key={index}>
+                <tr key={invoice._id}>
                   <td>{index + 1}</td>
                   <td>{invoice.customer}</td>
                   <td>{invoice.code}</td>
@@ -77,8 +61,6 @@ const Exedashboard = () => {
               ))}
             </tbody>
           </table>
-        ) : (
-          <p>No invoices available.</p>
         )}
       </div>
     </div>
