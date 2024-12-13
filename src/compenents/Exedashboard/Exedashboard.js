@@ -3,44 +3,28 @@ import HeaderExe from '../headerexe/HeaderExe';
 import HeaderE from '../header/HeaderE';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../redux/features/product/productSlicaExe';
-import { selectIsLoggedIn, selectName } from '../../redux/features/auth/authSliceExe';
+import { selectIsLoggedIn, selectName, selectUserData } from '../../redux/features/auth/authSliceExe';
 import ProductListExe from '../product/productList/ProductListExe';
-import axios from 'axios';
 
 const Exedashboard = () => {
   const name = useSelector(selectName);
   const dispatch = useDispatch();
   const isLoggedin = useSelector(selectIsLoggedIn);
   const { products, isLoading, isError, message } = useSelector((state) => state.product);
-
-  const [invoices, setInvoices] = useState([]);
-  const [invoiceLoading, setInvoiceLoading] = useState(true);
+  
+  // Getting invoices from the Redux store (this will come from your login response)
+  const invoices = useSelector(selectUserData)?.invoices || [];
+  const [invoiceLoading, setInvoiceLoading] = useState(false);
 
   useEffect(() => {
     if (isLoggedin) {
       dispatch(getProducts());
-      fetchInvoices();
     }
 
     if (isError) {
       console.log(message);
     }
   }, [isLoggedin, isError, message, dispatch]);
-
-  const fetchInvoices = async () => {
-    try {
-      const response = await axios.get('https://nihon-inventory.onrender.com/api/get-all-invoices', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Adjust token handling as needed
-        },
-      });
-      setInvoices(response.data.invoices || []);
-      setInvoiceLoading(false);
-    } catch (error) {
-      console.error('Error fetching invoices:', error);
-      setInvoiceLoading(false);
-    }
-  };
 
   return (
     <div>
