@@ -31,7 +31,7 @@ const Exedashboard = () => {
 
   const fetchInvoices = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/invoices', {
+      const response = await axios.get('http://localhost:5000/api/get-all-invoices', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Adjust token handling as per your app
         },
