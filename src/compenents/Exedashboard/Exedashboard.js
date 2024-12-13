@@ -1,42 +1,72 @@
-import React, { useEffect } from 'react'
-import HeaderExe from '../headerexe/HeaderExe'
-import HeaderE from '../header/HeaderE'
-import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../../redux/features/product/productSlicaExe'
-import { selectIsLoggedIn, selectName } from '../../redux/features/auth/authSliceExe'
-import ProductListExe from '../product/productList/ProductListExe'
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const Exedashboard = () => {
-  const name=useSelector(selectName)
+const Exedahsboard = () => {
+  const navigate = useNavigate();
   
+  // Accessing Redux state
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const name = useSelector((state) => state.auth.name);
+  const token = useSelector((state) => state.auth.token); // assuming token is stored in Redux
 
-  const dispatch=useDispatch()
+  const [invoices, setInvoices] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // If the user is not logged in, redirect to login page
+  if (!isLoggedIn) {
+    navigate("/exeLogin");
+  }
 
-  const isLoggedin= useSelector(selectIsLoggedIn)
-  const {products, isLoading, isError, message} =useSelector((state)=> state.product)
-
-  useEffect(()=>{
-    if(isLoggedin===true){
-      dispatch(getProducts())
-      
+  useEffect(() => {
+    // Fetching the invoices after login
+    if (isLoggedIn && token) {
+      axios
+        .get('http://localhost:5000/api/get-all-invoices', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setInvoices(response.data.invoices); // Assuming invoices are part of the response
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching invoices:', error);
+          setLoading(false);
+        });
     }
-    
+  }, [isLoggedIn, token]);
 
-    if(isError){
-      console.log(message);
-    }
-
-  }, [isLoggedin, isError, message, dispatch])
   return (
     <div>
-        <HeaderExe/>
-        <HeaderE/>
-        <ProductListExe  products={products} />
+      <h1>Welcome to the Exe Dashboard, {name}</h1>
 
-
+      {loading ? (
+        <p>Loading invoices...</p>
+      ) : (
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {invoices.map((invoice, index) => (
+              <tr key={invoice._id}>
+                <td>{index + 1}</td>
+                <td>{invoice.exe}</td>
+                
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Exedashboard
+export default Exedahsboard;
