@@ -31,7 +31,7 @@ const Exedashboard = () => {
 
   const fetchInvoices = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/get-all-invoices', {
+      const response = await axios.get('https://nihon-inventory.onrender.com/api/get-all-invoices', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Adjust token handling as per your app
         },
@@ -59,20 +59,15 @@ const Exedashboard = () => {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Invoice ID</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Status</th>
+                
               </tr>
             </thead>
             <tbody>
               {invoices.map((invoice, index) => (
                 <tr key={invoice._id}>
                   <td>{index + 1}</td>
-                  <td>{invoice.invoiceId}</td>
-                  <td>{new Date(invoice.date).toLocaleDateString()}</td>
-                  <td>{invoice.amount}</td>
-                  <td>{invoice.status}</td>
+                  <td>{invoice.exe}</td>
+                  
                 </tr>
               ))}
             </tbody>
