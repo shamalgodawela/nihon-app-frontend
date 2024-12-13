@@ -36,7 +36,7 @@ const Exedashboard = () => {
           Authorization: `Bearer ${localStorage.getItem('token')}`, // Adjust token handling as per your app
         },
       });
-      setInvoices(response.data.invoices);
+      setInvoices(response.data.invoices || []);
       setInvoiceLoading(false);
     } catch (error) {
       console.error('Error fetching invoices:', error);
