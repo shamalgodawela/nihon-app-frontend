@@ -152,6 +152,7 @@ const AllInvoice = () => {
                     <th className='th-invoice'>Due date</th>
                     <th className='th-invoice'>Exe</th>
                     <th className='th-invoice'>Invoice Total</th>
+                    <th className='th-invoice'>CH/C</th>
                     <th className='th-invoice'>Action</th>
                   </tr>
                 </thead>
@@ -164,6 +165,7 @@ const AllInvoice = () => {
                       <td className='td-invoice'>{invoice.code}</td>
                       <td className='td-invoice'>{invoice.invoiceDate}</td>
                       <td className='td-invoice'>{invoice.Duedate}</td>
+                      <td className='td-invoice'>{invoice.ModeofPayment}</td>
                       <td className='td-invoice'>{invoice.exe}</td>
                       <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
                       <td className='td-invoice'>
