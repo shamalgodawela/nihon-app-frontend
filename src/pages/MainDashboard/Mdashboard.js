@@ -67,6 +67,12 @@ const Mdashboard = () => {
       text: "",
       href: "/Exe-product-wise-sales" 
     },
+    {
+      imageClass: "card__image--record",
+      title: "View Invoices",
+      text: "",
+      href: "/view-invoice" 
+    },
     
   ];
 
