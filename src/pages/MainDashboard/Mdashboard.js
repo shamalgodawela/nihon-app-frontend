@@ -71,7 +71,7 @@ const Mdashboard = () => {
       imageClass: "card__image--record",
       title: "View Invoices",
       text: "",
-      href: "/view-invoice" 
+      href: "/viewALLinvoice" 
     },
     
   ];

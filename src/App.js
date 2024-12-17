@@ -74,7 +74,7 @@ import SalesByExe from "./pages/Exeproductdetails/salesEachProduct/SalesByExe";
 import DamangeInventory from "./pages/DamageInventory/DamangeInventory";
 import PackingDashboard from "./pages/PackingMaterials/PackingDashboard";
 import AddCheque from "./pages/Cheque/AddCheque/AddCheque";
-import ViewInvoice from "./pages/invoice/ViewInvoice/ViewInvoice";
+import ViewAllinvoice from "./pages/ViewAllinvoice/ViewAllinvoice";
 
 
 
@@ -172,7 +172,8 @@ function App() {
     <Route path="/Add-New-bulk-product" element={<AddNewBulk/>} />
     <Route path="/view-all-bulk" element={<ViewAllBulk/>} />
     <Route path="/view-dealer-history" element={<DealerHistory/>} />
-    <Route path="/view-invoice" element={<ViewInvoice/>} />
+    <Route path="/viewALLinvoice" element={<ViewAllinvoice/>} />
+    <Route path="/view-single-invoice/:id" element={<ViewAllinvoice/>} />
 
 
 {/*----------------------------------Admin Operations pages----------------------------------------------*/}
