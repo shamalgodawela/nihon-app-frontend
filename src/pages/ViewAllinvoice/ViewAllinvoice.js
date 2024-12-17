@@ -89,100 +89,102 @@ const ViewAllinvoice = () => {
 
   return (
     <body className='invoice-body'>
-      <div>
-        <Navbar2 /><br /><br />
-        <div className="search-container" style={{ display: 'flex', marginBottom: '20px' }}>
-          <input
-            type="text"
-            placeholder="Search by Invoice Number or Customer"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            style={{ marginRight: '10px', padding: '5px' }}
-          />
-          <select
-            value={exe}
-            onChange={(e) => setExe(e.target.value)}
-            style={{ marginRight: '10px', padding: '5px' }}
-          >
-            <option value="">Select Exe</option>
-            <option value="Mr.Ahamed">Mr.Ahamed</option>
-            <option value="Mr.Dasun">Mr.Dasun</option>
-            <option value="Mr.Chameera">Mr.Chameera</option>
-            <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
-            <option value="Mr.Nayum">Mr.Nayum</option>
-            <option value="Mr.Navaneedan">Mr.Navaneedan</option>
-          </select>
+  <div>
+    <Navbar2 /><br /><br />
+    <div className="invoice-page-search-container" style={{ display: 'flex', marginBottom: '20px' }}>
+      <input
+        type="text"
+        placeholder="Search by Invoice Number or Customer"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        style={{ marginRight: '10px', padding: '5px' }}
+      />
+      <select
+        value={exe}
+        onChange={(e) => setExe(e.target.value)}
+        style={{ marginRight: '10px', padding: '5px' }}
+      >
+        <option value="">Select Exe</option>
+        <option value="Mr.Ahamed">Mr.Ahamed</option>
+        <option value="Mr.Dasun">Mr.Dasun</option>
+        <option value="Mr.Chameera">Mr.Chameera</option>
+        <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
+        <option value="Mr.Nayum">Mr.Nayum</option>
+        <option value="Mr.Navaneedan">Mr.Navaneedan</option>
+      </select>
 
-          {/* New Input for Product Code Search */}
-          <input
-            type="text"
-            placeholder="Search by Product Code"
-            value={productCode}
-            onChange={(e) => setProductCode(e.target.value)}
-            style={{ marginRight: '10px', padding: '5px' }}
-          />
+      <input
+        type="text"
+        placeholder="Search by Product Code"
+        value={productCode}
+        onChange={(e) => setProductCode(e.target.value)}
+        style={{ marginRight: '10px', padding: '5px' }}
+      />
 
-          <button
-            onClick={searchInvoices}
-            style={{
-              padding: '5px',
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-          >
-            Search
-          </button>
-        </div>
+      <button
+        onClick={searchInvoices}
+        style={{
+          padding: '5px',
+          backgroundColor: '#007bff',
+          color: 'white',
+          border: 'none',
+          cursor: 'pointer'
+        }}
+      >
+        Search
+      </button>
+    </div>
 
-        <button type="button" className="btn btn-outline-primary" disabled><a href="/add-invoice">Add Invoice</a></button>
-        <div className="all-invoice">
-          {isLoading ? <Loader /> : (
-            <>
-              <h2 className='h2-invoice'>All Invoices</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th className='th-invoice'>Invoice Number</th>
-                    <th className='th-invoice'>Printed or Canceled</th>
-                    <th className='th-invoice'>Customer</th>
-                    <th className='th-invoice'>Customer Code</th>
-                    <th className='th-invoice'>Invoice Date</th>
-                    <th className='th-invoice'>Due date</th>
-                    <th className='th-invoice'>Exe</th>
-                    <th className='th-invoice'>Invoice Total</th>
-                    <th className='th-invoice'>CH/C</th>
-                    <th className='th-invoice'>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {invoices.map((invoice) => (
-                    <tr key={invoice._id}>
-                      <td className='td-invoice'>{invoice.invoiceNumber}</td>
-                      <td className='td-invoice'>{invoice.GatePassNo}</td>
-                      <td className='td-invoice'>{invoice.customer}</td>
-                      <td className='td-invoice'>{invoice.code}</td>
-                      <td className='td-invoice'>{invoice.invoiceDate}</td>
-                      <td className='td-invoice'>{invoice.Duedate}</td>
-                      <td className='td-invoice'>{invoice.ModeofPayment}</td>
-                      <td className='td-invoice'>{invoice.exe}</td>
-                      <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-                      <td className='td-invoice'>
-                        <Link to={`/view-single-invoice/${invoice._id}`}>
-                          <AiOutlineEye size={20} color={"purple"} />
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </>
-          )}
-        </div>
-        <Footer />
-      </div>
-    </body>
+    <button type="button" className="invoice-page-btn" disabled>
+      <a href="/add-invoice">Add Invoice</a>
+    </button>
+
+    <div className="invoice-page-all-invoice">
+      {isLoading ? <Loader /> : (
+        <>
+          <h2 className='invoice-page-h2-invoice'>All Invoices</h2>
+          <table className="invoice-page-table">
+            <thead>
+              <tr>
+                <th className='invoice-page-th-invoice'>Invoice Number</th>
+                <th className='invoice-page-th-invoice'>Printed or Canceled</th>
+                <th className='invoice-page-th-invoice'>Customer</th>
+                <th className='invoice-page-th-invoice'>Customer Code</th>
+                <th className='invoice-page-th-invoice'>Invoice Date</th>
+                <th className='invoice-page-th-invoice'>Due date</th>
+                <th className='invoice-page-th-invoice'>Exe</th>
+                <th className='invoice-page-th-invoice'>Invoice Total</th>
+                <th className='invoice-page-th-invoice'>CH/C</th>
+                <th className='invoice-page-th-invoice'>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {invoices.map((invoice) => (
+                <tr key={invoice._id}>
+                  <td className='invoice-page-td-invoice'>{invoice.invoiceNumber}</td>
+                  <td className='invoice-page-td-invoice'>{invoice.GatePassNo}</td>
+                  <td className='invoice-page-td-invoice'>{invoice.customer}</td>
+                  <td className='invoice-page-td-invoice'>{invoice.code}</td>
+                  <td className='invoice-page-td-invoice'>{invoice.invoiceDate}</td>
+                  <td className='invoice-page-td-invoice'>{invoice.Duedate}</td>
+                  <td className='invoice-page-td-invoice'>{invoice.ModeofPayment}</td>
+                  <td className='invoice-page-td-invoice'>{invoice.exe}</td>
+                  <td className='invoice-page-td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+                  <td className='invoice-page-td-invoice'>
+                    <Link to={`/view-single-invoice/${invoice._id}`}>
+                      <AiOutlineEye size={20} color={"purple"} />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+    </div>
+    <Footer />
+  </div>
+</body>
   );
 };
 
