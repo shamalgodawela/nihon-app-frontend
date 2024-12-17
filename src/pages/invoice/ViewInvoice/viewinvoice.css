@@ -21,68 +21,68 @@ ul li{
     margin: 2px 0;
 }
 
-.text-dark{
+.text-dark-1{
     color: var(--dark-color);
 }
-.text-blue{
+.text-blue-1{
     color: var(--blue-color);
 }
-.text-end{
+.text-end-1{
     text-align: right;
 }
-.text-center{
+.text-center-1{
     text-align: center;
 }
-.text-start{
+.text-start-1{
     text-align: left;
 }
-.text-bold1 {
+.text-bold1-1 {
     
     font-weight: 700;
     
     
     
 }
-.licus{
+.licus-1{
     margin-top:0.2cm;
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-left: 1.8cm;
 }
-.cusd1{
+.cusd1-1{
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-left: 1.67cm;
     margin-top:0.15cm;
 }
-.cusd2{
+.cusd2-1{
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top:0.15cm;
     margin-left: 1.37cm;
 }
-.cusd3{
+.cusd3-1{
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-left:1.5cm;
     margin-top:0.15cm;
     
 }
-.cusd4{
+.cusd4-1{
     position: absolute;
     
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top:0.29cm
 }
-.cusd44{
+.cusd44-1{
     position: absolute;
     
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
     margin-top:0.9cm;
 }
-.cusd45{
+.cusd45-1{
     position: absolute;
    
     
@@ -90,7 +90,7 @@ ul li{
     color: #000000;
     margin-top: -0.3cm;
 }
-.cusd46{
+.cusd46-1{
     position: absolute;
     
     font-family:Arial, Helvetica, sans-serif;
@@ -99,10 +99,10 @@ ul li{
 }
 
 
-.text-boldorder{
-    visibility:hidden;
+.text-boldorder-1{
+    
 }
-.ordt{
+.ordt-1{
     position: absolute;
     
     font-family:Arial, Helvetica, sans-serif;
@@ -111,52 +111,52 @@ ul li{
     
     
 }
-#tdtext{
-    visibility: hidden;
+#tdtext-1{
+    
 }
-#ornumber {
+#ornumber-1 {
     
     margin-left:4.56cm;
-    visibility: hidden;
+    
    
 }
-#ordate{
+#ordate-1{
     margin-left:6.1cm;
-    visibility: hidden;
+    
     
    
     
 
 }
-#orexe{
+#orexe-1{
     
     margin-left:6.25cm;
-    visibility: hidden;
+    
    
 }
-#orinvoice{
+#orinvoice-1{
     margin-left:5.1cm;
-    visibility: hidden;
+    
 
     
 
 }
-#oridate{
+#oridate-1{
     margin-left:6.1cm;
-    visibility: hidden;
+    
    
 
 }
-.label {
-    visibility: hidden;
+.label-1 {
+    
     font-family: 'Times New Roman', Times, serif;
 }
 
-.table-cell-final{
-    visibility:hidden;
+.table-cell-final-1{
+   
 }
-.table-cell2{
-    visibility:hidden;
+.table-cell2-1{
+    
 }
 
 
@@ -164,12 +164,12 @@ ul li{
 
 
 
-.hr{
+.hr-1{
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
 }
 /* border-bottom */
-.border-bottom{
+.border-bottom-1{
     border-bottom:1px solid transparent;
 }
 
@@ -178,13 +178,13 @@ body{
     color: var(--dark-color);
     font-size: 14px;
 }
-.invoice-wrapper{
+.invoice-wrapper-1{
     min-height: 100vh;
     background-color: rgba(0, 0, 0, 0.1);
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.invoice{
+.invoice-1{
     max-width: 850px;
     margin-right: auto;
     margin-left: auto;
@@ -194,56 +194,56 @@ body{
     border-radius: 5px;
     min-height: 920px;
 }
-.invoice-head-top-left img{
+.invoice-head-top-left-1 img{
     width: 130px;
 }
-.invoice-head-top-right h3{
+.invoice-head-top-right-1 h3{
     font-weight: 500;
     font-size: 27px;
     color: var(--blue-color);
 }
-.invoice-head-middle, .invoice-head-bottom{
+.invoice-head-middle-1, .invoice-head-bottom-1{
     padding: 16px 0;
 }
-.invoice-body{
+.invoice-body-1{
     border:1px solid transparent;
     border-radius: 4px;
     overflow: hidden;
 }
-.invoice-body table{
+.invoice-body-1 table{
     border-collapse: collapse;
     border-radius: 4px;
     width: 100%;
 }
-.invoice-body table td, .invoice-body table th{
+.invoice-body-1 table td, .invoice-body table th{
     padding: 7px;
 }
-.invoice-body table tr{
+.invoice-body-1 table tr{
     border-bottom:1px solid transparent;
 }
-.invoice-body table thead{
+.invoice-body-1 table thead{
     background-color: rgba(0, 0, 0, 0.02);
 }
-.invoice-body-info-item{
+.invoice-body-info-item-1{
     display: grid;
     grid-template-columns: 80% 20%;
 }
-.invoice-body-info-item .info-item-td{
+.invoice-body-info-item-1 .info-item-td-1{
     padding: 12px;
     background-color: rgba(0, 0, 0, 0.02);
 }
-.invoice-foot{
+.invoice-foot-1{
     padding: 30px 0;
 }
 .invoice-foot p{
     font-size: 12px;
 }
-.invoice-btns{
+.invoice-btns-1{
     margin-top: 20px;
     display: flex;
     justify-content: center;
 }
-.invoice-btn{
+.invoice-btn-1{
     padding: 3px 9px;
     color: var(--dark-color);
     font-family: inherit;
@@ -251,22 +251,22 @@ body{
     cursor: pointer;
 }
 
-.invoice-head-top, .invoice-head-middle, .invoice-head-bottom{
+.invoice-head-top-1, .invoice-head-middle-1, .invoice-head-bottom-1{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding-bottom: 10px;
 }
-.h4-invoice{
+.h4-invoice-1{
   text-align: center;
 }
 
-.table-container {
+.table-container-1{
   display: flex;
   flex-direction: column;
   
 }
 
-.table-row {
+.table-row-1{
   display: flex;
   font-size: 10px;
   color: #000000;
@@ -274,7 +274,7 @@ body{
   
 }
 
-.table-cell {
+.table-cell-1{
  
   padding: 45px; 
   border: 1px solid transparent;
@@ -282,7 +282,7 @@ body{
   font-size: 13px;
   font-family:Arial, Helvetica, sans-serif;
 }
-.table-cell1 {
+.table-cell1-1{
  
     padding: 8px;
     border:1px solid transparent;
@@ -290,34 +290,34 @@ body{
     width: 400px; 
     height: 40px;
   }
-.table-cell-pay{
+.table-cell-pay-1{
   flex: 1;
   padding: 5px; /* Adjust padding as needed */
   border:1px solid transparent;
   margin-bottom: 0px;
   text-align: center;
-  visibility: hidden;
+  
 
 }
-.table-cell-final{
+.table-cell-final-1{
   flex: 1;
   padding: 5px; /* Adjust padding as needed */
   border:1px solid transparent;
   margin-bottom: 0px;
   text-align: center;
   background-color: black;
-  color: white;
+  color: rgb(0, 0, 0);
 
 }
 
-.image{
+.image-1{
   text-align: center;
 }
 
-.pp{
+.pp-1{
   display:inline;
 }
-.info-container {
+.info-container-1 {
   display: flex;
   justify-content: space-between;
   align-items:normal; /* Align items at the baseline for proper vertical alignment */
@@ -326,19 +326,19 @@ body{
   width: 400px; /* Adjust the width as needed */
   margin-bottom: 0px;
 }
-.info-item-tot{
+.info-item-tot-1{
     margin-right: 1.5cm;
 }
 
 
-.subject {
+.subject-1 {
   margin: 0; /* Reset margin for the paragraph */
   font-size: 10px;
   color: #000000;
   
   
 }
-#second{
+#second-1{
   position: absolute;
   margin-left: 13.36cm;
   top: 18.4cm;
@@ -346,7 +346,7 @@ body{
   font-family:Arial, Helvetica, sans-serif;
   
 }
-#second2{
+#second2-1{
     position: absolute;
     margin-left: 14.3cm;
     top: 22cm;
@@ -354,23 +354,23 @@ body{
     font-family:Arial, Helvetica, sans-serif;
     
   }
-  #mod{
+  #mod-1{
     margin-left:-0.6cm;
   }
   
-.textheader{
+.textheader-1{
   text-align: center;
   color: #000000;
-  visibility: hidden;
+  
   
   
 }
-.image{
+.image-1{
     margin-top: -3%;
-    visibility: hidden;
+    
     
 }
-#print-area{
+#print-area-1{
     border:1px solid transparent;
     
     max-width: auto;
@@ -378,39 +378,39 @@ body{
     
 }
 
-.tdquantity{
+.tdquantity-1{
     position: absolute;
     left:8.1cm;
     font-family:Arial, Helvetica, sans-serif;
     
     font-weight: 200;
 }
-.tddiscount{
+.tddiscount-1{
     position:absolute;
     left:14.6cm;
     font-family:Arial, Helvetica, sans-serif;
     font-weight: 200;
 }
-.tdtot{
+.tdtot-1{
     position:absolute;
     right: 0.9cm;
     font-family:Arial, Helvetica, sans-serif;
     font-weight: 200;
 }
-.fontfamily-td{
+.fontfamily-td-1{
     font-family:Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 300;
     
 }
-#tax{
+#tax-1{
     position: absolute;
     top:19.6cm;
     left:14cm;
     color:black;
     font-family:Arial, Helvetica, sans-serif;
 }
-#discount{
+#discount-1{
     position: absolute;
     top:19.1cm;
     left:10.8cm;
@@ -418,14 +418,14 @@ body{
     font-family:Arial, Helvetica, sans-serif;
 
 }
-#vat-reg{
+#vat-reg-1{
     position:absolute;
     color:black;
     left:15cm;
     top:3.7cm;
     font-size:18px
 }
-#tax-invoice-text{
+#tax-invoice-text-1{
     position:absolute;
     color:black;
     left:16.6cm;
@@ -433,7 +433,7 @@ body{
     font-size: 22px;
 
 }
-.tav-invoice-No{
+.tav-invoice-No-1{
     position:absolute;
     color:black;
     left: 20.5cm;
