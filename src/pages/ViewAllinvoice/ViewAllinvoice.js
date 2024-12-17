@@ -153,8 +153,8 @@ const ViewAllinvoice = () => {
                 <th className='invoice-page-th-invoice'>Invoice Date</th>
                 <th className='invoice-page-th-invoice'>Due date</th>
                 <th className='invoice-page-th-invoice'>Exe</th>
-                <th className='invoice-page-th-invoice'>Invoice Total</th>
                 <th className='invoice-page-th-invoice'>CH/C</th>
+                <th className='invoice-page-th-invoice'>Invoice Total</th>
                 <th className='invoice-page-th-invoice'>Action</th>
               </tr>
             </thead>
@@ -167,8 +167,8 @@ const ViewAllinvoice = () => {
                   <td className='invoice-page-td-invoice'>{invoice.code}</td>
                   <td className='invoice-page-td-invoice'>{invoice.invoiceDate}</td>
                   <td className='invoice-page-td-invoice'>{invoice.Duedate}</td>
-                  <td className='invoice-page-td-invoice'>{invoice.ModeofPayment}</td>
                   <td className='invoice-page-td-invoice'>{invoice.exe}</td>
+                  <td className='invoice-page-td-invoice'>{invoice.ModeofPayment}</td>
                   <td className='invoice-page-td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
                   <td className='invoice-page-td-invoice'>
                     <Link to={`/view-single-invoice/${invoice._id}`}>
