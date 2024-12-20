@@ -145,6 +145,7 @@ const AllTaxInvoice = () => {
                 <thead>
                   <tr>
                     <th className='th-invoice'>Invoice Number</th>
+                    <th className='th-invoice'>Tax No</th>
                     <th className='th-invoice'>Printed or Canceled</th>
                     <th className='th-invoice'>Customer</th>
                     <th className='th-invoice'>Customer Code</th>
@@ -160,6 +161,7 @@ const AllTaxInvoice = () => {
                   {invoices.map((invoice) => (
                     <tr key={invoice._id}>
                       <td className='td-invoice5'>{invoice.invoiceNumber}</td>
+                      <td className='td-invoice5'>{invoice.TaxNo}</td>
                       <td className='td-invoice5'>{invoice.GatePassNo}</td>
                       <td className='td-invoice5'>{invoice.customer}</td>
                       <td className='td-invoice5'>{invoice.code}</td>
