@@ -42,7 +42,7 @@ const AllTaxInvoice = () => {
         const formattedStartDate = startDate ? new Date(startDate).toISOString().split('T')[0] : '';
         const formattedEndDate = endDate ? new Date(endDate).toISOString().split('T')[0] : '';
 
-        const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-invoices`, {
+        const response = await axios.get(`https://nihon-inventory.onrender.com/api/searchTaxInvoice`, {
           params: {
             searchQuery,
             startDate: formattedStartDate,

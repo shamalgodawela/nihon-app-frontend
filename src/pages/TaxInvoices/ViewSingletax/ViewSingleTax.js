@@ -107,7 +107,7 @@ const calculateTaxtot = () => {
   return (
     <body>
     <div>
-      <a href="/all-invoices">Go Back</a><br/>
+      <a href="/viewAll-TaxInvoices">Go Back</a><br/>
       <ReactToPrint
       
         trigger={() => (
