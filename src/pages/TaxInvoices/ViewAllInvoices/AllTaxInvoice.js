@@ -3,9 +3,9 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './AllTaxI.css';
 import { AiOutlineEye } from 'react-icons/ai';
-import Footer from '../../compenents/footer/Footer';
-import Loader from '../../compenents/loader/Loader';
-import Navbar2 from '../../compenents/sidebar/Navbar2';
+import Loader from '../../../compenents/loader/Loader';
+import Navbar2 from '../../../compenents/sidebar/Navbar2';
+import Footer from '../../../compenents/footer/Footer';
 
 const AllTaxInvoice = () => {
   const [invoices, setInvoices] = useState([]);
@@ -15,7 +15,7 @@ const AllTaxInvoice = () => {
   const [endDate, setEndDate] = useState('');
   const [exe, setExe] = useState('');
   const [productCode, setProductCode] = useState(''); // New state for product code
-  const { id } = useParams();
+  const { invoiceNumber } = useParams();
   const [sinvoice, setsinvoice] = useState(null);
 
   const fetchInvoices = async () => {
@@ -90,7 +90,7 @@ const AllTaxInvoice = () => {
   return (
     <body className='invoice-body'>
       <div>
-        <Navbar2 /><br /><br />
+        <Navbar2/><br /><br />
         <div className="search-container" style={{ display: 'flex', marginBottom: '20px' }}>
           <input
             type="text"
@@ -138,7 +138,7 @@ const AllTaxInvoice = () => {
 
         <button type="button" className="btn btn-outline-primary" disabled><a href="/add-invoice">Add Invoice</a></button>
         <div className="all-invoice">
-          {isLoading ? <Loader /> : (
+          {isLoading ? <Loader/> : (
             <>
               <h2 className='h2-invoice'>All Invoices</h2>
               <table>
@@ -180,7 +180,7 @@ const AllTaxInvoice = () => {
             </>
           )}
         </div>
-        <Footer />
+        <Footer/>
       </div>
     </body>
   );

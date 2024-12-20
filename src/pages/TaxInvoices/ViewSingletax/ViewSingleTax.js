@@ -9,7 +9,7 @@ export default function ViewSingleTax() {
 
   const containerRef = useRef(null);
   
-  const { id } = useParams();
+  const {invoiceNumber} = useParams();
   const [invoice, setInvoice] = useState(null);
 
   useEffect(() => {
@@ -18,13 +18,13 @@ export default function ViewSingleTax() {
         const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-Taxinvoices/${invoiceNumber}`);
         setInvoice(response.data);
       } catch (error) {
-        console.error(`Failed to fetch invoice with id ${id}`, error.message);
+        console.error(`Failed to fetch invoice with id ${invoiceNumber}`, error.message);
         // Handle error
       }
     };
 
     fetchInvoice();
-  }, [id]);
+  }, [invoiceNumber]);
 
   const calculateTotal = () => {
     let total = 0;
