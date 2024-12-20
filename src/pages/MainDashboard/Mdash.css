@@ -139,6 +139,11 @@
     width:300px
 
   }
+  .card__image--Tax{
+    background-image: url(../../assets/tax.jpg);
+    width:300px
+
+  }
   .card__title {
     color: var(--gray-dark);
     font-size: 1.25rem;

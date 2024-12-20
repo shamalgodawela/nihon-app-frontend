@@ -76,6 +76,8 @@ import PackingDashboard from "./pages/PackingMaterials/PackingDashboard";
 import AddCheque from "./pages/Cheque/AddCheque/AddCheque";
 import ViewAllinvoice from "./pages/ViewAllinvoice/ViewAllinvoice";
 import ViewInvoice from "./pages/invoice/ViewInvoice/ViewInvoice";
+import AllTaxInvoice from "./pages/TaxInvoices/ViewAllInvoices/AllTaxInvoice";
+import ViewSingleTax from "./pages/TaxInvoices/ViewSingletax/ViewSingleTax";
 
 
 
@@ -175,6 +177,8 @@ function App() {
     <Route path="/view-dealer-history" element={<DealerHistory/>} />
     <Route path="/viewALLinvoice" element={<ViewAllinvoice/>} />
     <Route path="/view-single-invoice/:id" element={<ViewInvoice/>} />
+    <Route path="/viewAll-TaxInvoices" element={<AllTaxInvoice/>} />
+    <Route path="/view-single-Taxinvoice/:invoiceNumber" element={<ViewSingleTax/>} />
 
 
 {/*----------------------------------Admin Operations pages----------------------------------------------*/}
