@@ -159,16 +159,16 @@ const AllTaxInvoice = () => {
                 <tbody>
                   {invoices.map((invoice) => (
                     <tr key={invoice._id}>
-                      <td className='td-invoice'>{invoice.invoiceNumber}</td>
-                      <td className='td-invoice'>{invoice.GatePassNo}</td>
-                      <td className='td-invoice'>{invoice.customer}</td>
-                      <td className='td-invoice'>{invoice.code}</td>
-                      <td className='td-invoice'>{invoice.invoiceDate}</td>
-                      <td className='td-invoice'>{invoice.Duedate}</td>
-                      <td className='td-invoice'>{invoice.exe}</td>
-                      <td className='td-invoice'>{invoice.ModeofPayment}</td>
-                      <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-                      <td className='td-invoice'>
+                      <td className='td-invoice5'>{invoice.invoiceNumber}</td>
+                      <td className='td-invoice5'>{invoice.GatePassNo}</td>
+                      <td className='td-invoice5'>{invoice.customer}</td>
+                      <td className='td-invoice5'>{invoice.code}</td>
+                      <td className='td-invoice5'>{invoice.invoiceDate}</td>
+                      <td className='td-invoice5'>{invoice.Duedate}</td>
+                      <td className='td-invoice5'>{invoice.exe}</td>
+                      <td className='td-invoice5'>{invoice.ModeofPayment}</td>
+                      <td className='td-invoice5'>{formatNumbers(calculateTotal(invoice))}</td>
+                      <td className='td-invoice5'>
                         <Link to={`/view-single-Taxinvoice/${invoice.invoiceNumber}`}>
                           <AiOutlineEye size={20} color={"purple"} />
                         </Link>
