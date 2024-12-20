@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import './AllTaxI.css';
+
 import { AiOutlineEye } from 'react-icons/ai';
 import Loader from '../../../compenents/loader/Loader';
 import Navbar2 from '../../../compenents/sidebar/Navbar2';

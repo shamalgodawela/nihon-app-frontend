@@ -77,7 +77,7 @@ const Mdashboard = () => {
       imageClass: "card__image--Tax",
       title: "All Tax Invoices",
       text: "",
-      href: "/viewALLinvoice" 
+      href: "/viewAll-TaxInvoices" 
     },
     
   ];
