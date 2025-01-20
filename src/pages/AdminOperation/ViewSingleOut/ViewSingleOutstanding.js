@@ -161,6 +161,7 @@ const ViewSingleOutstanding = () => {
         <div className="cal-outstanding-container">
         <h4 className="h1-out">Invoice code: {invoice.invoiceNumber}</h4>
         <h4 className="h1-out">Customer:{invoice.customer}</h4>
+        <h4 className="h1-out">Address:{invoice.address}</h4>
         <h4 className="h1-out">Invoice Date:{invoice.invoiceDate}</h4>
         <h4 className="h1-out">EXE: {invoice.exe}</h4>
         
