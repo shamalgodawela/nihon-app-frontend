@@ -16,8 +16,8 @@ const ViewSingleOutstanding = () => {
     const [backName, setBackname]=useState('');
     const [depositedate, setdepositedate]=useState('');
     const [CHnumber, setCHnumber]=useState('');
-    const [savedDetails, setSavedDetails] = useState(null); // To store saved details
-    const [invoiceNumber, setInvoiceNumber] = useState(''); // To store invoice number for fetching details
+    const [savedDetails, setSavedDetails] = useState(null); 
+    const [invoiceNumber, setInvoiceNumber] = useState(''); 
 
     useEffect(() => {
         const fetchInvoice = async () => {
