@@ -2,63 +2,57 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome icons
-import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'; // Import required icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
 import './getcustomer.css';
 import { Link } from 'react-router-dom';
-import { SpinnerImg } from '../../../compenents/loader/Loader'; // Import loading spinner
+import { SpinnerImg } from '../../../compenents/loader/Loader';
 import Navbar3 from '../../../compenents/sidebar/Navbar3';
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(true); // State for loading indicator
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        setIsLoading(true); // Set loading to true when fetching starts
+        setIsLoading(true);
         const response = await axios.get('https://nihon-inventory.onrender.com/api/customers');
         setCustomers(response.data);
-        setIsLoading(false); // Set loading to false when fetching completes
       } catch (error) {
         console.error('Error fetching customers:', error);
         toast.error('Failed to fetch customers');
-        setIsLoading(false); // Set loading to false in case of error
+      } finally {
+        setIsLoading(false);
       }
     };
-
     fetchCustomers();
   }, []);
 
   // Filter customers based on search query
-const filteredCustomers = customers.filter(customer =>
-  customer.code && customer.code.toLowerCase().includes(searchQuery.toLowerCase())
-);
-
-
-
-
-  // Handle search query change
-  const handleSearchChange = event => {
-    setSearchQuery(event.target.value);
-  };
+  const filteredCustomers = customers.filter(customer =>
+    customer.code && customer.code.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className='bd2'>
-      <Navbar3/>
+      <Navbar3 />
       <section>
         <h2 className='h2getcus'>Customer Database</h2>
-       
+
         <input
           type="text"
           placeholder="Search by code"
           value={searchQuery}
-          onChange={handleSearchChange}
-          style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input"
         />
-        <div className="tbl-header">
-          <table cellPadding="0" cellSpacing="0">
+
+        {isLoading ? (
+          <SpinnerImg />
+        ) : (
+          <table className="customer-table">
             <thead>
               <tr>
                 <th>Index</th>
@@ -71,39 +65,30 @@ const filteredCustomers = customers.filter(customer =>
                 <th>City</th>
                 <th>Phone</th>
                 <th>Fax</th>
-                <th>Action</th> {/* Add Action column */}
+                <th>Action</th>
               </tr>
             </thead>
+            <tbody>
+              {filteredCustomers.map((customer, index) => (
+                <tr key={customer._id}>
+                  <td>{index + 1}</td>
+                  <td>{customer.name}</td>
+                  <td>{customer.code}</td>
+                  <td>{customer.companyName}</td>
+                  <td>{customer.contact}</td>
+                  <td>{customer.address}</td>
+                  <td>{customer.district}</td>
+                  <td>{customer.city}</td>
+                  <td>{customer.phone}</td>
+                  <td>{customer.fax}</td>
+                  <td>
+                    <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="action-icon" /></Link>
+                    <Link to={`/customer/update/${customer._id}`}><FontAwesomeIcon icon={faEdit} className="action-icon" /></Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
-        </div>
-        {isLoading ? ( // Show loading spinner if isLoading is true
-          <SpinnerImg />
-        ) : (
-          <div className="tbl-content">
-            <table cellPadding="0" cellSpacing="0">
-              <tbody>
-                {filteredCustomers.map((customer, index) => (
-                  <tr key={customer._id}>
-                    <td>{index + 1}</td>
-                    <td>{customer.name}</td>
-                    <td>{customer.code}</td>
-                    <td>{customer.companyName}</td>
-                    <td>{customer.contact}</td>
-                    <td>{customer.address}</td>
-                    <td>{customer.district}</td>
-                    <td>{customer.city}</td>
-                    <td>{customer.phone}</td>
-                    <td>{customer.fax}</td>
-                    <td>
-                      {/* Action icons */}
-                      <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="action-icon" /></Link>
-                       <Link to={`/customer/update/${customer._id}`}><FontAwesomeIcon icon={faEdit} className="action-icon" /></Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         )}
         <ToastContainer />
       </section>
