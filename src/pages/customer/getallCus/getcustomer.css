@@ -19,10 +19,11 @@
   background: #fff;
 }
 
-.customer-list-table th, .customer-list-table td {
+.customer-table-th, .customer-table-td {
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
+  color: black;  /* Text color for both th and td */
 }
 
 .customer-list-table th {

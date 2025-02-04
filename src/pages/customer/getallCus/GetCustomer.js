@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
-import './getcustomer.css';  
+import './customerPage.css';  // Changed CSS file name for uniqueness
 import { Link } from 'react-router-dom';
 import { SpinnerImg } from '../../../compenents/loader/Loader';
 import Navbar3 from '../../../compenents/sidebar/Navbar3';
@@ -55,32 +55,32 @@ const CustomerList = () => {
           <table className="customer-list-table">
             <thead>
               <tr>
-                <th>Index</th>
-                <th>Name</th>
-                <th>Code</th>
-                <th>Company Name</th>
-                <th>Contact</th>
-                <th>Address</th>
-                <th>District</th>
-                <th>City</th>
-                <th>Phone</th>
-                <th>Fax</th>
-                <th>Action</th>
+                <th className="customer-table-th">Index</th>
+                <th className="customer-table-th">Name</th>
+                <th className="customer-table-th">Code</th>
+                <th className="customer-table-th">Company Name</th>
+                <th className="customer-table-th">Contact</th>
+                <th className="customer-table-th">Address</th>
+                <th className="customer-table-th">District</th>
+                <th className="customer-table-th">City</th>
+                <th className="customer-table-th">Phone</th>
+                <th className="customer-table-th">Fax</th>
+                <th className="customer-table-th">Action</th>
               </tr>
             </thead>
             <tbody>
               {filteredCustomers.map((customer, index) => (
                 <tr key={customer._id}>
-                  <td>{index + 1}</td>
-                  <td>{customer.name}</td>
-                  <td>{customer.code}</td>
-                  <td>{customer.companyName}</td>
-                  <td>{customer.contact}</td>
-                  <td>{customer.address}</td>
-                  <td>{customer.district}</td>
-                  <td>{customer.city}</td>
-                  <td>{customer.phone}</td>
-                  <td>{customer.fax}</td>
+                  <td className="customer-table-td">{index + 1}</td>
+                  <td className="customer-table-td">{customer.name}</td>
+                  <td className="customer-table-td">{customer.code}</td>
+                  <td className="customer-table-td">{customer.companyName}</td>
+                  <td className="customer-table-td">{customer.contact}</td>
+                  <td className="customer-table-td">{customer.address}</td>
+                  <td className="customer-table-td">{customer.district}</td>
+                  <td className="customer-table-td">{customer.city}</td>
+                  <td className="customer-table-td">{customer.phone}</td>
+                  <td className="customer-table-td">{customer.fax}</td>
                   <td>
                     <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="customer-action-icon" /></Link>
                     <Link to={`/customer/update/${customer._id}`}><FontAwesomeIcon icon={faEdit} className="customer-action-icon" /></Link>
