@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
-import './customerPage.css';  // Changed CSS file name for uniqueness
+import './getcustomer.css';  
 import { Link } from 'react-router-dom';
 import { SpinnerImg } from '../../../compenents/loader/Loader';
 import Navbar3 from '../../../compenents/sidebar/Navbar3';
