@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEdit } from '@fortawesome/free-solid-svg-icons';
-import './getcustomer.css';
+import './customerPage.css';  // Changed CSS file name for uniqueness
 import { Link } from 'react-router-dom';
 import { SpinnerImg } from '../../../compenents/loader/Loader';
 import Navbar3 from '../../../compenents/sidebar/Navbar3';
@@ -36,23 +36,23 @@ const CustomerList = () => {
   );
 
   return (
-    <div className='bd2'>
+    <div className='customer-page'>
       <Navbar3 />
-      <section>
-        <h2 className='h2getcus'>Customer Database</h2>
+      <section className="customer-list-section">
+        <h2 className='customer-page-title'>Customer Database</h2>
 
         <input
           type="text"
           placeholder="Search by code"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
+          className="customer-search-input"
         />
 
         {isLoading ? (
           <SpinnerImg />
         ) : (
-          <table className="customer-table">
+          <table className="customer-list-table">
             <thead>
               <tr>
                 <th>Index</th>
@@ -82,8 +82,8 @@ const CustomerList = () => {
                   <td>{customer.phone}</td>
                   <td>{customer.fax}</td>
                   <td>
-                    <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="action-icon" /></Link>
-                    <Link to={`/customer/update/${customer._id}`}><FontAwesomeIcon icon={faEdit} className="action-icon" /></Link>
+                    <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="customer-action-icon" /></Link>
+                    <Link to={`/customer/update/${customer._id}`}><FontAwesomeIcon icon={faEdit} className="customer-action-icon" /></Link>
                   </td>
                 </tr>
               ))}
