@@ -1,4 +1,4 @@
-/* General Styles
+/* 
 .customer-page {
   background: linear-gradient(to right, #b6b6b6, #ffffff);
   font-family: 'Roboto', sans-serif;
@@ -11,7 +11,7 @@
   margin: 50px;
 }
 
-/* Table Styling */
+
 .customer-list-table {
   width: 100%;
   border-collapse: collapse;
@@ -23,7 +23,7 @@
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
-  color: black;  /* Text color for both th and td */
+  color: black;  
 }
 
 .customer-list-table th {
@@ -35,7 +35,7 @@
   background-color: #a2a2a2;
 }
 
-/* Search Input */
+
 .customer-search-input {
   padding: 10px;
   border-radius: 5px;
@@ -44,7 +44,7 @@
   margin-bottom: 10px;
 }
 
-/* Action Icons */
+
 .customer-action-icon {
   margin: 0 5px;
   color: #333;
@@ -55,7 +55,7 @@
   color: #007bff;
 }
 
-/* Heading */
+
 .customer-page-title {
   text-align: center;
   color: black;
