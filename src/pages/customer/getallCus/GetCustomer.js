@@ -59,13 +59,13 @@ const CustomerList = () => {
                 <th className="customer-table-th">Name</th>
                 <th className="customer-table-th">Code</th>
                 <th className="customer-table-th">Company Name</th>
-                <th className="customer-table-th">Contact</th>
+                {/* <th className="customer-table-th">Contact</th> */}
                 <th className="customer-table-th">Address</th>
                 <th className="customer-table-th">District</th>
                 <th className="customer-table-th">City</th>
                 <th className="customer-table-th">Phone</th>
-                <th className="customer-table-th">Fax</th>
-                <th className="customer-table-th">Action</th>
+                {/* <th className="customer-table-th">Fax</th>
+                <th className="customer-table-th">Action</th> */}
               </tr>
             </thead>
             <tbody>
@@ -75,16 +75,16 @@ const CustomerList = () => {
                   <td className="customer-table-td">{customer.name}</td>
                   <td className="customer-table-td">{customer.code}</td>
                   <td className="customer-table-td">{customer.companyName}</td>
-                  <td className="customer-table-td">{customer.contact}</td>
+                  {/* <td className="customer-table-td">{customer.contact}</td> */}
                   <td className="customer-table-td">{customer.address}</td>
                   <td className="customer-table-td">{customer.district}</td>
                   <td className="customer-table-td">{customer.city}</td>
                   <td className="customer-table-td">{customer.phone}</td>
-                  <td className="customer-table-td">{customer.fax}</td>
+                  {/* <td className="customer-table-td">{customer.fax}</td>
                   <td>
                     <Link to={`/customer/${customer.code}`}><FontAwesomeIcon icon={faEye} className="customer-action-icon" /></Link>
                     <Link to={`/customer/update/${customer._id}`}><FontAwesomeIcon icon={faEdit} className="customer-action-icon" /></Link>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>
