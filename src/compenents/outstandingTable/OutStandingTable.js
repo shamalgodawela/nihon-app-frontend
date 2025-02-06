@@ -84,12 +84,12 @@ const OutStandingTable = () => {
                 return acc + productValue;
             }, 0);
     
-            // Check if Tax is provided, and calculate total accordingly
+         
             if (invoice.Tax && typeof invoice.Tax === 'number') {
                 return productTotal - (productTotal * invoice.Tax / 100);
             }
     
-            // If Tax is not included, return productTotal as is
+          
             return productTotal;
         }
         return 0;
