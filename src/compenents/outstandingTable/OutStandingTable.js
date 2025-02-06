@@ -151,7 +151,7 @@ const OutStandingTable = () => {
                                     <td className='td-invoice'>{invoice.GatePassNo}</td>
                                     <td className='td-invoice'>{invoice.invoiceDate}</td>
                                     <td className='td-invoice'>{invoice.Duedate}</td>
-                                    <th className='th-invoice'>{invoice.TaxNo}</th>
+                                    <th className='td-invoice'>{invoice.TaxNo}</th>
                                     <td className='td-invoice'>{invoice.exe}</td>
                                     <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
                                         {formatNumbers(invoice.lastOutstanding)}
