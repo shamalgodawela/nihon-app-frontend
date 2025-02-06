@@ -241,13 +241,6 @@ const fetchLastOrderNumberEA2 = async () => {
                     </p>
                 </div>
             )}
-{orderData.exe === 'Mr.Riyas' && (
-                <div className="form-row">
-                    <p className="last-order-number">
-                        Last Order Number (Starting with EA2): {lastOrderNumber}
-                    </p>
-                </div>
-            )}
 {orderData.exe === 'Mr.Navaneedan' && (
                 <div className="form-row">
                     <p className="last-order-number">
@@ -259,6 +252,13 @@ const fetchLastOrderNumberEA2 = async () => {
                 <div className="form-row">
                     <p className="last-order-number">
                         Last Order Number (Starting with NUM): {lastOrderNumber}
+                    </p>
+                </div>
+            )}
+{orderData.exe === 'Mr.Riyas' && (
+                <div className="form-row">
+                    <p className="last-order-number">
+                        Last Order Number (Starting with EA2): {lastOrderNumber}
                     </p>
                 </div>
             )}
