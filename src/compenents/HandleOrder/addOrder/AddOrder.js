@@ -76,7 +76,7 @@ const fetchLastOrderNumberUPC2 = async () => {
   }
 };
 const fetchLastOrderNumberNum = async () => {
-  if (orderData.exe === '	Mr.Nayum') {
+  if (orderData.exe === 'Mr.Nayum') {
       try {
           const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastorder/NUM`);
           setLastOrderNumber(response.data.lastOrderNumber);
