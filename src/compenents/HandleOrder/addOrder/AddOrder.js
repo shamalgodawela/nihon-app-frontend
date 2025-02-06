@@ -86,7 +86,7 @@ const fetchLastOrderNumberNum = async () => {
   }
 };
 const fetchLastOrderNumberEA2 = async () => {
-  if (orderData.exe === '	Mr.Nayum') {
+  if (orderData.exe === 'Mr.Riyas') {
       try {
           const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastorder/EA2`);
           setLastOrderNumber(response.data.lastOrderNumber);
@@ -244,7 +244,7 @@ const fetchLastOrderNumberEA2 = async () => {
 {orderData.exe === 'Mr.Riyas' && (
                 <div className="form-row">
                     <p className="last-order-number">
-                        Last Order Number (Starting with UPC): {lastOrderNumber}
+                        Last Order Number (Starting with EA2): {lastOrderNumber}
                     </p>
                 </div>
             )}
