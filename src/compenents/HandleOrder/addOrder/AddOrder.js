@@ -85,6 +85,16 @@ const fetchLastOrderNumberNum = async () => {
       }
   }
 };
+const fetchLastOrderNumberEA2 = async () => {
+  if (orderData.exe === '	Mr.Nayum') {
+      try {
+          const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastorder/EA2`);
+          setLastOrderNumber(response.data.lastOrderNumber);
+      } catch (error) {
+          console.error('Error fetching last order number:', error);
+      }
+  }
+};
 
       fetchLastOrderNumber();
       fetchLastOrderNumberSU();
@@ -92,6 +102,7 @@ const fetchLastOrderNumberNum = async () => {
       fetchLastOrderNumberUPC();
       fetchLastOrderNumberUPC2();
       fetchLastOrderNumberNum();
+      fetchLastOrderNumberEA2();
   }, [orderData.exe]);
    
 
@@ -205,9 +216,9 @@ const fetchLastOrderNumberNum = async () => {
     <option value="Mr.Ahamed">Mr.Ahamed</option> 
     <option value="Mr.Dasun">Mr.Dasun</option> 
     <option value="Mr.Chameera">Mr.Chameera</option> 
-    <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
     <option value="Mr.Navaneedan">Mr.Navaneedan</option> 
     <option value="Mr.Nayum">Mr.Nayum</option>
+    <option value="Mr.Riyas">Mr.Riyas</option>
   </select>
   {orderData.exe === 'Mr.Ahamed' && (
                 <div className="form-row">
@@ -230,7 +241,7 @@ const fetchLastOrderNumberNum = async () => {
                     </p>
                 </div>
             )}
-{orderData.exe === 'Mr.Sanjeewa' && (
+{orderData.exe === 'Mr.Riyas' && (
                 <div className="form-row">
                     <p className="last-order-number">
                         Last Order Number (Starting with UPC): {lastOrderNumber}
