@@ -78,6 +78,7 @@ import ViewAllinvoice from "./pages/ViewAllinvoice/ViewAllinvoice";
 import ViewInvoice from "./pages/invoice/ViewInvoice/ViewInvoice";
 import AllTaxInvoice from "./pages/TaxInvoices/ViewAllInvoices/AllTaxInvoice";
 import ViewSingleTax from "./pages/TaxInvoices/ViewSingletax/ViewSingleTax";
+import GetExeInvoice from "./compenents/EXEiNVOICE/GetExeInvoice";
 
 
 
@@ -214,7 +215,7 @@ function App() {
 {/* ---------------------------------------------------------------------------------------------------------- */}
 
     
-    
+<Route path="/exeinvoices" element={<GetExeInvoice/>} />
    
    
 

@@ -25,6 +25,9 @@ const HeaderExe = () => {
         <Link to="/allorder" className="nav-link2">List of Order</Link>
       </li>
       <li className="nav-item2">
+        <Link to="/exeinvoices" className="nav-link2">Invoices</Link>
+      </li>
+      <li className="nav-item2">
         <Link to="/" className="nav-link2">Logout</Link>
       </li>
       

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../redux/features/product/productSlicaExe'
 import { selectIsLoggedIn, selectName } from '../../redux/features/auth/authSliceExe'
 import ProductListExe from '../product/productList/ProductListExe'
+import GetExeInvoice from '../EXEiNVOICE/GetExeInvoice'
 
 const Exedashboard = () => {
   const name=useSelector(selectName)
@@ -33,6 +34,7 @@ const Exedashboard = () => {
         <HeaderExe/>
         <HeaderE/>
         <ProductListExe  products={products} />
+        
 
 
     </div>
