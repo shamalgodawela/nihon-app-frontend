@@ -460,7 +460,7 @@ body{
 .td-invoictemp {
     word-break: break-word; /* Breaks long words */
     white-space: normal; /* Allows text to wrap */
-    max-width: 20px; /* Adjust width as needed */
+    max-width: 40px; /* Adjust width as needed */
     overflow-wrap: break-word; /* Ensures text wraps */
   }
   
