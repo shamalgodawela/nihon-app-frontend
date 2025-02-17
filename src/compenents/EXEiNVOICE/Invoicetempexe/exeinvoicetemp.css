@@ -1,0 +1,90 @@
+/* invoice.css */
+.invoice-wrapper {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .invoice-logo {
+    text-align: center;
+  }
+  
+  .invoice-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .invoice-header h6 {
+    margin: 5px;
+  }
+  
+  .invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .invoice-customer-details, .invoice-order-details {
+    width: 45%;
+  }
+  
+  .invoice-customer-details .label, .invoice-order-details .label {
+    font-weight: bold;
+  }
+  
+  .invoice-table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .invoice-table-head th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .invoice-table-head td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .invoice-summary {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .invoice-summary-item {
+    margin-left: 20px;
+  }
+  
+  .invoice-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .invoice-footer-section {
+    width: 30%;
+  }
+  
+  .invoice-footer-acknowledgment {
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .invoice-signature {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .signature-section {
+    width: 23%;
+    text-align: center;
+  }
+  
+  .invoice-final-note {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 30px;
+  }
+  

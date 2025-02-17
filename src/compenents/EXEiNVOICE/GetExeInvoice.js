@@ -22,14 +22,14 @@ const GetExeInvoice = () => {
     }
   };
 
-  // If you still want to fetch a specific invoice by ID, you can use useEffect:
+  
   useEffect(() => {
     const fetchSingleInvoice = async () => {
       if (id) {
         try {
-          const response = await axios.get(`http://localhost:5000/api/get-invoice/${id}`);
-          // Handle the specific invoice if needed
-          console.log(response.data); // You can set state to show specific invoice details
+          const response = await axios.get(`https://nihon-inventory.onrender.com/api/get-invoice/${id}`);
+          
+          console.log(response.data); 
         } catch (error) {
           console.log("Error fetching data", error);
         }
@@ -37,7 +37,7 @@ const GetExeInvoice = () => {
     };
 
     fetchSingleInvoice();
-  }, [id]); // This effect will run only when `id` changes
+  }, [id]); 
 
   return (
     <div className="exetable-invoice">
