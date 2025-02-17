@@ -1,90 +1,176 @@
-/* invoice.css */
-.invoice-wrapper {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-  }
-  
-  .invoice-logo {
-    text-align: center;
-  }
-  
-  .invoice-header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .invoice-header h6 {
-    margin: 5px;
-  }
-  
-  .invoice-details {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .invoice-customer-details, .invoice-order-details {
-    width: 45%;
-  }
-  
-  .invoice-customer-details .label, .invoice-order-details .label {
-    font-weight: bold;
-  }
-  
-  .invoice-table {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .invoice-table-head th {
-    text-align: left;
-    padding: 8px;
-  }
-  
-  .invoice-table-head td {
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .invoice-summary {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-  }
-  
-  .invoice-summary-item {
-    margin-left: 20px;
-  }
-  
-  .invoice-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .invoice-footer-section {
-    width: 30%;
-  }
-  
-  .invoice-footer-acknowledgment {
-    text-align: center;
-    font-size: 16px;
-  }
-  
-  .invoice-signature {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .signature-section {
-    width: 23%;
-    text-align: center;
-  }
-  
-  .invoice-final-note {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 30px;
-  }
-  
+/* exeinvoicetemp.css */
+
+.exeinvoiceTemp-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.exeinvoiceTemp-back-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.exeinvoiceTemp-print-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.exeinvoiceTemp-printable-area {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.exeinvoiceTemp {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.exeinvoiceTemp-wrapper {
+  border: 1px solid #000;
+  padding: 20px;
+}
+
+.exeinvoiceTemp-logo img {
+  display: block;
+  margin: 0 auto;
+}
+
+.exeinvoiceTemp-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.exeinvoiceTemp-address,
+.exeinvoiceTemp-website,
+.exeinvoiceTemp-email,
+.exeinvoiceTemp-hotline {
+  margin: 5px 0;
+}
+
+.exeinvoiceTemp-tax-text,
+.exeinvoiceTemp-vat-reg {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.exeinvoiceTemp-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.exeinvoiceTemp-customer-details,
+.exeinvoiceTemp-order-details {
+  width: 48%;
+}
+
+.exeinvoiceTemp-customer-details ul,
+.exeinvoiceTemp-order-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.exeinvoiceTemp-customer-details li,
+.exeinvoiceTemp-order-details li {
+  margin: 5px 0;
+}
+
+.exeinvoiceTemp-label {
+  font-weight: bold;
+}
+
+.exeinvoiceTemp-tax-number {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.exeinvoiceTemp-payment-details-title {
+  margin-top: 20px;
+}
+
+.exeinvoiceTemp-payment-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.exeinvoiceTemp-payment-detail {
+  width: 30%;
+}
+
+.exeinvoiceTemp-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.exeinvoiceTemp-table-head {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.exeinvoiceTemp-table-head td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+}
+
+.exeinvoiceTemp-product-row td {
+  border: 1px solid #000;
+  padding: 8px;
+}
+
+.exeinvoiceTemp-empty-row td {
+  border: 1px solid #000;
+  padding: 8px;
+}
+
+.exeinvoiceTemp-summary {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.exeinvoiceTemp-summary-item {
+  margin-left: 20px;
+}
+
+.exeinvoiceTemp-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.exeinvoiceTemp-footer-section {
+  width: 30%;
+}
+
+.exeinvoiceTemp-footer-label {
+  font-weight: bold;
+}
+
+.exeinvoiceTemp-footer-acknowledgment {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.exeinvoiceTemp-signature {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.exeinvoiceTemp-signature-section {
+  width: 22%;
+  text-align: center;
+}
+
+.exeinvoiceTemp-final-note {
+  text-align: center;
+  margin-top: 20px;
+}
+.tdinvoice-exe-sample{
+  text-align: center;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+}
