@@ -79,6 +79,7 @@ import ViewInvoice from "./pages/invoice/ViewInvoice/ViewInvoice";
 import AllTaxInvoice from "./pages/TaxInvoices/ViewAllInvoices/AllTaxInvoice";
 import ViewSingleTax from "./pages/TaxInvoices/ViewSingletax/ViewSingleTax";
 import GetExeInvoice from "./compenents/EXEiNVOICE/GetExeInvoice";
+import InvoiceExetemp from "./compenents/EXEiNVOICE/Invoicetempexe/InvoiceExetemp";
 
 
 
@@ -216,6 +217,7 @@ function App() {
 
     
 <Route path="/exeinvoices" element={<GetExeInvoice/>} />
+<Route path="/invoice-temp-exe/:id" element={<InvoiceExetemp/>} />
    
    
 

@@ -1,64 +1,98 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import HeaderExe from "../headerexe/HeaderExe";
+import './exe-invoiceCss.css';
+import { AiOutlineEye } from "react-icons/ai";
+import { Link, useParams } from "react-router-dom";
 
 const GetExeInvoice = () => {
-  const [exeInvoices, setCancelInvoices] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams();
+  const [password, setPassword] = useState("");
+  const [invoices, setInvoices] = useState([]);
+  const [error, setError] = useState("");
 
+  const fetchInvoices = async () => {
+    try {
+      const response = await axios.get(`https://nihon-inventory.onrender.com/api/exe-getinvoice?password=${password}`);
+      setInvoices(response.data);
+      setError("");
+    } catch (err) {
+      setError("Invalid password or server error");
+      setInvoices([]);
+    }
+  };
+
+  // If you still want to fetch a specific invoice by ID, you can use useEffect:
   useEffect(() => {
-    const fetchexeInvoices = async () => {
-      try {
-        const response = await axios.get('https://nihon-inventory.onrender.com/api/exe-getinvoice');
-        setCancelInvoices(response.data);
-        console.log(response.data)
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch cancel invoices:', error.message);
-        setIsLoading(false);
+    const fetchSingleInvoice = async () => {
+      if (id) {
+        try {
+          const response = await axios.get(`http://localhost:5000/api/get-invoice/${id}`);
+          // Handle the specific invoice if needed
+          console.log(response.data); // You can set state to show specific invoice details
+        } catch (error) {
+          console.log("Error fetching data", error);
+        }
       }
     };
 
-    fetchexeInvoices();
-  }, []);
+    fetchSingleInvoice();
+  }, [id]); // This effect will run only when `id` changes
 
   return (
-    <div>
-      <h2 className='h2-cancel-invoice'>Invoices</h2>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>INVOICE NUMBER</th>
-              <th>CUSTOMER</th>
-              <th>CUSTOMER CODE</th>
-              <th>CUSTOMER ADDRESS</th>
-              <th>INVOICE DATE</th>
-              <th>EXE</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-  {exeInvoices && exeInvoices.length > 0 ? (
-    exeInvoices.map((invoice) => (
-      <tr key={invoice._id}>
-        <td>{invoice.invoiceNumber}</td>
-        <td>{invoice.customer}</td>
-        <td>{invoice.code}</td>
-        <td>{invoice.address}</td>
-        <td>{invoice.invoiceDate}</td>
-        <td>{invoice.exe}</td>
-      </tr>
-    ))
-  ) : (
-    <tr>
-      <td colSpan="6">No invoices found</td>
-    </tr>
-  )}
-</tbody>
-        </table>
-      )}
+    <div className="exetable-invoice">
+      <HeaderExe />
+      <br /><br /><br /><br />
+      <div className="exetable-container">
+        <h2>Invoice List</h2>
+        <input
+          type="password"
+          className="exetable-input"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="exetable-button" onClick={fetchInvoices}>
+          Get Invoices
+        </button>
+
+        {error && <p className="exetable-error">{error}</p>}
+
+        {invoices.length > 0 && (
+          <table className="exetable-table">
+            <thead>
+              <tr>
+                <th>Invoice Number</th>
+                <th>Customer</th>
+                <th>Code</th>
+                <th>Mode of Payment</th>
+                <th>Terms of Payment (days)</th>
+                <th>Invoice Date</th>
+                <th>Due Date</th>
+                <th>View</th>
+              </tr>
+            </thead>
+            <tbody>
+              {invoices.map((invoice) => (
+                <tr key={invoice._id}>
+                  <td>{invoice.invoiceNumber}</td>
+                  <td>{invoice.customer}</td>
+                  <td>{invoice.code}</td>
+                  <td>{invoice.ModeofPayment}</td>
+                  <td>{invoice.TermsofPayment}</td>
+                  <td>{invoice.invoiceDate}</td>
+                  <td>{invoice.Duedate}</td>
+                  <td className="td-invoice">
+                    <Link to={`/invoice-temp-exe/${invoice._id}`}>
+                      <AiOutlineEye size={20} color={"purple"} />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 };
