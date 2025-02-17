@@ -122,7 +122,7 @@ const Opertionoutstanding = () => {
                     <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
                     <option value="Mr.Navaneedan">Mr.Navaneedan</option>
                     <option value="Mr.Nayum">Mr.Nayum</option>
-                    <option value="Mr.Nayum">Mr.Riyas</option>
+                    <option value="Mr.Riyas">Mr.Riyas</option>
                 </select>
 
                 
