@@ -111,6 +111,7 @@ const AllInvoice = () => {
             <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
             <option value="Mr.Nayum">Mr.Nayum</option>
             <option value="Mr.Navaneedan">Mr.Navaneedan</option>
+            <option value="Mr.Riyas">Mr.Riyas</option>
           </select>
 
           {/* New Input for Product Code Search */}
