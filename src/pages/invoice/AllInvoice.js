@@ -14,7 +14,7 @@ const AllInvoice = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [exe, setExe] = useState('');
-  const [productCode, setProductCode] = useState(''); // New state for product code
+  const [productCode, setProductCode] = useState(''); 
   const { id } = useParams();
   const [sinvoice, setsinvoice] = useState(null);
 
@@ -35,7 +35,7 @@ const AllInvoice = () => {
     setIsLoading(true);
     try {
       if (productCode) {
-        // If product code is provided, use the product code search endpoint
+        
         const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-by-productcode/${productCode}`);
         setInvoices(response.data);
       } else {
@@ -84,7 +84,7 @@ const AllInvoice = () => {
         return acc + productTotal;
       }, 0);
     }
-    return total.toFixed(2); // Return the total with 2 decimal places
+    return total.toFixed(2); 
   };
 
   return (

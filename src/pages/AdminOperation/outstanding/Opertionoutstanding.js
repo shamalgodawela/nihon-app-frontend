@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { AiOutlineEye } from 'react-icons/ai';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 import { Link } from 'react-router-dom';
 import MenuOperation from '../../../compenents/Menu/MenuOperation';
@@ -87,12 +85,12 @@ const Opertionoutstanding = () => {
                 return acc + productValue;
             }, 0);
     
-            // Check if Tax is provided, and calculate total accordingly
+            
             if (invoice.Tax && typeof invoice.Tax === 'number') {
                 return productTotal - (productTotal * invoice.Tax / 100);
             }
     
-            // If Tax is not included, return productTotal as is
+            
             return productTotal;
         }
         return 0;

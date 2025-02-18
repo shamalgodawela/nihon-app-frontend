@@ -111,8 +111,22 @@ const fetchLastOrderNumberEA2 = async () => {
     const products = [...orderData.products];
     products[index][name] = value;
 
+    // Calculate discount and invoice total when unit price changes
+    if (name === 'unitPrice') {
+        const labelPrice = parseFloat(products[index].labelPrice);
+        const unitPrice = parseFloat(value);
+        const quantity = parseFloat(products[index].quantity);
+        
+        if (!isNaN(labelPrice)) {
+            const discount = ((labelPrice - unitPrice) / labelPrice) * 100; // Calculate discount
+            products[index].discount = isNaN(discount) ? '' : discount.toFixed(2); // Set discount
+        }
+
+        const invoiceTotal = unitPrice * quantity; // Calculate invoice total
+        products[index].invoiceTotal = isNaN(invoiceTotal) ? '' : invoiceTotal.toFixed(2); // Set invoice total
+    } 
     // Calculate unit price and invoice total when label price or discount changes
-    if (name === 'labelPrice' || name === 'discount') {
+    else if (name === 'labelPrice' || name === 'discount') {
         const labelPrice = parseFloat(products[index].labelPrice);
         const discount = parseFloat(products[index].discount);
         const quantity = parseFloat(products[index].quantity);
@@ -120,14 +134,14 @@ const fetchLastOrderNumberEA2 = async () => {
         const invoiceTotal = unitPrice * quantity; // Calculate invoice total
         products[index].unitPrice = isNaN(unitPrice) ? '' : unitPrice.toFixed(2); // Set unit price
         products[index].invoiceTotal = isNaN(invoiceTotal) ? '' : invoiceTotal.toFixed(2); // Set invoice total
-    } else if (name === 'invoiceTotal') {
-        // Update invoice total directly if edited
+    } 
+    // Update invoice total directly if edited
+    else if (name === 'invoiceTotal') {
         products[index].invoiceTotal = value;
     }
 
     setOrderData({ ...orderData, products });
 };
-
 
     const handleAddProduct = () => {
         setOrderData({ ...orderData, products: [...orderData.products, { productCode: '', productName: '', quantity: '', labelPrice: '', discount: '', unitPrice: '', invoiceTotal: '' }] });
@@ -363,14 +377,14 @@ const fetchLastOrderNumberEA2 = async () => {
         className="product-input"
       />
 
-      <label className="product-label">Unit Price:</label>
-      <input
-        type="text"
-        name="unitPrice"
-        value={product.unitPrice}
-        className="product-input"
-        
-      />
+<label className="product-label">Unit Price:</label>
+<input
+    type="text"
+    name="unitPrice"
+    value={product.unitPrice}
+    onChange={(e) => handleChange(e, index)}
+    className="product-input"
+/>
       
 <label className="product-label">invoice total:</label>
       <input
