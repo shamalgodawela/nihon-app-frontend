@@ -46,6 +46,7 @@
   .cards__item {
     display: flex;
     padding: 1rem;
+    
   }
   
   @media(min-width: 40rem) {
@@ -67,6 +68,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    margin-left:85px;
    
   }
   
@@ -91,6 +93,7 @@
     overflow: hidden;
     position: relative;
     transition: filter 0.5s cubic-bezier(.43,.41,.22,.91);
+    ;
   }
   
   .card__image::before {
@@ -121,7 +124,8 @@
   
   .card__image--fence {
     background-image: url(https://nationalwhateverday.com/wp-content/uploads/2020/04/Untitled-3.jpg);
-    width:300px
+    width:300px;
+    
     
   }
   .card__image--invoice {
@@ -165,13 +169,14 @@
   }
   .madash-h1{
     text-align: center;
-    color:rgb(0, 0, 0);
+    color:rgb(255, 255, 255);
     font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
   }
   .madashboard-body{
     background-size: 100%;
     background-attachment: fixed;
     height:100%;
-    background-image: url(https://digitalizetrends.com/wp-content/uploads/2020/11/Role-of-IoT-in-agriculture-scaled.jpg);
+    background-image: url(../../assets/ERP.webp);
     background-repeat:no-repeat ;
   }
