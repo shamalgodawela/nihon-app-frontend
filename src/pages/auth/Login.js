@@ -68,7 +68,7 @@ const Login = () => {
       {isLoading && <Loader/>}
        
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></link>
-       <h1 className='h1-login'>Nihon &nbsp; Inventory  &nbsp; System</h1>
+       <h1 className='h1-login'>Nihon &nbsp; ERP  &nbsp; Login</h1>
        
        <br/><br/><br/><br/><br/><br/>
     <div id='login-form'>
@@ -94,8 +94,8 @@ const Login = () => {
 </form>
 
   
-  <a href='forgot' className='a-login'>Forgot Password</a><br/>
-  <a href='/' className='a-login'>Home</a><br/>
+  <a href='forgot' className='a-login-main'>Forgot Password</a><br/>
+  <a href='/' className='a-login-main'>Home</a><br/>
 
     </div>
      

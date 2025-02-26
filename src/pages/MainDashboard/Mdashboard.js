@@ -96,7 +96,8 @@ const Mdashboard = () => {
 
   return (
     <div className='madashboard-body'>
-    <Link to="#" onClick={goBack}><IoMdArrowRoundBack size={23}/></Link>&nbsp;&nbsp;
+      <button className='btn-madashboard'><a href='/' className='a-mdashboard'>Logout</a></button>
+    {/* <Link to="#" onClick={goBack}><IoMdArrowRoundBack size={23} color='white'/></Link>&nbsp;&nbsp; */}
 
       <h1 className='madash-h1'>Nihon ERP System</h1>
       <ul className="cards">

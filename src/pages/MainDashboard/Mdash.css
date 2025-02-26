@@ -180,3 +180,14 @@
     background-image: url(../../assets/ERP.webp);
     background-repeat:no-repeat ;
   }
+ 
+  .btn-madashboard{
+    background-color: black;
+    
+  }
+
+  .a-mdashboard{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+  }
