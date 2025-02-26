@@ -6,28 +6,36 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
 import { Link } from 'react-router-dom';
 import './allInvoice.css'
+import Loader from '../loader/Loader';
 
 const OutStandingTable = () => {
     const [invoices, setInvoices] = useState([]);
     const [filteredInvoices, setFilteredInvoices] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedExe, setSelectedExe] = useState('');
     const [selectedCode, setSelectedCode] = useState(''); 
     const [searchCode, setSearchCode] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchAllInvoices = async () => {
+            setIsLoading(true);
             try {
                 const response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
                 setInvoices(response.data);
                 setFilteredInvoices(response.data);
-                setLoading(false);
+                
             } catch (error) {
                 console.error('Failed to fetch invoices', error.message);
                 setError('Failed to fetch invoices');
-                setLoading(false);
+                
+                
             }
+            finally{
+                setIsLoading(false)
+            }
+            
+            
         };
 
         fetchAllInvoices();
@@ -51,7 +59,8 @@ const OutStandingTable = () => {
     }, [selectedExe, selectedCode, debounceFilter]);
 
     const handleSearch = async () => {
-        setLoading(true);
+        setIsLoading(true)
+       
         try {
             let response;
             
@@ -62,11 +71,14 @@ const OutStandingTable = () => {
             }
             setInvoices(response.data);
             setFilteredInvoices(response.data);
-            setLoading(false);
+           
         } catch (error) {
             console.error('Failed to fetch invoices', error.message);
             setError('Failed to fetch invoices');
-            setLoading(false);
+            
+        }
+        finally{
+            setIsLoading(false)
         }
     };
 
@@ -95,13 +107,7 @@ const OutStandingTable = () => {
         return 0;
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+    
 
     return (
         <div>
@@ -125,6 +131,7 @@ const OutStandingTable = () => {
 
                 <div className="all-invoice">
                     <h2 className='h2-invoice'>Outstanding Details</h2>
+                    {isLoading ? <Loader/> : (
                     <table>
                         <thead>
                             <tr>
@@ -182,6 +189,7 @@ const OutStandingTable = () => {
                             ))}
                         </tbody>
                     </table>
+                    )}
                 </div>
             </div>
         </div>

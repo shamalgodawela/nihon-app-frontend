@@ -5,29 +5,33 @@ import debounce from 'lodash.debounce';
 import { Link } from 'react-router-dom';
 import MenuOperation from '../../../compenents/Menu/MenuOperation';
 import './Operations.css'
+import Loader from '../../../compenents/loader/Loader';
 
 
 
 const Opertionoutstanding = () => {
     const [invoices, setInvoices] = useState([]);
     const [filteredInvoices, setFilteredInvoices] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedExe, setSelectedExe] = useState('');
     const [selectedCode, setSelectedCode] = useState(''); 
     const [searchCode, setSearchCode] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchAllInvoices = async () => {
+            setIsLoading(true);
             try {
                 const response = await axios.get('https://nihon-inventory.onrender.com/api/get-invoicedetails-admin-outstanding');
                 setInvoices(response.data);
                 setFilteredInvoices(response.data);
-                setLoading(false);
             } catch (error) {
                 console.error('Failed to fetch invoices', error.message);
                 setError('Failed to fetch invoices');
-                setLoading(false);
+               
+            }
+            finally{
+                setIsLoading(false);
             }
         };
 
@@ -52,7 +56,7 @@ const Opertionoutstanding = () => {
     }, [selectedExe, selectedCode, debounceFilter]);
 
     const handleSearch = async () => {
-        setLoading(true);
+        setIsLoading(true)
         try {
             let response;
             
@@ -63,11 +67,14 @@ const Opertionoutstanding = () => {
             }
             setInvoices(response.data);
             setFilteredInvoices(response.data);
-            setLoading(false);
+            
         } catch (error) {
             console.error('Failed to fetch invoices', error.message);
             setError('Failed to fetch invoices');
-            setLoading(false);
+            
+        }
+        finally{
+            setIsLoading(false);
         }
     };
 
@@ -99,18 +106,12 @@ const Opertionoutstanding = () => {
     
     
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
+    
     return (
         <div>
             <MenuOperation/><br/><br/><br/><br/><br/>
             <div className='invoice-body'>
+                
                
                 <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
                     <option value="">All Executives</option>
@@ -137,6 +138,7 @@ const Opertionoutstanding = () => {
 
                 <div className="all-invoice">
                     <h2 className='h2-invoice'>Outstanding Details</h2>
+                    {isLoading ? <Loader/> :(
                     <table>
                         <thead>
                             <tr>
@@ -188,6 +190,7 @@ const Opertionoutstanding = () => {
                             ))}
                         </tbody>
                     </table>
+                    )}
                 </div>
             </div>
         </div>
