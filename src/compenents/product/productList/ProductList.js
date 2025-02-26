@@ -113,8 +113,8 @@ const ProductList = ({ products, isLoading }) => {
                 <p>-- No product found, please add a product...</p>
               ) : (
                 <table>
-                  <thead>
-                    <tr>
+                  <thead className='thead-product-list'>
+                    <tr className='tr-product-list'>
                       <th className='th-product-list'>s/n</th>
                       <th className='th-product-list'>Name</th>
                       <th className='th-product-list'>Product Code</th>
