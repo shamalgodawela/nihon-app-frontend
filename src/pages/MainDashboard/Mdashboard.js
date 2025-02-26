@@ -79,6 +79,12 @@ const Mdashboard = () => {
       text: "",
       href: "/viewAll-TaxInvoices" 
     },
+    {
+      imageClass: "card__image--Finance",
+      title: "Finance Management(Pending)",
+      text: "",
+      href: "" 
+    },
     
   ];
 

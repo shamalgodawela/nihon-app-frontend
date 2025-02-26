@@ -111,7 +111,7 @@
   }
   
   .card__image--river {
-    background-image: url(https://www.pptbackgrounds.net/uploads/increasing-performance-graph-backgrounds-wallpapers.jpg);
+    background-image: url(../../assets/sales.webp);
   }
   
   .card__image--record {
@@ -141,6 +141,11 @@
   }
   .card__image--Tax{
     background-image: url(../../assets/tax.jpg);
+    width:300px
+
+  }
+  .card__image--Finance{
+    background-image: url(../../assets/Financial-Management-Control.jpg);
     width:300px
 
   }
