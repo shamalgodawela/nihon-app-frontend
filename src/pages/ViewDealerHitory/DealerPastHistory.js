@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // Import useLocation
 import Menu from '../../compenents/Menu/Menu';
 import Footer from '../../compenents/footer/Footer';
 import './Delaerh.css';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 const DealerPastHistory = () => {
   const [productMovement, setProductMovement] = useState({});
@@ -14,6 +16,18 @@ const DealerPastHistory = () => {
   const [dealerCode, setDealerCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  // Use useLocation to access the state passed from the previous page
+  const location = useLocation();
+  const { state } = location;
+
+  // Auto-fill the dealerCode if it's passed via state
+  useEffect(() => {
+    if (state && state.code) {
+      setDealerCode(state.code);
+    }
+  }, [state]);
 
   // Fetch data from backend based on dealer code
   const fetchData = async () => {
@@ -30,11 +44,10 @@ const DealerPastHistory = () => {
       const { productMovement, totalInvoiceAmount, totalCollectionAmount, customerName } = response.data;
       console.log("Customer Name from API:", response.data.customerName);
 
-
       setProductMovement(productMovement);
       setTotalInvoiceAmount(totalInvoiceAmount);
       setTotalCollectionAmount(totalCollectionAmount);
-      setCustomerName(response.data.customerName || "N/A");
+      setCustomerName(customerName);
 
     } catch (error) {
       console.error('Error fetching dealer sales data:', error.message);
@@ -43,6 +56,13 @@ const DealerPastHistory = () => {
       setLoading(false);
     }
   };
+
+  // Automatically fetch data when dealerCode is auto-filled
+  useEffect(() => {
+    if (dealerCode.trim()) {
+      fetchData();
+    }
+  }, [dealerCode]); // Fetch data whenever dealerCode changes
 
   // Data for Bar Chart
   const chartData = {
@@ -62,9 +82,15 @@ const DealerPastHistory = () => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
+  const goback=()=>{
+    navigate(-1);
+  }
+
   return (
     <div>
-      <Menu /><br /><br /><br /><br />
+      <Link to="#" onClick={goback} className="Back-Icon">
+        <IoMdArrowRoundBack size={23} />
+      </Link><br/><br/>
       <h2 className='h2-dealer-history'>Dealer History Information</h2>
       
       <div style={{ marginBottom: '10px' }}>

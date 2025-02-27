@@ -203,7 +203,7 @@ function App() {
 {/* ------------------------------------------------------------------------------------------------------------ */}
 <Route path="/Exe-product-wise-sales" element={<SalesByExe/>} />
 <Route path="/view-admin-outstanding/:id" element={<ViewSingleOutstanding/>} />
-<Route path="/view-Delaer-history/:code" element={<DealerPastHistory/>} />
+<Route path="/view-Delaer-history" element={<DealerPastHistory/>} />
 
 
 {/* --------------------------------------------------Inventory pages----------------------------------------- */}

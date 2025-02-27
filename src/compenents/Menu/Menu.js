@@ -35,11 +35,6 @@ const Menu = () => {
             </Link>
           </li>
           <li className="nav-item2">
-            <Link to="/view-Delaer-history/:code" className="nav-link2">
-              <i className="fas fa-history"></i> Dealer History
-            </Link>
-          </li>
-          <li className="nav-item2">
             <Link to="/Add-Cheque" className="nav-link2">
               <i className="fas fa-history"></i> Add Cheque
             </Link>

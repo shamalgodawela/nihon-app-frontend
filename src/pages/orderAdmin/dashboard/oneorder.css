@@ -91,3 +91,18 @@ button[type="submit"]:hover {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
 }
+
+.btn-dealer-history{
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.a-dealer-history{
+  color: white;
+  font-weight: 900;
+  font-family: 'Times New Roman', Times, serif;
+}
