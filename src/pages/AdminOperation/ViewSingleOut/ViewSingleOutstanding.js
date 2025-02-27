@@ -148,7 +148,7 @@ const ViewSingleOutstanding = () => {
     return (
         <div>
             <Menu/><br/><br/><br/>
-            <Link to="#" onClick={goback} className="Back-Icon" style={{ color: 'white' }}>
+            <Link to="#" onClick={goback} className="Back-Icon5">
               Go Back
               <IoMdArrowRoundBack size={23} />
             </Link>
