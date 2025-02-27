@@ -140,6 +140,9 @@ const Oneorder = () => {
     navigate('/view-Delaer-history', { state: { code: updatedOrder.code } });
 
   }
+  const handleInvoiceHistory=()=>{
+    navigate('/AllOutstanding', { state: { code: updatedOrder.code } });
+  }
   
 
 
@@ -340,7 +343,7 @@ const Oneorder = () => {
                 </table><br/>
                 <h3 className='h3-order-admin'>Order Total :RS/= {formatNumbers(calculateTotal())}</h3>
                 <button type="submit" className='btn-dealer-history' onClick={handlepassdelaercode}>View Overall Dealer History</button>
-                <button type="submit" className='btn-dealer-history'><a href='' className='a-dealer-history'>check Delaer History Invoice Wise</a></button>
+                <button type="submit" className='btn-dealer-history' onClick={handleInvoiceHistory}>Invoice Wise Dealer History</button>
                 <button type="submit">Update Order</button>
                 
               </form>

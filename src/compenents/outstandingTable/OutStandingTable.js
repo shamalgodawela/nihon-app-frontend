@@ -4,7 +4,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import debounce from 'lodash.debounce';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './allInvoice.css'
 import Loader from '../loader/Loader';
 
@@ -16,6 +16,15 @@ const OutStandingTable = () => {
     const [selectedCode, setSelectedCode] = useState(''); 
     const [searchCode, setSearchCode] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const location = useLocation();
+    const { state } = location;
+
+    useEffect(() => {
+        if (state && state.code) {
+          setSelectedCode(state.code);
+        }
+      }, [state]);
+
 
     useEffect(() => {
         const fetchAllInvoices = async () => {

@@ -18,11 +18,11 @@ const DealerPastHistory = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Use useLocation to access the state passed from the previous page
+
   const location = useLocation();
   const { state } = location;
 
-  // Auto-fill the dealerCode if it's passed via state
+ 
   useEffect(() => {
     if (state && state.code) {
       setDealerCode(state.code);
