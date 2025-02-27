@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import './CalOutstanding.css'; 
 import Footer from "../../compenents/footer/Footer";
 import Menu from "../../compenents/Menu/Menu";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const CalOutstanding = () => {
     const containerRef = useRef(null);
@@ -16,8 +17,9 @@ const CalOutstanding = () => {
     const [backName, setBackname]=useState('');
     const [depositedate, setdepositedate]=useState('');
     const [CHnumber, setCHnumber]=useState('');
-    const [savedDetails, setSavedDetails] = useState(null); // To store saved details
-    const [invoiceNumber, setInvoiceNumber] = useState(''); // To store invoice number for fetching details
+    const [savedDetails, setSavedDetails] = useState(null); 
+    const [invoiceNumber, setInvoiceNumber] = useState(''); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchInvoice = async () => {
@@ -155,9 +157,21 @@ const CalOutstanding = () => {
         'HNB'
       ]
 
+      const goback=()=>{
+        navigate(-1);
+      }
+
     return (
         <div>
-            <Menu/>
+            <Menu/><br/>
+
+            <Link to="#" onClick={goback} className="Back-Icon" style={{ color: 'black' }}>
+  Go Back
+  <IoMdArrowRoundBack size={23} />
+</Link>
+
+            <br/><br/>
+
         <div className="cal-outstanding-container">
         <h4 className="h1-out">Invoice code: {invoice.invoiceNumber}</h4>
         <h4 className="h1-out">Customer:{invoice.customer}</h4>

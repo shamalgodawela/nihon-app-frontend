@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Footer from "../../../compenents/footer/Footer";
 import './singleout.css'
 import Menu from "../../../compenents/Menu/Menu";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const ViewSingleOutstanding = () => {
     const containerRef = useRef(null);
@@ -18,6 +19,7 @@ const ViewSingleOutstanding = () => {
     const [CHnumber, setCHnumber]=useState('');
     const [savedDetails, setSavedDetails] = useState(null); 
     const [invoiceNumber, setInvoiceNumber] = useState(''); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchInvoice = async () => {
@@ -139,15 +141,27 @@ const ViewSingleOutstanding = () => {
         'HNB'
       ]
 
+      const goback=()=>{
+        navigate(-1);
+      }
+
     return (
         <div>
             <Menu/><br/><br/><br/>
+            <Link to="#" onClick={goback} className="Back-Icon" style={{ color: 'white' }}>
+              Go Back
+              <IoMdArrowRoundBack size={23} />
+            </Link>
         <div className="cal-outstanding-container">
         <h4 className="h1-out">Invoice code: {invoice.invoiceNumber}</h4>
         <h4 className="h1-out">Customer:{invoice.customer}</h4>
         <h4 className="h1-out">Address:{invoice.address}</h4>
         <h4 className="h1-out">Invoice Date:{invoice.invoiceDate}</h4>
         <h4 className="h1-out">EXE: {invoice.exe}</h4>
+        <Link to="#" onClick={goback} className="Back-Icon" style={{ color: 'black' }}>
+              Go Back
+              <IoMdArrowRoundBack size={23} />
+        </Link>
         
         
         <br/><hr/><br/>

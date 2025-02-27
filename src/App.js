@@ -80,6 +80,7 @@ import AllTaxInvoice from "./pages/TaxInvoices/ViewAllInvoices/AllTaxInvoice";
 import ViewSingleTax from "./pages/TaxInvoices/ViewSingletax/ViewSingleTax";
 import GetExeInvoice from "./compenents/EXEiNVOICE/GetExeInvoice";
 import InvoiceExetemp from "./compenents/EXEiNVOICE/Invoicetempexe/InvoiceExetemp";
+import WithoutMallout from "./compenents/outstandingTable/WithoutMallout";
 
 
 
@@ -140,6 +141,7 @@ function App() {
     <Route path="/Mdetails" element={<Mdetails/>} />
     <Route path="/customer/:code" element={<CustomerDetails/>} />
     <Route path="/AllOutstanding" element={<AllOutStanding/>} />
+    <Route path="/AllOutstanding-without-Menu" element={<WithoutMallout/>} />
     <Route path="/caloutStanding/:id" element={<CalOutstanding/>} />
     <Route path="/dateproduct" element={<Dateproduct/>} />
     <Route path="/dateproductDetails" element={<ProductdateDetails/>} />

@@ -141,7 +141,7 @@ const Oneorder = () => {
 
   }
   const handleInvoiceHistory=()=>{
-    navigate('/AllOutstanding', { state: { code: updatedOrder.code } });
+    navigate('/AllOutstanding-without-Menu', { state: { code: updatedOrder.code } });
   }
   
 
