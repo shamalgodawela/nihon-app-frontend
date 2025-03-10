@@ -19,7 +19,7 @@ const Oneorder = () => {
       try {
         const response = await axios.get(`https://nihon-inventory.onrender.com/api/orders/${id}`);
         const orderData = response.data;
-        // Initialize updatedOrder with the fetched order data, ensuring nested objects are properly initialized
+        
         const updatedOrderData = {
           ...orderData,
           products: orderData.products.map(product => ({
