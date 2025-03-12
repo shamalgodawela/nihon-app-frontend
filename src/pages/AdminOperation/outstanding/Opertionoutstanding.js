@@ -167,7 +167,7 @@ const Opertionoutstanding = () => {
                                     <td className='td-invoice'>{invoice.invoiceDate}</td>
                                     <td className='td-invoice'>{invoice.Duedate}</td>
                                     <td className='td-invoice'>{invoice.exe}</td>
-                                    <td className='td-invoice'>{invoice.TermsofPayment}</td>
+                                    <td className='td-invoice'>{invoice.ModeofPayment}</td>
                                     <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
                                         {formatNumbers(invoice.lastOutstanding)}
                                     </td>
