@@ -63,10 +63,10 @@ const ViewallOrder = () => {
       <div className="search-form">
         <label>Status:</label>
         <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)}>
-          <option value="pending">All</option>
+          <option value="pending">pending</option>
           <option value="Approved">Approved</option>
           <option value="Canceled">Canceled</option>
-          <option value="pending">pending</option>
+          
         </select>
         <label>Exe:</label>
         <select value={selectedExe} onChange={(e) => setSelectedExe(e.target.value)}>
