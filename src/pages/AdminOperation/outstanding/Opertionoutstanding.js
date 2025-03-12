@@ -149,6 +149,7 @@ const Opertionoutstanding = () => {
                                 <th className='th-invoice'>Invoice Date</th>
                                 <th className='th-invoice'>Due Date</th>
                                 <th className='th-invoice'>Exe</th>
+                                <th className='th-invoice'>terms of ayment</th>
                                 <th className='th-invoice'>Outstanding</th>
                                 <th className='th-invoice'>Invoice Total</th>
                                 <th className='th-invoice'>Cheque Details</th>
@@ -166,6 +167,7 @@ const Opertionoutstanding = () => {
                                     <td className='td-invoice'>{invoice.invoiceDate}</td>
                                     <td className='td-invoice'>{invoice.Duedate}</td>
                                     <td className='td-invoice'>{invoice.exe}</td>
+                                    <td className='td-invoice'>{invoice.TermsofPayment}</td>
                                     <td className={`td-invoice ${invoice.lastOutstanding === "Not Paid" ? 'not-paid' : invoice.lastOutstanding === "Paid" ? 'paid' : ''}`}>
                                         {formatNumbers(invoice.lastOutstanding)}
                                     </td>
