@@ -159,7 +159,10 @@ const Opertionoutstanding = () => {
                         </thead>
                         <tbody>
                             {filteredInvoices.map((invoice) => (
-                                <tr key={invoice._id} className={invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''}>
+                                <tr 
+                                key={invoice._id} 
+                                className={`${invoice.GatePassNo === 'Canceled' ? 'canceled-row' : ''} ${invoice.ModeOfPayment === 'Cash' ? 'modeof-raw' : ''}`}>
+                              
                                     <td className='td-invoice'>{invoice.invoiceNumber}</td>
                                     <td className='td-invoice'>{invoice.customer}</td>
                                     <td className='td-invoice'>{invoice.code}</td>
