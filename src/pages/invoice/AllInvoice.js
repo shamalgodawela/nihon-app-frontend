@@ -175,7 +175,10 @@ const AllInvoice = () => {
                       <td className='td-invoice'>{invoice.exe}</td>
                       <td className='td-invoice'>{invoice.ModeofPayment}</td>
                       <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
-                      <td className='td-invoice'>{invoice.productQuantity || '-'}</td>
+                      <td className='td-invoice'>
+  {productCode ? '-' : invoice.productQuantity || '-'}
+</td>
+
                       <td className='td-invoice'>
                         <Link to={`/invoice-temp/${invoice._id}`}>
                           <AiOutlineEye size={20} color={'purple'} />
