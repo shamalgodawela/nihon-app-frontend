@@ -88,7 +88,7 @@ const CustomerReg = () => {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      
       <Footer/>
     </div>
   );

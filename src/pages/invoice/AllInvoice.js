@@ -35,9 +35,15 @@ const AllInvoice = () => {
     setIsLoading(true);
     try {
       if (productCode) {
-        
         const response = await axios.get(`https://nihon-inventory.onrender.com/api/search-by-productcode/${productCode}`);
-        setInvoices(response.data);
+        const invoicesWithQuantity = response.data.map(invoice => {
+          const product = invoice.products.find(p => p.productCode === productCode);
+          return {
+            ...invoice,
+            productQuantity: product ? product.quantity : 0,
+          };
+        });
+        setInvoices(invoicesWithQuantity);
       } else {
         const formattedStartDate = startDate ? new Date(startDate).toISOString().split('T')[0] : '';
         const formattedEndDate = endDate ? new Date(endDate).toISOString().split('T')[0] : '';
@@ -114,7 +120,6 @@ const AllInvoice = () => {
             <option value="Mr.Riyas">Mr.Riyas</option>
           </select>
 
-          {/* New Input for Product Code Search */}
           <input
             type="text"
             placeholder="Search by Product Code"
@@ -150,10 +155,11 @@ const AllInvoice = () => {
                     <th className='th-invoice'>Customer</th>
                     <th className='th-invoice'>Customer Code</th>
                     <th className='th-invoice'>Invoice Date</th>
-                    <th className='th-invoice'>Due date</th>
+                    <th className='th-invoice'>Due Date</th>
                     <th className='th-invoice'>Exe</th>
                     <th className='th-invoice'>CH/C</th>
                     <th className='th-invoice'>Invoice Total</th>
+                    <th className='th-invoice'>Quantity</th>
                     <th className='th-invoice'>Action</th>
                   </tr>
                 </thead>
@@ -169,9 +175,10 @@ const AllInvoice = () => {
                       <td className='td-invoice'>{invoice.exe}</td>
                       <td className='td-invoice'>{invoice.ModeofPayment}</td>
                       <td className='td-invoice'>{formatNumbers(calculateTotal(invoice))}</td>
+                      <td className='td-invoice'>{invoice.productQuantity || '-'}</td>
                       <td className='td-invoice'>
                         <Link to={`/invoice-temp/${invoice._id}`}>
-                          <AiOutlineEye size={20} color={"purple"} />
+                          <AiOutlineEye size={20} color={'purple'} />
                         </Link>
                       </td>
                     </tr>
