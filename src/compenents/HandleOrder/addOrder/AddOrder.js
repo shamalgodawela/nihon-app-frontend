@@ -233,6 +233,7 @@ const fetchLastOrderNumberEA2 = async () => {
     <option value="Mr.Navaneedan">Mr.Navaneedan</option> 
     <option value="Mr.Nayum">Mr.Nayum</option>
     <option value="Mr.Riyas">Mr.Riyas</option>
+    <option value="Other">Other</option>
   </select>
   {orderData.exe === 'Mr.Ahamed' && (
                 <div className="form-row">
