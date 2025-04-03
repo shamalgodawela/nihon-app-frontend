@@ -57,7 +57,7 @@ const calculateTaxtot = () => {
 
         console.log(typeof totalWithTax, totalWithTax); // Log type and value of totalWithTax
 
-        return totalWithTax.toFixed(2); // Adjust decimal places as needed
+        return totalWithTax.toFixed(2); 
     }
 
     return 0;
@@ -68,7 +68,7 @@ const calculateTaxtot = () => {
     return <div>Loading...</div>;
   }
   
-  // Ensure there are always 6 rows displayed, adding empty rows if needed
+
   const productsCount = invoice.products.length;
   const emptyRowsCount = Math.max(6 - productsCount, 0);
   const filledRows = invoice.products.map((product, index) => (
