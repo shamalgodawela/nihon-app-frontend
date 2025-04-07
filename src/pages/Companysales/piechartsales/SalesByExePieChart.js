@@ -42,22 +42,52 @@ const SalesByExePieChart = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      {/* Date Filters */}
-      <div style={{ marginBottom: '20px' }}>
-        <input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
-        <button onClick={() => {}}>Search</button>
-      </div>
+     
+     <div style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <input
+    type="date"
+    value={startDate}
+    onChange={(e) => setStartDate(e.target.value)}
+    style={{
+      marginBottom: '10px',
+      padding: '8px',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      fontSize: '16px',
+      width: '200px'
+    }}
+  />
+  <input
+    type="date"
+    value={endDate}
+    onChange={(e) => setEndDate(e.target.value)}
+    style={{
+      marginBottom: '10px',
+      padding: '8px',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      fontSize: '16px',
+      width: '200px'
+    }}
+  />
+  <button
+    onClick={() => {}}
+    style={{
+      padding: '10px 20px',
+      backgroundColor: '#4CAF50',
+      color: 'white',
+      border: 'none',
+      borderRadius: '4px',
+      fontSize: '16px',
+      cursor: 'pointer'
+    }}
+  >
+    Search
+  </button>
+</div>
 
-      {/* Loading/Error or Pie Chart */}
+
+   
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
