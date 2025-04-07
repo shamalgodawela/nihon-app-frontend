@@ -118,6 +118,7 @@ const Sales = () => {
         <h2>Monthly Sales</h2>
         <MonthlySalesChart />
       </div>
+      <br/><br/><br/>
       <div>
         <h2 className="pie-container">Executive wise Sales (2024 April to present)</h2>
         <SalesByExePieChart />
