@@ -397,6 +397,7 @@ body{
     font-family:Arial, Helvetica, sans-serif;
     font-weight: 200;
     color: #000000;
+   
 }
 .tdtot{
     position:absolute;
@@ -408,7 +409,7 @@ body{
 .fontcolor-invoice{
     font-family:Arial, Helvetica, sans-serif;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 200;
     color: #000000;
   
 }
@@ -472,3 +473,4 @@ body{
     margin-top:0.15cm;
     
 }
+

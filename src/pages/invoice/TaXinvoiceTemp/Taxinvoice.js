@@ -76,12 +76,16 @@ const calculateTaxtot = () => {
       <td className="fontcolor-invoice">{product.productCode}</td>
       <td className="fontcolor-invoice">{product.productName}</td>
       <td className="tdquantity">{product.quantity}</td>
-      <td className="fontcolor-invoice">{formatNumbers(product.labelPrice.toFixed(2))}</td>
-      <td className="tddiscount">{formatNumbers(product.discount.toFixed(2))}</td>
-      <td className="fontcolor-invoice">{formatNumbers(product.unitPrice.toFixed(2))}</td>
-      <td className="tdtot" style={{ textAlign: 'end' }}>
-  {formatNumbers((product.labelPrice * (1 - product.discount / 100) * product.quantity).toFixed(2))}
+      <td className="fontcolor-invoice"></td>
+      <td className="tddiscount"></td>
+      <td id="td_unit-tax" className="fontcolor-invoice">
+  {formatNumbers((product.unitPrice - (product.unitPrice * 18 / 100)).toFixed(2))}
 </td>
+
+<td className="tdtot">{formatNumbers(((product.unitPrice - (product.unitPrice * 18 / 100)) * product.quantity).toFixed(2))}</td>
+
+
+
 
 
     </tr>
@@ -99,7 +103,13 @@ const calculateTaxtot = () => {
   ));
   const allRows = [...filledRows, ...emptyRows];
 
- 
+  const subtotal = invoice.products.reduce((acc, product) => {
+    const discountedUnitPrice = product.unitPrice - (product.unitPrice * 18 / 100);
+    const totalPerProduct = discountedUnitPrice * product.quantity;
+    return acc + totalPerProduct;
+  }, 0);
+    const formattedSubtotal = formatNumbers(subtotal.toFixed(2));  
+  
   
 
   
@@ -195,7 +205,7 @@ const calculateTaxtot = () => {
                       <div className="info-item">
                         <p className="subject">Invoiced by</p>
                       </div>
-                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>{formatNumbers(calculateTotal())}</div>
+                      <div className="info-item-td text-end text-bold" id="second"><span class="label">SubTotal:</span>{formattedSubtotal}</div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item border-bottom">
@@ -205,7 +215,10 @@ const calculateTaxtot = () => {
                       </div>
                       {/* <p id='vat-p'>VAT 18%</p> */}
                       {/* <div className="info-item-td text-end text-bold" id="discount"><span class="label"></span>Add.Discount(3%):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{formatNumbers((calculateTotal() - calculateTaxtot()).toFixed(2))}</div> */}
-                      {/* <div className="info-item-td text-end text-bold" id="tax"><span class="label">Tax:%</span></div> */}
+                      <div className="info-item-td text-end text-bold" id="tax"><span class="label">Tax:%</span>{formatNumbers((calculateTaxtot() - parseFloat(formattedSubtotal.replace(/,/g, ''))).toFixed(2))}
+
+
+                      </div>
                     </div>
                   </div>
                   <div class="invoice-body-info-item">
