@@ -315,7 +315,7 @@ const fetchLastOrderNumberEA2 = async () => {
 </div>
 <div className="form-row">
   <label className="form-label">Customer Vat No</label>
-  <input type="text" className="form-input" name="CusVatNo" value={orderData.CusVatNo} onChange={(e) => setOrderData({ ...orderData, Paymentmethod: e.target.value })} />
+  <input type="text" className="form-input" name="CusVatNo" value={orderData.CusVatNo} onChange={(e) => setOrderData({ ...orderData, CusVatNo: e.target.value })} />
 </div>
 {/* <div className="form-row">
   <label className="form-label">Vat reg no:</label>
