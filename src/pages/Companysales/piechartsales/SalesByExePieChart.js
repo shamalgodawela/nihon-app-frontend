@@ -42,52 +42,50 @@ const SalesByExePieChart = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-     
-     <div style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-  <input
-    type="date"
-    value={startDate}
-    onChange={(e) => setStartDate(e.target.value)}
-    style={{
-      marginBottom: '10px',
-      padding: '8px',
-      border: '1px solid #ccc',
-      borderRadius: '4px',
-      fontSize: '16px',
-      width: '200px'
-    }}
-  />
-  <input
-    type="date"
-    value={endDate}
-    onChange={(e) => setEndDate(e.target.value)}
-    style={{
-      marginBottom: '10px',
-      padding: '8px',
-      border: '1px solid #ccc',
-      borderRadius: '4px',
-      fontSize: '16px',
-      width: '200px'
-    }}
-  />
-  <button
-    onClick={() => {}}
-    style={{
-      padding: '10px 20px',
-      backgroundColor: '#4CAF50',
-      color: 'white',
-      border: 'none',
-      borderRadius: '4px',
-      fontSize: '16px',
-      cursor: 'pointer'
-    }}
-  >
-    Search
-  </button>
-</div>
 
+      <div style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          style={{
+            marginBottom: '10px',
+            padding: '8px',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            fontSize: '16px',
+            width: '200px'
+          }}
+        />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          style={{
+            marginBottom: '10px',
+            padding: '8px',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            fontSize: '16px',
+            width: '200px'
+          }}
+        />
+        <button
+          onClick={() => {}}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#4CAF50',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            fontSize: '16px',
+            cursor: 'pointer'
+          }}
+        >
+          Search
+        </button>
+      </div>
 
-   
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -123,6 +121,20 @@ const SalesByExePieChart = () => {
               }
             }}
           />
+        </div>
+      )}
+
+      {/* Display sales data below the chart */}
+      {salesData.length > 0 && (
+        <div style={{ marginTop: '20px' }}>
+          <h3>Sales Data by Executive</h3>
+          <ul style={{ listStyleType: 'none', padding: '0' }}>
+            {salesData.map((item, index) => (
+              <li key={index} style={{ marginBottom: '10px' }}>
+                <strong>{item._id}:</strong> {item.totalSales} units
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>

@@ -111,21 +111,21 @@ const fetchLastOrderNumberEA2 = async () => {
     const products = [...orderData.products];
     products[index][name] = value;
 
-    // Calculate discount and invoice total when unit price changes
+   
     if (name === 'unitPrice') {
         const labelPrice = parseFloat(products[index].labelPrice);
         const unitPrice = parseFloat(value);
         const quantity = parseFloat(products[index].quantity);
         
         if (!isNaN(labelPrice)) {
-            const discount = ((labelPrice - unitPrice) / labelPrice) * 100; // Calculate discount
-            products[index].discount = isNaN(discount) ? '' : discount.toFixed(2); // Set discount
+            const discount = ((labelPrice - unitPrice) / labelPrice) * 100; 
+            products[index].discount = isNaN(discount) ? '' : discount.toFixed(2); 
         }
 
-        const invoiceTotal = unitPrice * quantity; // Calculate invoice total
-        products[index].invoiceTotal = isNaN(invoiceTotal) ? '' : invoiceTotal.toFixed(2); // Set invoice total
+        const invoiceTotal = unitPrice * quantity; 
+        products[index].invoiceTotal = isNaN(invoiceTotal) ? '' : invoiceTotal.toFixed(2);
     } 
-    // Calculate unit price and invoice total when label price or discount changes
+
     else if (name === 'labelPrice' || name === 'discount') {
         const labelPrice = parseFloat(products[index].labelPrice);
         const discount = parseFloat(products[index].discount);
