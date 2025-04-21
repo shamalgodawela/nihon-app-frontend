@@ -43,7 +43,8 @@ const InvoiceForm = () => {
     VehicleNo: '',
     VatRegNo: '',
     VatNO: '',
-    TaxNo: ''
+    TaxNo: '',
+    CusVatNo:''
   });
 
   const [lastInvoiceNumber, setLastInvoiceNumber] = useState('');
@@ -297,6 +298,7 @@ const InvoiceForm = () => {
           VatRegNo:orderData.VatRegNo,
           VatNO:orderData.VatNO,
           TaxNo:orderData.TaxNo,
+          CusVatNo:orderData.CusVatNo,
           products: orderData.products.map((product) => ({
             productCode: product.productCode,
             productName: product.productName,
@@ -462,6 +464,15 @@ const InvoiceForm = () => {
               type="text"
               name="TaxNo"
               value={formData.TaxNo}
+              onChange={handleChange}
+              />
+          </div>
+          <div className="form-group">
+           <label>Customer VAT No:</label>
+              <input
+              type="text"
+              name="TaxNo"
+              value={formData.CusVatNo}
               onChange={handleChange}
               />
           </div>
