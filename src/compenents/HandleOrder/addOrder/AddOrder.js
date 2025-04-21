@@ -20,6 +20,7 @@ const AddOrder = ({ onAddOrder }) => {
         TaxNo:'',
         CreditPeriod:'',
         Paymentmethod:'',
+        CusVatNo:'',
         products: [{ productCode: '', productName: '', quantity: '', labelPrice: '', discount: '', unitPrice: '', invoiceTotal: '' }]
     });
     const [lastOrderNumber, setLastOrderNumber] = useState('');
@@ -311,6 +312,10 @@ const fetchLastOrderNumberEA2 = async () => {
 <div className="form-row">
   <label className="form-label">Mode Of Payment:</label>
   <input type="text" className="form-input" name="Paymentmethod" value={orderData.Paymentmethod} onChange={(e) => setOrderData({ ...orderData, Paymentmethod: e.target.value })} />
+</div>
+<div className="form-row">
+  <label className="form-label">Customer Vat No</label>
+  <input type="text" className="form-input" name="CusVatNo" value={orderData.CusVatNo} onChange={(e) => setOrderData({ ...orderData, Paymentmethod: e.target.value })} />
 </div>
 {/* <div className="form-row">
   <label className="form-label">Vat reg no:</label>
