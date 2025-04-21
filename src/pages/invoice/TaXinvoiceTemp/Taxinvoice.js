@@ -79,10 +79,10 @@ const calculateTaxtot = () => {
       <td className="fontcolor-invoice"></td>
       <td className="tddiscount"></td>
       <td id="td_unit-tax" className="fontcolor-invoice">
-  {formatNumbers((product.unitPrice - (product.unitPrice * 18 / 100)).toFixed(2))}
+  {formatNumbers((((product.unitPrice * 100) / 118)).toFixed(2))}
 </td>
 
-<td className="tdtot">{formatNumbers(((product.unitPrice - (product.unitPrice * 18 / 100)) * product.quantity).toFixed(2))}</td>
+<td className="tdtot">{formatNumbers((((product.unitPrice * 100 / 118)) * product.quantity).toFixed(2))}</td>
 
 
 
@@ -104,7 +104,7 @@ const calculateTaxtot = () => {
   const allRows = [...filledRows, ...emptyRows];
 
   const subtotal = invoice.products.reduce((acc, product) => {
-    const discountedUnitPrice = product.unitPrice - (product.unitPrice * 18 / 100);
+    const discountedUnitPrice = ((product.unitPrice * 100) / 118);
     const totalPerProduct = discountedUnitPrice * product.quantity;
     return acc + totalPerProduct;
   }, 0);
