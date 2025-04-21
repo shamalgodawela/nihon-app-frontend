@@ -60,9 +60,7 @@ const SingleOrder = () => {
         <p className="order-details-item">
           <span className="order-details-label">Status:</span> {order.status}
         </p>
-        <p className="order-details-item">
-          <span className="order-details-label">Customer Vat:</span> {order.CusVatNo}
-        </p>
+      
         <h3 className="order-details-product-header">Products</h3>
         <table className="order-details-product-table">
           <thead>

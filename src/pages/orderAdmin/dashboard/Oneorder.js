@@ -24,19 +24,19 @@ const Oneorder = () => {
           ...orderData,
           products: orderData.products.map(product => ({
             ...product,
-            // Ensure that each nested object within products is properly initialized
+            
             productCode: product.productCode || '',
             productName: product.productName || '',
             labelPrice: product.labelPrice || '',
             quantity: product.quantity || '',
-            discount: product.discount || 0, // Set default value of discount to 0
+            discount: product.discount || 0, 
             unitPrice: product.unitPrice || '',
             invoiceTotal: product.invoiceTotal || '',
           }))
         };
         setOrder(orderData);
         setUpdatedOrder(updatedOrderData);
-        setIsLoading(false); // Set loading to false once data is fetched
+        setIsLoading(false); 
       } catch (error) {
         console.error('Error fetching order details:', error);
       }
@@ -54,15 +54,15 @@ const Oneorder = () => {
       }, 0);
     }
   
-    return total.toFixed(2); // Return the total with 2 decimal places
+    return total.toFixed(2);
   };
   
-  // Handle form input changes
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     let updatedData;
   
-    // If the changed field is discount or quantity, recalculate unit price and invoice total for all products
+
     if (name === 'discount' || name === 'quantity') {
       updatedData = {
         ...updatedOrder,
@@ -249,6 +249,9 @@ const Oneorder = () => {
                     
                   />
                 </div>
+                <p className="order-details-item">
+          <span className="order-details-label">Customer Vat:</span> {updatedOrder.CusVatNo}
+        </p>
                 <div className="form-group">
                   <label className="order-details-label">Status:</label>
                   <select
