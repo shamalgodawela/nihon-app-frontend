@@ -160,7 +160,8 @@ const AllInvoice = () => {
                     <th className='th-invoice'>CH/C</th>
                     <th className='th-invoice'>Invoice Total</th>
                     <th className='th-invoice'>Quantity</th>
-                    <th className='th-invoice'>Action</th>
+                    <th className='th-invoice'>View</th>
+                    <th className='th-invoice'>Vat-Print</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -181,6 +182,11 @@ const AllInvoice = () => {
 
                       <td className='td-invoice'>
                         <Link to={`/invoice-temp/${invoice._id}`}>
+                          <AiOutlineEye size={20} color={'purple'} />
+                        </Link>
+                      </td>
+                      <td className='td-invoice'>
+                        <Link to={`/tax-invoice/${invoice._id}`}>
                           <AiOutlineEye size={20} color={'purple'} />
                         </Link>
                       </td>

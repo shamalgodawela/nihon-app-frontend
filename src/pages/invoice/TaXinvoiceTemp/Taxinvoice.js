@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Logo from "../../../assets/Nihon Logo-01.png"
-import "./invoicetemp.css"
+import "./taxinvoicetemp.css"
 import ReactToPrint from 'react-to-print';
 
 export default function Taxinvoice() {

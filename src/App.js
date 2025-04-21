@@ -81,6 +81,7 @@ import ViewSingleTax from "./pages/TaxInvoices/ViewSingletax/ViewSingleTax";
 import GetExeInvoice from "./compenents/EXEiNVOICE/GetExeInvoice";
 import InvoiceExetemp from "./compenents/EXEiNVOICE/Invoicetempexe/InvoiceExetemp";
 import WithoutMallout from "./compenents/outstandingTable/WithoutMallout";
+import Taxinvoice from "./pages/invoice/TaXinvoiceTemp/Taxinvoice";
 
 
 
@@ -183,6 +184,7 @@ function App() {
     <Route path="/view-single-invoice/:id" element={<ViewInvoice/>} />
     <Route path="/viewAll-TaxInvoices" element={<AllTaxInvoice/>} />
     <Route path="/view-single-Taxinvoice/:invoiceNumber" element={<ViewSingleTax/>} />
+    <Route path="/tax-invoice/:id" element={<Taxinvoice/>} />
 
 
 {/*----------------------------------Admin Operations pages----------------------------------------------*/}
