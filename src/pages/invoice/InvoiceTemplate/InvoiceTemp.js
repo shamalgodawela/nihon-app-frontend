@@ -147,6 +147,7 @@ const calculateTaxtot = () => {
                     <li className='cusd1'><span class="label" >Name:</span>{invoice.customer}</li>
                     <li className='cusd2'><span class="label" >Address:</span>{invoice.address}</li>
                     <li className='cusd3'><span class="label" >contact:</span>{invoice.contact}</li>
+                    <li className='cus-Vat-no'>Tax Invoice No :{invoice.TaxNo}</li>
                    
                   </ul>
                 </div>
@@ -160,7 +161,7 @@ const calculateTaxtot = () => {
                     <li className='cusd46' ><span id='oridate'>Date:</span>{invoice.invoiceDate}</li>
                   </ul>
                 </div>
-                <p className='tav-invoice-No'>-{invoice.TaxNo}</p>
+                {/* <p className='tav-invoice-No'>-{invoice.TaxNo}</p> */}
               </div>
             </div>
             <h4 className="table-cell-pay"><span class="label">Payment Details</span></h4>
