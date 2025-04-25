@@ -469,16 +469,20 @@ body{
   .cus-Vat-no{
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
-    margin-left:1cm;
+    margin-left:0.97cm;
     margin-top:0.15cm;
+    position: fixed;
     
 }
 
 .tax-Vat-no{
     font-family:Arial, Helvetica, sans-serif;
     color: #000000;
-    margin-left:0.45cm;
-    margin-top:0.15cm;
+    margin-left:0.43cm;
+    margin-top:0.65cm;
+    position: fixed;
+
+
     
 }
 
