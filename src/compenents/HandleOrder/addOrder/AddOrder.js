@@ -229,7 +229,7 @@ const fetchLastOrderNumberEA2 = async () => {
   <select className="form-input" name="exe" value={orderData.exe} onChange={(e) => setOrderData({ ...orderData, exe: e.target.value })} >
     <option value="">Select EXE:</option> 
     <option value="Mr.Ahamed">Mr.Ahamed</option> 
-    <option value="Mr.Dasun">SOUTH</option> 
+    <option value="SOUTH">SOUTH</option> 
     <option value="Mr.Chameera">Mr.Chameera</option> 
     <option value="Mr.Navaneedan">Mr.Navaneedan</option> 
     <option value="Mr.Nayum">Mr.Nayum</option>
