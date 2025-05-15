@@ -80,3 +80,10 @@
       font-size: 20px;
       font-weight: bold;
     }
+
+
+
+.all-invoice table tbody tr:hover {
+  background-color: #f0f8ff;
+  cursor: pointer;
+}
