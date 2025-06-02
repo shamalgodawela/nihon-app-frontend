@@ -194,6 +194,7 @@ const EditInvoice = () => {
           >
             <option value="">Select</option>
             <option value="Printed">Printed</option>
+            <option value="Delivered">Delivered</option>
             <option value="Canceled">Canceled</option>
             <option value="Free Issued">Free Issued</option>
             <option value="Executive Stock">Executive Stock</option>
