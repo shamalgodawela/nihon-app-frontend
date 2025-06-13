@@ -111,6 +111,7 @@ const ViewAllinvoice = () => {
         <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
         <option value="Mr.Nayum">Mr.Nayum</option>
         <option value="Mr.Navaneedan">Mr.Navaneedan</option>
+        <option value="SOUTH">SOUTH-1</option>
       </select>
 
       <input
