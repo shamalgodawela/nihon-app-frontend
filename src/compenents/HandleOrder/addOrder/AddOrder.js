@@ -231,7 +231,7 @@ const fetchLastOrderNumberEA2 = async () => {
     <option value="Mr.Ahamed">Mr.Ahamed</option> 
     <option value="SOUTH">SOUTH</option> 
     <option value="Mr.Chameera">Mr.Chameera</option> 
-    <option value="Mr.Navaneedan">Mr.Navaneedan</option> 
+    <option value="UpCountry">UpCountry</option> 
     <option value="Mr.Nayum">Mr.Nayum</option>
     <option value="Mr.Riyas">Mr.Riyas</option>
     <option value="Other">Other</option>
@@ -257,7 +257,7 @@ const fetchLastOrderNumberEA2 = async () => {
                     </p>
                 </div>
             )}
-{orderData.exe === 'Mr.Navaneedan' && (
+{orderData.exe === 'UpCountry' && (
                 <div className="form-row">
                     <p className="last-order-number">
                         Last Order Number (Starting with UPC2): {lastOrderNumber}
