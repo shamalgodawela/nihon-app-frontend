@@ -47,7 +47,7 @@ const AddOrder = ({ onAddOrder }) => {
         }
     };
     const fetchLastOrderNumberNCP = async () => {
-      if (orderData.exe === 'Mr.Chameera') {
+      if (orderData.exe === 'NCP') {
           try {
               const response = await axios.get(`https://nihon-inventory.onrender.com/api/lastorder/ncp`);
               setLastOrderNumber(response.data.lastOrderNumber);
@@ -230,7 +230,7 @@ const fetchLastOrderNumberEA2 = async () => {
     <option value="">Select EXE:</option> 
     <option value="Mr.Ahamed">Mr.Ahamed</option> 
     <option value="SOUTH">SOUTH</option> 
-    <option value="Mr.Chameera">Mr.Chameera</option> 
+    <option value="NCP">NCP</option> 
     <option value="UpCountry">UpCountry</option> 
     <option value="Mr.Nayum">Mr.Nayum</option>
     <option value="Mr.Riyas">Mr.Riyas</option>
