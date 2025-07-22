@@ -118,11 +118,11 @@ const Opertionoutstanding = () => {
                     <option value="Mr.Ahamed">Mr.Ahamed</option>
                     <option value="Mr.Dasun">Mr.Dasun</option>
                     <option value="Mr.Chameera">Mr.Chameera</option>
-                    <option value="Mr.Sanjeewa">Mr.Sanjeewa</option>
                     <option value="Mr.Navaneedan">Mr.Navaneedan</option>
                     <option value="Mr.Nayum">Mr.Nayum</option>
                     <option value="Mr.Riyas">Mr.Riyas</option>
                     <option value="SOUTH">SOUTH-1</option>
+                    <option value="UpCountry">UpCountry</option>
                 </select>
 
                 

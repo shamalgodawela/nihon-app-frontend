@@ -77,6 +77,9 @@ const ViewallOrder = () => {
           <option value="Mr.Sanjeewa">Mr.Sanjeewa</option> 
           <option value="Mr.Navaneedan">Mr.Navaneedan</option>
           <option value="Mr.Nayum">Mr.Nayum</option>
+          <option value="SOUTH">SOUTH-1</option>
+          <option value="Other">Other</option>
+          <option value="UpCountry">UpCountry</option>
         </select>
       </div>
       
