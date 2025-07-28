@@ -198,7 +198,7 @@ const EditInvoice = () => {
             <option value="Canceled">Canceled</option>
             <option value="Free Issued">Free Issued</option>
             <option value="Executive Stock">Executive Stock</option>
-            <option value="Executive Stock">Return-reinvoiced</option>
+            <option value="Return-reinvoiced">Return-reinvoiced</option>
           </select>
         </div>
       
