@@ -8,7 +8,9 @@ import Logo from "../../assets/Nihon Logo-03.png"
 export const Home = () => {
   return (
     <div className='home'>
-      <nav className='container --flex-between'>
+
+      <h1>Temporary System Downtime for Updates</h1>
+      {/* <nav className='container --flex-between'>
         <div className='logo'>
           <img src={Logo} alt='Logo' width={100} height={50} className='logo-c'/>
           <h4 className='c-name'>Nihon Agriculture Holdings (Pvt)Ltd</h4>
@@ -17,9 +19,7 @@ export const Home = () => {
 
         </div>
         <ul className='home-links'>
-            {/* <li>
-            <Link to="/register">Register</Link>
-          </li>  */}
+           
           <li>
           <button widt="20px" className='--btn --btn-primary'>
              <Link to="/login">Login</Link>
@@ -43,10 +43,10 @@ export const Home = () => {
 
 
         </ul>
-      </nav>
-      {/* HERO SECTION */}
+      </nav> */}
+    
 
-      <section className='container hero'>
+      {/* <section className='container hero'>
         <div className='hero-text'>
           <h2>Nihon Agriculture ERP Management System</h2>
 
@@ -68,7 +68,7 @@ export const Home = () => {
           
         </div>
       
-      </section>
+      </section> */}
     </div>
   )
 }
